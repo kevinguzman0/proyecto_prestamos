@@ -1,7 +1,6 @@
 hola KEVIn y laura
 cualquier cosa
 
-<<<<<<< HEAD
 Cambios de Hernán
 Cambios de ElAnder
 
@@ -16,6 +15,4 @@ fsd
 fsdfs
 df
 sdffsd
-=======
-Cambios de Hernán
->>>>>>> parent of 9ea5df1... cambios de ander
+cambios de ander
