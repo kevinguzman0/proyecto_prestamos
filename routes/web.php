@@ -19,6 +19,7 @@ Route::get('inicio', function () {
     return view('inicio');
 });
 
+
 Route::get('logueo', function () {
     return view('mylogin');
 });
@@ -27,6 +28,17 @@ Route::get('registro', function () {
     return view('myregistro');
 });
 
+
+
+
+
+
+Route::get('pagos', function () {
+    return view('index');
+});
+Route::get('tabla', function () {
+    return view('operaciones');
+});
 
 Auth::routes();
 
