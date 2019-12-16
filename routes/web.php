@@ -11,6 +11,7 @@
 |
 */
 
+
 use Illuminate\Database\Eloquent\Model;
 
 Auth::routes();
