@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 
 Auth::routes();
 
-Route::get('/', function () {
+Route::get('/tabla1', function () {
 
 	$tablaConfiguraciones = new App\TablaConfiguraciones();
 	$tablaConfiguraciones->nombreConfiguracion = 'configuracion #1';
@@ -23,6 +23,21 @@ Route::get('/', function () {
 	$tablaConfiguraciones->descripcionConfiguracion = 'descripcion #1';
 	$tablaConfiguraciones->save();
     return view('inicio');
+});
+
+Route::get('/tabla5', function () {
+
+	$solicitud = new App\Solicitudes();
+	$solicitud->monto='50000';
+	$solicitud->plazo='15';
+	$solicitud->cuota15='5000000.50';
+	$solicitud->cuota30='1000000.10';
+	$solicitud->tasa='45.5';
+	$solicitud->idEstadoSolicitud='1';
+	$solicitud->idCliente='1';
+	$solicitud->save();
+	
+    return 'Solicitud aceptada XD';
 });
 
 /*
