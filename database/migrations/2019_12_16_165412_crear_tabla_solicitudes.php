@@ -15,15 +15,15 @@ class CrearTablaSolicitudes extends Migration
     {
         Schema::create('solicitudes', function (Blueprint $table) {
             $table->bigIncrements('id'); 
-            $table->integer('monto', 11);
-            $table->integer('plazo', 3);
+            $table->integer('monto');
+            $table->integer('plazo');
             $table->decimal('cuota15', 13, 4);
             $table->decimal('cuota30', 13, 4);
             $table->decimal('tasa', 5, 2);
-            $table->integer('idEstadoSolicitud', 2)->unsigned();
-            $table->foreign('idEstadoSolicitud')->references('id')->on('estado_solicitud');
-            $table->integer('idCliente', 11)->unsigned();
-            $table->foreign('idEstadoSolicitud')->references('id')->on('usuarios');
+            $table->integer('idEstadoSolicitud')->unsigned();
+            $table->foreign('idEstadoSolicitud')->references('id')->on('estado_solicitudes');
+            $table->integer('idCliente')->unsigned();
+            $table->foreign('idCliente')->references('id')->on('usuarios');
             $table->timestamps();
         });
     }
