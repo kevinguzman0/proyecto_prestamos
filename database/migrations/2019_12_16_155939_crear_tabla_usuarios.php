@@ -27,7 +27,7 @@ class CrearTablaUsuarios extends Migration
             $table->date('fechaNacimiento');
             $table->string('direccion', 100);
             $table->string('barrio', 100);
-            $table->string('cuidad', 45);
+            $table->string('ciudad', 45);
             $table->string('areaTrabajo', 100);
             $table->string('cargoTrabajo', 100);           
             $table->timestamps();

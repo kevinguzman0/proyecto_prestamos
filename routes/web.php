@@ -46,7 +46,7 @@ Route::get('/tabla3', function () {
 
 Route::get('/tabla4', function () {
 
-    $usuario = new App\Usurios();
+    $usuario = new App\Usuarios();
     $usuario->idPerfilUsuario = '1';
     $usuario->cedula = '1024551252';
     $usuario->nombres = 'jhon';
@@ -55,7 +55,7 @@ Route::get('/tabla4', function () {
     $usuario->email = 'jhon@gmail.com';
     $usuario->telefono1 = '13883293';
     $usuario->telefono2 = '10737383';
-    $usuario->fechaNacimientos = '2001/04/11';
+    $usuario->fechaNacimiento = '2001/04/11';
     $usuario->direccion = 'cll 34 N 34-34';
     $usuario->barrio = 'madelena';
     $usuario->ciudad = 'bogota';
