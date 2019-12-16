@@ -15,8 +15,7 @@ class CrearTablaUsuarios extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('idPerfilUsuario', 2)->unsigned();
-            $table->foreign('idPerfilUsuario')->references('id')->on('perfiles_usuario');
+            $table->integer('idPerfilUsuario')->unsigned();
             $table->string('cedula', 15);
             $table->string('nombres', 100);
             $table->string('apellidos', 100);
@@ -30,9 +29,8 @@ class CrearTablaUsuarios extends Migration
             $table->string('cuidad', 45);
             $table->string('areaTrabajo', 100);
             $table->string('cargoTrabajo', 100);           
-            $table->date('fechaCreacion');
-            $table->date('fechaModificacion');
             $table->timestamps();
+            $table->foreign('idPerfilUsuario')->references('id')->on('perfiles_usuario');
         });
     }
 
