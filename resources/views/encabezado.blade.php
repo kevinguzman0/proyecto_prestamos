@@ -83,27 +83,36 @@
                         </div>
 
                         <!-- Contact --> 
-                        <div class="contact classmenu2" style="margin-left: 170px;">
-                            <a href="#" class="classmenu3"><img class="classmenu3"src="prestamos2/img/core-img/call2.png" alt="">+57 3215014816</a>
-                        </div>
-                            <div class="classynav" style="z-index: 100; float: right; margin-right: -300px; text-align: right;">
-                                <ul>
-                                    @if (Route::has('login'))
-                                        <div class="top-right links">
-                                            @auth
-                                               <li><a href="{{ url('/logout') }}">Cerrar Sesion</a></li>
-                                            @else
-                                                <li><a href="{{ url('/logueo') }}">Iniciar Sesion</a></li>
+                    <div class="contact classmenu2" style="margin-left: 170px;">
+                        <a href="#" class="classmenu3"><img class="classmenu3"src="prestamos2/img/core-img/call2.png" alt="">+57 3215014816</a>
+                    </div>
+                        <div class="classynav" style="z-index: 100; float: right; margin-right: -300px; text-align: right;">
+                            <ul>
+                                @if (Route::is('registro'))
+                                    <div class="top-right links">
+                                        @auth
+                                           <li><a href="{{ url('/logout') }}">Cerrar Sesión</a></li>
+                                        @else
+                                            <li><a href="{{ url('/logueo') }}">Iniciar Sesión</a></li>
+                                        @endauth
+                                @endif
 
-                                                @if (Route::has('register'))
-                                                    <li><a href="{{ url('/registro') }}">Registrarse</a></li>
-                                                @endif
-                                            @endauth
-                                        </div>
-                                    @endif
-                                </ul>
-                            </div>
-                        
+                                @if (Route::is('logueo'))
+                                    <li><a href="{{ url('/registro') }}">Registrarse</a></li>
+                                @endif
+
+                                @if (Route::is('inicio'))
+                                    @auth
+                                       <li><a href="{{ url('/logout') }}">Cerrar Sesión</a></li>
+                                    @else
+                                        <li><a href="{{ url('/logueo') }}">Iniciar Sesión</a></li>
+                                    
+                                    <li><a href="{{ url('/registro') }}">Registrarse</a></li>
+                                    @endauth
+                                @endif
+                                    </div>
+                            </ul>
+                        </div>                       
                     </nav>
                 </div>
             </div>

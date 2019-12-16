@@ -18,15 +18,15 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('inicio');
-});
+})->name('inicio');
 
 Route::get('logueo', function () {
     return view('mylogin');
-});
+})->name('logueo');
 
 Route::get('registro', function () {
     return view('myregistro');
-});
+})->name('registro');
 
 Route::get('pagos', function () {
     return view('index');
