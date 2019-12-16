@@ -44,20 +44,6 @@ Route::get('/tabla3', function () {
     return 'egistro de estado de solicitud creado...';
 });
 
-Route::get('/tabla5', function () {
-
-	$solicitud = new App\Solicitudes();
-	$solicitud->monto='50000';
-	$solicitud->plazo='15';
-	$solicitud->cuota15='5000000.50';
-	$solicitud->cuota30='1000000.10';
-	$solicitud->tasa='45.5';
-	$solicitud->idEstadoSolicitud='1';
-	$solicitud->idCliente='1';
-	$solicitud->save();
-	
-    return 'Solicitud aceptada XD';
-});
 Route::get('/tabla4', function () {
 
     $usuario = new App\Usurios();
@@ -78,6 +64,22 @@ Route::get('/tabla4', function () {
     $usuario->save();
     return view('inicio');
 });
+
+Route::get('/tabla5', function () {
+
+	$solicitud = new App\Solicitudes();
+	$solicitud->monto='50000';
+	$solicitud->plazo='15';
+	$solicitud->cuota15='5000000.50';
+	$solicitud->cuota30='1000000.10';
+	$solicitud->tasa='45.5';
+	$solicitud->idEstadoSolicitud='1';
+	$solicitud->idCliente='1';
+	$solicitud->save();
+	
+    return 'Solicitud aceptada XD';
+});
+
 /*
 Route::get('/', function () {
     return view('welcome');
