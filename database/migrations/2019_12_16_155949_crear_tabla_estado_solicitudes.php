@@ -15,9 +15,9 @@ class CrearTablaEstadoSolicitudes extends Migration
     {
         Schema::create('estado_solicitudes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('IdEstado', 2);
-            $table->string('NombreEstado', 20);
-            $table->string('DescripcionEstado');
+            $table->integer('idEstado', 2);
+            $table->string('nombreEstado', 20);
+            $table->string('descripcionEstado');
             $table->timestamps();
         });
     }
