@@ -11,11 +11,25 @@
 |
 */
 
+use Illuminate\Database\Eloquent\Model;
+
 Auth::routes();
 
 Route::get('/', function () {
+
+	$tablaConfiguraciones = new App\TablaConfiguraciones();
+	$tablaConfiguraciones->nombreConfiguracion = 'configuracion #1';
+	$tablaConfiguraciones->valorConfiguracion = 'valor #1';
+	$tablaConfiguraciones->descripcionConfiguracion = 'descripcion #1';
+	$tablaConfiguraciones->save();
+    return view('inicio');
+});
+
+/*
+Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 Route::get('inicio', function () {
     return view('inicio');
