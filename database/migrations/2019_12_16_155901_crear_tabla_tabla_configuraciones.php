@@ -15,7 +15,6 @@ class CrearTablaTablaConfiguraciones extends Migration
     {
         Schema::create('tabla_configuraciones', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('idConfiguracion', 4);
             $table->string('nombreConfiguracion', 100);
             $table->string('valorConfiguracion');
             $table->string('descripcionConfiguracion', 255);

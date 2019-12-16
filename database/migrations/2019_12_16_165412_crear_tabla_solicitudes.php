@@ -15,7 +15,6 @@ class CrearTablaSolicitudes extends Migration
     {
         Schema::create('solicitudes', function (Blueprint $table) {
             $table->bigIncrements('id'); 
-            $table->integer('idSolicitud', 11); 
             $table->integer('monto', 11);
             $table->integer('plazo', 3);
             $table->decimal('cuota15', 13, 4);

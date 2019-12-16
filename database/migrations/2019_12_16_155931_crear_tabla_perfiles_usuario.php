@@ -15,7 +15,6 @@ class CrearTablaPerfilesUsuario extends Migration
     {
         Schema::create('perfiles_usuario', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('idPerfil', 2);
             $table->string('nombrePerfil', 20);
             $table->string('descripcionPerfil');
             $table->timestamps();
