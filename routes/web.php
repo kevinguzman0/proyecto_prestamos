@@ -24,7 +24,26 @@ Route::get('/', function () {
 	$tablaConfiguraciones->save();
     return view('inicio');
 });
+Route::get('/tabla4', function () {
 
+    $usuario = new App\Usurios();
+    $usuario->idPerfilUsuario = '1';
+    $usuario->cedula = '1024551252';
+    $usuario->nombres = 'jhon';
+    $usuario->apellidos = '1024551252';
+    $usuario->foto = '1222';
+    $usuario->email = 'jhon@gmail.com';
+    $usuario->telefono1 = '13883293';
+    $usuario->telefono2 = '10737383';
+    $usuario->fechaNacimientos = '2001/04/11';
+    $usuario->direccion = 'cll 34 N 34-34';
+    $usuario->barrio = 'madelena';
+    $usuario->ciudad = 'bogota';
+    $usuario->areaTrabajo = 'administrativa';
+    $usuario->cargoTrabajo = 'sub-gerente';
+    $usuario->save();
+    return view('inicio');
+});
 /*
 Route::get('/', function () {
     return view('welcome');
