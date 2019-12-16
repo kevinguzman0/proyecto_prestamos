@@ -20,9 +20,9 @@ class CrearTablaSolicitudes extends Migration
             $table->decimal('cuota15', 13, 4);
             $table->decimal('cuota30', 13, 4);
             $table->decimal('tasa', 5, 2);
-            $table->integer('idEstadoSolicitud')->unsigned();
-            $table->integer('idCliente')->unsigned();
-            $table->foreign('idEstadoSolicitud')->references('id')->on('estado_solicitud');
+            $table->bigInteger('idEstadoSolicitud')->unsigned();
+            $table->bigInteger('idCliente')->unsigned();
+            $table->foreign('idEstadoSolicitud')->references('id')->on('estado_solicitudes');
             $table->foreign('idCliente')->references('id')->on('usuarios');
             $table->timestamps();
         });
