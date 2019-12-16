@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,7 +20,6 @@ Route::get('/', function () {
 Route::get('inicio', function () {
     return view('inicio');
 });
-
 
 Route::get('logueo', function () {
     return view('mylogin');
@@ -28,11 +29,6 @@ Route::get('registro', function () {
     return view('myregistro');
 });
 
-
-
-
-
-
 Route::get('pagos', function () {
     return view('index');
 });
@@ -40,8 +36,8 @@ Route::get('tabla', function () {
     return view('operaciones');
 });
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+Route::post('operaciones', 'tablapagos@index')->name('operaciones');
