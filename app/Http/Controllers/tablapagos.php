@@ -57,7 +57,7 @@ class tablapagos extends Controller
         print("</pre>");
         */
 
-        return view('operaciones', compact("valorDePrestamo", "plazoEnCuotas", "listapagos"));
+        return view('liquidador', compact("valorDePrestamo", "plazoEnCuotas", "listapagos"));
     }
 
 }

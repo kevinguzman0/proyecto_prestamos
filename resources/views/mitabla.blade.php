@@ -1,7 +1,6 @@
 @include('encabezado')
 @include('slider')
 @include('index')
-@include('myliquidador')
 @include('footer')
 
 <main>
@@ -14,10 +13,6 @@
 
 <div>
 	@yield('tabla')
-</div>
-
-<div>
-	@yield('liquidador')
 </div>
 
 <div>

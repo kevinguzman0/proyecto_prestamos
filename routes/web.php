@@ -32,15 +32,9 @@ Route::get('pagos', function () {
     return view('index');
 });
 
-Route::get('tabla', function () {
-    return view('operaciones');
+Route::get('tabla', function(){
+	return view('mitabla');
 });
-
-Route::get('liquidador', function () {
-    return view('liquidador');
-})->name('liquidador');
-
-
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::post('operaciones', 'tablapagos@index')->name('operaciones');
+Route::post('liquidador', 'tablapagos@index')->name('liquidador');

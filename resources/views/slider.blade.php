@@ -14,7 +14,7 @@
                                 <h2 data-animation="fadeInUp" data-delay="300ms">Préstamos de  <span style="color: #ff8c00;">Libre</span> Inversión</h2>
                                 <p data-animation="fadeInUp" data-delay="500ms">
                                     Esta es la Sede electrónica de la Gobernación de Risaralda, un espacio donde usted podrá realizar sus préstamos en línea y encontrar información de los demas servicios que la entidad tiene disponibles.</p>
-                                <a href="{{ url('/liquidador') }}" class="btn credit-btn mt-50 class_boton" data-animation="fadeInUp" data-delay="700ms" style="background-color: #ff8c00;">Empezar</a>
+                                <a href="{{ url('/tabla') }}" class="btn credit-btn mt-50 class_boton" data-animation="fadeInUp" data-delay="700ms" style="background-color: #ff8c00;">Empezar</a>
                             </div>
                         </div>
                     </div>

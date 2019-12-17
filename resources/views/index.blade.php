@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title></title>
-</head>
-<body>
-
-	<form method="POST" action="{{ route ('operaciones') }}">
+@section('tabla')
+	<form method="POST" action="{{ url ('/liquidador') }}">
 		@csrf
 	    <p>
 	    	Valor del préstamo: 
@@ -24,5 +17,4 @@
 
 	</form>
 
-</body>
-</html>
+@endsection
