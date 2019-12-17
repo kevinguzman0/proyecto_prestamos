@@ -35,6 +35,14 @@ Route::get('pagos', function () {
 Route::get('tabla', function(){
 	return view('mitabla');
 })->name('tabla');
+
+Route::get('misolicitud', function(){
+	return view('miSoli');
+})->name('solicitud');
+
+
+Route::post('solicitud', 'ValidationSolicitud@index')->name('solicitud');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::post('liquidador', 'TablaPagos@index')->name('liquidador');
