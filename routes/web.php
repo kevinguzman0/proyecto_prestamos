@@ -31,11 +31,15 @@ Route::get('registro', function () {
 Route::get('pagos', function () {
     return view('index');
 });
+
 Route::get('tabla', function () {
     return view('operaciones');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('liquidador', function () {
+    return view('liquidador');
+})->name('liquidador');
+
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 

@@ -1,7 +1,7 @@
 @section('footer')
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area section-padding-100-0">
-        <div class="container">
+    <footer class="footer-area section-padding-100-0" style="background-color: #00983b">
+        <div class="container classmenu">
             <div class="row">
 
                 <!-- Single Footer Widget -->
@@ -68,8 +68,8 @@
                             <div class="news-content">
                                 <a href="#">How to get the best loan?</a>
                                 <div class="news-meta">
-                                    <a href="#" class="post-author"><img src="prestamos2/img/core-img/pencil.png" alt=""> Jane Smith</a>
-                                    <a href="#" class="post-date"><img src="prestamos2/img/core-img/calendar.png" alt=""> April 26</a>
+                                    <a href="#" class="post-author"style="color: black;"><img src="prestamos2/img/core-img/pencil.png" alt=""> Jane Smith</a>
+                                    <a href="#" class="post-date" style="color: black;"><img src="prestamos2/img/core-img/calendar.png" alt=""> April 26</a>
                                 </div>
                             </div>
                         </div>
@@ -82,8 +82,8 @@
                             <div class="news-content">
                                 <a href="#">A new way to get a loan</a>
                                 <div class="news-meta">
-                                    <a href="#" class="post-author"><img src="prestamos2/img/core-img/pencil.png" alt=""> Jane Smith</a>
-                                    <a href="#" class="post-date"><img src="prestamos2/img/core-img/calendar.png" alt=""> April 26</a>
+                                    <a href="#" class="post-author" style="color: black;"><img src="prestamos2/img/core-img/pencil.png" alt=""> Jane Smith</a>
+                                    <a href="#" class="post-date" style="color: black;"><img src="prestamos2/img/core-img/calendar.png" alt=""> April 26</a>
                                 </div>
                             </div>
                         </div>
@@ -96,8 +96,8 @@
                             <div class="news-content">
                                 <a href="#">Finance you home</a>
                                 <div class="news-meta">
-                                    <a href="#" class="post-author"><img src="prestamos2/img/core-img/pencil.png" alt=""> Jane Smith</a>
-                                    <a href="#" class="post-date"><img src="prestamos2/img/core-img/calendar.png" alt=""> April 26</a>
+                                    <a href="#" class="post-author" style="color: black;"><img src="prestamos2/img/core-img/pencil.png" alt="" style="color: black;"> Jane Smith</a>
+                                    <a href="#" class="post-date" style="color: black;"><img src="prestamos2/img/core-img/calendar.png" alt=""> April 26</a>
                                 </div>
                             </div>
                         </div>
@@ -108,13 +108,13 @@
         </div>
 
         <!-- Copywrite Area -->
-        <div class="copywrite-area">
+        <div class="copywrite-area" style="background-color: #ffffff">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="copywrite-content d-flex flex-wrap justify-content-between align-items-center">
                             <!-- Footer Logo -->
-                            <a href="index.html" class="footer-logo"><img src="prestamos2/img/core-img/logo.png" alt=""></a>
+                            <a href="{{ url ('/') }}" class="footer-logo"><img src="prestamos2/img/gobernacion.png" alt="" width="300"></a>
 
                             <!-- Copywrite Text -->
                             <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

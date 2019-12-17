@@ -40,7 +40,7 @@
                     <div class="col-12 d-flex justify-content-between">
                         <!-- Logo Area -->
                         <div class="logo">
-                            <a href="index.html"><img src="prestamos2/img/gobernacion.png" alt="" width="300"></a>
+                            <a href="{{  url('/') }}"><img src="prestamos2/img/gobernacion.png" alt="" width="300"></a>
                         </div>
 
                         <!-- Top Contact Info -->
@@ -71,12 +71,12 @@
                             <!-- Nav Start -->
                             <div class="classynav classmenu">
                                 <ul>
-                                    <li><a href="index.html">Inicio</a></li>
-                                    <li><a href="about.html">Sobre Nosotros</a></li>
-                                    <li><a href="#">Paginas</a></li>
-                                    <li><a href="prestamos2/services.html">Servicios</a></li>
-                                    <li><a href="prestamos2/post.html">Blog</a></li>
-                                    <li><a href="prestamos2/contact.html">Contacto</a></li>
+                                    <li><a href="{{ url('/') }}">Inicio</a></li>
+                                    <li><a href="{{ url('/') }}">Sobre Nosotros</a></li>
+                                    <li><a href="{{ url('/') }}">Paginas</a></li>
+                                    <li><a href="{{ url('/') }}">Servicios</a></li>
+                                    <li><a href="{{ url('/') }}">Blog</a></li>
+                                    <li><a href="{{ url('/') }}">Contacto</a></li>
                                 </ul>
                             </div>
                             <!-- Nav End -->
@@ -101,7 +101,7 @@
                                     <li><a href="{{ url('/registro') }}">Registrarse</a></li>
                                 @endif
 
-                                @if (Route::is('inicio'))
+                                @if (Route::is('inicio') or Route::is('liquidador'))
                                     @auth
                                        <li><a href="{{ url('/logout') }}">Cerrar Sesión</a></li>
                                     @else

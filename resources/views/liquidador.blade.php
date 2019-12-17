@@ -1,6 +1,6 @@
 @include('encabezado')
-@include('auth.login')
 @include('slider')
+@include('myliquidador')
 @include('footer')
 
 <main>
@@ -8,11 +8,11 @@
 </main>
 
 <div>
-	@yield('content')
+	@yield('myslider')
 </div>
 
 <div>
-	@yield('myslider')
+	@yield('liquidador')
 </div>
 
 <div>

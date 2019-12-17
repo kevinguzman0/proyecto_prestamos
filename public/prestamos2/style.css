@@ -1171,7 +1171,7 @@ img {
 .footer-area {
   position: relative;
   z-index: 1;
-  background-color: #021c3c; }
+  background-color: #00983b; }
   .footer-area .single-footer-widget {
     position: relative;
     z-index: 1; }
@@ -1196,7 +1196,7 @@ img {
         top: 7px;
         left: 0;
         border-radius: 50%;
-        background-color: #ffbb38;
+        background-color: #00983b;
         position: absolute;
         z-index: 1; }
       .footer-area .single-footer-widget ul li a:hover, .footer-area .single-footer-widget ul li a:focus {

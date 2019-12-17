@@ -1,5 +1,6 @@
 @include('encabezado')
 @include('auth.register')
+@include('slider')
 @include('footer')
 
 <main>
@@ -8,6 +9,10 @@
 
 <div>
 	@yield('content')
+</div>
+
+<div>
+	@yield('myslider')
 </div>
 
 <div>
