@@ -1,6 +1,6 @@
 @section('liquidador')
 
-	<table class="table">
+	<table class="table table-striped table-condensed table-responsive table-bordered">
 		<thead>
 			<tr>
 				<th>Periodo</th>
