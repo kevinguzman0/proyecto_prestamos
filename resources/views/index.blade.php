@@ -1,26 +1,26 @@
 @section('tabla')
 	<style type="text/css">
 		.form{
-			width: 60%;
-			height: 250px;
-			margin-left: 600px;
+			width: 45%;
+			height: 300px;
 		}
 		.text{
 			background-color:
-			width: 50%;
+			width: 40%;
 			margin: auto;
 		}
 
 		.valor{
-			margin-top: 40px;
+			margin-top: 60px;
 			border-radius: 10px;
 			border-style: solid;
 			border-color: #ff8c00;
 			border-width: 0.5px;
 			width: 30%;
 			height: 40px;
-			margin-left: 130px;
+			margin-left: 100px;
 			padding-left: 20px;
+
 		}
 		.valor:hover{
 			transition: 1s;
@@ -35,7 +35,7 @@
 			border-width: 0.5px;
 			width: 30%;
 			height: 40px;
-			margin-right: 170px;
+			margin-right: 100px;
 			padding-left: 20px;
 		}
 		.plazo:hover{
@@ -43,8 +43,9 @@
 			border-color: #00983b;
 		}
 		.boton{
-			width: 80%;
+			width: 55%;
 			margin: auto;
+			height: 130px;
 		}
 
 
@@ -66,9 +67,9 @@
 		    
 			<div class="boton">
 
-				<input type="submit" value="Calcular valor de la cuota" name="valorcuota" class="btn credit-btn mt-50 class_boton" style="width: 45%;">
+				<input type="submit" value="Calcular valor de la cuota" name="valorcuota" class="btn credit-btn mt-50 class_boton" style="width: 100%; margin-bottom: -30px;">
 
-		    	<input type="submit" value="Generar tabla de pagos" name="tablapagos" class="btn credit-btn mt-50 class_boton" style="margin-left: 20px; width: 45%;">
+		    	<input type="submit" value="Generar tabla de pagos" name="tablapagos" class="btn credit-btn mt-50 class_boton" style="width: 100%; margin-bottom: -30px;">
 
 			</div>
 		    
