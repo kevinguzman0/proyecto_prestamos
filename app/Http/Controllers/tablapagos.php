@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class tablapagos extends Controller
+use NumberFormatter;
+
+class TablaPagos extends Controller
 {
 
     /**
@@ -35,18 +37,21 @@ class tablapagos extends Controller
 
         $listapagos=array();
 
-         while($i <= $plazoEnCuotas){
+        $fmt = new NumberFormatter("en-US", NumberFormatter::CURRENCY);
+
+        while($i <= $plazoEnCuotas)
+        {
             $intereses = round(($saldoInicial * $interes), $decimales);
             $abonoK = round(($valorCuota - $intereses), $decimales);
-            $saldoK =round(($saldoInicial - $abonoK), $decimales);
+            $saldoK = round(($saldoInicial - $abonoK), $decimales);
             
-            $listapagos[$i]["cuota"]=$i;
-            $listapagos[$i]["saldo_inicial"]=$saldoInicial;
-            $listapagos[$i]["valor_cuota"]= $valorCuota;
-            $listapagos[$i]["intereses"]=$intereses;
-            $listapagos[$i]["abono_k"]=$abonoK;
-            $listapagos[$i]["saldo_k"]=$saldoK;
-        
+            $listapagos[$i]["cuota"] = $i;
+            $listapagos[$i]["saldo_inicial"] = $fmt->format($saldoInicial);
+            $listapagos[$i]["valor_cuota"] = $fmt->format($valorCuota);
+            $listapagos[$i]["intereses"] = $fmt->format($intereses);
+            $listapagos[$i]["abono_k"] = $fmt->format($abonoK);
+            $listapagos[$i]["saldo_k"] = $fmt->format($saldoK);
+
             $i++;
             $saldoInicial = $saldoK;
         }

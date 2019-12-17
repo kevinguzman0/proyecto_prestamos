@@ -37,4 +37,4 @@ Route::get('tabla', function(){
 })->name('tabla');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::post('liquidador', 'tablapagos@index')->name('liquidador');
+Route::post('liquidador', 'TablaPagos@index')->name('liquidador');
