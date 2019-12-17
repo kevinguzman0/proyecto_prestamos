@@ -325,7 +325,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-10 col-lg-8">
                     <div class="nl-content text-center">
-                        <h2>Subscribe to our newsletter</h2>
+                        <h2>Subscribe to our newsletter </h2>
                         <form action="#" method="post">
                             <input type="email" name="nl-email" id="nlemail" placeholder="Your e-mail">
                             <button type="submit">Subscribe</button>
