@@ -13,8 +13,8 @@
 </div>
 
 <div class="d-flex flex-row" style="width: 100%;">
-	<div class="flex-col" style="width: 30%;">
-		<div class="" style="width: 100%;">
+	<div class="d-flex flex-col" style="width: 30%;">
+		<div class="d-flex flex-col" style="width: 100%;">
 			@yield('tabla')
 		</div>
 		<div class="" style="width: 100%;">
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 
-	<div class="flex-row" style="width: 50%; margin-left: 70px; margin-top: 20px;">
+	<div class="justify-content-center" style="width: 70%;">
 		@yield('liquidador')
 	</div>
 </div>

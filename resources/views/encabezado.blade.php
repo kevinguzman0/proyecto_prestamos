@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Fondo de libre inversion</title>
+    <title>Fondo de libre inversión</title>
 
     <!-- Favicon -->
     <link rel="icon" href="prestamos2/img/core-img/favicon.ico">

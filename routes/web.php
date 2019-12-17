@@ -46,3 +46,9 @@ Route::post('solicitud', 'ValidationSolicitud@index')->name('solicitud');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::post('liquidador', 'TablaPagos@index')->name('liquidador');
+
+Route::post('validarUsuario', 'ValidationUser@index')->name('validarUsuario');
+
+Route::get('user', function(){
+	return view('usuario');
+})->name('usuario');

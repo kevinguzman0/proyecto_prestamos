@@ -1,6 +1,6 @@
 @section('liquidador')
 
-	<table class="table table-striped table-condensed table-responsive table-bordered">
+	<table class="table table-striped table-responsive table-bordered" style="width:100% !important;">
 
 		<thead>
 			<tr>

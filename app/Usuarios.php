@@ -8,7 +8,7 @@ class Usuarios extends Model
 {
     protected $fillable=[
    	'idPerfilUsuario', 'cedula', 'nombres', 'apellidos', 'foto', 'email',
-	'telefono1', 'telefono2', 'direccion', 'barrio', 'cuidad', 'areaTrabajo', 'cargoTrabajo'
+	'telefono1', 'telefono2', 'fechaNacimiento', 'direccion', 'barrio', 'ciudad', 'areaTrabajo', 'cargoTrabajo',
 	];
 	protected $table='usuarios';
 
