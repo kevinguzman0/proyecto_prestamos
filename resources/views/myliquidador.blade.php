@@ -19,7 +19,7 @@
 
 				<tr>
 
-					<td> {{ $fila['cuota'] }} </td>
+					<td style="text-align:center; font-weight: bold;"> {{ $fila['cuota'] }} </td>
 					<td> {{ $fila['saldo_inicial'] }} </td>
 					<td> {{ $fila['valor_cuota'] }} </td>
 					<td> {{ $fila['intereses'] }} </td>
