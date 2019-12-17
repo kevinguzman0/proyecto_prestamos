@@ -11,8 +11,12 @@
 	@yield('myslider')
 </div>
 
-<div>
-	@yield('tabla')
+<div class="d-flex flex-row" style="width: 100%;">
+	<div class="flex-col" style="width: 30%;">
+		<div class="" style="width: 100%;">
+			@yield('tabla')
+		</div>
+	</div>
 </div>
 
 <div>
