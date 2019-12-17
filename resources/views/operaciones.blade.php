@@ -1,9 +1,4 @@
-<!--
-@php
-	var_dump($listapagos);
-@endphp
--->
-<table>
+<table class="table">
 		<thead>
 			<tr>
 				<th>Periodo</th>
