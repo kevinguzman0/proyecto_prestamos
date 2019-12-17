@@ -2,6 +2,7 @@
 	<style type="text/css">
 		.form{
 			background-color: black;
+			text-align: right;
 			width: 100%;
 			height: 300px;
 		}
@@ -10,13 +11,11 @@
 		<form method="POST" action="{{ url ('/liquidador') }}">
 			@csrf
 		    <p>
-		    	Valor del préstamo: 
-		    	<input type="text" name="valorDePrestamo">
+		    	<input type="text" name="valorDePrestamo" placeholder=" Valor del prestamo" class="valor">
 		    </p>
 
 		    <p>
-		    	Plazo en cuotas: 
-		    	<input type="text" name="plazoEnCuotas">
+		    	<input type="text" name="plazoEnCuotas" placeholder=" Plazo de cuotas">
 		    </p>
 
 		    <input type="submit" value="Calcular valor de la cuota" name="valorcuota">
