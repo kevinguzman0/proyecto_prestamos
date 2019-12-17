@@ -23,24 +23,24 @@ class TablaPagos extends Controller
     public function index(Request $request)
     {
 
-        $valorDePrestamo=$request->input("valorDePrestamo");
-        $plazoEnCuotas=$request->input("plazoEnCuotas");
+        $valorDePrestamo = $request->input("valorDePrestamo");
+        $plazoEnCuotas = $request->input("plazoEnCuotas");
 
-        //Valor fijo del interes
-        $interes = (0.25/100);
-        $decimales=4;
+        $interes = config('prestamos.interes') / 100;
+        $decimales = 4;
 
-        $valorCuota = round($valorDePrestamo * ((((1 + $interes)**$plazoEnCuotas)*$interes)/(((1 + $interes)**$plazoEnCuotas)-1)), $decimales);
+        $valorCuota = round($valorDePrestamo * ((((1 + $interes) ** $plazoEnCuotas) * $interes) / (((1 + $interes) ** $plazoEnCuotas) - 1)), $decimales);
 
         $i = 1;
         $saldoInicial = $valorDePrestamo;
 
-        $listapagos=array();
+        $listapagos = array();
 
         $fmt = new NumberFormatter("en-US", NumberFormatter::CURRENCY);
 
         while($i <= $plazoEnCuotas)
         {
+            
             $intereses = round(($saldoInicial * $interes), $decimales);
             $abonoK = round(($valorCuota - $intereses), $decimales);
             $saldoK = round(($saldoInicial - $abonoK), $decimales);
@@ -54,6 +54,7 @@ class TablaPagos extends Controller
 
             $i++;
             $saldoInicial = $saldoK;
+        
         }
 
         /*
@@ -62,7 +63,7 @@ class TablaPagos extends Controller
         print("</pre>");
         */
 
-        return view('liquidador', compact("valorDePrestamo", "plazoEnCuotas", "listapagos"));
+        return view('liquidador', compact("valorDePrestamo", "plazoEnCuotas", "interes", "valorCuota", "listapagos"));
     }
 
 }
