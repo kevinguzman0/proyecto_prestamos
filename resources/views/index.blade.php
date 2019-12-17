@@ -31,10 +31,10 @@
 
 	</style>
 	<div class="d-flex newsletter-area bg-img jarallax" style="background-image: url(prestamos2/img/bg-img/6.jpg); height: 320px;">
-		<form method="POST" action="{{ url ('/liquidador') }}">
+		<form method="POST" action="{{ url ('/liquidador') }}" style="width: 100%;">
 			@csrf
-			<div class="d-flex-col align-items-center">
-				<div class="d-flex-col">
+			<div class="">
+				<div class="">
 		    		<input type="text" name="valorDePrestamo" placeholder="Valor del prestamo" class="valor">
 			    </div>
 
