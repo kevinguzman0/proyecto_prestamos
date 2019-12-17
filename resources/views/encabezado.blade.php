@@ -101,7 +101,7 @@
                                     <li><a href="{{ url('/registro') }}">Registrarse</a></li>
                                 @endif
 
-                                @if (Route::is('inicio') or Route::is('liquidador'))
+                                @if (Route::is('inicio') or Route::is('liquidador') or Route::is('tabla'))
                                     @auth
                                        <li><a href="{{ url('/logout') }}">Cerrar Sesión</a></li>
                                     @else

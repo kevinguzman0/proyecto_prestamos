@@ -34,7 +34,7 @@ Route::get('pagos', function () {
 
 Route::get('tabla', function(){
 	return view('mitabla');
-});
+})->name('tabla');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::post('liquidador', 'tablapagos@index')->name('liquidador');
