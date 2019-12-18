@@ -15,6 +15,7 @@
 			transition: 1s;
 			border-color: #00983b;
 		}
+
 		.plazo{
 			border-radius: 10px;
 			border-style: solid;
@@ -24,6 +25,7 @@
 			height: 40px;
 			padding-left: 20px;
 		}
+		
 		.plazo:hover{
 			transition: 1s;
 			border-color: #00983b;

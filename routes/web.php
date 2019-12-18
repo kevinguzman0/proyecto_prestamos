@@ -51,3 +51,4 @@ Route::post('validarSolicitud', 'ValidationSolicitudController@index')->name('va
 
 Route::post('validarUsuario', 'ValidationUserController@index')->name('validarUsuario');
 
+Route::get('pdf', 'GeneradorController@pdf');
