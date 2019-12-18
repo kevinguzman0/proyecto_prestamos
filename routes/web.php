@@ -39,15 +39,12 @@ Route::get('misolicitud', function(){
 	return view('miSolicitud');
 })->name('solicitud');
 
-Route::get('user', function(){
-	return view('usuario');
-})->name('usuario');
-
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 Route::post('liquidador', 'TablaPagosController@index')->name('liquidador');
 
 Route::post('validarSolicitud', 'ValidationSolicitudController@index')->name('validarSolicitud');
 
-Route::post('validarUsuario', 'ValidationUserController@index')->name('validarUsuario');
+Route::get('crear_usuario', 'ValidationUserController@create')->name('crearUsuario');
 
+Route::post('validar_usuario', 'ValidationUserController@store')->name('validarUsuario');

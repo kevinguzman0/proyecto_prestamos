@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use NumberFormatter;
+use File;
 
 class TablaPagosController extends Controller
 {
@@ -59,6 +60,8 @@ class TablaPagosController extends Controller
         print_r($listapagos);
         print("</pre>");
         */
+
+        File::put('tmp/tmpReportePdf1.html', view('bodySinContenido', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"))->render());
 
         return view('liquidador', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"));
     }
