@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Usuarios;
 use Illuminate\Http\Request;
 
-class ValidationUser extends Controller
+class ValidationUserController extends Controller
 {
     public function index(Request $request)
     {

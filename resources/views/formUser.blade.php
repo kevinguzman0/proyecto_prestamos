@@ -106,6 +106,8 @@
 
                     </div>
 
+                    <input type="hidden" maxlength="20" name="idPerfilUsuario" value="1" class="form-control">
+
                     <div class="form-row mb-5">
 
                         <div class="col-md-12">
@@ -114,8 +116,6 @@
                         </div>
 
                     </div>
-
-                    <input type="text" maxlength="20" name="idPerfilUsuario" value="1" class="form-control">
                     
                 </form>
 
