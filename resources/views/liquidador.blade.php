@@ -23,6 +23,7 @@
 	</div>
 
 	<div class="justify-content-center" style="width: 70%;">
+		<a href="{{ url ('/pdf') }}" class="btn credit-btn mt-50 class_boton">Generar pdf</a>
 		@yield('liquidador')
 	</div>
 </div>

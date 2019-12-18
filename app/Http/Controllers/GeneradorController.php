@@ -10,7 +10,7 @@ class GeneradorController extends Controller
     public function pdf() 
     {
         $dompdf  =  new  Dompdf(); 
-		$dompdf  = \View::make('')->render();
+		$dompdf  = \View::make('tmpReportePdf1')->render();
 		$pdf = \App::make('dompdf.wrapper');
 		$pdf->loadHTML($dompdf);
 		return $pdf -> stream ();
