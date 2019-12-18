@@ -48,3 +48,4 @@ Route::post('validarSolicitud', 'ValidationSolicitudController@index')->name('va
 Route::get('crear_usuario', 'ValidationUserController@create')->name('crearUsuario');
 
 Route::post('validar_usuario', 'ValidationUserController@store')->name('validarUsuario');
+
