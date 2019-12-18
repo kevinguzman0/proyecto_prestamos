@@ -45,13 +45,16 @@ Route::get('user', function(){
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-Route::post('liquidador', 'TablaPagosController@index')->name('liquidador');
+Route::post('liquidador', 'TablaPagosController@generar')->name('liquidador');
 
 Route::post('validarSolicitud', 'ValidationSolicitudController@index')->name('validarSolicitud');
 
 Route::post('validarUsuario', 'ValidationUserController@index')->name('validarUsuario');
 
-Route::get('pdf', 'GeneradorController@pdf');
+Route::get('pdf', 'GeneradorController@pdf')->name('pdf');
+
+Route::post('prueba', 'TablaPagosPdfController@generarPdf')->name('prueba');
+
 
 //instalar dompdf
 //php artisan make:controller GeneradorController

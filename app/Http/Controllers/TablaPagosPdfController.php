@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use NumberFormatter;
 use File;
 
-class TablaPagosController extends Controller
+class TablaPagosPdfController extends Controller
 {
 
     /**
@@ -21,7 +21,7 @@ class TablaPagosController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function generar(Request $request)
+    public function generarPdf(Request $request)
     {
 
         $valorPrestamo = $request->input("valorPrestamo");
@@ -61,9 +61,7 @@ class TablaPagosController extends Controller
         print("</pre>");
         */
 
-        File::put('tmp/tmpReportePdf1.html', view('bodySinContenido', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"))->render());
-
-        return view('liquidador', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"));
+        return compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
     }
 
 }

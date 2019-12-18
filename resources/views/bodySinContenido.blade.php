@@ -22,12 +22,11 @@
     </head>
 
     <body>
-
-        <div>
-            @yield('liquidador')
-        </div>
+            <div>
+                @yield('liquidador')
+            </div>
         
-        <script src="{{ asset('prestamos2/js/jquery/jquery-2.2.4.min.js')  }}"></script>
+       <script src="{{ asset('prestamos2/js/jquery/jquery-2.2.4.min.js')  }}"></script>
         <!-- Popper js -->
         <script src="{{ asset('prestamos2/js/bootstrap/popper.min.js')  }}"></script>
         <!-- Bootstrap js -->

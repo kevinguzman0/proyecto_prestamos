@@ -4,18 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Dompdf \ Dompdf ;
-//use File;
+use PDF;
 
 class GeneradorController extends Controller
 {
     public function pdf() 
     {
-        $dompdf  =  new  Dompdf(); 
+    	
+		$view =  \View::make('generarPdf1')->render();
         $pdf = \App::make('dompdf.wrapper');
-        $codigo_fuente = file_get_contents('tmp/tmpReportePdf1.html');
-        $pdf->loadHTML($codigo_fuente);
-		//$dompdf = File::get('tmp/tmpReportePdf1.html', 'Archivo no encontrado');
-		return $pdf -> stream('');
+        $pdf->loadHTML($view);
+        return $pdf->stream('generarPdf1');
     }
 
 }
