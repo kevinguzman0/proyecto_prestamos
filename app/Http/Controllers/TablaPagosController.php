@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use NumberFormatter;
 
-class TablaPagos extends Controller
+class TablaPagosController extends Controller
 {
 
     /**
