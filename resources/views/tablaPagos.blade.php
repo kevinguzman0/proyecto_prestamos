@@ -15,7 +15,7 @@
 
 		<tbody>
 
-			@foreach ($listapagos as $fila)
+			@foreach ($listaPagos as $fila)
 
 				<tr>
 

@@ -1,6 +1,6 @@
 @include('encabezado')
 @include('slider')
-@include('content_home')
+@include('contentHome')
 @include('footer')
 
 <main>

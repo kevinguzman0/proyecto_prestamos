@@ -1,7 +1,7 @@
 @include('encabezado')
 @include('slider')
 @include('index')
-@include('myliquidador')
+@include('tablaPagos')
 @include('footer')
 
 <main>

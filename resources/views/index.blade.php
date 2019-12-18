@@ -37,19 +37,19 @@
 			@csrf
 			<div class="">
 				<div class="">
-		    		<input type="text" name="valorDePrestamo" placeholder="Valor del prestamo" class="valor">
+		    		<input type="text" name="valorPrestamo" placeholder="Valor del prestamo" class="valor">
 			    </div>
 
 			    <div>
-			    	<input type="text" name="plazoEnCuotas" placeholder="Plazo de cuotas" class="plazo">
+			    	<input type="text" name="plazoCuotas" placeholder="Plazo de cuotas" class="plazo">
 			    </div>
 
 				<div>
-					<input type="submit" value="Calcular valor de la cuota" name="valorcuota" class="btn credit-btn mt-50 class_boton" style="width: 80%; ">
+					<input type="submit" value="Calcular valor de la cuota" name="btnValorCuota" class="btn credit-btn mt-50 class_boton" style="width: 80%; ">
 				</div>
 				
 				<div>
-					<input type="submit" value="Generar tabla de pagos" name="tablapagos" class="btn credit-btn mt-50 class_boton" style="width: 80%;">
+					<input type="submit" value="Generar tabla de pagos" name="btnTablaPagos" class="btn credit-btn mt-50 class_boton" style="width: 80%;">
 				</div>
 			</div>    
 		</form>

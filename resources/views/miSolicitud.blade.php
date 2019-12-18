@@ -1,6 +1,6 @@
 @include('encabezado')
 @include('slider')
-@include('solicitud')
+@include('formSolicitud')
 @include('footer')
 
 <main>
@@ -10,9 +10,11 @@
 <div>
 	@yield('myslider')
 </div>
+
 <div>
 	@yield('solicitud')
 </div>
+
 <div>
 	@yield('footer')
 </div>

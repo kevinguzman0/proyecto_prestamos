@@ -11,7 +11,6 @@
 |
 */
 
-
 use Illuminate\Database\Eloquent\Model;
 
 Auth::routes();
@@ -21,11 +20,11 @@ Route::get('/', function () {
 })->name('inicio');
 
 Route::get('logueo', function () {
-    return view('mylogin');
+    return view('logueo');
 })->name('logueo');
 
 Route::get('registro', function () {
-    return view('myregistro');
+    return view('registro');
 })->name('registro');
 
 Route::get('pagos', function () {
@@ -33,22 +32,22 @@ Route::get('pagos', function () {
 });
 
 Route::get('tabla', function(){
-	return view('mitabla');
+	return view('miTabla');
 })->name('tabla');
 
 Route::get('misolicitud', function(){
-	return view('miSoli');
+	return view('miSolicitud');
 })->name('solicitud');
-
-
-Route::post('solicitud', 'ValidationSolicitud@index')->name('solicitud');
-
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
-Route::post('liquidador', 'TablaPagos@index')->name('liquidador');
-
-Route::post('validarUsuario', 'ValidationUser@index')->name('validarUsuario');
 
 Route::get('user', function(){
 	return view('usuario');
 })->name('usuario');
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+Route::post('liquidador', 'TablaPagosController@index')->name('liquidador');
+
+Route::post('validarSolicitud', 'ValidationSolicitudController@index')->name('validarSolicitud');
+
+Route::post('validarUsuario', 'ValidationUserController@index')->name('validarUsuario');
+
