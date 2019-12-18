@@ -49,3 +49,5 @@ Route::get('crear_usuario', 'ValidationUserController@create')->name('crearUsuar
 
 Route::post('validar_usuario', 'ValidationUserController@store')->name('validarUsuario');
 
+Route::get('pdf', 'GeneradorController@pdf');
+
