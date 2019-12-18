@@ -1,5 +1,5 @@
 @section('liquidador')
-
+	<a href="{{ url ('/pdf') }}" class="btn credit-btn mt-50 class_boton">Generar pdf</a>
 	<table class="table table-striped table-responsive table-bordered" style="width:100% !important;">
 
 		<thead>
