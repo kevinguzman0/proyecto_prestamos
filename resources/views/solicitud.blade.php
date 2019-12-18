@@ -23,7 +23,7 @@
 		</div>
 
 		<div>
-			<input type="text" placeholder="ID estado" name="idEstadoSolictud" class="solicitud">
+			<input type="text" placeholder="ID estado" name="idEstadoSolicitud" class="solicitud">
 		</div>
 
 		<div>

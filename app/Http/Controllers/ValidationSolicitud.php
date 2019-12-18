@@ -12,3 +12,4 @@ class ValidationSolicitud extends Controller
    		 return 'Solicitud creada';
 	}   
 }
+
