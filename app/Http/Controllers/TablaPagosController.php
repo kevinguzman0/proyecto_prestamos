@@ -61,7 +61,7 @@ class TablaPagosController extends Controller
         print("</pre>");
         */
 
-        File::put('tmpReportePdf1.html', view('bodySinContenido', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"))->render());
+        File::put('tmp/tmpReportePdf1.html', view('bodySinContenido', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"))->render());
 
         return view('liquidador', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"));
     }

@@ -14,11 +14,11 @@
         <title>Fondo de libre inversión</title>
 
         <!-- Favicon -->
-        <link rel="icon" href="prestamos2/img/core-img/favicon.ico">
+        <link rel="icon" href="{{ asset('prestamos2/img/core-img/favicon.ico') }}">
 
         <!-- Stylesheet -->
-        <link rel="stylesheet" href="prestamos2/style.css">
-        <link rel="stylesheet" href="prestamos2/myStyle.css">
+        <link rel="stylesheet" href="{{ asset('prestamos2/style.css')  }}">
+        <link rel="stylesheet" href="{{ asset('prestamos2/myStyle.css')  }}">
     </head>
 
     <body>
