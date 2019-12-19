@@ -1,45 +1,68 @@
 @section('solicitud')
 
-	<form method="POST" action="{{ url ('/validarSolicitud') }}">
+ <div class="row col-md-12" style="">
 
-		@csrf
+    <div class="row col-md-12 mt-3 ml-3">
+        <h4>FORMULARIO PARA LA SOLICITUD DEL PRESTAMO</h4>
+    </div>
 
-		<div class="d-flex-col align-items-center">
+    <div class="row col-md-12 mt-2 ml-3">
 
-			<div>
-	    		<input type="text" placeholder="Valor solicitado" name="monto" class="solicitud">
-		    </div>
+		<form method="POST" action="{{ url ('/validarSolicitud') }}">
 
-		    <div>
-		    	<input type="text" placeholder="Plazo en meses" name="plazo" class="solicitud">
-		    </div>
+			@csrf
 
-			<div>
-				<input type="text" placeholder="Valor cuota quincenal" name="cuota15" class="solicitud">
+			<div class="d-flex-col align-items-center">
+
+				<div class="form-row">
+					<div class="col-md-4">
+						<label>Monto solicitado</label>
+			    		<input type="text" maxlength="11" name="monto" class="form-control" value="{{ old('monto') }}">
+				    </div>
+				    <div class="col-md-4">
+				    	<label>Plazo meses</label>
+				    	<input type="text" maxlength="11" name="plazo" class="form-control" value="{{ old('plazo') }}">
+				    </div>
+				    <div class="col-md-4">
+				    	<label>Tasa interes</label>
+						<input type="text" maxlength="5,2" name="tasa" class="form-control" value="{{ old('tasa') }}">
+					</div>
+				</div>
+
+			  <div class="form-row mb-5 justify-content-center">
+
+          <div class="col-md-5">
+              <label></label>
+              <input type="submit" value="Validar tabla de pagos" name="btnEnviarUser" class="form-control">
+          </div>
+
+        </div>            
+
+				<div class="form-row">
+
+          <div class="col-md-6">
+              <label>Valor cuota mensual</label>
+              <input type="text" maxlength="13,4" name="mensual" class="form-control" value="{{ old('mensual') }}">
+          </div>
+
+          <div class="col-md-6">
+              <label>Valor cuota quincenal</label>
+              <input type="text" maxlength="13,4" name="quinsenal" class="form-control" value="{{ old('quinsenal') }}">
+          </div>
+         </div>
+				<div class="form-row mb-5 justify-content-center">
+
+          <div class="col-md-5">
+              <label></label>
+              <input type="submit" value="Guardar" name="btnEnviarSoli" class="form-control">
+          </div>
+
+        </div>            
+				
 			</div>
-			
-			<div>
-				<input type="text" placeholder="Valor cuota mensual"  name="cuota30" class="solicitud">
-			</div>
 
-			<div>
-				<input type="text" placeholder="Tasa de interés" name="tasa" class="solicitud">
-			</div>
-
-			<div>
-				<input type="text" placeholder="ID estado" name="idEstadoSolicitud" class="solicitud">
-			</div>
-
-			<div>
-				<input type="text" placeholder="ID cliente" name="idCliente" class="solicitud">
-			</div>
-
-			<div>
-				<input type="submit" value="Guardar" name="btnGuardar" class="">
-			</div>
-			
-		</div>
-
-	</form>
+		</form>
+	</div>
+</div>
 
 @endsection
