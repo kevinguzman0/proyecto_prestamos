@@ -59,7 +59,7 @@ class TablaPagosPdfController extends Controller
         $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
         
         return $data;
-            
+
     }
 
 }

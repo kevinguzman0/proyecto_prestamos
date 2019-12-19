@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use NumberFormatter;
 use File;
+use Session;
 
 class TablaPagosController extends Controller
 {
@@ -24,8 +25,12 @@ class TablaPagosController extends Controller
     public function generar(Request $request)
     {
 
-        $valorPrestamo = $request->input("valorPrestamo");
-        $plazoCuotas = $request->input("plazoCuotas");
+        $valorPrestamo = (int)$request->input("valorPrestamo");
+        $plazoCuotas = (int)$request->input("plazoCuotas");
+
+        $request->session()->put('valorPrestamo', $valorPrestamo);
+        $request->session()->put('plazoCuotas', $plazoCuotas);
+
         $saldoInicial = $valorPrestamo;
         $interes = config('prestamos.interes') / 100;
         $decimales = 4;

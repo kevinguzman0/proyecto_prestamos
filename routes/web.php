@@ -41,17 +41,15 @@ Route::get('misolicitud', function(){
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-Route::post('liquidador', 'TablaPagosController@generar')->name('liquidador');
-
 Route::post('validar_solicitud', 'ValidationSolicitudController@create')->name('validarSolicitud');
 
 Route::get('crear_usuario', 'ValidationUserController@create')->name('crearUsuario');
 
 Route::post('validar_usuario', 'ValidationUserController@store')->name('validarUsuario');
 
-Route::get('pdf', 'GeneradorController@pdf')->name('pdf');
+Route::post('liquidador', 'TablaPagosController@generar')->name('liquidador');
 
-Route::post('prueba', 'TablaPagosPdfController@generarPdf')->name('prueba');
+Route::get('pdf', 'GeneradorController@pdf')->name('pdf');
 
 // instalar dompdf
 // composer require barryvdh/laravel-dompdf

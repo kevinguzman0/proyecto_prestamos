@@ -1,32 +1,38 @@
-@include('tablaPagos')
+@section('head')
 
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <html lang="en">
 
-        <!-- Title -->
-        <title>Fondo de libre inversión</title>
+        <head>
 
-        <!-- Favicon -->
-        <link rel="icon" href="{{ asset('prestamos2/img/core-img/favicon.ico') }}">
+            <meta charset="UTF-8">
+            <meta name="description" content="">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <!-- Stylesheet -->
-        <link rel="stylesheet" href="{{ asset('prestamos2/style.css')  }}">
-        <link rel="stylesheet" href="{{ asset('prestamos2/myStyle.css')  }}">
-    </head>
+            <!-- Title -->
+            <title>Fondo de libre inversión</title>
 
-    <body>
-            <div>
-                @yield('liquidador')
-            </div>
-        
-       <script src="{{ asset('prestamos2/js/jquery/jquery-2.2.4.min.js')  }}"></script>
+            <!-- Favicon -->
+            <link rel="icon" href="{{ asset('prestamos2/img/core-img/favicon.ico') }}">
+
+            <!-- Stylesheet -->
+            <link rel="stylesheet" href="{{ asset('prestamos2/style.css')  }}">
+            <link rel="stylesheet" href="{{ asset('prestamos2/myStyle.css')  }}">
+
+        </head>
+
+        <body>
+
+@show
+
+@yield('content')
+
+@section('footer')  
+
+        <script src="{{ asset('prestamos2/js/jquery/jquery-2.2.4.min.js')  }}"></script>
         <!-- Popper js -->
         <script src="{{ asset('prestamos2/js/bootstrap/popper.min.js')  }}"></script>
         <!-- Bootstrap js -->
@@ -36,6 +42,9 @@
         <!-- Active js -->
         <script src="{{ asset('prestamos2/js/active.js')  }}"></script>
         <!-- jQuery-2.2.4 js -->
+
     </body>
 
 </html>
+
+@show

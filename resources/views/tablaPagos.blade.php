@@ -1,5 +1,10 @@
 @section('liquidador')
 	
+	<p>Monto solicitado: {{ valorPrestamo }}</p>
+	<p>Plazo en meses: {{ plazoCuotas }}</p>
+	<p>Interés: {{ interes }}</p>
+	<p>Cuota Mensual: {{ valorCuota }}</p>
+
 	<table class="table table-striped table-responsive table-bordered" style="width:100% !important;">
 
 		<thead>

@@ -1,45 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>pdf</title>
-</head>
-<body>
+@extends('bodySinContenido')
 
-	<table class="table table-striped table-responsive table-bordered" style="width:100% !important;">
+@section('head')
+	@parent
+@stop
 
-		<thead>
-			<tr>
-				<th>Periodo</th>
-				<th>Saldo Inicial</th>
-				<th>Cuota</th>
-				<th>Intereses</th>
-				<th>Abono a capital</th>
-				<th>Saldo de capital</th>
-			</tr>
-		</thead>
+@section('content')
 
-		<tbody>
+    <div>
 
-			@foreach ($listaPagos as $fila)
+		<table class="table table-striped xtable-responsive table-bordered" style="width:100% !important;">
 
+			<thead>
 				<tr>
-
-					<td style="text-align:center; font-weight: bold;">
-						{{ $fila['cuota'] }} 
-					</td>
-					<td> {{ $fila['saldoInicial'] }} </td>
-					<td> {{ $fila['valorCuota'] }} </td>
-					<td> {{ $fila['intereses'] }} </td>
-					<td> {{ $fila['abonoK'] }} </td>
-					<td> {{ $fila['saldoK'] }} </td>
-
+					<th>Periodo</th>
+					<th>Saldo Inicial</th>
+					<th>Cuota</th>
+					<th>Intereses</th>
+					<th>Abono a capital</th>
+					<th>Saldo de capital</th>
 				</tr>
+			</thead>
 
-			@endforeach
+			<tbody>
 
-		</tbody>
+				@foreach ($listaPagos as $fila)
 
-	</table>
+					<tr>
 
-</body>
-</html>
+						<td style="text-align:center; font-weight: bold;">
+							{{ $fila['cuota'] }} 
+						</td>
+						<td> {{ $fila['saldoInicial'] }} </td>
+						<td> {{ $fila['valorCuota'] }} </td>
+						<td> {{ $fila['intereses'] }} </td>
+						<td> {{ $fila['abonoK'] }} </td>
+						<td> {{ $fila['saldoK'] }} </td>
+
+					</tr>
+
+				@endforeach
+
+			</tbody>
+
+		</table>
+
+    </div>
+        
+@endsection
+
+@section('footer')
+	@parent
+@stop
