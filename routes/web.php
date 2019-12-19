@@ -55,6 +55,5 @@ Route::get('pdf', 'GeneradorController@pdf')->name('pdf');
 
 Route::post('prueba', 'TablaPagosPdfController@generarPdf')->name('prueba');
 
-
-//instalar dompdf
-//php artisan make:controller GeneradorController
+// instalar dompdf
+// composer require barryvdh/laravel-dompdf

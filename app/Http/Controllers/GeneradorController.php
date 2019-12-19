@@ -6,15 +6,21 @@ use Illuminate\Http\Request;
 use Dompdf \ Dompdf ;
 use PDF;
 
+use Illuminate\Support\Facades\App;
+
 class GeneradorController extends Controller
 {
     public function pdf() 
     {
     	
-		$view =  \View::make('generarPdf1')->render();
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($view);
-        return $pdf->stream('generarPdf1');
+		$valorPrestamo = 20000000;
+		$plazoCuotas = 60;
+		$controller = App::make('\App\Http\Controllers\TablaPagosPdfController');
+		$data = $controller->callAction('generarPdf', compact('valorPrestamo', 'plazoCuotas'));
+
+        $pdf = \PDF::loadView('generarPdf1', $data);
+        return $pdf->stream();
+
     }
 
 }

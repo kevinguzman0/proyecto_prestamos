@@ -24,12 +24,14 @@
 
 				<tr>
 
-					<td style="text-align:center; font-weight: bold;"> {{ $fila['cuota'] }} </td>
-					<td> {{ $fila['saldo_inicial'] }} </td>
-					<td> {{ $fila['valor_cuota'] }} </td>
+					<td style="text-align:center; font-weight: bold;">
+						{{ $fila['cuota'] }} 
+					</td>
+					<td> {{ $fila['saldoInicial'] }} </td>
+					<td> {{ $fila['valorCuota'] }} </td>
 					<td> {{ $fila['intereses'] }} </td>
-					<td> {{ $fila['abono_k'] }} </td>
-					<td> {{ $fila['saldo_k'] }} </td>
+					<td> {{ $fila['abonoK'] }} </td>
+					<td> {{ $fila['saldoK'] }} </td>
 
 				</tr>
 

@@ -43,11 +43,11 @@ class TablaPagosController extends Controller
             $saldoK = round(($saldoInicial - $abonoK), $decimales);
             
             $listaPagos[$i]["cuota"] = $i;
-            $listaPagos[$i]["saldo_inicial"] = $fmt->format($saldoInicial);
-            $listaPagos[$i]["valor_cuota"] = $fmt->format($valorCuota);
+            $listaPagos[$i]["saldoInicial"] = $fmt->format($saldoInicial);
+            $listaPagos[$i]["valorCuota"] = $fmt->format($valorCuota);
             $listaPagos[$i]["intereses"] = $fmt->format($intereses);
-            $listaPagos[$i]["abono_k"] = $fmt->format($abonoK);
-            $listaPagos[$i]["saldo_k"] = $fmt->format($saldoK);
+            $listaPagos[$i]["abonoK"] = $fmt->format($abonoK);
+            $listaPagos[$i]["saldoK"] = $fmt->format($saldoK);
 
             $i++;
 
@@ -55,15 +55,10 @@ class TablaPagosController extends Controller
         
         }
 
-        /*
-        print("<pre>");
-        print_r($listapagos);
-        print("</pre>");
-        */
+        $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
 
-        File::put('tmp/tmpReportePdf1.html', view('bodySinContenido', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"))->render());
+        return view('liquidador', $data);
 
-        return view('liquidador', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"));
     }
 
 }

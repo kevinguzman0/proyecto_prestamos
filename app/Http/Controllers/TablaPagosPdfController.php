@@ -21,11 +21,12 @@ class TablaPagosPdfController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function generarPdf(Request $request)
+    public function generarPdf($parametro1, $parametro2)
     {
 
-        $valorPrestamo = $request->input("valorPrestamo");
-        $plazoCuotas = $request->input("plazoCuotas");
+        $valorPrestamo = $parametro1;
+        $plazoCuotas = $parametro2;
+
         $saldoInicial = $valorPrestamo;
         $interes = config('prestamos.interes') / 100;
         $decimales = 4;
@@ -43,11 +44,11 @@ class TablaPagosPdfController extends Controller
             $saldoK = round(($saldoInicial - $abonoK), $decimales);
             
             $listaPagos[$i]["cuota"] = $i;
-            $listaPagos[$i]["saldo_inicial"] = $fmt->format($saldoInicial);
-            $listaPagos[$i]["valor_cuota"] = $fmt->format($valorCuota);
+            $listaPagos[$i]["saldoInicial"] = $fmt->format($saldoInicial);
+            $listaPagos[$i]["valorCuota"] = $fmt->format($valorCuota);
             $listaPagos[$i]["intereses"] = $fmt->format($intereses);
-            $listaPagos[$i]["abono_k"] = $fmt->format($abonoK);
-            $listaPagos[$i]["saldo_k"] = $fmt->format($saldoK);
+            $listaPagos[$i]["abonoK"] = $fmt->format($abonoK);
+            $listaPagos[$i]["saldoK"] = $fmt->format($saldoK);
 
             $i++;
 
@@ -55,13 +56,10 @@ class TablaPagosPdfController extends Controller
         
         }
 
-        /*
-        print("<pre>");
-        print_r($listapagos);
-        print("</pre>");
-        */
-
-        return compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
+        $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
+        
+        return $data;
+            
     }
 
 }
