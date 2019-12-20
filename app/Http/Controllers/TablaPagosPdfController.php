@@ -21,7 +21,7 @@ class TablaPagosPdfController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function generarPdf($parametro1, $parametro2)
+    public function generarTablaPagos($parametro1, $parametro2)
     {
 
         $valorPrestamo = $parametro1;

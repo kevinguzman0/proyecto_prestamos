@@ -33,9 +33,9 @@
 
 	</style>
 
-		<div class="d-flex newsletter-area bg-img jarallax" style="background-image: url(prestamos2/img/bg-img/6.jpg); height: 320px;">
+		<div class="d-flex newsletter-area bg-img jarallax" style="background-image: url({{ asset('img/bg-img/6.jpg') }}); height: 320px;">
 
-		<form method="POST" action="{{ url ('/liquidador') }}" style="width: 100%;">
+		<form method="POST" action="{{ url ('/tabla_pagos') }}" style="width: 100%;">
 			@csrf
 			<div class="">
 				<div class="">

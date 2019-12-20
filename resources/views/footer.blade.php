@@ -63,13 +63,13 @@
                         <!-- Single News Area -->
                         <div class="single-latest-news-area d-flex align-items-center">
                             <div class="news-thumbnail">
-                                <img src="prestamos2/img/bg-img/7.jpg" alt="">
+                                <img src="{{ asset('img/bg-img/7.jpg') }}" alt="">
                             </div>
                             <div class="news-content">
                                 <a href="#">How to get the best loan?</a>
                                 <div class="news-meta">
-                                    <a href="#" class="post-author"style="color: black;"><img src="prestamos2/img/core-img/pencil.png" alt=""> Jane Smith</a>
-                                    <a href="#" class="post-date" style="color: black;"><img src="prestamos2/img/core-img/calendar.png" alt=""> April 26</a>
+                                    <a href="#" class="post-author"style="color: black;"><img src="{{ asset('img/core-img/pencil.png') }}" alt=""> Jane Smith</a>
+                                    <a href="#" class="post-date" style="color: black;"><img src="{{ asset('img/core-img/calendar.png') }}" alt=""> April 26</a>
                                 </div>
                             </div>
                         </div>
@@ -77,13 +77,13 @@
                         <!-- Single News Area -->
                         <div class="single-latest-news-area d-flex align-items-center">
                             <div class="news-thumbnail">
-                                <img src="prestamos2/img/bg-img/8.jpg" alt="">
+                                <img src="{{ asset('img/bg-img/8.jpg') }}" alt="">
                             </div>
                             <div class="news-content">
                                 <a href="#">A new way to get a loan</a>
                                 <div class="news-meta">
-                                    <a href="#" class="post-author" style="color: black;"><img src="prestamos2/img/core-img/pencil.png" alt=""> Jane Smith</a>
-                                    <a href="#" class="post-date" style="color: black;"><img src="prestamos2/img/core-img/calendar.png" alt=""> April 26</a>
+                                    <a href="#" class="post-author" style="color: black;"><img src="{{ asset('img/core-img/pencil.png') }}" alt=""> Jane Smith</a>
+                                    <a href="#" class="post-date" style="color: black;"><img src="{{ asset('img/core-img/calendar.png') }}" alt=""> April 26</a>
                                 </div>
                             </div>
                         </div>
@@ -91,13 +91,13 @@
                         <!-- Single News Area -->
                         <div class="single-latest-news-area d-flex align-items-center">
                             <div class="news-thumbnail">
-                                <img src="prestamos2/img/bg-img/9.jpg" alt="">
+                                <img src="{{ asset('img/bg-img/9.jpg') }}" alt="">
                             </div>
                             <div class="news-content">
                                 <a href="#">Finance you home</a>
                                 <div class="news-meta">
-                                    <a href="#" class="post-author" style="color: black;"><img src="prestamos2/img/core-img/pencil.png" alt="" style="color: black;"> Jane Smith</a>
-                                    <a href="#" class="post-date" style="color: black;"><img src="prestamos2/img/core-img/calendar.png" alt=""> April 26</a>
+                                    <a href="#" class="post-author" style="color: black;"><img src="{{ asset('img/core-img/pencil.png') }}" alt="" style="color: black;"> Jane Smith</a>
+                                    <a href="#" class="post-date" style="color: black;"><img src="{{ asset('img/core-img/calendar.png') }}" alt=""> April 26</a>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                     <div class="col-12">
                         <div class="copywrite-content d-flex flex-wrap justify-content-between align-items-center">
                             <!-- Footer Logo -->
-                            <a href="{{ url ('/') }}" class="footer-logo"><img src="prestamos2/img/gobernacion.png" alt="" width="300"></a>
+                            <a href="{{ url ('/') }}" class="footer-logo"><img src="{{ asset('img/gobernacion.png') }}" alt="" width="300"></a>
 
                             <!-- Copywrite Text -->
                             <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -127,14 +127,14 @@
         </div>
     </footer>
     <!-- ##### All Javascript Script ##### -->
-    <script src="{{ asset('prestamos2/js/jquery/jquery-2.2.4.min.js')  }}"></script>
+    <script src="{{ asset('js/jquery/jquery-2.2.4.min.js') }}"></script>
     <!-- Popper js -->
-    <script src="{{ asset('prestamos2/js/bootstrap/popper.min.js')  }}"></script>
+    <script src="{{ asset('js/bootstrap/popper.min.js') }}"></script>
     <!-- Bootstrap js -->
-    <script src="{{ asset('prestamos2/js/bootstrap/bootstrap.min.js')  }}"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
     <!-- All Plugins js -->
-    <script src="{{ asset('prestamos2/js/plugins/plugins.js')  }}"></script>
+    <script src="{{ asset('js/plugins/plugins.js') }}"></script>
     <!-- Active js -->
-    <script src="{{ asset('prestamos2/js/active.js')  }}"></script>
+    <script src="{{ asset('js/active.js') }}"></script>
     <!-- jQuery-2.2.4 js -->
 @endsection

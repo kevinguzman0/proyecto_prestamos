@@ -47,9 +47,9 @@ Route::get('crear_usuario', 'ValidationUserController@create')->name('crearUsuar
 
 Route::post('validar_usuario', 'ValidationUserController@store')->name('validarUsuario');
 
-Route::post('liquidador', 'TablaPagosController@generar')->name('liquidador');
 
-Route::get('pdf', 'GeneradorController@pdf')->name('pdf');
+// RUTAS REVISADAS Y MEJORADAS
 
-// instalar dompdf
-// composer require barryvdh/laravel-dompdf
+Route::post('tabla_pagos', 'GeneradorTablaPagosController@generarVistaTablaPagos')->name('tablaPagos');
+Route::get('tabla_pagos_pdf', 'GeneradorTablaPagosPdfController@generarPdfTablaPagos')->name('tablaPagosPdf');
+

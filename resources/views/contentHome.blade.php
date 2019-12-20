@@ -17,19 +17,19 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-features-area mb-100 wow fadeInUp" data-wow-delay="300ms">
-                        <img src="prestamos2/img/bg-img/2.jpg" alt="">
+                        <img src="{{ asset('img/bg-img/2.jpg') }}" alt="">
                         <h5>We take care of you</h5>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-features-area mb-100 wow fadeInUp" data-wow-delay="500ms">
-                        <img src="prestamos2/img/bg-img/3.jpg" alt="">
+                        <img src="{{ asset('img/bg-img/3.jpg') }}" alt="">
                         <h5>No documents needed</h5>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-features-area mb-100 wow fadeInUp" data-wow-delay="700ms">
-                        <img src="prestamos2/img/bg-img/4.jpg" alt="">
+                        <img src="{{ asset('img/bg-img/4.jpg') }}" alt="">
                         <h5>Fast &amp; easy loans</h5>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
     <!-- ##### Call To Action Start ###### -->
     <section class="cta-area d-flex flex-wrap">
         <!-- Cta Thumbnail -->
-        <div class="cta-thumbnail bg-img jarallax" style="background-image: url(prestamos2/img/bg-img/5.jpg);"></div>
+        <div class="cta-thumbnail bg-img jarallax" style="background-image: url({{ asset('img/bg-img/5.jpg') }});"></div>
 
         <!-- Cta Content -->
         <div class="cta-content">
@@ -212,7 +212,7 @@
                 <!-- Add Area -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="add-area mb-100 wow fadeInUp" data-wow-delay="100ms">
-                        <a href="#"><img src="{{ asset('prestamos2/img/bg-img/add.png') }}" alt=""></a>
+                        <a href="#"><img src="{{ asset('img/bg-img/add.png') }}" alt=""></a>
                     </div>
                 </div>
 
@@ -229,7 +229,7 @@
                             <!-- Single Contact Content -->
                             <div class="single-contact-content d-flex align-items-center">
                                 <div class="icon">
-                                    <img src="prestamos2/img/core-img/location.png" alt="">
+                                    <img src="{{ asset('img/core-img/location.png') }}" alt="">
                                 </div>
                                 <div class="text">
                                     <p>3007 Sarah Drive <br> Franklin, LA 70538</p>
@@ -238,7 +238,7 @@
                             <!-- Single Contact Content -->
                             <div class="single-contact-content d-flex align-items-center">
                                 <div class="icon">
-                                    <img src="{{ asset('prestamos2/img/core-img/call.png') }}" alt="">
+                                    <img src="{{ asset('img/core-img/call.png') }}" alt="">
                                 </div>
                                 <div class="text">
                                     <p>337-413-9538</p>
@@ -248,7 +248,7 @@
                             <!-- Single Contact Content -->
                             <div class="single-contact-content d-flex align-items-center">
                                 <div class="icon">
-                                    <img src="{{ asset('prestamos2/img/core-img/message2.png') }}" alt="">
+                                    <img src="{{ asset('img/core-img/message2.png') }}" alt="">
                                 </div>
                                 <div class="text">
                                     <p>contact@yourbusiness.com</p>
@@ -271,14 +271,14 @@
                         <!-- Single News Area -->
                         <div class="single-news-area d-flex align-items-center">
                             <div class="news-thumbnail">
-                                <img src="prestamos2/img/bg-img/10.jpg" alt="">
+                                <img src="{{ asset('img/bg-img/10.jpg') }}" alt="">
                             </div>
                             <div class="news-content">
                                 <span>July 18, 2018</span>
                                 <a href="#">How to get the best loan online</a>
                                 <div class="news-meta">
-                                    <a href="#" class="post-author"><img src="{{ asset('prestamos2/img/core-img/pencil.png') }}" alt=""> Jane Smith</a>
-                                    <a href="#" class="post-date"><img src="{{ asset('prestamos2/img/core-img/calendar.png') }}" alt=""> April 26</a>
+                                    <a href="#" class="post-author"><img src="{{ asset('img/core-img/pencil.png') }}" alt=""> Jane Smith</a>
+                                    <a href="#" class="post-date"><img src="{{ asset('img/core-img/calendar.png') }}" alt=""> April 26</a>
                                 </div>
                             </div>
                         </div>
@@ -286,14 +286,14 @@
                         <!-- Single News Area -->
                         <div class="single-news-area d-flex align-items-center">
                             <div class="news-thumbnail">
-                                <img src="prestamos2/img/bg-img/11.jpg" alt="">
+                                <img src="{{ asset('img/bg-img/11.jpg') }}" alt="">
                             </div>
                             <div class="news-content">
                                 <span>July 18, 2018</span>
                                 <a href="#">A new way to finance your dream home</a>
                                 <div class="news-meta">
-                                    <a href="#" class="post-author"><img src="{{ asset('prestamos2/img/core-img/pencil.png') }}" alt=""> Jane Smith</a>
-                                    <a href="#" class="post-date"><img src="{{ asset('prestamos2/img/core-img/calendar.png') }}" alt=""> April 26</a>
+                                    <a href="#" class="post-author"><img src="{{ asset('img/core-img/pencil.png') }}" alt=""> Jane Smith</a>
+                                    <a href="#" class="post-date"><img src="{{ asset('img/core-img/calendar.png') }}" alt=""> April 26</a>
                                 </div>
                             </div>
                         </div>
@@ -301,14 +301,14 @@
                         <!-- Single News Area -->
                         <div class="single-news-area d-flex align-items-center">
                             <div class="news-thumbnail">
-                                <img src="prestamos2/img/bg-img/12.jpg" alt="">
+                                <img src="{{ asset('img/bg-img/12.jpg') }}" alt="">
                             </div>
                             <div class="news-content">
                                 <span>July 18, 2018</span>
                                 <a href="#">10 tips to get the best loan for you</a>
                                 <div class="news-meta">
-                                    <a href="#" class="post-author"><img src="{{ asset('prestamos2/img/core-img/pencil.png') }}" alt=""> Jane Smith</a>
-                                    <a href="#" class="post-date"><img src="{{ asset('prestamos2/img/core-img/calendar.png') }}" alt=""> April 26</a>
+                                    <a href="#" class="post-author"><img src="{{ asset('img/core-img/pencil.png') }}" alt=""> Jane Smith</a>
+                                    <a href="#" class="post-date"><img src="{{ asset('img/core-img/calendar.png') }}" alt=""> April 26</a>
                                 </div>
                             </div>
                         </div>
@@ -320,7 +320,7 @@
     <!-- ##### Miscellaneous Area End ###### -->
 
     <!-- ##### Newsletter Area Start ###### -->
-    <section class="newsletter-area section-padding-100 bg-img jarallax" style="background-image: url(prestamos2/img/bg-img/6.jpg);">
+    <section class="newsletter-area section-padding-100 bg-img jarallax" style="background-image: url({{ asset('img/bg-img/6.jpg') }});">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-10 col-lg-8">

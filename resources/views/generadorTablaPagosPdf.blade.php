@@ -51,3 +51,14 @@
 @section('footer')
 	@parent
 @stop
+
+@section('encabezadoPdf')
+
+    <h1>Cabecera de mi documento</h1>
+    <h2>DesarrolloWeb.com</h2>
+
+@endsection
+
+@section('piePdf')
+
+@endsection

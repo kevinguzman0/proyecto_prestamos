@@ -8,7 +8,7 @@ use NumberFormatter;
 use File;
 use Session;
 
-class TablaPagosController extends Controller
+class GeneradorTablaPagosController extends Controller
 {
 
     /**
@@ -22,7 +22,7 @@ class TablaPagosController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function generar(Request $request)
+    public function generarVistaTablaPagos(Request $request)
     {
 
         $valorPrestamo = (int)$request->input("valorPrestamo");
@@ -62,7 +62,7 @@ class TablaPagosController extends Controller
 
         $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
 
-        return view('liquidador', $data);
+        return view('generadorTablaPagosView', $data);
 
     }
 

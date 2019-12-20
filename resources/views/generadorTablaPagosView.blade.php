@@ -23,8 +23,10 @@
 	</div>
 
 	<div class="justify-content-center" style="width: 70%;">
-		<a href="{{ url ('/pdf') }}" class="btn credit-btn mt-50 class_boton">Generar pdf</a>
-		@yield('liquidador')
+		<a href="{{ url ('/tabla_pagos_pdf') }}" class="btn credit-btn mt-50 class_boton" target="_blank">Generar pdf</a>
+		@yield('encabezadoTabla')
+		@yield('contenidoTabla')
+		@yield('pieTabla')
 	</div>
 </div>
 

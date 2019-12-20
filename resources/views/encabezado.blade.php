@@ -12,11 +12,20 @@
     <title>Fondo de libre inversión</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="prestamos2/img/core-img/favicon.ico">
+    <link rel="icon" href="{{ asset('img/core-img/favicon.ico') }}">
+
+	<!-- Stylesheet from @import de style.css -->
+
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')  }}">
+	<link rel="stylesheet" href="{{ asset('css/classy-nav.css')  }}">
+	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')  }}">
+	<link rel="stylesheet" href="{{ asset('css/animate.css')  }}">
+	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')  }}">
+	<link rel="stylesheet" href="{{ asset('css/credit-icon.css')  }}">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="prestamos2/style.css">
-    <link rel="stylesheet" href="prestamos2/myStyle.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/myStyle.css') }}">
 </head>
 
 <body>
@@ -40,13 +49,13 @@
                     <div class="col-12 d-flex justify-content-between">
                         <!-- Logo Area -->
                         <div class="logo">
-                            <a href="{{  url('/') }}"><img src="prestamos2/img/gobernacion.png" alt="" width="300"></a>
+                            <a href="{{  url('/') }}"><img src="{{ asset('img/gobernacion.png') }}" alt="" width="300"></a>
                         </div>
 
                         <!-- Top Contact Info -->
                         <div class="top-contact-info d-flex align-items-center">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="25 th Street Avenue, Los Angeles, CA"><img src="prestamos2/img/core-img/placeholder.png" alt=""> <span>Calle 19 No 13-17</span></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="office@yourfirm.com"><img src="prestamos2/img/core-img/message.png" alt=""> <span>contactenos@risaralda.gov.co</span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="25 th Street Avenue, Los Angeles, CA"><img src="{{ asset('img/core-img/placeholder.png') }}" alt=""> <span>Calle 19 No 13-17</span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="office@yourfirm.com"><img src="{{ asset('img/core-img/message.png') }}" alt=""> <span>contactenos@risaralda.gov.co</span></a>
                         </div>
                     </div>
                 </div>
@@ -84,7 +93,7 @@
 
                         <!-- Contact --> 
                     <div class="contact classmenu2" style="margin-left: 170px;">
-                        <a href="#" class="classmenu3"><img class="classmenu3"src="prestamos2/img/core-img/call2.png" alt="">+57 3215014816</a>
+                        <a href="#" class="classmenu3"><img class="classmenu3"src="{{ asset('img/core-img/call2.png') }}" alt="">+57 3215014816</a>
                     </div>
                         <div class="classynav" style="z-index: 100; float: right; margin-right: -300px; text-align: right;">
                             <ul>

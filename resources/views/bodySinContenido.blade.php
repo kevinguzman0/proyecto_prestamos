@@ -16,31 +16,42 @@
             <title>Fondo de libre inversión</title>
 
             <!-- Favicon -->
-            <link rel="icon" href="{{ asset('prestamos2/img/core-img/favicon.ico') }}">
+            <link rel="icon" href="{{ asset('img/core-img/favicon.ico') }}">
 
+            <!-- Stylesheet from @import de style.css -->
+
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')  }}">
+            <link rel="stylesheet" href="{{ asset('css/classy-nav.css')  }}">
+            <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')  }}">
+            <link rel="stylesheet" href="{{ asset('css/animate.css')  }}">
+            <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')  }}">
+            <link rel="stylesheet" href="{{ asset('css/credit-icon.css')  }}">
+			
             <!-- Stylesheet -->
-            <link rel="stylesheet" href="{{ asset('prestamos2/style.css')  }}">
-            <link rel="stylesheet" href="{{ asset('prestamos2/myStyle.css')  }}">
-
+            <link rel="stylesheet" href="{{ asset('css/style.css')  }}">
+            <link rel="stylesheet" href="{{ asset('css/myStyle.css')  }}">
+			
         </head>
 
         <body>
 
 @show
 
+@yield('encabezadoPdf')
+
 @yield('content')
 
 @section('footer')  
 
-        <script src="{{ asset('prestamos2/js/jquery/jquery-2.2.4.min.js')  }}"></script>
+        <script src="{{ asset('js/jquery/jquery-2.2.4.min.js')  }}"></script>
         <!-- Popper js -->
-        <script src="{{ asset('prestamos2/js/bootstrap/popper.min.js')  }}"></script>
+        <script src="{{ asset('js/bootstrap/popper.min.js')  }}"></script>
         <!-- Bootstrap js -->
-        <script src="{{ asset('prestamos2/js/bootstrap/bootstrap.min.js')  }}"></script>
+        <script src="{{ asset('js/bootstrap/bootstrap.min.js')  }}"></script>
         <!-- All Plugins js -->
-        <script src="{{ asset('prestamos2/js/plugins/plugins.js')  }}"></script>
+        <script src="{{ asset('js/plugins/plugins.js')  }}"></script>
         <!-- Active js -->
-        <script src="{{ asset('prestamos2/js/active.js')  }}"></script>
+        <script src="{{ asset('js/active.js')  }}"></script>
         <!-- jQuery-2.2.4 js -->
 
     </body>
@@ -48,3 +59,5 @@
 </html>
 
 @show
+
+@yield('piePdf')

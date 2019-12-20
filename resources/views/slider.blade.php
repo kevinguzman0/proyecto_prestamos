@@ -5,7 +5,7 @@
             <!-- Single Slide -->
             <div class="single-slide bg-img">
                 <!-- Background Image-->
-                <div class="slide-bg-img bg-img bg-overlay" style="background-image: url({{ asset('prestamos2/img/bg-img/1.jpg') }});"></div>
+                <div class="slide-bg-img bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/1.jpg') }});"></div>
                 <!-- Welcome Text -->
                 <div class="container h-100">
                     <div class="row h-100 align-items-center justify-content-center">
@@ -26,7 +26,7 @@
             <!-- Single Slide -->
             <div class="single-slide bg-img">
                 <!-- Background Image-->
-                <div class="slide-bg-img bg-img bg-overlay" style="background-image: url(prestamos2/img/bg-img/5.jpg);"></div>
+                <div class="slide-bg-img bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/5.jpg') }});"></div>
                 <!-- Welcome Text -->
                 <div class="container h-100">
                     <div class="row h-100 align-items-center justify-content-center">
@@ -46,7 +46,7 @@
             <!-- Single Slide -->
             <div class="single-slide bg-img">
                 <!-- Background Image-->
-                <div class="slide-bg-img bg-img bg-overlay" style="background-image: url(prestamos2/img/bg-img/1.jpg);"></div>
+                <div class="slide-bg-img bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/1.jpg') }});"></div>
                 <!-- Welcome Text -->
                 <div class="container h-100">
                     <div class="row h-100 align-items-center justify-content-center">
