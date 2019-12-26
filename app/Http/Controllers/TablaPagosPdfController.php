@@ -34,7 +34,15 @@ class TablaPagosPdfController extends Controller
         $fmt = new NumberFormatter("en-US", NumberFormatter::CURRENCY);
         $listaPagos = array();
 
-        $valorCuota = round($valorPrestamo * ((((1 + $interes) ** $plazoCuotas) * $interes) / (((1 + $interes) ** $plazoCuotas) - 1)), $decimales);
+        if (($valorPrestamo == 0) || ($plazoCuotas == 0))
+        {
+           $valorCuota = 0;
+           $plazoCuotas = 0;
+        }
+        else
+        {
+            $valorCuota = round($valorPrestamo * ((((1 + $interes) ** $plazoCuotas) * $interes) / (((1 + $interes) ** $plazoCuotas) - 1)), $decimales);
+        }
 
         while($i <= $plazoCuotas)
         {

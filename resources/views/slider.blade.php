@@ -1,4 +1,4 @@
-@section('myslider')
+ @section('myslider')
     <!-- ##### Hero Area Start ##### -->
     <div class="hero-area">
         <div class="hero-slideshow owl-carousel">

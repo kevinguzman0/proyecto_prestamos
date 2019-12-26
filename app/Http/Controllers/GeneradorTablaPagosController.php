@@ -38,7 +38,15 @@ class GeneradorTablaPagosController extends Controller
         $fmt = new NumberFormatter("en-US", NumberFormatter::CURRENCY);
         $listaPagos = array();
 
-        $valorCuota = round($valorPrestamo * ((((1 + $interes) ** $plazoCuotas) * $interes) / (((1 + $interes) ** $plazoCuotas) - 1)), $decimales);
+        if (($valorPrestamo == 0) || ($plazoCuotas == 0))
+        {
+           $valorCuota = 0;
+           $plazoCuotas = 0;
+        }
+        else
+        {
+            $valorCuota = round($valorPrestamo * ((((1 + $interes) ** $plazoCuotas) * $interes) / (((1 + $interes) ** $plazoCuotas) - 1)), $decimales);
+        }
 
         while($i <= $plazoCuotas)
         {
@@ -63,6 +71,41 @@ class GeneradorTablaPagosController extends Controller
         $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
 
         return view('generadorTablaPagosView', $data);
+
+    }
+
+    public function generarVistaCuotaCredito(Request $request)
+    {
+
+        $valorPrestamo = (int)$request->input("valorPrestamo");
+        $plazoCuotas = (int)$request->input("plazoCuotas");
+
+        $request->session()->put('valorPrestamo', $valorPrestamo);
+        $request->session()->put('plazoCuotas', $plazoCuotas);
+
+        $saldoInicial = $valorPrestamo;
+        $interes = config('prestamos.interes') / 100;
+        $decimales = 4;
+
+        $fmt = new NumberFormatter("en-US", NumberFormatter::CURRENCY);
+
+        if (($valorPrestamo == 0) || ($plazoCuotas == 0))
+        {
+           $valorCuota = 0;
+           $plazoCuotas = 0;
+        }
+        else
+        {
+            $valorCuota = round($valorPrestamo * ((((1 + $interes) ** $plazoCuotas) * $interes) / (((1 + $interes) ** $plazoCuotas) - 1)), $decimales);
+        }
+
+        $valorPrestamo = $fmt->format($valorPrestamo);
+        $interes = config('prestamos.interes') . "%";
+        $valorCuota = $fmt->format($valorCuota);
+
+        $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota");
+
+        return view('generadorCuotaPagosView', $data);
 
     }
 

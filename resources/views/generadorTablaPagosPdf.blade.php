@@ -1,23 +1,19 @@
-@extends('bodySinContenido')
+@extends('plantillaEstilosPdf')
 
-@section('head')
-	@parent
-@stop
-
-@section('content')
+@section('contenidoTabla')
 
     <div>
 
-		<table class="table table-striped xtable-responsive table-bordered" style="width:100% !important;">
+		<table class="table table-striped table-bordered table-fit" style="width:100% !important;">
 
 			<thead>
 				<tr>
 					<th>Periodo</th>
-					<th>Saldo Inicial</th>
+					<th>Capital Inicial</th>
 					<th>Cuota</th>
 					<th>Intereses</th>
-					<th>Abono a capital</th>
-					<th>Saldo de capital</th>
+					<th>Abono a Capital</th>
+					<th>Capital Final</th>
 				</tr>
 			</thead>
 
@@ -46,19 +42,4 @@
 
     </div>
         
-@endsection
-
-@section('footer')
-	@parent
-@stop
-
-@section('encabezadoPdf')
-
-    <h1>Cabecera de mi documento</h1>
-    <h2>DesarrolloWeb.com</h2>
-
-@endsection
-
-@section('piePdf')
-
 @endsection

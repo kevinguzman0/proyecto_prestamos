@@ -10,7 +10,7 @@ class ValidationUserController extends Controller
 
     public function create(Request $request)
     {
-        return view('usuario');
+        return view('formUsuario');
     }
 
     public function store(Request $request)
@@ -37,8 +37,9 @@ class ValidationUserController extends Controller
         $cedula=$request->cedula;
         $nombre='foto_usuario_' . $cedula . '.' . $ext;
         \Storage::disk('local')->put($nombre, \File::get($file));
+        
         //$request->foto->storeAs($nombre)
 
-        return 'soii';
+        return '';
     }
 }

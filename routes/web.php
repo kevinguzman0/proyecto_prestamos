@@ -13,43 +13,42 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+// -----------------------------------------------------------------------------------------------------------
+// RUTAS REVISADAS Y MEJORADAS
+// -----------------------------------------------------------------------------------------------------------
+
 Auth::routes();
 
 Route::get('/', function () {
     return view('inicio');
 })->name('inicio');
 
-Route::get('logueo', function () {
-    return view('logueo');
-})->name('logueo');
+Route::get('registrarse', function () {
+    return view('registrarse');
+})->name('registrarse');
 
-Route::get('registro', function () {
-    return view('registro');
-})->name('registro');
+Route::get('ingresar', function () {
+    return view('ingresar');
+})->name('ingresar');
 
-Route::get('pagos', function () {
-    return view('index');
-});
+Route::get('salir', '\App\Http\Controllers\Auth\LoginController@logout')->name('salir');
 
-Route::get('tabla', function(){
-	return view('miTabla');
-})->name('tabla');
+Route::get('simulador', function () {
+    return view('simulador');
+})->name('simulador');
 
-Route::get('misolicitud', function(){
-	return view('miSolicitud');
-})->name('solicitud');
+Route::post('tabla_pagos', 'GeneradorTablaPagosController@generarVistaTablaPagos')->name('tablaPagosView');
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::post('cuota_pagos', 'GeneradorTablaPagosController@generarVistaCuotaCredito')->name('cuotaPagosView');
 
-Route::post('validar_solicitud', 'ValidationSolicitudController@create')->name('validarSolicitud');
+Route::get('tabla_pagos_pdf', 'GeneradorTablaPagosPdfController@generarPdfTablaPagos')->name('tablaPagosPdf');
 
 Route::get('crear_usuario', 'ValidationUserController@create')->name('crearUsuario');
 
 Route::post('validar_usuario', 'ValidationUserController@store')->name('validarUsuario');
 
+Route::get('crear_solicitud', 'ValidationSolicitudController@create')->name('crearSolicitud');
 
-// RUTAS REVISADAS Y MEJORADAS
+Route::post('validar_solicitud', 'ValidationSolicitudController@store')->name('validarSolicitud');
 
-Route::post('tabla_pagos', 'GeneradorTablaPagosController@generarVistaTablaPagos')->name('tablaPagos');
-Route::get('tabla_pagos_pdf', 'GeneradorTablaPagosPdfController@generarPdfTablaPagos')->name('tablaPagosPdf');
-
+// -----------------------------------------------------------------------------------------------------------

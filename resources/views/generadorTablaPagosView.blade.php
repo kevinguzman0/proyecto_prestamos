@@ -1,35 +1,53 @@
-@include('encabezado')
-@include('slider')
-@include('index')
-@include('tablaPagos')
-@include('footer')
+@extends('simulador')
 
-<main>
-	@yield('encabezado')
-</main>
+@section('contenidoTabla')
+	
+    <div class="row col-md-12">
+        <h5>TABLA DE PAGOS PARA EL CRÉDITO</h5>
+    </div>
 
-<div>
-	@yield('myslider')
-</div>
+	<a href="{{ route('tablaPagosPdf') }}" class="btn btn-dark mt-2 mb-2" target="_blank">
+		Generar pdf
+	</a>
 
-<div class="d-flex flex-row" style="width: 100%;">
-	<div class="d-flex flex-col" style="width: 30%;">
-		<div class="d-flex flex-col" style="width: 100%;">
-			@yield('tabla')
-		</div>
-		<div class="" style="width: 100%;">
-			x
-		</div>
+	<div class="row col-md-12 mb-3 mt-3">
+
+		<table class="table table-striped table-bordered table-fit" style="">
+
+			<thead>
+				<tr>
+					<th>Periodo</th>
+					<th>Capital Inicial</th>
+					<th>Cuota</th>
+					<th>Intereses</th>
+					<th>Abono a Capital</th>
+					<th>Capital Final</th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				@foreach ($listaPagos as $fila)
+
+					<tr>
+
+						<td style="text-align:center; font-weight: bold;">
+							{{ $fila['cuota'] }}
+						</td>
+						<td> {{ $fila['saldoInicial'] }} </td>
+						<td> {{ $fila['valorCuota'] }} </td>
+						<td> {{ $fila['intereses'] }} </td>
+						<td> {{ $fila['abonoK'] }} </td>
+						<td> {{ $fila['saldoK'] }} </td>
+
+					</tr>
+
+				@endforeach
+
+			</tbody>
+
+		</table>
+
 	</div>
 
-	<div class="justify-content-center" style="width: 70%;">
-		<a href="{{ url ('/tabla_pagos_pdf') }}" class="btn credit-btn mt-50 class_boton" target="_blank">Generar pdf</a>
-		@yield('encabezadoTabla')
-		@yield('contenidoTabla')
-		@yield('pieTabla')
-	</div>
-</div>
-
-<div>
-	@yield('footer')
-</div>
+@endsection
