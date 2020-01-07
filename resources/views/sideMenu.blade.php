@@ -10,15 +10,17 @@
 
 	        <ul class="list-unstyled components">
 
+                <li><a href="{{ route('inicio') }}">Inicio</a></li>
+
 	            <li>
 
-	                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inicio</a>
+	                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Conócenos</a>
 
 	                <ul class="collapse list-unstyled" id="homeSubmenu">
 
 	                    <li><a href="#">Quiénes somos</a></li>
 
-	                    <li><a href="#">Contáctenos</a></li>
+	                    <li><a href="#">Cómo contactarnos</a></li>
 
 	                    <li><a href="#">Servicios</a></li>
 
