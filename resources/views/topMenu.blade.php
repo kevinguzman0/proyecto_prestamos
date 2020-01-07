@@ -18,26 +18,51 @@
 
 	            <ul class="nav navbar-nav ml-auto">
 
+                    <!-- Authentication Links -->
 
-					<li class="nav-item"><a href="{{ route('simulador') }}">Simulador</a></li>
+					<li class="nav-link"><a href="{{ route('simulador') }}">Simulador</a></li>
 
-		            @auth
+                    @guest
 
-		               &nbsp; &nbsp;
-   					   <li class="nav-item"><a href="{{ route('inicio') }}">Mi perfil</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('ingresar') }}">{{ __('Login') }}</a>
+                        </li>
 
-		               &nbsp; &nbsp;
-		               <li class="nav-item"><a href="{{ route('salir') }}">Cerrar sesión</a></li>
-		            
-		            @else
+                        @if (Route::has('register'))
 
-		                &nbsp; &nbsp;
-		                <li class="nav-item"><a href="{{ route('registrarse') }}">Regístrese</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('registrarse') }}">{{ __('Register') }}</a>
+                            </li>
 
-		                &nbsp; &nbsp;
-		                <li class="nav-item"><a href="{{ route('ingresar') }}">Iniciar sesión</a></li>
+                        @endif
 
-		            @endauth
+                    @else
+
+                        <li class="nav-item dropdown">
+
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{ route('salir') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('salir') }}" method="POST" style="display: none;">
+
+                                    @csrf
+
+                                </form>
+
+                            </div>
+
+                        </li>
+
+                    @endguest
 
 	            </ul>
 

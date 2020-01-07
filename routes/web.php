@@ -17,7 +17,9 @@ use Illuminate\Database\Eloquent\Model;
 // RUTAS REVISADAS Y MEJORADAS
 // -----------------------------------------------------------------------------------------------------------
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+ 
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 Route::get('/', function () {
     return view('inicio');
@@ -31,7 +33,7 @@ Route::get('ingresar', function () {
     return view('ingresar');
 })->name('ingresar');
 
-Route::get('salir', '\App\Http\Controllers\Auth\LoginController@logout')->name('salir');
+Route::post('salir', '\App\Http\Controllers\Auth\LoginController@logout')->name('salir');
 
 Route::get('simulador', function () {
     return view('simulador');

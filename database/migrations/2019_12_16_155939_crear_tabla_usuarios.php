@@ -30,6 +30,7 @@ class CrearTablaUsuarios extends Migration
             $table->string('ciudad', 45);
             $table->string('areaTrabajo', 100);
             $table->string('cargoTrabajo', 100);           
+            $table->boolean('afiliadoFondo');           
             $table->timestamps();
             $table->foreign('idPerfilUsuario')->references('id')->on('perfiles_usuario');
         });
