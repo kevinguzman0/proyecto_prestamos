@@ -1,11 +1,12 @@
 {
+    "Name": "Nombre",
     "E-Mail Address": "Correo electrónico",
     "Password": "Contraseña",
     "Remember Me": "Recuérdame",
     "Login": "Ingresar",
-    "Forgot Your Password?": "¿Olvidó su contraseña?",
+    "Logout": "Cerrar sesión",
     "Register": "Registrarse",
-    "Name": "Nombre",
+    "Forgot Your Password?": "¿Olvidó su contraseña?",
     "Confirm Password": "Confirmar contraseña",
     "Reset Password": "Restablecer contraseña",
     "Reset Password Notification": "Aviso para restablecer contraseña",
@@ -18,7 +19,6 @@
     "Hello!": "¡Hola!",
     "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser: [:actionURL](:actionURL)": "Si tiene problemas haciendo click en el botón \":actionText\", copie y pege el siguiente\nenlace en su navegador: [:actionURL](:actionURL)",
     "Send Password Reset Link": "Enviar enlace para restablecer contraseña",
-    "Logout": "Cerrar sesión",
     "Verify Email Address": "Confirmar correo electrónico",
     "Please click the button below to verify your email address.": "Por favor pulse el siguiente botón para confirmar su correo electrónico.",
     "If you did not create an account, no further action is required.": "Si no ha creado ninguna cuenta, puede ignorar o eliminar este e-mail.",
@@ -26,5 +26,7 @@
     "A fresh verification link has been sent to your email address.": "Se ha enviado un nuevo enlace de verificación a su correo electrónico.",
     "Before proceeding, please check your email for a verification link.": "Antes de poder continuar por favor confirme su correo electrónico con el enlace que le hemos enviado.",
     "If you did not receive the email": "Si no ha recibido el email",
-    "click here to request another": "pulse aquí para que le enviemos otro"
+    "click here to request another": "pulse aquí para que le enviemos otro",
+    "Dashboard": "Tablero",
+    "you are logged in!": "estás conectado!"
 }

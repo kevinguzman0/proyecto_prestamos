@@ -2,16 +2,18 @@
     DEMO STYLE
 */
 
-@import "https://fonts.googleapis.com/css?family=Open+Sans&display=swap";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Nunito);
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Nunito', 'Open Sans', sans-serif;
+    font-size: 1rem;
     background: #fafafa;
 }
 
 p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.1em;
+    font-family: 'Nunito', 'Open Sans', sans-serif;
+    font-size: 1rem;
     font-weight: 300;
     line-height: 1.7em;
     color: #999;
@@ -89,7 +91,7 @@ a:focus {
 
 #sidebar ul li a {
     padding: 10px;
-    font-size: 1.1em;
+    font-size: 1em;
     display: block;
 }
 
@@ -116,8 +118,12 @@ a[data-toggle="collapse"] {
     transform: translateY(-50%);
 }
 
+.dropdown-toggle-tm::after {
+    right: -15px !important;
+}
+
 ul ul a {
-    font-size: 0.9em !important;
+    font-size: 1em !important;
     padding-left: 30px !important;
     background: #6d7fcc;
 }
