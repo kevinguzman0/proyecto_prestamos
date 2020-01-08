@@ -13,7 +13,7 @@
 	<div class="row col-md-12" style="">
 
 	    <div class="row col-md-12 mt-3">
-	        <h4>FORMULARIO PARA REGISTRO DE INTERESADOS</h4>
+	        <h4>PERFIL DE USUARIO REGISTRADO</h4>
 	    </div>
 
 	    <div class="row col-md-12 mt-2">

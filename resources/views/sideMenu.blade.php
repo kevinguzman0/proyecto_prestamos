@@ -58,11 +58,11 @@
 
 								<a href="{{ route('salir') }}"
                                	   onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form-sm').submit();">
                                 	{{ __('Logout') }}
                             	</a>
 
-	                            <form id="logout-form" action="{{ route('salir') }}" method="POST" style="display: none;">
+	                            <form id="logout-form-sm" action="{{ route('salir') }}" method="POST" style="display: none;">
 
 	                                @csrf
 

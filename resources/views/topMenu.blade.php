@@ -50,17 +50,20 @@
 
                                 <a class="dropdown-item" href="{{ route('salir') }}"
                                    onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form-tm').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('salir') }}" method="POST" style="display: none;">
+                                <form id="logout-form-tm" action="{{ route('salir') }}" method="POST" style="display: none;">
 
                                     @csrf
 
                                 </form>
 
-                            </div>
+                                <a class="dropdown-item" href="{{ route('inicio') }}">
+                                    Mi perfil
+                                </a>
+                           </div>
 
                         </li>
 
