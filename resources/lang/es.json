@@ -1,4 +1,5 @@
 {
+    "User": "Usuario",
     "Name": "Nombre",
     "E-Mail Address": "Correo electrónico",
     "Password": "Contraseña",
@@ -28,5 +29,6 @@
     "If you did not receive the email": "Si no ha recibido el email",
     "click here to request another": "pulse aquí para que le enviemos otro",
     "Dashboard": "Tablero",
+    "Welcome": "Bienvenido",
     "you are logged in!": "estás conectado!"
 }

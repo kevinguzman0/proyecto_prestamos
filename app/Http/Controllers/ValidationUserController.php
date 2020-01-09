@@ -15,7 +15,6 @@ class ValidationUserController extends Controller
 
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'cedula' => 'required|unique:usuarios',
             'nombres' => 'required',
@@ -37,8 +36,6 @@ class ValidationUserController extends Controller
         $cedula=$request->cedula;
         $nombre='foto_usuario_' . $cedula . '.' . $ext;
         \Storage::disk('local')->put($nombre, \File::get($file));
-        
-        //$request->foto->storeAs($nombre)
 
         return '';
     }

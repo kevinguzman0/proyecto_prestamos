@@ -45,12 +45,12 @@ Route::post('cuota_pagos', 'GeneradorTablaPagosController@generarVistaCuotaCredi
 
 Route::get('tabla_pagos_pdf', 'GeneradorTablaPagosPdfController@generarPdfTablaPagos')->name('tablaPagosPdf');
 
-Route::get('crear_usuario', 'ValidationUserController@create')->name('crearUsuario');
+Route::get('crear_usuario', 'ValidationUserController@create')->middleware('auth')->name('crearUsuario');
 
-Route::post('validar_usuario', 'ValidationUserController@store')->name('validarUsuario');
+Route::post('validar_usuario', 'ValidationUserController@store')->middleware('auth')->name('validarUsuario');
 
-Route::get('crear_solicitud', 'ValidationSolicitudController@create')->name('crearSolicitud');
+Route::get('crear_solicitud', 'ValidationSolicitudController@create')->middleware('auth')->name('crearSolicitud');
 
-Route::post('validar_solicitud', 'ValidationSolicitudController@store')->name('validarSolicitud');
+Route::post('validar_solicitud', 'ValidationSolicitudController@store')->middleware('auth')->name('validarSolicitud');
 
 // -----------------------------------------------------------------------------------------------------------
