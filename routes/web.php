@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 
 Auth::routes(['verify' => true]);
  
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@index')->middleware('verified')->name('home');
 
 Route::get('/', function () {
     return view('inicio');
@@ -45,12 +45,12 @@ Route::post('cuota_pagos', 'GeneradorTablaPagosController@generarVistaCuotaCredi
 
 Route::get('tabla_pagos_pdf', 'GeneradorTablaPagosPdfController@generarPdfTablaPagos')->name('tablaPagosPdf');
 
-Route::get('crear_usuario', 'ValidationUserController@create')->middleware('auth')->name('crearUsuario');
-
-Route::post('validar_usuario', 'ValidationUserController@store')->middleware('auth')->name('validarUsuario');
-
 Route::get('crear_solicitud', 'ValidationSolicitudController@create')->middleware('auth')->name('crearSolicitud');
 
 Route::post('validar_solicitud', 'ValidationSolicitudController@store')->middleware('auth')->name('validarSolicitud');
 
 // -----------------------------------------------------------------------------------------------------------
+
+Route::get('/mi-perfil', 'UsuarioController@index')->middleware('auth')->name('usuarios.perfil');
+
+Route::post('', 'UsuarioController@store')->middleware('auth')->name('usuario.store');

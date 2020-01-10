@@ -14,6 +14,7 @@ class CrearTablaSolicitudes extends Migration
     public function up()
     {
         Schema::create('solicitudes', function (Blueprint $table) {
+
             $table->bigIncrements('id'); 
             $table->integer('monto');
             $table->integer('plazo');
@@ -22,9 +23,12 @@ class CrearTablaSolicitudes extends Migration
             $table->decimal('tasa', 5, 2);
             $table->bigInteger('idEstadoSolicitud')->unsigned();
             $table->bigInteger('idCliente')->unsigned();
-            $table->foreign('idEstadoSolicitud')->references('id')->on('estado_solicitudes');
-            $table->foreign('idCliente')->references('id')->on('usuarios');
+
             $table->timestamps();
+            
+            $table->foreign('idEstadoSolicitud')->references('id')->on('estados_solicitud');
+            $table->foreign('idCliente')->references('id')->on('usuarios');
+            
         });
     }
 

@@ -12,8 +12,15 @@
     <!-- jQuery Custom Scroller CDN -->
     <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 
+    <!-- JS para botones de selección de archivos y Upload -->
+    <script src="{{ asset('js/bootstrap-filestyle.min.js') }}"></script>
+
+    <!-- JS personalizado del proyecto -->
+    <script src="{{ asset('js/custom.js') }}"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
+
             $("#sidebar").mCustomScrollbar({
                 theme: "minimal"
             });
@@ -23,6 +30,7 @@
                 $('.collapse.in').toggleClass('in');
                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             });
+
         });
     </script>
 

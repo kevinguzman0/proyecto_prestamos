@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 use Carbon\Carbon;
 
-class CrearTablaEstadoSolicitudes extends Migration
+class CrearTablaEstadosSolicitud extends Migration
 {
     /**
      * Run the migrations.
@@ -16,11 +16,14 @@ class CrearTablaEstadoSolicitudes extends Migration
     public function up()
     {
         
-        Schema::create('estado_solicitudes', function (Blueprint $table) {
+        Schema::create('estados_solicitud', function (Blueprint $table) {
+
             $table->bigIncrements('id');
             $table->string('nombreEstado', 20);
             $table->string('descripcionEstado');
+            
             $table->timestamps();
+        
         });
 
         $datos = array(
@@ -54,7 +57,7 @@ class CrearTablaEstadoSolicitudes extends Migration
                   'updated_at'=> Carbon::now()),
         );
 
-        DB::table('estado_solicitudes')->insert($datos);
+        DB::table('estados_solicitud')->insert($datos);
 
     }
 
@@ -65,6 +68,6 @@ class CrearTablaEstadoSolicitudes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado_solicitudes');
+        Schema::dropIfExists('estados_solicitud');
     }
 }

@@ -17,10 +17,13 @@ class CrearTablaPerfilesUsuario extends Migration
     {
         
         Schema::create('perfiles_usuario', function (Blueprint $table) {
+
             $table->bigIncrements('id');
             $table->string('nombrePerfil', 20);
             $table->string('descripcionPerfil');
+
             $table->timestamps();
+            
         });
 
         $datos = array(

@@ -48,6 +48,10 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
+                                <a class="dropdown-item" href="{{ route('usuarios.perfil') }}">
+                                    Mi perfil
+                                </a>
+
                                 <a class="dropdown-item" href="{{ route('salir') }}"
                                    onclick="event.preventDefault();
                                             document.getElementById('logout-form-tm').submit();">
@@ -56,13 +60,11 @@
 
                                 <form id="logout-form-tm" action="{{ route('salir') }}" method="POST" style="display: none;">
 
-                                    @csrf
+                                    {{ csrf_field() }}
 
                                 </form>
 
-                                <a class="dropdown-item" href="{{ route('inicio') }}">
-                                    Mi perfil
-                                </a>
+
                            </div>
 
                         </li>

@@ -15,9 +15,9 @@ class CrearTablaUsuarios extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
 
-            $table->bigIncrements('id');            
+            $table->bigInteger('id')->unsigned()->primary();            
             $table->bigInteger('idPerfilUsuario')->unsigned();
-            $table->string('cedula', 15);
+            $table->string('cedula', 15)->unique();
             $table->string('nombres', 100);
             $table->string('apellidos', 100);
             $table->string('foto', 100);
@@ -30,9 +30,12 @@ class CrearTablaUsuarios extends Migration
             $table->string('ciudad', 45);
             $table->string('areaTrabajo', 100);
             $table->string('cargoTrabajo', 100);           
-            $table->boolean('afiliadoFondo');           
+            $table->boolean('afiliadoFondo'); 
+                      
             $table->timestamps();
+
             $table->foreign('idPerfilUsuario')->references('id')->on('perfiles_usuario');
+
         });
     }
 

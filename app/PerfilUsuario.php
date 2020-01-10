@@ -4,13 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EstadoSolicitudes extends Model
+class PerfilUsuario extends Model
 {
+
+    protected $table='perfiles_usuario';
+
     protected $fillable=[
-    	'nombreEstado', 'descripcionEstado',
+    	'nombrePerfil', 'descripcionPerfil',
     ];
 
-    protected $table='estado_solicitudes';
-
     protected $primarykey='id';
+
 }

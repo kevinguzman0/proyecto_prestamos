@@ -54,6 +54,15 @@
 
 		                <ul class="collapse list-unstyled" id="sidebarDropdown">
 
+	                        
+		                	<li>
+
+		                        <a href="{{ route('usuarios.perfil') }}">
+		                            Mi perfil
+		                        </a>
+
+		                    </li>
+
 		                	<li>
 
 								<a href="{{ route('salir') }}"
@@ -64,7 +73,7 @@
 
 	                            <form id="logout-form-sm" action="{{ route('salir') }}" method="POST" style="display: none;">
 
-	                                @csrf
+	                                {{ csrf_field() }}
 
 	                            </form>		                		
 
