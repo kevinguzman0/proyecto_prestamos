@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Usuario extends Model
 {
 
-	protected $table='usuarios';
-
-    protected $fillable=[
+	protected $table = 'usuarios';
+ 
+    protected $fillable = [
     	'id',
    		'idPerfilUsuario', 
    		'cedula', 
@@ -28,6 +28,18 @@ class Usuario extends Model
 		'afiliadoFondo',
 	];
 
-	protected $primaryKey='id';
+	protected $primaryKey = 'id';
+
+	public function user()
+	{
+	
+		return $this->belongsTo('App\User', 'id');
+	
+	}
+
+    public function solicitudes()
+    {
+       return $this->hasMany('App\Solicitud', 'idCliente');
+    }    
 
 }

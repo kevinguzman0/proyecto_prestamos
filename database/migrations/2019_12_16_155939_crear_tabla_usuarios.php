@@ -34,8 +34,6 @@ class CrearTablaUsuarios extends Migration
                       
             $table->timestamps();
 
-            $table->foreign('idPerfilUsuario')->references('id')->on('perfiles_usuario');
-
         });
     }
 

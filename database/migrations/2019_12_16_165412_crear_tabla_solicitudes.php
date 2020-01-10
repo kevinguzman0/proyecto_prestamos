@@ -26,9 +26,6 @@ class CrearTablaSolicitudes extends Migration
 
             $table->timestamps();
             
-            $table->foreign('idEstadoSolicitud')->references('id')->on('estados_solicitud');
-            $table->foreign('idCliente')->references('id')->on('usuarios');
-            
         });
     }
 

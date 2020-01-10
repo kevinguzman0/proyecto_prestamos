@@ -10,7 +10,8 @@ class PerfilUsuario extends Model
     protected $table='perfiles_usuario';
 
     protected $fillable=[
-    	'nombrePerfil', 'descripcionPerfil',
+    	'nombrePerfil', 
+    	'descripcionPerfil',
     ];
 
     protected $primarykey='id';
