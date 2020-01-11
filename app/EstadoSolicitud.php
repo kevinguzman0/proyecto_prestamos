@@ -18,7 +18,7 @@ class EstadoSolicitud extends Model
 
     public function solicitudes()
     {
-       return $this->hasMany('App\Solicitud', 'idEstadoSolicitud');
+       return $this->hasMany('App\Solicitud', 'idEstadoSolicitud', 'id');
     }    
 
 }

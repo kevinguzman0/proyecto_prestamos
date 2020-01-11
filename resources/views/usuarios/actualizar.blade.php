@@ -25,6 +25,12 @@
 
 	            {{ csrf_field() }}
 
+			    @if ($message = Session::get('success'))
+			        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
+			            <p class="alert-link">{{ $message }}</p>
+			        </div>
+			    @endif
+
 	            <div class="form-row">
 
 	                <div class="col-md-3">

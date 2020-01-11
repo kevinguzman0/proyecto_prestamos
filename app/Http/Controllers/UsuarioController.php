@@ -70,6 +70,8 @@ class UsuarioController extends Controller
 
             $usuario->idPerfilUsuario = 1;
 
+            $mensaje = 'Perfil creado correctamente...';
+
         }
         else
         {
@@ -92,6 +94,8 @@ class UsuarioController extends Controller
                 ]);
 
             $usuario->idPerfilUsuario = $request->idPerfilUsuario;
+
+            $mensaje = 'Perfil actualizado correctamente...';
 
         }
 
@@ -127,7 +131,7 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
-        return redirect()->route('home');
+        return redirect()->back()->with('success', $mensaje);
 
     }
 

@@ -21,16 +21,16 @@ class Solicitud extends Model
 
     protected $primaryKey = 'id';
 
+    public function estado()
+    {
+       return $this->hasOne('App\EstadoSolicitud', 'id', 'idEstadoSolicitud');
+    }  
+
 	public function cliente()
 	{
 	
-		return $this->belongsTo('App\Usuario', 'idCliente');
+		return $this->hasOne('App\Usuario', 'id', 'idCliente');
 	
 	}
-
-    public function estado()
-    {
-       return $this->hasOne('App\EstadoSolicitud', 'id');
-    }  
 
 }

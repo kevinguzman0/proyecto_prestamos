@@ -16,4 +16,9 @@ class PerfilUsuario extends Model
 
     protected $primarykey='id';
 
+    public function usuarios()
+    {
+       return $this->hasMany('App\Usuario', 'idPerfilUsuario', 'id');
+    }     
+
 }

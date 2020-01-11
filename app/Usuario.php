@@ -33,13 +33,18 @@ class Usuario extends Model
 	public function user()
 	{
 	
-		return $this->belongsTo('App\User', 'id');
+		return $this->hasOne('App\User', 'id', 'id');
 	
 	}
 
+    public function perfil()
+    {
+       return $this->hasOne('App\PerfilUsuario', 'id', 'idPerfilUsuario');
+    }  
+
     public function solicitudes()
     {
-       return $this->hasMany('App\Solicitud', 'idCliente');
-    }    
+       return $this->hasMany('App\Solicitud', 'idCliente', 'id');
+    }
 
 }
