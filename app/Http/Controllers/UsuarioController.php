@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 class UsuarioController extends Controller
 {
     
@@ -24,11 +27,16 @@ class UsuarioController extends Controller
 
         if ($usuario == null) 
         {
+
             return view('usuarios.nuevo');
+
         }
         else
         {
-            return view('usuarios.actualizar', compact('usuario'));
+
+            $storagePath = Storage::disk('public')->path($usuario->foto);
+            return view('usuarios.actualizar', compact('usuario', 'storagePath'));
+
         }
 
     }
@@ -127,7 +135,7 @@ class UsuarioController extends Controller
 
         $usuario->foto = $archivo;
 
-        \Storage::disk('local')->put($archivo, \File::get($file));
+        Storage::disk('public')->put($archivo, File::get($file));
 
         $usuario->save();
 

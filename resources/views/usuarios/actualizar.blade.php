@@ -137,7 +137,7 @@
 	                <div class="col-md-9">
 						<div class="input-group">
 							<label class="control-label label-margin">Foto Personal</label>
-							<input type="file" name="foto" class="filestyle" value="{{ $usuario->foto }}"
+							<input type="file" name="foto" class="filestyle"
 								   data-text="Seleccionar" 
 								   data-dragdrop="false" 
 								   data-btnClass="btn-dark"
@@ -147,7 +147,23 @@
 
 	            </div>
 
-	            <input type="hidden" readonly maxlength="20" name="idPerfilUsuario" value="1" class="form-control">
+	            <div class="form-row">
+
+		            <input type="hidden" readonly name="oldFoto" value="{{ $storagePath }}" class="form-control">
+
+					@if ( !empty ( $usuario->foto) )
+					 
+						<img src="{{ asset($storagePath) }}" width="200" class="img-fluid">
+					 
+					@else
+					 
+						Este usuario no ha subido su imagen de perfil aún...
+					 
+					@endif
+
+	            </div>
+
+	            <input type="hidden" readonly maxlength="20" name="idPerfilUsuario" value="{{ $usuario->idPerfilUsuario }}" class="form-control">
 
 	            @if ($errors->any())
 
