@@ -47,11 +47,13 @@ Route::get('tabla_pagos_pdf', 'GeneradorTablaPagosPdfController@generarPdfTablaP
 
 Route::get('crear_solicitud', 'ValidationSolicitudController@create')->middleware('auth')->name('crearSolicitud');
 
-Route::post('validar_solicitud', 'ValidationSolicitudController@store')->middleware('auth')->name('validarSolicitud');
+Route::post('validar_solicitud', 'CreditoController@store')->middleware('auth')->name('validarSolicitud');
 
 // -----------------------------------------------------------------------------------------------------------
 
 Route::get('/mi-perfil', 'UsuarioController@index')->middleware('auth')->name('usuarios.perfil');
+
+Route::get('/mi-credito', 'CreditoController@index')->middleware('auth')->name('usuarios.credito');
 
 Route::post('usuario-store', 'UsuarioController@store')->middleware('auth')->name('usuario.store');
 

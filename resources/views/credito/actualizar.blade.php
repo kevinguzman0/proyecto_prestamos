@@ -1,4 +1,14 @@
-@section('solicitud')
+@extends('plantilla')
+
+@include('preCarga')
+
+@include('postCarga')
+
+@include('sideMenu')
+
+@include('topMenu')
+
+@section('content')
 
  <div class="row col-md-12" style="">
 
@@ -66,3 +76,9 @@
 </div>
 
 @endsection
+
+
+
+
+
+

@@ -63,6 +63,14 @@
 
 		                    </li>
 
+		                    <li>
+
+		                		 <a href="{{ route('usuarios.credito') }}">
+		                            Mis creditos
+		                        </a>
+
+		                	</li>
+
 		                	<li>
 
 								<a href="{{ route('salir') }}"

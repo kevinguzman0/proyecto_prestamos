@@ -72,6 +72,7 @@ class UsuarioController extends Controller
                     'areaTrabajo' => 'required',
                     'cargoTrabajo' => 'required',
                     'afiliadoFondo' => 'required',
+                    'foto'=> 'required|mimes:jpeg,bmp,png,gif|max:5120',
                 ]);
 
             $usuario = new Usuario;

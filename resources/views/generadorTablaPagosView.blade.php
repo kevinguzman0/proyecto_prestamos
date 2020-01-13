@@ -9,6 +9,21 @@
 	<a href="{{ route('tablaPagosPdf') }}" class="btn btn-dark mt-2 mb-2" target="_blank">
 		Generar pdf
 	</a>
+		
+	<form class="col-md-12 pl-0 pr-0" method="POST">
+
+		@csrf
+		
+		<input type="hidden" name="monto" value="{{ $valorPrestamo }}">
+		<input type="hidden" name="plazo" value="{{ $plazoCuotas }}">
+		<input type="hidden" name="tasa" value="{{ $interes }}">
+		<input type="hidden" name="cuota30" value="{{ $valorCuota }}">
+		<input type="hidden" name="idCliente" value="{{ Auth::user()->id }}">
+		<input type="hidden" name="idEstadoSolicitud" value="1">
+
+		<input type="submit" formaction="{{ route('validarSolicitud') }}" value="Solicitar credito" name="btnCredito" class="form-control btn btn-dark">
+
+	</form>
 
 	<div class="row col-md-12 mb-3 mt-3">
 

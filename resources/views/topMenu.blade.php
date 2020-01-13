@@ -52,11 +52,17 @@
                                     Mi perfil
                                 </a>
 
+                                <a class="dropdown-item" href="{{ route('usuarios.credito') }}">
+                                    Mis creditos
+                                </a>
+                                
                                 <a class="dropdown-item" href="{{ route('salir') }}"
                                    onclick="event.preventDefault();
                                             document.getElementById('logout-form-tm').submit();">
                                     {{ __('Logout') }}
                                 </a>
+
+                                
 
                                 <form id="logout-form-tm" action="{{ route('salir') }}" method="POST" style="display: none;">
 

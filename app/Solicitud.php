@@ -13,6 +13,7 @@ class Solicitud extends Model
         'monto', 
         'plazo', 
         'cuota15', 
+        //quitar cuota15!!!
         'cuota30', 
         'tasa', 
         'idEstadoSolicitud', 
