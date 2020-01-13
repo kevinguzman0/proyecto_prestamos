@@ -149,11 +149,11 @@
 
 	            <div class="form-row">
 
-		            <input type="hidden" readonly name="oldFoto" value="{{ $storagePath }}" class="form-control">
+		            @if (!empty($usuario->foto))
 
-					@if ( !empty ( $usuario->foto) )
-					 
-						<img src="{{ asset($storagePath) }}" width="200" class="img-fluid">
+						<!-- <img src="{{ route('image.displayImage', $usuario->foto) }}" width="200" class="img-fluid"> -->
+
+						<img src="{{ asset('storage/docUsuarios') }}{{ '/' . $usuario->foto }}" width="200" class="img-fluid">
 					 
 					@else
 					 

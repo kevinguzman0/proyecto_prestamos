@@ -143,6 +143,27 @@ class UsuarioController extends Controller
 
     }
 
+    public function displayImage($filename)
+    {
+
+        $path = storage_public('docUsuarios/' . $filename);
+
+        //$path = Storage::disk('public')->path($usuario->foto);
+
+        if (!File::exists($path)) 
+        {
+            abort(404);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
