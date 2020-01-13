@@ -72,6 +72,7 @@ class UsuarioController extends Controller
                     'areaTrabajo' => 'required',
                     'cargoTrabajo' => 'required',
                     'afiliadoFondo' => 'required',
+                    'foto' => 'required|mimes:jpeg,bmp,png,gif',
                 ]);
 
             $usuario = new Usuario;
@@ -99,6 +100,7 @@ class UsuarioController extends Controller
                     'areaTrabajo' => 'required',
                     'cargoTrabajo' => 'required',
                     'afiliadoFondo' => 'required',
+                    'foto' => 'required|mimes:jpeg,bmp,png,gif|max:5120',
                 ]);
 
             $usuario->idPerfilUsuario = $request->idPerfilUsuario;
@@ -134,6 +136,9 @@ class UsuarioController extends Controller
         $archivo = 'foto_usuario_' . $usuario->id . '_' . $usuario->cedula . '.' . $ext;
 
         $usuario->foto = $archivo;
+
+        //generar exepcion para archivo mayor de 4MG
+        //link de apoyo: https://stackoverflow.com/questions/50149485/file-does-not-exist-at-path-laravel
 
         Storage::disk('public')->put($archivo, File::get($file));
 

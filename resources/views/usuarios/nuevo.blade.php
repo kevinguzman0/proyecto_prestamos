@@ -19,7 +19,7 @@
 	    <div class="row col-md-12 mt-2">
 
 	        <form class="col-md-10" 
-	              action="{{ route('usuario.store') }}" 
+	              action="{{ route ('usuario.store') }}" 
 	              method="POST"
 	              enctype="multipart/form-data">
 

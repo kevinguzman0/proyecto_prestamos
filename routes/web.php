@@ -53,6 +53,6 @@ Route::post('validar_solicitud', 'ValidationSolicitudController@store')->middlew
 
 Route::get('/mi-perfil', 'UsuarioController@index')->middleware('auth')->name('usuarios.perfil');
 
-Route::post('', 'UsuarioController@store')->middleware('auth')->name('usuario.store');
+Route::post('usuario-store', 'UsuarioController@store')->name('usuario.store');
 
 Route::get('docUsuarios/{filename}', 'UsuarioController@displayImage')->name('image.displayImage');
