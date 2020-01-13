@@ -100,7 +100,8 @@ class UsuarioController extends Controller
                     'areaTrabajo' => 'required',
                     'cargoTrabajo' => 'required',
                     'afiliadoFondo' => 'required',
-                    'foto' => 'required|mimes:jpeg,bmp,png,gif|max:5120',
+                    'foto'=> 'required|mimes:jpeg,bmp,png,gif|max:5120',
+                    
                 ]);
 
             $usuario->idPerfilUsuario = $request->idPerfilUsuario;

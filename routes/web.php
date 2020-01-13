@@ -55,4 +55,5 @@ Route::get('/mi-perfil', 'UsuarioController@index')->middleware('auth')->name('u
 
 Route::post('usuario-store', 'UsuarioController@store')->name('usuario.store');
 
+
 Route::get('docUsuarios/{filename}', 'UsuarioController@displayImage')->name('image.displayImage');

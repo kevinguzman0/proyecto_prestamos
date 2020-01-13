@@ -17,6 +17,7 @@
 	    </div>
 
 	    <div class="row col-md-12 mt-2">
+	    	
 
 	        <form class="col-md-10" 
 	              action="{{ route ('usuario.store') }}" 
