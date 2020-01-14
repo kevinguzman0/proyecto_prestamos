@@ -35,7 +35,7 @@
               </div>
             @endif
             <form action="/nuevo-usuario/" method="POST" class="form-inline align-items-center justify-content-center">
-            {{ csrf_field() }}
+            @csrf
               <div class="form-group mx-sm-3 mb-2">
                 <input class="form-control" id="nombre" name="nombre" placeholder="Tarea nueva">
               </div>
@@ -62,14 +62,14 @@
                   @if($usuario->idPerfilUsuario == 0)
 
                   <form action="/editar/{{$usuario->id}}" method="POST" style="margin-right: 5px">
-                  {{ csrf_field() }}
+                  @csrf
                     <button class="btn btn-info" type="submit">Terminado</button>
                   </form>
 
                   @endif
 
                   <form action="/borrar/{{$usuario->id}}" method="POST">
-                    {{ csrf_field() }}
+                    @csrf
                     {{ method_field('DELETE') }}
                     <button class="btn btn-danger" type="submit">Borrar</button>
                   </form>

@@ -18,13 +18,10 @@
 
 	                <ul class="collapse list-unstyled" id="homeSubmenu">
 
-	                    <li><a href="#">Quiénes somos</a></li>
-
-	                    <li><a href="#">Cómo contactarnos</a></li>
-
-	                    <li><a href="#">Servicios</a></li>
-
-	                    <li><a href="#">Estatutos</a></li>
+	                    <li class="margin-submenu"><a href="#">Quiénes somos</a></li>
+	                    <li class="margin-submenu"><a href="#">Cómo contactarnos</a></li>
+	                    <li class="margin-submenu"><a href="#">Servicios</a></li>
+	                    <li class="margin-submenu"><a href="#">Estatutos</a></li>
 
 	                </ul>
 
@@ -55,23 +52,19 @@
 		                <ul class="collapse list-unstyled" id="sidebarDropdown">
 
 	                        
-		                	<li>
-
+		                	<li class="margin-submenu">
 		                        <a href="{{ route('usuarios.perfil') }}">
 		                            Mi perfil
 		                        </a>
-
 		                    </li>
 
-		                    <li>
-
-		                		 <a href="{{ route('usuarios.credito') }}">
-		                            Mis creditos
+		                    <li class="margin-submenu">
+		                		 <a href="{{ route('usuarios.solicitudes') }}">
+		                            Mis solicitudes
 		                        </a>
-
 		                	</li>
 
-		                	<li>
+		                	<li class="margin-submenu">
 
 								<a href="{{ route('salir') }}"
                                	   onclick="event.preventDefault();
@@ -81,20 +74,13 @@
 
 	                            <form id="logout-form-sm" action="{{ route('salir') }}" method="POST" style="display: none;">
 
-	                                {{ csrf_field() }}
+	                                @csrf
 
 	                            </form>		                		
 
 		                	</li>
 
 		                </ul>
-
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                            
-
-                        </div>
 
                     </li>
 

@@ -23,7 +23,7 @@
 	              method="POST"
 	              enctype="multipart/form-data">
 
-	            {{ csrf_field() }}
+	            @csrf
 
 			    @if ($message = Session::get('success'))
 			        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
@@ -33,14 +33,14 @@
 
 	            <div class="form-row">
 
-	                <div class="col-md-3">
-	                    <label class="label-margin">Cédula</label>
-	                    <input type="text" maxlength="15" name="cedula" class="form-control" value="{{ $usuario->cedula }}">
-	                </div>
-
 	                <div class="col-md-9">
 	                    <label class="label-margin">Email</label>
 	                    <input type="text" maxlength="100" name="email" class="form-control" value="{{ $usuario->email }}">
+	                </div>
+
+	                <div class="col-md-3">
+	                    <label class="label-margin">Cédula</label>
+	                    <input type="text" maxlength="15" name="cedula" class="form-control" value="{{ $usuario->cedula }}">
 	                </div>
 
 	            </div>
@@ -99,19 +99,15 @@
 
 	            <div class="form-row">
 
-	                <div class="col-md-6">
+	                <div class="col-md-4">
 	                    <label class="label-margin">Área de trabajo</label>
 	                    <input type="text" maxlength="100" name="areaTrabajo" class="form-control" value="{{ $usuario->areaTrabajo }}">
 	                </div>
 
-	                <div class="col-md-6">
+	                <div class="col-md-5">
 	                    <label class="label-margin">Cargo de trabajo</label>
 	                    <input type="text" maxlength="100" name="cargoTrabajo" class="form-control" value="{{ $usuario->cargoTrabajo }}">
 	                </div>
-
-	            </div>
-
-	            <div class="form-row">
 
 	                <div class="col-md-3">
 	                    <label class="label-margin">Afiliado al fondo</label>
@@ -134,7 +130,11 @@
 						</select>
 	                </div>
 
-	                <div class="col-md-9">
+	            </div>
+
+	            <div class="form-row">
+
+	                <div class="col-md-8">
 						<div class="input-group">
 							<label class="control-label label-margin">Foto Personal</label>
 							<input type="file" name="foto" class="filestyle"
@@ -145,44 +145,39 @@
 						</div>
 	                </div>
 
-	            </div>
+	                <div class="col-md-4">
+			            @if (!empty($usuario->foto))
 
-	            <div class="form-row">
+							<!-- 
 
-		            @if (!empty($usuario->foto))
+								Comando necesario para que la ubiación storage en public, permita ver imágenes subidas a dicha ubicación. Con el siguiente comando se crea un link simbólico.
 
-						<!-- <img src="{{ route('image.displayImage', $usuario->foto) }}" width="200" class="img-fluid"> -->
+								php artisan storage:link 
 
-						<img src="{{ asset('storage/docUsuarios') }}{{ '/' . $usuario->foto }}" width="200" class="img-fluid">
-					 
-					@else
-					 
-						Este usuario no ha subido su imagen de perfil aún...
-					 
-					@endif
+							-->
+
+							<label class="control-label label-margin">Vista previa</label>
+							<div>
+								<img src="{{ asset('storage/docUsuarios') }}{{ '/' . $usuario->foto }}" width="200" class="img-fluid form-control estilo-img-previa">
+							</div>
+						 
+						@endif
+	                </div>
 
 	            </div>
 
 	            <input type="hidden" readonly maxlength="20" name="idPerfilUsuario" value="{{ $usuario->idPerfilUsuario }}" class="form-control">
 
 	            @if ($errors->any())
-
 	                <div class="alert alert-danger mt-3 mb-1">
-
-	                    <ul>
-
+	                    <ol class="estilo-lista-errores">
 	                        @foreach ($errors->all() as $error)
-
 	                            <li>{{ $error }}</li>
-	                            
 	                        @endforeach
-
-	                    </ul>
-
+	                    </ol>
 	                </div>
-
 	            @endif
-
+	            
 	            <div class="form-row mb-5">
 
 	                <div class="col-md-12">

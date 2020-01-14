@@ -53,8 +53,17 @@ Route::post('validar_solicitud', 'CreditoController@store')->middleware('auth')-
 
 Route::get('/mi-perfil', 'UsuarioController@index')->middleware('auth')->name('usuarios.perfil');
 
-Route::get('/mi-credito', 'CreditoController@index')->middleware('auth')->name('usuarios.credito');
+Route::get('/mis-solicitudes', 'CreditoController@index')->middleware('auth')->name('usuarios.solicitudes');
 
 Route::post('usuario-store', 'UsuarioController@store')->middleware('auth')->name('usuario.store');
 
 Route::get('docUsuarios/{filename}', 'UsuarioController@displayImage')->name('image.displayImage');
+
+
+// -----------------------------------------------------------------------------------------------------------
+
+// Borrar todas las cachés por consola
+// php artisan optimize:clear
+// php artisan clear-compiled
+
+// -----------------------------------------------------------------------------------------------------------

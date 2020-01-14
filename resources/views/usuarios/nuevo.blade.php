@@ -24,7 +24,7 @@
 	              method="POST"
 	              enctype="multipart/form-data">
 
-	            {{ csrf_field() }}
+	            @csrf
 
 			    @if ($message = Session::get('success'))
 			        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
@@ -34,14 +34,14 @@
 
 	            <div class="form-row">
 
+	                <div class="col-md-9">
+	                    <label class="label-margin">Email</label>
+	                    <input type="text" maxlength="100" name="email" class="form-control" value="{{ old('email', Auth::user()->email ) }}">
+	                </div>
+
 	                <div class="col-md-3">
 	                    <label class="label-margin">Cédula</label>
 	                    <input type="text" maxlength="15" name="cedula" class="form-control" value="{{ old('cedula') }}">
-	                </div>
-
-	                <div class="col-md-9">
-	                    <label class="label-margin">Email</label>
-	                    <input type="text" maxlength="100" name="email" class="form-control" value="{{ old('email') }}">
 	                </div>
 
 	            </div>
@@ -100,19 +100,15 @@
 
 	            <div class="form-row">
 
-	                <div class="col-md-6">
+	                <div class="col-md-4">
 	                    <label class="label-margin">Área de trabajo</label>
 	                    <input type="text" maxlength="100" name="areaTrabajo" class="form-control" value="{{ old('areaTrabajo') }}">
 	                </div>
 
-	                <div class="col-md-6">
+	                <div class="col-md-5">
 	                    <label class="label-margin">Cargo de trabajo</label>
 	                    <input type="text" maxlength="100" name="cargoTrabajo" class="form-control" value="{{ old('cargoTrabajo') }}">
 	                </div>
-
-	            </div>
-
-	            <div class="form-row">
 
 	                <div class="col-md-3">
 	                    <label class="label-margin">Afiliado al fondo</label>
@@ -135,7 +131,11 @@
 						</select>
 	                </div>
 
-	                <div class="col-md-9">
+	            </div>
+
+	            <div class="form-row">
+
+	                <div class="col-md-12">
 						<div class="input-group">
 							<label class="control-label label-margin">Foto Personal</label>
 							<input type="file" name="foto" class="filestyle" 
@@ -151,21 +151,13 @@
 	            <input type="hidden" readonly maxlength="20" name="idPerfilUsuario" value="1" class="form-control">
 
 	            @if ($errors->any())
-
 	                <div class="alert alert-danger mt-3 mb-1">
-
-	                    <ul>
-
+	                    <ol class="estilo-lista-errores">
 	                        @foreach ($errors->all() as $error)
-
 	                            <li>{{ $error }}</li>
-	                            
 	                        @endforeach
-
-	                    </ul>
-
+	                    </ol>
 	                </div>
-
 	            @endif
 
 	            <div class="form-row mb-5">

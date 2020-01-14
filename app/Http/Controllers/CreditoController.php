@@ -21,21 +21,9 @@ class CreditoController extends Controller
     public function index()
     {
         $id = auth()->user()->id;
-
         $solicitudes = Usuario::find($id)->solicitudes;
         $data = compact('solicitudes');
-        return view('credito.nuevo', $data);
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('creditos.tabla', $data);
     }
 
     /**
@@ -46,25 +34,29 @@ class CreditoController extends Controller
      */
     public function store(Request $request)
     {
+
         $id = auth()->user()->id;
-
-        $mensaje = 'Perfil actualizado correctamente...';
-
         $solicitud = new Solicitud;
-
         $solicitud->monto = $request->monto;
         $solicitud->plazo = $request->plazo;
         $solicitud->tasa = $request->tasa;
-        $solicitud->cuota15 = 12.40;
+        $solicitud->cuota15 = ($request->cuota30)/2;
         $solicitud->cuota30 = $request->cuota30;
         $solicitud->idCliente = $request->idCliente;
         $solicitud->idEstadoSolicitud = $request->idEstadoSolicitud;
-
         $solicitud->save();
-
         return view('home');
     }   
-    
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Display the specified resource.

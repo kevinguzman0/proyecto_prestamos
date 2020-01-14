@@ -21,7 +21,6 @@
                     <!-- Authentication Links -->
 
 					<li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
-
                     <li class="nav-link"><a href="{{ route('simulador') }}">Simulador</a></li>
 
                     @guest
@@ -52,8 +51,8 @@
                                     Mi perfil
                                 </a>
 
-                                <a class="dropdown-item" href="{{ route('usuarios.credito') }}">
-                                    Mis creditos
+                                <a class="dropdown-item" href="{{ route('usuarios.solicitudes') }}">
+                                    Mis solicitudes
                                 </a>
                                 
                                 <a class="dropdown-item" href="{{ route('salir') }}"
@@ -62,14 +61,11 @@
                                     {{ __('Logout') }}
                                 </a>
 
-                                
-
                                 <form id="logout-form-tm" action="{{ route('salir') }}" method="POST" style="display: none;">
 
-                                    {{ csrf_field() }}
+                                    @csrf
 
                                 </form>
-
 
                            </div>
 

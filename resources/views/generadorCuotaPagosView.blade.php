@@ -7,8 +7,8 @@
     </div>
 
 	<div class="row col-md-12 mb-3 mt-3">
-		<h5 class="">
-			La cuota estimada para un crédito de <span class="font-italic text-muted">{{ $valorPrestamo }}</span> pagadero en un plazo de <span class="font-italic text-muted">{{ $plazoCuotas }}</span> meses (cuotas) con un interés mensual del <span class="font-italic text-muted">{{ $interes }}</span> es de <span class="font-italic text-muted">{{ $valorCuota }}</span>.
+		<h5 class="espacio-linea-cuota">
+			Para un crédito de <span class="font-italic text-muted">{{ $valorPrestamo }}</span>, pagadero en un plazo de <span class="font-italic text-muted">{{ $plazoCuotas }}</span> meses (cuotas), con un interés mensual del <span class="font-italic text-muted">{{ $interes }}</span>, la cuota estimada es de <span class="font-italic text-muted">{{ $valorCuota }}</span>.
 		</h5>
 	</div>
 

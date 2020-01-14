@@ -22,21 +22,15 @@ class UsuarioController extends Controller
     {
 
         $id = auth()->user()->id;
-
         $usuario = Usuario::find($id);
-
         if ($usuario == null) 
         {
-
             return view('usuarios.nuevo');
-
         }
         else
         {
-
             $storagePath = Storage::disk('public')->path($usuario->foto);
             return view('usuarios.actualizar', compact('usuario', 'storagePath'));
-
         }
 
     }
@@ -51,9 +45,7 @@ class UsuarioController extends Controller
     {
 
         $id = auth()->user()->id;
-
         $usuario = Usuario::find($id);
-
         if ($usuario == null) 
         {
 
@@ -72,13 +64,11 @@ class UsuarioController extends Controller
                     'areaTrabajo' => 'required',
                     'cargoTrabajo' => 'required',
                     'afiliadoFondo' => 'required',
-                    'foto'=> 'required|mimes:jpeg,bmp,png,gif|max:5120',
+                    'foto'=> 'required|mimes:jpeg,bmp,png,gif,jfif|max:5120',
                 ]);
 
             $usuario = new Usuario;
-
             $usuario->idPerfilUsuario = 1;
-
             $mensaje = 'Perfil creado correctamente...';
 
         }
@@ -105,16 +95,13 @@ class UsuarioController extends Controller
                 ]);
 
             $usuario->idPerfilUsuario = $request->idPerfilUsuario;
-
             $mensaje = 'Perfil actualizado correctamente...';
 
         }
 
         if($validatedData->fails())
         {
-            
             return redirect()->back()->withInput()->withErrors($validatedData);
-        
         }
 
         $usuario->id = $id;
@@ -135,13 +122,9 @@ class UsuarioController extends Controller
         $file = $request->file('foto');
         $ext = $request->file('foto')->getClientOriginalExtension();
         $archivo = 'foto_usuario_' . $usuario->id . '_' . $usuario->cedula . '.' . $ext;
-
         $usuario->foto = $archivo;
-
         Storage::disk('public')->put($archivo, File::get($file));
-
         $usuario->save();
-
         return redirect()->back()->with('success', $mensaje);
 
     }
@@ -150,7 +133,6 @@ class UsuarioController extends Controller
     {
 
         $path = storage_public('docUsuarios/' . $filename);
-
         //$path = Storage::disk('public')->path($usuario->foto);
 
         if (!File::exists($path)) 
@@ -162,7 +144,6 @@ class UsuarioController extends Controller
         $type = File::mimeType($path);
         $response = Response::make($file, 200);
         $response->header("Content-Type", $type);
-
         return $response;
 
     }

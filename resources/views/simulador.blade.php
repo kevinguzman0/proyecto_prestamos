@@ -38,31 +38,25 @@
 	            </div>
 
 	            @if ($errors->any())
-
 	                <div class="alert alert-danger mt-3 mb-1">
-
 	                    <ul>
 	                        @foreach ($errors->all() as $error)
-
 	                            <li>{{ $error }}</li>
-
 	                        @endforeach
 	                    </ul>
-
 	                </div>
-
 	            @endif
 
 	            <div class="form-row col-md-12 mb-4">
 
 	                <div class="col-md-6">
 	                    <label></label>
-	                    <input type="submit" formaction="{{ route('tablaPagosView') }}" value="Generar tabla de pagos" name="btnSimularCredito" class="form-control btn btn-success">
+	                    <input type="submit" formaction="{{ route('tablaPagosView') }}" value="Generar tabla de pagos" name="btnSimularCredito" class="form-control btn btn-dark">
 	                </div>
 
 	                <div class="col-md-6">
 	                    <label></label>
-	                    <input type="submit" formaction="{{ route('cuotaPagosView') }}" value="Calcular cuota mensual" name="btnCalcularCuota" class="form-control btn btn-warning">
+	                    <input type="submit" formaction="{{ route('cuotaPagosView') }}" value="Calcular cuota mensual" name="btnCalcularCuota" class="form-control btn btn-dark">
 	                </div>
 
 	            </div>

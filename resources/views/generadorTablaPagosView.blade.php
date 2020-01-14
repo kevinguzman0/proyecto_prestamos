@@ -6,24 +6,32 @@
         <h5>TABLA DE PAGOS PARA EL CRÉDITO</h5>
     </div>
 
-	<a href="{{ route('tablaPagosPdf') }}" class="btn btn-dark mt-2 mb-2" target="_blank">
-		Generar pdf
-	</a>
-		
-	<form class="col-md-12 pl-0 pr-0" method="POST">
+    <div class="row col-md-12 mb-4">
 
-		@csrf
-		
-		<input type="hidden" name="monto" value="{{ $valorPrestamo }}">
-		<input type="hidden" name="plazo" value="{{ $plazoCuotas }}">
-		<input type="hidden" name="tasa" value="{{ $interes }}">
-		<input type="hidden" name="cuota30" value="{{ $valorCuota }}">
-		<input type="hidden" name="idCliente" value="{{ Auth::user()->id }}">
-		<input type="hidden" name="idEstadoSolicitud" value="1">
+        @auth
 
-		<input type="submit" formaction="{{ route('validarSolicitud') }}" value="Solicitar credito" name="btnCredito" class="form-control btn btn-dark">
+	        <div class="col-md-2 margenes-botones">
+				<a href="{{ route('tablaPagosPdf') }}" class="btn btn-dark mt-2 mb-2" target="_blank">
+					Generar pdf
+				</a>
+	        </div>
 
-	</form>
+	        <div class="col-md-2 margenes-botones">
+				<form class="col-md-12 pl-0 pr-0" method="POST">
+					@csrf
+					<input type="hidden" name="monto" value="{{ $valorPrestamo }}">
+					<input type="hidden" name="plazo" value="{{ $plazoCuotas }}">
+					<input type="hidden" name="tasa" value="{{ $interes }}">
+					<input type="hidden" name="cuota30" value="{{ $valorCuota }}">
+					<input type="hidden" name="idCliente" value="{{ Auth::user()->id }}">
+					<input type="hidden" name="idEstadoSolicitud" value="1">
+					<input type="submit" formaction="{{ route('validarSolicitud') }}" value="Solicitar crédito" name="btnSolicitarCredito" class="form-control btn btn-danger mt-2 mb-2">
+				</form>
+	        </div>
+
+        @endauth	
+
+    </div>
 
 	<div class="row col-md-12 mb-3 mt-3">
 
