@@ -22,6 +22,7 @@ class CreditoController extends Controller
     {
         $id = auth()->user()->id;
         $solicitudes = Usuario::find($id)->solicitudes;
+
         $data = compact('solicitudes');
         return view('creditos.tabla', $data);
     }
@@ -39,13 +40,12 @@ class CreditoController extends Controller
         $solicitud = new Solicitud;
         $solicitud->monto = $request->monto;
         $solicitud->plazo = $request->plazo;
-        $solicitud->tasa = $request->tasa;
-        $solicitud->cuota15 = ($request->cuota30)/2;
-        $solicitud->cuota30 = $request->cuota30;
-        $solicitud->idCliente = $request->idCliente;
+        $solicitud->cuota = $request->cuota;
+        $solicitud->interes = $request->interes;
         $solicitud->idEstadoSolicitud = $request->idEstadoSolicitud;
+        $solicitud->idCliente = $request->idCliente;
         $solicitud->save();
-        return view('home');
+        return redirect()->route('usuarios.solicitudes');
     }   
 
     /**

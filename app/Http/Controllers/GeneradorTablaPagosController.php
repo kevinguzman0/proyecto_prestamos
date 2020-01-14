@@ -68,6 +68,9 @@ class GeneradorTablaPagosController extends Controller
         
         }
 
+        // Retornar el valor original del interés. Tal como está almacenado en configuración.
+        $interes = $interes * 100;
+
         $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
 
         return view('generadorTablaPagosView', $data);

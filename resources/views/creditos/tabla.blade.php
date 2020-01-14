@@ -20,29 +20,27 @@
 
 			<thead>
 				<tr>
-					<th>Solicitud Nro</th>
+					<th>Id Solicitud</th>
 					<th>Monto</th>
 					<th>Plazo</th>
-					<th>Cuota quincenal</th>
 					<th>Cuota mensual</th>
-					<th>Tasa de interés</th>
+					<th>Interés</th>
 					<th>Estado solicitud</th>
 				</tr>
 			</thead>
 
 			<tbody>
 
-				@foreach ($solicitudes as $solicitud)
+				@foreach ($solicitudes as $fila)
 
 				    <tr>
 
-						<td style="text-align:center; font-weight: bold;">{{ $solicitud->id }}</td>
-						<td> {{ $solicitud->monto }} </td>
-						<td> {{ $solicitud->plazo }} </td>
-						<td> {{ $solicitud->cuota15 }} </td>
-						<td> {{ $solicitud->cuota30 }} </td>
-						<td> {{ $solicitud->tasa }} </td>
-						<td> {{ App\Solicitud::find($solicitud->id)->estado->nombreEstado }} </td>
+						<td style="text-align:center; font-weight: bold;">{{ $fila->id }}</td>
+						<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
+						<td style="text-align:center;"> {{ $fila->plazo }} </td>
+						<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
+						<td> {{ $fila->interes . '%' }} </td>
+						<td> {{ $fila->estado->nombreEstado }} </td>
 
 					</tr>
 				

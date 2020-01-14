@@ -18,9 +18,8 @@ class CrearTablaSolicitudes extends Migration
             $table->bigIncrements('id'); 
             $table->integer('monto');
             $table->integer('plazo');
-            $table->decimal('cuota15', 13, 4);
-            $table->decimal('cuota30', 13, 4);
-            $table->decimal('tasa', 5, 2);
+            $table->decimal('cuota', 13, 4);
+            $table->decimal('interes', 5, 2);
             $table->bigInteger('idEstadoSolicitud')->unsigned();
             $table->bigInteger('idCliente')->unsigned();
 

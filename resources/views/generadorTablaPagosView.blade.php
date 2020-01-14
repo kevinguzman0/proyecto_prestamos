@@ -21,10 +21,10 @@
 					@csrf
 					<input type="hidden" name="monto" value="{{ $valorPrestamo }}">
 					<input type="hidden" name="plazo" value="{{ $plazoCuotas }}">
-					<input type="hidden" name="tasa" value="{{ $interes }}">
-					<input type="hidden" name="cuota30" value="{{ $valorCuota }}">
-					<input type="hidden" name="idCliente" value="{{ Auth::user()->id }}">
+					<input type="hidden" name="cuota" value="{{ $valorCuota }}">
+					<input type="hidden" name="interes" value="{{ $interes }}">
 					<input type="hidden" name="idEstadoSolicitud" value="1">
+					<input type="hidden" name="idCliente" value="{{ Auth::user()->id }}">
 					<input type="submit" formaction="{{ route('validarSolicitud') }}" value="Solicitar crédito" name="btnSolicitarCredito" class="form-control btn btn-danger mt-2 mb-2">
 				</form>
 	        </div>
