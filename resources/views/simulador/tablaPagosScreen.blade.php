@@ -36,6 +36,8 @@
 		        <div class="form-row col-md-12 alert alert-danger estilo-success" role="alert">
 		            <p class="alert-link">
 		            	Para solicitar este crédito o generarlo en archivo Pdf, primero debe llenar su información de perfil...
+		            	<a href="{{ route('usuario.perfil') }}">Haga click aqui para ir a su perfil.
+		            	</a>
 		            </p>
 		        </div>
 

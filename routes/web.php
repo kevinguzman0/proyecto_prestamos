@@ -46,10 +46,16 @@ Route::post('cuota_pagos', 'TablaPagosController@vistaCuotaCredito')->name('simu
 // -----------------------------------------------------------------------------------------------------------
 
 Route::get('/mi-perfil', 'UsuarioController@index')->middleware('auth')->name('usuario.perfil');
+
 Route::post('usuario-store', 'UsuarioController@store')->middleware('auth')->name('usuario.store');
 
 Route::get('/mis-solicitudes', 'CreditoController@index')->middleware('auth')->name('usuario.solicitudes');
+
 Route::post('credito-store', 'CreditoController@store')->middleware('auth')->name('credito.store');
+
+Route::get('documento-store', 'CreditoController@document')->middleware('auth')->name('documento.store');
+
+Route::post('documento-store2', 'CreditoController@documentStore')->middleware('auth')->name('documento.nuevo');
 
 // -----------------------------------------------------------------------------------------------------------
 

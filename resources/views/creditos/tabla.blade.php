@@ -31,6 +31,7 @@
 							<th>Cuota mensual</th>
 							<th>Interés</th>
 							<th>Estado solicitud</th>
+							<th>Acciones</th>
 						</tr>
 					</thead>
 
@@ -45,7 +46,13 @@
 							<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
 							<td> {{ $fila->interes . '%' }} </td>
 							<td> {{ $fila->estado->nombreEstado }} </td>
-
+							<td>
+								<div class="col-md-2 margenes-botones">
+									<a href="{{ route('documento.store', [$fila->id]) }}" class="btn btn-link mt-2 mb-2" target="_blank">
+										Subir archivos
+									</a>
+								</div>
+							</td>
 						</tr>
 					
 					@endforeach
@@ -53,7 +60,10 @@
 				@else
 
 			        <div class="form-row col-md-12 alert alert-danger estilo-success" role="alert">
-			            <p class="alert-link">{{ $mensaje }}</p>
+			            <p class="alert-link">{{ $mensaje }}
+				            <a href="{{ route('usuario.perfil') }}">Haga click aqui para ir a su perfil.
+			            	</a>
+		            	</p>
 			        </div>
 
 				@endif

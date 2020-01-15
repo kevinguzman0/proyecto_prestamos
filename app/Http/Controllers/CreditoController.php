@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Solicitud;
 use App\Usuario;
 use App\User;
+use App\Documento;  
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Validator;
@@ -66,6 +67,56 @@ class CreditoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function document()
+    {
+        $mensaje = 'Documento subido correctamente...';
+
+        $id = auth()->user()->id;
+
+        $documento = Solicitud::find($id)->documento;
+
+        $data = compact('documento', 'mensaje');
+        return view('creditos.documentos', $data);
+
+    }
+
+    public function documentStore(Request $request, $idSolicitud)
+    {
+        $id = auth()->user()->id;
+
+        $mensaje = 'Documento subido correctamente...';
+
+        $documento = new Documento;
+
+        $validatedData = Validator::make($request->all(),
+                [
+                    'imagen'=> 'required|mimes:jpeg,bmp,png,gif,pdf,doc|max:5120',
+                    'descripcionImagen' => 'required',
+                ]);
+
+        $documento->idSolicitud = $idSolicitud;
+
+        $documento->descripcionImagen = $request->descripcionImagen;
+
+        $file = $request->file('imagen');
+        $ext = $request->file('imagen')->getClientOriginalExtension();
+
+        $archivo = 'documento_solicitud_' . $documento->idSolicitud . '_' . $documento->descripcionImagen . '.' . $ext;
+
+        $documento->imagen = $archivo;
+
+        Storage::disk('public')->put($archivo, File::get($file));
+
+        $documento->revisado=1;
+        $documento->aprobado=1;
+
+        $documento->save();
+
+        return redirect()->back()->with('success', $mensaje);
+
+    }
+
     public function create()
     {
         //
