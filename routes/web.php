@@ -55,7 +55,7 @@ Route::post('credito-store', 'CreditoController@store')->middleware('auth')->nam
 
 Route::get('documento-store/{idSolicitud}', 'CreditoController@document')->middleware('auth')->name('documento.store');
 
-Route::post('documento-store2', 'CreditoController@documentStore')->middleware('auth')->name('documento.nuevo');
+Route::post('documento-store2/{idSolicitud}', 'CreditoController@documentStore')->middleware('auth')->name('documento.nuevo');
 
 // -----------------------------------------------------------------------------------------------------------
 

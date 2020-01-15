@@ -70,13 +70,9 @@ class CreditoController extends Controller
 
     public function document($idSolicitud)
     {
-        $mensaje = 'Documento subido correctamente...';
 
-        $id = auth()->user()->id;
-
-        $documentos = Solicitud::find($id)->documentos;
-
-        $data = compact('documentos', 'mensaje', 'idSolicitud');
+        $documentos = Solicitud::find($idSolicitud)->documentos;
+        $data = compact('documentos', 'idSolicitud');
         return view('creditos.documentos', $data);
 
     }

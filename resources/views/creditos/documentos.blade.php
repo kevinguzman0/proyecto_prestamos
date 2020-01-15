@@ -11,10 +11,16 @@
 @section('content')
 
 	<div class="row col-md-12">
-        <h5>DUCUMENTOS</h5>
+        <h5>LISTADO DE DOCUMENTOS PRESENTADOS PARA LA SOLICITUD NRO. {{ $idSolicitud }}</h5>
     </div>
 
     <div class="row col-md-12 mb-3 mt-3">
+
+	    @if ($message = Session::get('success'))
+	        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
+	            <p class="alert-link">Documento subido correctamente...</p>
+	        </div>
+	    @endif
 
 		<table class="table table-striped table-bordered table-fit" style="">
 
@@ -44,26 +50,22 @@
 					
 				@endforeach
 
-
 			</tbody>
 
 		</table>
 
+	</div>
+
+    <div class="row col-md-12 mb-3 mt-3">
+
 		<div class="row col-md-12 mt-2">
 	    	
-
 	        <form class="col-md-10" 
 	              action="{{ route('documento.nuevo', [$idSolicitud]) }}"
 	              method="POST"
 	              enctype="multipart/form-data">
 
 	            @csrf
-
-			    @if ($message = Session::get('success'))
-			        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
-			            <p class="alert-link">{{ $message }}</p>
-			        </div>
-			    @endif
 
 	            <div class="form-row">
 
@@ -82,11 +84,10 @@
 
 	             <div class="form-row">
 
-	                <div class="col-md-4">
+	                <div class="col-md-12">
 
-	                    <label class="label-margin">Descripcion de la imagen</label>
-
-	                    <textarea maxlength="200" name="descripcionImagen" class="form-control" value="{{ old('areaTrabajo') }}" placeholder="Escriba aqui"></textarea>
+	                    <label class="label-margin">Descripción de la imagen</label>
+	                    <textarea maxlength="200" name="descripcionImagen" class="form-control" value="{{ old('descripcionImagen') }}" placeholder="Escriba una descripción del documento que está subiendo para revisión."></textarea>
 	                   
 	                </div>
 
