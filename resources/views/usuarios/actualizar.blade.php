@@ -33,26 +33,36 @@
 
 	            <div class="form-row">
 
-	                <div class="col-md-9">
-	                    <label class="label-margin">Email</label>
-	                    <input type="text" maxlength="100" name="email" class="form-control" value="{{ $usuario->email }}">
+	                <div class="col-md-3">
+	                    <label class="label-margin">Creado en</label>
+	                    <input type="text" name="created_at" class="form-control" value="{{ $usuario->created_at }}" disabled>
 	                </div>
 
 	                <div class="col-md-3">
-	                    <label class="label-margin">Cédula</label>
-	                    <input type="text" maxlength="15" name="cedula" class="form-control" value="{{ $usuario->cedula }}">
+	                    <label class="label-margin">Última modificación</label>
+	                    <input type="text" name="updated_at" class="form-control" value="{{ $usuario->updated_at }}" disabled>
+	                </div>
+
+	                <div class="col-md-6">
+	                    <label class="label-margin">Email</label>
+	                    <input type="text" maxlength="100" name="email" class="form-control" value="{{ $usuario->email }}">
 	                </div>
 
 	            </div>
 
 	            <div class="form-row">
 
-	                <div class="col-md-6">
+	                <div class="col-md-3">
+	                    <label class="label-margin">Cédula</label>
+	                    <input type="text" maxlength="15" name="cedula" class="form-control" value="{{ $usuario->cedula }}">
+	                </div>
+
+	                <div class="col-md-5">
 	                    <label class="label-margin">Nombres</label>
 	                    <input type="text" maxlength="100" name="nombres" class="form-control" value="{{ $usuario->nombres }}">
 	                </div>
 
-	                <div class="col-md-6">
+	                <div class="col-md-4">
 	                    <label class="label-margin">Apellidos</label>
 	                    <input type="text" maxlength="100" name="apellidos" class="form-control" value="{{ $usuario->apellidos }}">
 	                </div>

@@ -45,7 +45,7 @@ class CreditoController extends Controller
         $solicitud->idEstadoSolicitud = $request->idEstadoSolicitud;
         $solicitud->idCliente = $request->idCliente;
         $solicitud->save();
-        return redirect()->route('usuarios.solicitudes');
+        return redirect()->route('usuario.solicitudes');
     }   
 
     /**

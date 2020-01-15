@@ -21,6 +21,7 @@
 			<thead>
 				<tr>
 					<th>Id Solicitud</th>
+					<th>Fecha</th>
 					<th>Monto</th>
 					<th>Plazo</th>
 					<th>Cuota mensual</th>
@@ -36,6 +37,7 @@
 				    <tr>
 
 						<td style="text-align:center; font-weight: bold;">{{ $fila->id }}</td>
+						<td style="text-align:center;"> {{ Date_format($fila->created_at, "d/m/Y") }} </td>
 						<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
 						<td style="text-align:center;"> {{ $fila->plazo }} </td>
 						<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>

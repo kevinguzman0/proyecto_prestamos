@@ -25,7 +25,7 @@
 					<input type="hidden" name="interes" value="{{ $interes }}">
 					<input type="hidden" name="idEstadoSolicitud" value="1">
 					<input type="hidden" name="idCliente" value="{{ Auth::user()->id }}">
-					<input type="submit" formaction="{{ route('validarSolicitud') }}" value="Solicitar crédito" name="btnSolicitarCredito" class="form-control btn btn-danger mt-2 mb-2">
+					<input type="submit" formaction="{{ route('credito.store') }}" value="Solicitar crédito" name="btnSolicitarCredito" class="form-control btn btn-danger mt-2 mb-2">
 				</form>
 	        </div>
 

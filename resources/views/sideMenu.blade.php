@@ -53,13 +53,13 @@
 
 	                        
 		                	<li class="margin-submenu">
-		                        <a href="{{ route('usuarios.perfil') }}">
+		                        <a href="{{ route('usuario.perfil') }}">
 		                            Mi perfil
 		                        </a>
 		                    </li>
 
 		                    <li class="margin-submenu">
-		                		 <a href="{{ route('usuarios.solicitudes') }}">
+		                		 <a href="{{ route('usuario.solicitudes') }}">
 		                            Mis solicitudes
 		                        </a>
 		                	</li>
