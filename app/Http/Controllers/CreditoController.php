@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Solicitud;
 use App\Usuario;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Validator;
@@ -20,11 +21,23 @@ class CreditoController extends Controller
      */
     public function index()
     {
-        $id = auth()->user()->id;
-        $solicitudes = Usuario::find($id)->solicitudes;
 
-        $data = compact('solicitudes');
-        return view('creditos.tabla', $data);
+        $id = auth()->user()->id;
+
+        $usuario = User::find($id)->usuario;
+
+        if ($usuario != null)
+        {
+            $solicitudes = Usuario::find($id)->solicitudes;
+            $data = compact('solicitudes');
+            return view('creditos.tabla', $data);
+        }
+        else
+        {
+            $mensaje = 'Para realizar esta consulta, primero debe llenar su información de perfil...';
+            return view('creditos.tabla', compact('mensaje'));
+        }
+
     }
 
     /**

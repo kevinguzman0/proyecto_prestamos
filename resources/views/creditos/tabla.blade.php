@@ -18,35 +18,45 @@
 
 		<table class="table table-striped table-bordered table-fit" style="">
 
-			<thead>
-				<tr>
-					<th>Id Solicitud</th>
-					<th>Fecha</th>
-					<th>Monto</th>
-					<th>Plazo</th>
-					<th>Cuota mensual</th>
-					<th>Interés</th>
-					<th>Estado solicitud</th>
-				</tr>
-			</thead>
-
 			<tbody>
 
-				@foreach ($solicitudes as $fila)
+		        @if(App\User::find(Auth()->user()->id)->usuario != null)
 
-				    <tr>
+					<thead>
+						<tr>
+							<th>Id Solicitud</th>
+							<th>Fecha</th>
+							<th>Monto</th>
+							<th>Plazo</th>
+							<th>Cuota mensual</th>
+							<th>Interés</th>
+							<th>Estado solicitud</th>
+						</tr>
+					</thead>
 
-						<td style="text-align:center; font-weight: bold;">{{ $fila->id }}</td>
-						<td style="text-align:center;"> {{ Date_format($fila->created_at, "d/m/Y") }} </td>
-						<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
-						<td style="text-align:center;"> {{ $fila->plazo }} </td>
-						<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
-						<td> {{ $fila->interes . '%' }} </td>
-						<td> {{ $fila->estado->nombreEstado }} </td>
+					@foreach ($solicitudes as $fila)
 
-					</tr>
-				
-				@endforeach
+					    <tr>
+
+							<td style="text-align:center; font-weight: bold;">{{ $fila->id }}</td>
+							<td style="text-align:center;"> {{ Date_format($fila->created_at, "d/m/Y") }} </td>
+							<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
+							<td style="text-align:center;"> {{ $fila->plazo }} </td>
+							<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
+							<td> {{ $fila->interes . '%' }} </td>
+							<td> {{ $fila->estado->nombreEstado }} </td>
+
+						</tr>
+					
+					@endforeach
+
+				@else
+
+			        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
+			            <p class="alert-link">{{ $mensaje }}</p>
+			        </div>
+
+				@endif
 
 			</tbody>
 
