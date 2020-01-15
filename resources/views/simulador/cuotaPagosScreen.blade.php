@@ -1,4 +1,4 @@
-@extends('simulador')
+@extends('simulador.index')
 
 @section('contenidoCuota')
 	
@@ -25,7 +25,7 @@
 
             <div class="col-md-3 pl-0 pr-0">
                 <label></label>
-                <input type="submit" formaction="{{ route('tablaPagosView') }}" value="Visualizar tabla de pagos" name="btnTablaPagos" class="form-control btn btn-dark">
+                <input type="submit" formaction="{{ route('simulador.screen') }}" value="Visualizar tabla de pagos" name="btnTablaPagos" class="form-control btn btn-dark">
             </div>
 
         </form>

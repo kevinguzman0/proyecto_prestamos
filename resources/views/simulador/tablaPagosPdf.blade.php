@@ -1,4 +1,4 @@
-@extends('plantillaEstilosPdf')
+@extends('simulador.plantillaEstilosPdf')
 
 @section('contenidoTabla')
 

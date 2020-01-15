@@ -1,4 +1,4 @@
-@extends('simulador')
+@extends('simulador.index')
 
 @section('contenidoTabla')
 	
@@ -11,7 +11,7 @@
         @auth
 
 	        <div class="col-md-2 margenes-botones">
-				<a href="{{ route('tablaPagosPdf') }}" class="btn btn-dark mt-2 mb-2" target="_blank">
+				<a href="{{ route('simulador.pdf') }}" class="btn btn-dark mt-2 mb-2" target="_blank">
 					Generar pdf
 				</a>
 	        </div>

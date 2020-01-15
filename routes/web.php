@@ -22,31 +22,26 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->middleware('verified')->name('home');
 
 Route::get('/', function () {
-    return view('inicio');
+    return view('principales.inicio');
 })->name('inicio');
 
 Route::get('registrarse', function () {
-    return view('registrarse');
+    return view('principales.registrarse');
 })->name('registrarse');
 
 Route::get('ingresar', function () {
-    return view('ingresar');
+    return view('principales.ingresar');
 })->name('ingresar');
 
 Route::post('salir', '\App\Http\Controllers\Auth\LoginController@logout')->name('salir');
 
 Route::get('simulador', function () {
-    return view('simulador');
+    return view('simulador.index');
 })->name('simulador');
 
-Route::post('tabla_pagos', 'GeneradorTablaPagosController@generarVistaTablaPagos')->name('tablaPagosView');
-
-Route::post('cuota_pagos', 'GeneradorTablaPagosController@generarVistaCuotaCredito')->name('cuotaPagosView');
-
-Route::get('tabla_pagos_pdf', 'GeneradorTablaPagosPdfController@generarPdfTablaPagos')->name('tablaPagosPdf');
-
-Route::get('crear_solicitud', 'ValidationSolicitudController@create')->middleware('auth')->name('crearSolicitud');
-
+Route::post('tabla_pagos', 'TablaPagosController@vistaTablaPagos')->name('simulador.screen');
+Route::get('tabla_pagos_pdf', 'TablaPagosController@pdfTablaPagos')->name('simulador.pdf');
+Route::post('cuota_pagos', 'TablaPagosController@vistaCuotaCredito')->name('simulador.cuota');
 
 // -----------------------------------------------------------------------------------------------------------
 
@@ -56,9 +51,9 @@ Route::post('usuario-store', 'UsuarioController@store')->middleware('auth')->nam
 Route::get('/mis-solicitudes', 'CreditoController@index')->middleware('auth')->name('usuario.solicitudes');
 Route::post('credito-store', 'CreditoController@store')->middleware('auth')->name('credito.store');
 
+// -----------------------------------------------------------------------------------------------------------
 
 Route::get('docUsuarios/{filename}', 'UsuarioController@displayImage')->name('image.displayImage');
-
 
 // -----------------------------------------------------------------------------------------------------------
 

@@ -1,12 +1,12 @@
-@extends('plantilla')
+@extends('plantillas.base.plantilla')
 
-@include('preCarga')
+@include('plantillas.base.preCarga')
 
-@include('postCarga')
+@include('plantillas.base.postCarga')
 
-@include('sideMenu')
+@include('plantillas.base.sideMenu')
 
-@include('topMenu')
+@include('plantillas.base.topMenu')
 
 @section('content')
 
@@ -51,12 +51,12 @@
 
 	                <div class="col-md-6">
 	                    <label></label>
-	                    <input type="submit" formaction="{{ route('tablaPagosView') }}" value="Generar tabla de pagos" name="btnSimularCredito" class="form-control btn btn-dark">
+	                    <input type="submit" formaction="{{ route('simulador.screen') }}" value="Generar tabla de pagos" name="btnSimularCredito" class="form-control btn btn-dark">
 	                </div>
 
 	                <div class="col-md-6">
 	                    <label></label>
-	                    <input type="submit" formaction="{{ route('cuotaPagosView') }}" value="Calcular cuota mensual" name="btnCalcularCuota" class="form-control btn btn-dark">
+	                    <input type="submit" formaction="{{ route('simulador.cuota') }}" value="Calcular cuota mensual" name="btnCalcularCuota" class="form-control btn btn-dark">
 	                </div>
 
 	            </div>

@@ -1,12 +1,12 @@
-@extends('plantilla')
+@extends('plantillas.base.plantilla')
 
-@include('preCarga')
+@include('plantillas.base.preCarga')
 
-@include('postCarga')
+@include('plantillas.base.postCarga')
 
-@include('sideMenu')
+@include('plantillas.base.sideMenu')
 
-@include('topMenu')
+@include('plantillas.base.topMenu')
 
 @section('content')
     

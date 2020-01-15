@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use NumberFormatter;
 use File;
 use Session;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\App;
 
-class GeneradorTablaPagosController extends Controller
+class TablaPagosController extends Controller
 {
 
     /**
@@ -22,7 +24,7 @@ class GeneradorTablaPagosController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function generarVistaTablaPagos(Request $request)
+    public function vistaTablaPagos(Request $request)
     {
 
         $valorPrestamo = (int)$request->input("valorPrestamo");
@@ -73,11 +75,75 @@ class GeneradorTablaPagosController extends Controller
 
         $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
 
-        return view('generadorTablaPagosView', $data);
+        return view('simulador.tablaPagosScreen', $data);
 
     }
 
-    public function generarVistaCuotaCredito(Request $request)
+    public function datosTablaPagos($parametro1, $parametro2)
+    {
+
+        $valorPrestamo = $parametro1;
+        $plazoCuotas = $parametro2;
+
+        $saldoInicial = $valorPrestamo;
+        $interes = config('prestamos.interes') / 100;
+        $decimales = 4;
+        $i = 1;
+        $fmt = new NumberFormatter("en-US", NumberFormatter::CURRENCY);
+        $listaPagos = array();
+
+        if (($valorPrestamo == 0) || ($plazoCuotas == 0))
+        {
+           $valorCuota = 0;
+           $plazoCuotas = 0;
+        }
+        else
+        {
+            $valorCuota = round($valorPrestamo * ((((1 + $interes) ** $plazoCuotas) * $interes) / (((1 + $interes) ** $plazoCuotas) - 1)), $decimales);
+        }
+
+        while($i <= $plazoCuotas)
+        {
+            
+            $intereses = round(($saldoInicial * $interes), $decimales);
+            $abonoK = round(($valorCuota - $intereses), $decimales);
+            $saldoK = round(($saldoInicial - $abonoK), $decimales);
+            
+            $listaPagos[$i]["cuota"] = $i;
+            $listaPagos[$i]["saldoInicial"] = $fmt->format($saldoInicial);
+            $listaPagos[$i]["valorCuota"] = $fmt->format($valorCuota);
+            $listaPagos[$i]["intereses"] = $fmt->format($intereses);
+            $listaPagos[$i]["abonoK"] = $fmt->format($abonoK);
+            $listaPagos[$i]["saldoK"] = $fmt->format($saldoK);
+
+            $i++;
+
+            $saldoInicial = $saldoK;
+        
+        }
+
+        $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
+        
+        return $data;
+
+    }
+
+    public function pdfTablaPagos(Request $request) 
+    {
+        
+        $valorPrestamo = $request->session()->get('valorPrestamo');
+        $plazoCuotas = $request->session()->get('plazoCuotas');
+        
+        $controller = App::make('\App\Http\Controllers\TablaPagosController');
+        $data = $controller->callAction('datosTablaPagos', compact('valorPrestamo', 'plazoCuotas'));
+
+        $pdf = \PDF::loadView('simulador.tablaPagosPdf', $data);
+        $pdf->setpaper('letter', 'portrait');
+        return $pdf->stream();
+
+    }
+
+    public function vistaCuotaCredito(Request $request)
     {
 
         $valorPrestamo = (int)$request->input("valorPrestamo");
@@ -108,7 +174,7 @@ class GeneradorTablaPagosController extends Controller
 
         $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota");
 
-        return view('generadorCuotaPagosView', $data);
+        return view('simulador.cuotaPagosScreen', $data);
 
     }
 
