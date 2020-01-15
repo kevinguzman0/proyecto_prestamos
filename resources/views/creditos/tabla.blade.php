@@ -52,7 +52,7 @@
 
 				@else
 
-			        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
+			        <div class="form-row col-md-12 alert alert-danger estilo-success" role="alert">
 			            <p class="alert-link">{{ $mensaje }}</p>
 			        </div>
 
