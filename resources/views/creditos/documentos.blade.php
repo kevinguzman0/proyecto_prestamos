@@ -18,7 +18,7 @@
 
 	    @if ($message = Session::get('success'))
 	        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
-	            <p class="alert-link">Documento subido correctamente...</p>
+	            <p class="alert-link">{{ $mensaje}} </p>
 	        </div>
 	    @endif
 

@@ -81,7 +81,6 @@ class CreditoController extends Controller
     {
 
         $mensaje = 'Documento subido correctamente...';
-
         $documento = new Documento;
 
         $validatedData = Validator::make($request->all(),
@@ -90,24 +89,18 @@ class CreditoController extends Controller
                     'descripcionImagen' => 'required',
                 ]);
 
-        $documento->idSolicitud = $idSolicitud;
-
-        $documento->descripcionImagen = $request->descripcionImagen;
-
         $file = $request->file('imagen');
         $ext = $request->file('imagen')->getClientOriginalExtension();
+        $timeStamp = date_create()->format('Ymd-His');
+        $archivo = 'documento_solicitud_' . $idSolicitud . '_' . $timeStamp . '.' . $ext;
 
-        $archivo = 'documento_solicitud_' . $idSolicitud . '_' . $documento->descripcionImagen . '.' . $ext;
-
+        $documento->idSolicitud = $idSolicitud;
+        $documento->descripcionImagen = $request->descripcionImagen;
+        $documento->revisado = 0;
+        $documento->aprobado = 0;
         $documento->imagen = $archivo;
-
         Storage::disk('public')->put($archivo, File::get($file));
-
-        $documento->revisado=1;
-        $documento->aprobado=1;
-
         $documento->save();
-
         return redirect()->back()->with('success', $mensaje);
 
     }
