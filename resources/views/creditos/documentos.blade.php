@@ -72,8 +72,39 @@
 						</td>
 						
 						<td>
-							<a href="{{ route('documento.store', [$fila->id]) }}" class="btn btn-link link-tabla">Revisar</a>
-						</td>
+
+							<button type="button" class="btn btn-link link-tabla" data-toggle="modal" data-target="#exampleModal">
+							  Ver
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">{{ $fila->documento }}</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-header">
+							        <h6 class="modal-title" id="exampleModalLabel">{{ $fila->descripcionDocumento }}</h3>
+							      </div>
+							      
+							      <div class="modal-body">
+							        <img src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" class="img-rounded" width="304" height="236" />
+							      </div>
+							      <div class="modal-footer">
+							        				       
+							        <button type="button" class="btn btn-success" data-dismiss="modal">Aprobar</button>
+							        <button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>
+							         <button type="button" class="btn btn-warning" data-dismiss="modal">Borrar</button>
+							        <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+
+							      </div>
+							    </div>
+							  </div>
+							</div>
 
 					</tr>
 					
