@@ -30,7 +30,7 @@
 					</tr>
 				</thead>
 
-				@foreach ($documento as $fila)
+				@foreach ($documentos as $fila)
 
 				    <tr>
 
@@ -53,7 +53,7 @@
 	    	
 
 	        <form class="col-md-10" 
-	              action="{{ route('documento.nuevo') }}" 
+	              action="{{ route('documento.nuevo', [$idSolicitud]) }}"
 	              method="POST"
 	              enctype="multipart/form-data">
 

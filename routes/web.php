@@ -53,7 +53,7 @@ Route::get('/mis-solicitudes', 'CreditoController@index')->middleware('auth')->n
 
 Route::post('credito-store', 'CreditoController@store')->middleware('auth')->name('credito.store');
 
-Route::get('documento-store', 'CreditoController@document')->middleware('auth')->name('documento.store');
+Route::get('documento-store/{idSolicitud}', 'CreditoController@document')->middleware('auth')->name('documento.store');
 
 Route::post('documento-store2', 'CreditoController@documentStore')->middleware('auth')->name('documento.nuevo');
 

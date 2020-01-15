@@ -48,7 +48,7 @@
 							<td> {{ $fila->estado->nombreEstado }} </td>
 							<td>
 								<div class="col-md-2 margenes-botones">
-									<a href="{{ route('documento.store', [$fila->id]) }}" class="btn btn-link mt-2 mb-2" target="_blank">
+									<a href="{{ route('documento.store', [$fila->id]) }}" class="btn btn-link mt-2 mb-2">
 										Subir archivos
 									</a>
 								</div>

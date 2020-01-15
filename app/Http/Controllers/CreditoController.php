@@ -68,22 +68,21 @@ class CreditoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function document()
+    public function document($idSolicitud)
     {
         $mensaje = 'Documento subido correctamente...';
 
         $id = auth()->user()->id;
 
-        $documento = Solicitud::find($id)->documento;
+        $documentos = Solicitud::find($id)->documentos;
 
-        $data = compact('documento', 'mensaje');
+        $data = compact('documentos', 'mensaje', 'idSolicitud');
         return view('creditos.documentos', $data);
 
     }
 
     public function documentStore(Request $request, $idSolicitud)
     {
-        $id = auth()->user()->id;
 
         $mensaje = 'Documento subido correctamente...';
 
@@ -102,7 +101,7 @@ class CreditoController extends Controller
         $file = $request->file('imagen');
         $ext = $request->file('imagen')->getClientOriginalExtension();
 
-        $archivo = 'documento_solicitud_' . $documento->idSolicitud . '_' . $documento->descripcionImagen . '.' . $ext;
+        $archivo = 'documento_solicitud_' . $idSolicitud . '_' . $documento->descripcionImagen . '.' . $ext;
 
         $documento->imagen = $archivo;
 
