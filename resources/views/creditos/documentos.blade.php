@@ -16,7 +16,7 @@
 
     <div class="row col-md-12 mb-3 mt-3">
 
-	    @if ($message = Session::get('success'))
+	    @if ($mensaje = Session::get('success'))
 	        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
 	            <p class="alert-link">{{ $mensaje}} </p>
 	        </div>
@@ -28,24 +28,53 @@
 
 				<thead>
 					<tr>
-						<th>Id Documento</th>
-						<th>Imagen</th>
-						<th>Descripcion</th>
-						<th>Revisado</th>
-						<th>Aprobado</th>
+						<th>Id</th>
+						<th>Documento</th>
+						<th>Revisión</th>
+						<th>Aprobación</th>
+						<th>Acciones</th>
 					</tr>
 				</thead>
 
 				@foreach ($documentos as $fila)
 
 				    <tr>
-
-						<td style="text-align:center; font-weight: bold;">{{ $fila->id }}</td>
-						<td style="text-align:center;"> {{ $fila->imagen }} </td>
-						<td style="text-align:right;"> {{ $fila->descripcionImagen }} </td>
-						<td style="text-align:center;"> {{ $fila->revisado }} </td>
-						<td style="text-align:right;"> {{ $fila->aprobado }} </td>
 						
+						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
+						<td style="text-align:left;"> {{ $fila->documento }} </td>
+						
+						<td style="text-align:center;">
+
+							@if ($fila->revisado == 1)
+								<img src="{{ asset('icons/check-success.svg') }}" alt="Revisado" width="24" height="24" title="Revisado">
+							@endif
+
+							@if ($fila->revisado == 0)
+								<img src="{{ asset('icons/info.svg') }}" alt="Sin revisar" width="24" height="24" title="Sin revisar">
+							@endif
+
+						</td>
+						
+						<td style="text-align:center;"> 
+
+							@if ($fila->aprobado == 1)
+								<img src="{{ asset('icons/check-success.svg') }}" alt="Aceptado" width="24" height="24" title="Aceptado">
+							@endif
+
+							@if ($fila->aprobado == 0)
+								<img src="{{ asset('icons/x-danger.svg') }}" alt="Rechazado" width="24" height="24" title="Rechazado">
+							@endif
+
+							@if ($fila->aprobado == -1)
+								<img src="{{ asset('icons/info.svg') }}" alt="Sin evaluar" width="24" height="24" title="Sin evaluar">
+							@endif
+
+						</td>
+						
+						<td>
+							<a href="{{ route('documento.store', [$fila->id]) }}" class="btn btn-link link-tabla">Revisar</a>
+						</td>
+
 					</tr>
 					
 				@endforeach
@@ -72,7 +101,7 @@
 	                <div class="col-md-12">
 						<div class="input-group">
 							<label class="control-label label-margin">Adjuntar archivo</label>
-							<input type="file" name="imagen" class="filestyle" 
+							<input type="file" name="documento" class="filestyle" 
 								   data-text="Seleccionar" 
 								   data-dragdrop="false" 
 								   data-btnClass="btn-dark"
@@ -87,7 +116,7 @@
 	                <div class="col-md-12">
 
 	                    <label class="label-margin">Descripción de la imagen</label>
-	                    <textarea maxlength="200" name="descripcionImagen" class="form-control" value="{{ old('descripcionImagen') }}" placeholder="Escriba una descripción del documento que está subiendo para revisión."></textarea>
+	                    <textarea maxlength="200" name="descripcionDocumento" class="form-control" value="{{ old('descripcionImagen') }}" placeholder="Escriba una descripción del documento que está subiendo para revisión."></textarea>
 	                   
 	                </div>
 

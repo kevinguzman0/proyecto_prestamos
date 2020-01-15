@@ -16,8 +16,8 @@ class CrearTablaDocumentos extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('idSolicitud')->unsigned();
-            $table->string('imagen', 100);
-            $table->string('descripcionImagen');
+            $table->string('documento', 100);
+            $table->string('descripcionDocumento');
             $table->boolean('revisado');
             $table->boolean('aprobado'); 
             $table->timestamps();

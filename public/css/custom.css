@@ -252,3 +252,8 @@ table.table-fit tbody td, table.table-fit tfoot td {
 .espacio-linea-cuota {
     line-height: 2.5rem !important;
 }
+
+.link-tabla {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}

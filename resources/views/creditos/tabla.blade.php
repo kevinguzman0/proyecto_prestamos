@@ -39,7 +39,7 @@
 
 					    <tr>
 
-							<td style="text-align:center; font-weight: bold;">{{ $fila->id }}</td>
+							<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
 							<td style="text-align:center;"> {{ Date_format($fila->created_at, "d/m/Y") }} </td>
 							<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
 							<td style="text-align:center;"> {{ $fila->plazo }} </td>
@@ -47,11 +47,7 @@
 							<td> {{ $fila->interes . '%' }} </td>
 							<td> {{ $fila->estado->nombreEstado }} </td>
 							<td>
-								<div class="col-md-2 margenes-botones">
-									<a href="{{ route('documento.store', [$fila->id]) }}" class="btn btn-link mt-2 mb-2">
-										Subir archivos
-									</a>
-								</div>
+								<a href="{{ route('documento.store', [$fila->id]) }}" class="btn btn-link link-tabla">Subir documentos</a>
 							</td>
 						</tr>
 					

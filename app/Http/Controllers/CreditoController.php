@@ -85,20 +85,20 @@ class CreditoController extends Controller
 
         $validatedData = Validator::make($request->all(),
                 [
-                    'imagen'=> 'required|mimes:jpeg,bmp,png,gif,pdf,doc|max:5120',
-                    'descripcionImagen' => 'required',
+                    'documento'=> 'required|mimes:jpeg,bmp,png,gif,pdf,doc,docx,xls,xlsx|max:5120',
+                    'descripcionDocumento' => 'required',
                 ]);
 
-        $file = $request->file('imagen');
-        $ext = $request->file('imagen')->getClientOriginalExtension();
+        $file = $request->file('documento');
+        $ext = $request->file('documento')->getClientOriginalExtension();
         $timeStamp = date_create()->format('Ymd-His');
         $archivo = 'documento_solicitud_' . $idSolicitud . '_' . $timeStamp . '.' . $ext;
 
         $documento->idSolicitud = $idSolicitud;
-        $documento->descripcionImagen = $request->descripcionImagen;
+        $documento->descripcionDocumento = $request->descripcionDocumento;
         $documento->revisado = 0;
-        $documento->aprobado = 0;
-        $documento->imagen = $archivo;
+        $documento->aprobado = -1;
+        $documento->documento = $archivo;
         Storage::disk('public')->put($archivo, File::get($file));
         $documento->save();
         return redirect()->back()->with('success', $mensaje);

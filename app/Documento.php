@@ -10,8 +10,8 @@ class Documento extends Model
 
     protected $fillable = [
         'idSolicitud', 
-        'imagen', 
-        'descripcionImagen', 
+        'documento', 
+        'descripcionDocumento', 
         'revisado', 
         'aprobado', 
     ];
