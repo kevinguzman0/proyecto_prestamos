@@ -16,7 +16,7 @@
 
     <div class="row col-md-12 mb-3 mt-3">
 
-		<table class="table table-striped table-bordered table-fit" style="">
+		<table class="table table-striped table-bordered table-fit">
 
 			<tbody>
 
@@ -47,7 +47,7 @@
 							<td> {{ $fila->interes . '%' }} </td>
 							<td> {{ $fila->estado->nombreEstado }} </td>
 							<td>
-								<a href="{{ route('documento.store', [$fila->id]) }}" class="btn btn-link link-tabla">Subir documentos</a>
+								<a href="{{ route('documentos.tabla', [$fila->id]) }}" class="btn btn-link link-tabla">Subir documentos</a>
 							</td>
 						</tr>
 					

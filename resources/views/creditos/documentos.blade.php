@@ -10,19 +10,24 @@
 
 @section('content')
 
-	<div class="row col-md-12">
-        <h5>LISTADO DE DOCUMENTOS PRESENTADOS PARA LA SOLICITUD NRO. {{ $idSolicitud }}</h5>
+	<div class="row col-md-10">
+        <h5>LISTADO DE DOCUMENTOS PRESENTADOS</h5>
     </div>
 
-    <div class="row col-md-12 mb-3 mt-3">
+	<div class="row col-md-2">
+        <label class="label-margin">Solicitud Nro.</label>
+        <input type="text" name="idSolicitud" class="form-control font-weight-bolder" value="{{ $idSolicitud }}" disabled>
+    </div>
+
+    <div class="row col-md-10 mt-3">
 
 	    @if ($mensaje = Session::get('success'))
 	        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
-	            <p class="alert-link">{{ $mensaje}} </p>
+	            <p class="alert-link">{{ $mensaje }} </p>
 	        </div>
 	    @endif
 
-		<table class="table table-striped table-bordered table-fit" style="">
+		<table class="table table-striped table-bordered">
 
 			<tbody>
 
@@ -73,38 +78,49 @@
 						
 						<td>
 
-							<button type="button" class="btn btn-link" data-toggle="modal" data-target="#documento_{{ $fila->id }}">
+							<button type="button" class="btn btn-link link-tabla" data-toggle="modal" data-target="#documento_{{ $fila->id }}">
 							  Ver
 							</button>
 
 							<!-- Modal -->
-							<div class="modal fade" id="documento_{{ $fila->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLabel">{{ $fila->documento }}</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-header">
-							        <h6 class="modal-title" id="exampleModalLabel">{{ $fila->descripcionDocumento }}</h3>
-							      </div>
-							      
-							      <div class="modal-body">
-							        <img src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" class="img-rounded" width="304" height="236" />
-							      </div>
-							      <div class="modal-footer">
-							        				       
-							        <button type="button" class="btn btn-success" data-dismiss="modal">Aprobar</button>
-							        <button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>
-							         <button type="button" class="btn btn-warning" data-dismiss="modal">Borrar</button>
-							        <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
 
-							      </div>
-							    </div>
-							  </div>
+							<div class="modal fade" id="documento_{{ $fila->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								
+								<div class="modal-dialog" role="document">
+									
+									<div class="modal-content">
+										
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">{{ $fila->documento }}</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+
+										<div class="modal-header">
+											<h6 class="modal-title" id="exampleModalLabel">{{ $fila->descripcionDocumento }}</h6>
+										</div>
+
+										<div class="modal-body">
+											<img src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" class="img-rounded" width="304" height="236" />
+										</div>
+
+										<div class="modal-footer">
+
+											<button type="button" class="btn btn-success" data-dismiss="modal">Aprobar</button>
+											<button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>
+											<button type="button" class="btn btn-warning" data-dismiss="modal">Borrar</button>
+											<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+
+										</div>
+
+									</div>
+
+								</div>
+
 							</div>
+
+						</td>
 
 					</tr>
 					
@@ -116,65 +132,53 @@
 
 	</div>
 
-    <div class="row col-md-12 mb-3 mt-3">
+    <div class="row col-md-10">
 
-		<div class="row col-md-12 mt-2">
-	    	
-	        <form class="col-md-10" 
-	              action="{{ route('documento.nuevo', [$idSolicitud]) }}"
-	              method="POST"
-	              enctype="multipart/form-data">
+        <form class="col-md-12 margin-form" 
+              action="{{ route('documento.nuevo', [$idSolicitud]) }}"
+              method="POST"
+              enctype="multipart/form-data">
 
-	            @csrf
+            @csrf
 
-	            <div class="form-row">
+            <div class="form-row">
+            	<div class="col-md-12">
+					<div class="input-group">
+						<label class="control-label label-margin">Adjuntar archivo</label>
+						<input type="file" name="documento" class="filestyle" 
+							   data-text="Seleccionar" 
+							   data-dragdrop="false" 
+							   data-btnClass="btn-dark"
+							   data-placeholder="archivo no seleccionado">
+					</div>
+				</div>
+            </div>
 
-	                <div class="col-md-12">
-						<div class="input-group">
-							<label class="control-label label-margin">Adjuntar archivo</label>
-							<input type="file" name="documento" class="filestyle" 
-								   data-text="Seleccionar" 
-								   data-dragdrop="false" 
-								   data-btnClass="btn-dark"
-								   data-placeholder="archivo no seleccionado">
-						</div>
-	                </div>
+             <div class="form-row">
+            	<div class="col-md-12">
+	                <label class="label-margin">Descripción del documento</label>
+	                <textarea maxlength="200" name="descripcionDocumento" class="form-control" value="{{ old('descripcionImagen') }}" placeholder="Escriba una descripción del documento que está subiendo para revisión."></textarea>
+            	</div>
+            </div>
 
-	            </div>
+            @if ($errors->any())
+                <div class="alert alert-danger mt-3 mb-1">
+                    <ol class="estilo-lista-errores">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ol>
+                </div>
+            @endif
 
-	             <div class="form-row">
-
-	                <div class="col-md-12">
-
-	                    <label class="label-margin">Descripción de la imagen</label>
-	                    <textarea maxlength="200" name="descripcionDocumento" class="form-control" value="{{ old('descripcionImagen') }}" placeholder="Escriba una descripción del documento que está subiendo para revisión."></textarea>
-	                   
-	                </div>
-
-	            </div>
-
-	            @if ($errors->any())
-	                <div class="alert alert-danger mt-3 mb-1">
-	                    <ol class="estilo-lista-errores">
-	                        @foreach ($errors->all() as $error)
-	                            <li>{{ $error }}</li>
-	                        @endforeach
-	                    </ol>
-	                </div>
-	            @endif
-
-	            <div class="form-row mb-5">
-
-	                <div class="col-md-12">
-	                    <label></label>
-	                    <input type="submit" value="Grabar" name="btnGrabarUser" class="form-control btn btn-info">
-	                </div>
-
-	            </div>
-	            
-	        </form>
-
-	    </div>
+            <div class="form-row mb-5">
+            	<div class="col-md-12">
+		            <label></label>
+		            <input type="submit" value="Grabar" name="btnGrabarUser" class="form-control btn btn-info">
+            	</div>
+            </div>
+            
+        </form>
 
 	</div>
 

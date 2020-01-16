@@ -45,17 +45,17 @@ Route::post('cuota_pagos', 'TablaPagosController@vistaCuotaCredito')->name('simu
 
 // -----------------------------------------------------------------------------------------------------------
 
-Route::get('/mi-perfil', 'UsuarioController@index')->middleware('auth')->name('usuario.perfil');
+Route::get('mi-perfil', 'UsuarioController@index')->middleware('auth')->name('usuario.perfil');
 
 Route::post('usuario-store', 'UsuarioController@store')->middleware('auth')->name('usuario.store');
 
-Route::get('/mis-solicitudes', 'CreditoController@index')->middleware('auth')->name('usuario.solicitudes');
+Route::get('mis-solicitudes', 'CreditoController@index')->middleware('auth')->name('usuario.solicitudes');
 
 Route::post('credito-store', 'CreditoController@store')->middleware('auth')->name('credito.store');
 
-Route::get('documento-store/{idSolicitud}', 'CreditoController@document')->middleware('auth')->name('documento.store');
+Route::get('mis-documentos/{idSolicitud}', 'CreditoController@table')->middleware('auth')->name('documentos.tabla');
 
-Route::post('documento-store2/{idSolicitud}', 'CreditoController@documentStore')->middleware('auth')->name('documento.nuevo');
+Route::post('documento-store/{idSolicitud}', 'CreditoController@documentStore')->middleware('auth')->name('documento.nuevo');
 
 // -----------------------------------------------------------------------------------------------------------
 

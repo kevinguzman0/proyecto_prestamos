@@ -257,3 +257,8 @@ table.table-fit tbody td, table.table-fit tfoot td {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
 }
+
+.margin-form {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}

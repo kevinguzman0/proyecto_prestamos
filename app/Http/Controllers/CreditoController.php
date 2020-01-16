@@ -68,7 +68,7 @@ class CreditoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function document($idSolicitud)
+    public function table($idSolicitud)
     {
 
         $documentos = Solicitud::find($idSolicitud)->documentos;
