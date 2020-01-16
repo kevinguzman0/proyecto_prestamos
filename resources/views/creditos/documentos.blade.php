@@ -34,6 +34,7 @@
 				<thead>
 					<tr>
 						<th>Id</th>
+						<th>Archivo</th>
 						<th>Fecha / Hora</th>
 						<th>Revisión</th>
 						<th>Aprobación</th>
@@ -46,6 +47,26 @@
 				    <tr>
 						
 						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
+
+						<td style="text-align:center;">
+
+							<img src="{{ asset('icons/document-richtext.svg') }}" 
+							     data-toggle="tooltip" data-placement="auto" data-html="true"
+							     width="24" height="24"
+							     title=
+							     	"
+							     		<p style='text-align: left;'>
+								     		NOMBRE DEL ARCHIVO
+								     		<br>
+								     		[ {{ $fila->nombreOriginal}} ]
+								     		<br>
+								     		[ {{ $fila->documento}} ]
+							     		</p>
+							     	"
+							     >							
+
+						</td>
+						
 						<td style="text-align:left;"> {{ $fila->created_at }} </td>
 						
 						<td style="text-align:center;">
@@ -98,11 +119,13 @@
 											</button>
 										</div>
 
-										<div class="modal-header">
-											<h6 class="modal-title" id="exampleModalLabel">{{ $fila->descripcionDocumento }}</h6>
-										</div>
-
 										<div class="modal-body">
+
+											<div class="modal-body-descripcion">
+												<h6 class="modal-title" id="modal_body_descripcion">
+													{{ $fila->descripcionDocumento }}
+												</h6>
+											</div>
 
 											@if (strtolower(pathinfo($fila->documento, PATHINFO_EXTENSION) == 'pdf'))
 												<embed src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" 

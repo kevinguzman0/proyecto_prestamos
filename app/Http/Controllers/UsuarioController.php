@@ -121,30 +121,12 @@ class UsuarioController extends Controller
 
         $file = $request->file('foto');
         $ext = $request->file('foto')->getClientOriginalExtension();
-        $archivo = 'foto_usuario_' . $usuario->id . '_' . $usuario->cedula . '.' . $ext;
-        $usuario->foto = $archivo;
+        $archivo = 'foto-id-' . $usuario->id . '.' . $ext;
+        $usuario->foto = strtolower($archivo);
+
         Storage::disk('public')->put($archivo, File::get($file));
         $usuario->save();
         return redirect()->back()->with('success', $mensaje);
-
-    }
-
-    public function displayImage($filename)
-    {
-
-        $path = storage_public('docUsuarios/' . $filename);
-        //$path = Storage::disk('public')->path($usuario->foto);
-
-        if (!File::exists($path)) 
-        {
-            abort(404);
-        }
-
-        $file = File::get($path);
-        $type = File::mimeType($path);
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
-        return $response;
 
     }
 

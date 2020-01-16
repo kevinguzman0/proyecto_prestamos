@@ -17,6 +17,7 @@ class CrearTablaDocumentos extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('idSolicitud')->unsigned();
             $table->string('documento', 100);
+            $table->string('arhivoOriginal');
             $table->string('descripcionDocumento');
             $table->boolean('revisado');
             $table->boolean('aprobado'); 

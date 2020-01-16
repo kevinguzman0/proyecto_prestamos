@@ -270,3 +270,34 @@ table.table-fit tbody td, table.table-fit tfoot td {
 .modal .modal-dialog {
   max-width: 60% !important;
 }
+
+.tooltip-inner {
+    min-width: 100px !important;
+    max-width: 100% !important;
+    background: black !important;
+    color: white !important;
+    border:1px solid black !important;
+}
+
+.modal-header {
+    background: #e6e6e6 !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.modal-footer {
+    background: white !important;
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+}
+
+.modal-body-descripcion {
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -ms-flex-align: start !important;
+    align-items: flex-start !important;
+    -ms-flex-pack: justify !important;
+    background: white !important;
+    justify-content: space-between !important;
+    padding: 0.5rem 0.5rem !important;
+
+}

@@ -33,6 +33,11 @@
 
 	            <div class="form-row">
 
+	                <div class="col-md-1">
+	                    <label class="label-margin">ID</label>
+	                    <input type="text" name="id" class="form-control" value="{{ $usuario->id }}" disabled>
+	                </div>
+
 	                <div class="col-md-3">
 	                    <label class="label-margin">Creado en</label>
 	                    <input type="text" name="created_at" class="form-control" value="{{ $usuario->created_at }}" disabled>
@@ -43,7 +48,7 @@
 	                    <input type="text" name="updated_at" class="form-control" value="{{ $usuario->updated_at }}" disabled>
 	                </div>
 
-	                <div class="col-md-6">
+	                <div class="col-md-5">
 	                    <label class="label-margin">Email</label>
 	                    <input type="text" maxlength="100" name="email" class="form-control" value="{{ $usuario->email }}">
 	                </div>

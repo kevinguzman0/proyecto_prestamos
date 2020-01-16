@@ -80,27 +80,35 @@ class CreditoController extends Controller
     public function documentStore(Request $request, $idSolicitud)
     {
 
-        $mensaje = 'Documento subido correctamente...';
         $documento = new Documento;
 
         $validatedData = Validator::make($request->all(),
                 [
-                    'documento'=> 'required|mimes:jpeg,bmp,png,gif,jfif,pdf,doc,docx,xls,xlsx|max:10240',
+                    'documento'=> 'required|mimes:jpeg,bmp,png,gif,jfif,pdf,doc,docx,xls,xlsx,zip,rar,7z|max:10240',
                     'descripcionDocumento' => 'required',
                 ]);
 
+        if($validatedData->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($validatedData);
+        }
+
         $file = $request->file('documento');
         $ext = $request->file('documento')->getClientOriginalExtension();
+        $originalFile = $request->file('documento')->getClientOriginalName();
         $timeStamp = date_create()->format('Ymd-His');
-        $archivo = 'documento_solicitud_' . $idSolicitud . '_' . $timeStamp . '.' . $ext;
+        $archivo = 'doc-id-' . $idSolicitud . '-' . $timeStamp . '.' . $ext;
 
         $documento->idSolicitud = $idSolicitud;
+        $documento->nombreOriginal = $originalFile;
         $documento->descripcionDocumento = $request->descripcionDocumento;
         $documento->revisado = 0;
         $documento->aprobado = -1;
-        $documento->documento = $archivo;
+        $documento->documento = strtolower($archivo);
+
         Storage::disk('public')->put($archivo, File::get($file));
         $documento->save();
+        $mensaje = 'Documento subido correctamente...';
         return redirect()->back()->with('success', $mensaje);
 
     }
@@ -154,4 +162,5 @@ class CreditoController extends Controller
     {
         //
     }
+
 }

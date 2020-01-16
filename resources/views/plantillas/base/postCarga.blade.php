@@ -31,6 +31,8 @@
                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             });
 
+            $('[data-toggle="tooltip"]').tooltip()
+
         });
     </script>
 
