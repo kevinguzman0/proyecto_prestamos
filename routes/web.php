@@ -61,6 +61,9 @@ Route::get('mis-documentos/{idSolicitud}', 'CreditoController@table')->middlewar
 
 Route::post('documento-store/{idSolicitud}', 'CreditoController@documentStore')->middleware('auth')->name('documento.nuevo');
 
+Route::get('aprobado-store/{idDocumento}', 'CreditoController@aprobadoStore')->middleware('auth')->name('aprobado.store');
+
+Route::get('rechazado-store/{idDocumento}', 'CreditoController@rechazadoStore')->middleware('auth')->name('rechazado.store');
 // -----------------------------------------------------------------------------------------------------------
 
 // Borrar todas las cachés por consola

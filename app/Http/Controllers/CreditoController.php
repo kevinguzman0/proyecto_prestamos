@@ -113,6 +113,34 @@ class CreditoController extends Controller
 
     }
 
+    public function aprobadoStore($idDocumento)
+    {
+        $mensaje = 'Documento aprobado...';
+        $documento = Documento::find($idDocumento);
+
+        $documento->aprobado=1;
+        $documento->revisado=1;
+
+        $documento->save();
+
+        return redirect()->back()->with('success', $mensaje);
+
+    }
+
+    public function rechazadoStore($idDocumento)
+    {
+        $mensaje = 'Documento rechazado...';
+        $documento = Documento::find($idDocumento);
+
+        $documento->aprobado=0;
+        $documento->revisado=1;
+
+        $documento->save();
+
+        return redirect()->back()->with('success', $mensaje);
+
+    }
+
     public function create()
     {
         //
