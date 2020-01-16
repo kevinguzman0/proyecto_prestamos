@@ -49,11 +49,11 @@ Route::get('tabla_pagos_pdf', 'TablaPagosController@pdfTablaPagos')->name('simul
 
 Route::post('cuota_pagos', 'TablaPagosController@vistaCuotaCredito')->name('simulador.cuota');
 
-Route::get('mi-perfil', 'UsuarioController@index')->middleware('auth')->name('usuario.perfil');
+Route::get('mi-perfil', 'UsuarioController@index')->middleware('auth')->middleware('verified')->name('usuario.perfil');
 
 Route::post('usuario-store', 'UsuarioController@store')->middleware('auth')->name('usuario.store');
 
-Route::get('mis-solicitudes', 'CreditoController@index')->middleware('auth')->name('usuario.solicitudes');
+Route::get('mis-solicitudes', 'CreditoController@index')->middleware('auth')->middleware('verified')->name('usuario.solicitudes');
 
 Route::post('credito-store', 'CreditoController@store')->middleware('auth')->name('credito.store');
 

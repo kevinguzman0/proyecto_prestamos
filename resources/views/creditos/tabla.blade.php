@@ -46,9 +46,14 @@
 							<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
 							<td> {{ $fila->interes . '%' }} </td>
 							<td> {{ $fila->estado->nombreEstado }} </td>
-							<td>
-								<a href="{{ route('documentos.tabla', [$fila->id]) }}" class="btn btn-link link-tabla">Subir documentos</a>
-							</td>
+
+							@if($fila->idEstadoSolicitud<=3)
+
+								<td>
+									<a href="{{ route('documentos.tabla', [$fila->id]) }}" class="btn btn-link link-tabla">Subir documentos</a>
+								</td>
+								
+							@endif
 						</tr>
 					
 					@endforeach

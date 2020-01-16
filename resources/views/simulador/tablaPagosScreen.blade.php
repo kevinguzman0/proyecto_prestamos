@@ -10,7 +10,9 @@
 
         @auth
 
-	        @if(App\User::find(Auth()->user()->id)->usuario != null)
+	        @if(App\User::find(Auth()->user()->id)->usuario != null && App\Usuario::find(Auth()->user()->id)->user->email_verified_at != null)
+
+
 
 		        <div class="col-md-2 margenes-botones">
 					<a href="{{ route('simulador.pdf') }}" class="btn btn-dark mt-2 mb-2" target="_blank">

@@ -94,6 +94,16 @@ class UsuarioController extends Controller
 
                 ]);
 
+            if($usuario->email != $request->email)
+            {
+                $user = Usuario::find($usuario->id)->user;
+                $user->email_verified_at = null;
+                $user->email=$request->email;
+                $user->save();
+
+                return redirect()->route('salir');
+            }
+
             $usuario->idPerfilUsuario = $request->idPerfilUsuario;
             $mensaje = 'Perfil actualizado correctamente...';
 
