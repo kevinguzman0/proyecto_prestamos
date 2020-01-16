@@ -14,6 +14,9 @@
         <h5>LISTADO DE DOCUMENTOS PRESENTADOS</h5>
     </div>
 
+
+    {{ $documentos->onEachSide(5)->links() }}
+
 	<div class="row col-md-2">
         <label class="label-margin">Solicitud Nro.</label>
         <input type="text" name="idSolicitud" class="form-control font-weight-bolder" value="{{ $idSolicitud }}" disabled>
@@ -141,19 +144,19 @@
 
 											@if($fila->aprobado!=1)
 
-												<button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href = '{{ route('aprobado.store', [$fila->id]) }}'">Aprobar</button>
+												<button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href = '{{ route('aprobado.store', [Illuminate\Support\Facades\Crypt::encrypt($fila->id)]) }}'">Aprobar</button>
 
 											@endif
 
 											@if($fila->aprobado!=0)
 
-												<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="location.href = '{{ route('rechazado.store', [$fila->id]) }}'">Rechazar</button>
+												<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="location.href = '{{ route('rechazado.store', [Illuminate\Support\Facades\Crypt::encrypt($fila->id)]) }}'">Rechazar</button>
 
 											@endif
 
 											@if($fila->aprobado!=1)
 
-												<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ route('borrar.store', [$fila->id]) }}'">Borrar</button>
+												<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ route('borrar.store', [Illuminate\Support\Facades\Crypt::encrypt($fila->id)]) }}'">Borrar</button>
 
 											@endif
 											
@@ -226,6 +229,10 @@
             	<div class="col-md-12">
 		            <label></label>
 		            <input type="submit" value="Grabar" name="btnGrabarUser" class="form-control btn btn-info">
+            	</div>
+            	<div class="col-md-12">
+		            <label></label>
+		            <button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ route('usuario.solicitudes') }}'">Regresar</button>
             	</div>
             </div>
             

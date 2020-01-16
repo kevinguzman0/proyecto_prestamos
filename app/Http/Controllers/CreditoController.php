@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
+
 
 class CreditoController extends Controller
 {
@@ -29,7 +32,8 @@ class CreditoController extends Controller
 
         if ($usuario != null)
         {
-            $solicitudes = Usuario::find($id)->solicitudes;
+            /*$solicitudes = Usuario::find($id)->solicitudes;*/
+            $solicitudes = Solicitud::paginate(2);
             $data = compact('solicitudes');
             return view('creditos.tabla', $data);
         }
@@ -70,9 +74,14 @@ class CreditoController extends Controller
 
     public function table($idSolicitud)
     {
+        $idSolicitud = Crypt::decrypt($idSolicitud);
 
-        $documentos = Solicitud::find($idSolicitud)->documentos;
+        /*$documentos = Solicitud::find($idSolicitud)->documentos;*/
+
+        $documentos = Solicitud::paginate(2);
+
         $data = compact('documentos', 'idSolicitud');
+
         return view('creditos.documentos', $data);
 
     }
@@ -115,7 +124,7 @@ class CreditoController extends Controller
 
     public function aprobadoStore($idDocumento)
     {
-
+        $idDocumento = Crypt::decrypt($idDocumento);
         $documento = Documento::find($idDocumento);
         $documento->aprobado=1;
         $documento->revisado=1;
@@ -127,7 +136,7 @@ class CreditoController extends Controller
 
     public function rechazadoStore($idDocumento)
     {
-
+        $idDocumento = Crypt::decrypt($idDocumento);
         $documento = Documento::find($idDocumento);
         $documento->aprobado=0;
         $documento->revisado=1;
@@ -139,7 +148,7 @@ class CreditoController extends Controller
 
     public function borrarStore($idDocumento)
     {
-
+        $idDocumento = Crypt::decrypt($idDocumento);
         $documento = Documento::find($idDocumento);
         $name=$documento->documento;
         Storage::disk('public')->delete($name);

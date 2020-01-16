@@ -16,6 +16,8 @@
 
     <div class="row col-md-12 mb-3 mt-3">
 
+    	{{ $solicitudes->onEachSide(5)->links() }}
+
 		<table class="table table-striped table-bordered table-fit">
 
 			<tbody>
@@ -50,7 +52,7 @@
 							@if($fila->idEstadoSolicitud<=3)
 
 								<td>
-									<a href="{{ route('documentos.tabla', [$fila->id]) }}" class="btn btn-link link-tabla">Subir documentos</a>
+									<a href="{{ route('documentos.tabla', [Illuminate\Support\Facades\Crypt::encrypt($fila->id)]) }}" class="btn btn-link link-tabla">Subir documentos</a>
 								</td>
 								
 							@endif

@@ -54,6 +54,8 @@
 	                    <input type="submit" formaction="{{ route('simulador.screen') }}" value="Generar tabla de pagos" name="btnSimularCredito" class="form-control btn btn-dark">
 	                </div>
 
+	                {{-- redirect()->action('TablaPagosController@vistaTablaPagos') --}}
+
 	                <div class="col-md-6">
 	                    <label></label>
 	                    <input type="submit" formaction="{{ route('simulador.cuota') }}" value="Calcular cuota mensual" name="btnCalcularCuota" class="form-control btn btn-dark">
