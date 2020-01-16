@@ -301,3 +301,8 @@ table.table-fit tbody td, table.table-fit tfoot td {
     padding: 0.5rem 0.5rem !important;
 
 }
+
+.margin-errors {
+    margin-left: 15px !important;
+    margin-right: 25px !important;
+}
