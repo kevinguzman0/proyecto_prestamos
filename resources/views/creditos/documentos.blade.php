@@ -200,6 +200,12 @@
                 </div>
             @endif
 
+            <div class="alert alert-warning mt-3 mb-1">
+                <span>
+                	No es posible modificar documentos presentados con anterioridad. Si necesita actualizar alguno, debe primero borrarlo y luego subirlo nuevamente. Desde ese momento el documento quedará para revisar nuevamente.
+                </span>
+            </div>
+
             <div class="form-row mb-5">
             	<div class="col-md-12">
 		            <label></label>
