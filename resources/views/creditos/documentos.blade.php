@@ -14,9 +14,6 @@
         <h5>LISTADO DE DOCUMENTOS PRESENTADOS</h5>
     </div>
 
-
-    {{ $documentos->onEachSide(5)->links() }}
-
 	<div class="row col-md-2">
         <label class="label-margin">Solicitud Nro.</label>
         <input type="text" name="idSolicitud" class="form-control font-weight-bolder" value="{{ $idSolicitud }}" disabled>
@@ -144,19 +141,19 @@
 
 											@if($fila->aprobado!=1)
 
-												<button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href = '{{ route('aprobado.store', [Illuminate\Support\Facades\Crypt::encrypt($fila->id)]) }}'">Aprobar</button>
+												<button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href = '{{ route('documento.aprobar', [$fila->id]) }}'">Aprobar</button>
 
 											@endif
 
 											@if($fila->aprobado!=0)
 
-												<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="location.href = '{{ route('rechazado.store', [Illuminate\Support\Facades\Crypt::encrypt($fila->id)]) }}'">Rechazar</button>
+												<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="location.href = '{{ route('documento.rechazar', [$fila->id]) }}'">Rechazar</button>
 
 											@endif
 
 											@if($fila->aprobado!=1)
 
-												<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ route('borrar.store', [Illuminate\Support\Facades\Crypt::encrypt($fila->id)]) }}'">Borrar</button>
+												<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ route('documento.borrar', [$fila->id]) }}'">Borrar</button>
 
 											@endif
 											

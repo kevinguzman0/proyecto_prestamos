@@ -57,15 +57,21 @@ Route::get('mis-solicitudes', 'CreditoController@index')->middleware('auth')->mi
 
 Route::post('credito-store', 'CreditoController@store')->middleware('auth')->name('credito.store');
 
+Route::get('credito-eliminar/{idCredito}', 'CreditoController@solicitudBorrar')->middleware('auth')->name('credito.eliminar');
+
 Route::get('mis-documentos/{idSolicitud}', 'CreditoController@table')->middleware('auth')->name('documentos.tabla');
 
-Route::post('documento-store/{idSolicitud}', 'CreditoController@documentStore')->middleware('auth')->name('documento.nuevo');
+Route::post('documento-store/{idSolicitud}', 'CreditoController@documentoStore')->middleware('auth')->name('documento.nuevo');
 
-Route::get('aprobado-store/{idDocumento}', 'CreditoController@aprobadoStore')->middleware('auth')->name('aprobado.store');
+Route::get('aprobado-store/{idDocumento}', 'CreditoController@documentoAprobado')->middleware('auth')->name('documento.aprobar');
 
-Route::get('rechazado-store/{idDocumento}', 'CreditoController@rechazadoStore')->middleware('auth')->name('rechazado.store');
+Route::get('rechazado-store/{idDocumento}', 'CreditoController@documentoRechazado')->middleware('auth')->name('documento.rechazar');
 
-Route::get('borrar-store/{idDocumento}', 'CreditoController@borrarStore')->middleware('auth')->name('borrar.store');
+Route::get('borrar-store/{idDocumento}', 'CreditoController@documentoBorrar')->middleware('auth')->name('documento.borrar');
+
+
+
+Route::get('clientes', 'ClienteController@index')->middleware('auth')->name('clientes.tabla');
 // -----------------------------------------------------------------------------------------------------------
 
 // Borrar todas las cachés por consola

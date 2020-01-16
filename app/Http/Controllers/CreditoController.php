@@ -32,8 +32,7 @@ class CreditoController extends Controller
 
         if ($usuario != null)
         {
-            /*$solicitudes = Usuario::find($id)->solicitudes;*/
-            $solicitudes = Solicitud::paginate(2);
+            $solicitudes = Usuario::find($id)->solicitudes;
             $data = compact('solicitudes');
             return view('creditos.tabla', $data);
         }
@@ -62,7 +61,15 @@ class CreditoController extends Controller
         $solicitud->interes = $request->interes;
         $solicitud->idEstadoSolicitud = $request->idEstadoSolicitud;
         $solicitud->idCliente = $request->idCliente;
+        
+
+        $cliente = Solicitud::find($request->idCliente)->cliente;
+
+        $cliente->idPerfilUsuario = 2;
+
+        $cliente->save();
         $solicitud->save();
+
         return redirect()->route('usuario.solicitudes');
     }   
 
@@ -74,11 +81,8 @@ class CreditoController extends Controller
 
     public function table($idSolicitud)
     {
-        $idSolicitud = Crypt::decrypt($idSolicitud);
 
-        /*$documentos = Solicitud::find($idSolicitud)->documentos;*/
-
-        $documentos = Solicitud::paginate(2);
+        $documentos = Solicitud::find($idSolicitud)->documentos;
 
         $data = compact('documentos', 'idSolicitud');
 
@@ -86,7 +90,7 @@ class CreditoController extends Controller
 
     }
 
-    public function documentStore(Request $request, $idSolicitud)
+    public function documentoStore(Request $request, $idSolicitud)
     {
 
         $documento = new Documento;
@@ -122,9 +126,8 @@ class CreditoController extends Controller
 
     }
 
-    public function aprobadoStore($idDocumento)
+    public function documentoAprobado($idDocumento)
     {
-        $idDocumento = Crypt::decrypt($idDocumento);
         $documento = Documento::find($idDocumento);
         $documento->aprobado=1;
         $documento->revisado=1;
@@ -134,9 +137,8 @@ class CreditoController extends Controller
 
     }
 
-    public function rechazadoStore($idDocumento)
+    public function documentoRechazado($idDocumento)
     {
-        $idDocumento = Crypt::decrypt($idDocumento);
         $documento = Documento::find($idDocumento);
         $documento->aprobado=0;
         $documento->revisado=1;
@@ -146,9 +148,8 @@ class CreditoController extends Controller
 
     }
 
-    public function borrarStore($idDocumento)
+    public function documentoBorrar($idDocumento)
     {
-        $idDocumento = Crypt::decrypt($idDocumento);
         $documento = Documento::find($idDocumento);
         $name=$documento->documento;
         Storage::disk('public')->delete($name);
@@ -156,6 +157,22 @@ class CreditoController extends Controller
         $mensaje = 'Documento borrado...';
         return redirect()->back()->with('success', $mensaje);
 
+    }
+
+    public function solicitudBorrar($idCredito)
+    {
+        
+        $documentos = Solicitud::find($idCredito)->documentos;
+
+        foreach ($documentos as $fila) {
+
+            documentoBorrar($fila->id);
+
+        }
+        $documentos->delete();
+        
+        $mensaje = 'Solicitud eliminada...';
+        return redirect()->back()->with('success', $mensaje);
     }
 
     public function create()

@@ -29,6 +29,8 @@
 
 	            <li><a href="{{ route('simulador') }}">Simulador</a></li>
 
+	            <li><a href="{{ route('clientes.tabla') }}">Clientes</a></li>
+
                 @guest
 
                     <li>
