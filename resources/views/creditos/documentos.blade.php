@@ -140,7 +140,7 @@
 										<div class="modal-footer">
 											<button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href = '{{ route('aprobado.store', [$fila->id]) }}'">Aprobar</button>
 											<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="location.href = '{{ route('rechazado.store', [$fila->id]) }}'">Rechazar</button>
-											<button type="button" class="btn btn-warning" data-dismiss="modal">Borrar</button>
+											<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ route('borrar.store', [$fila->id]) }}'">Borrar</button>
 										</div>
 
 									</div>

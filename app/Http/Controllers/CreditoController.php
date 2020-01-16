@@ -141,6 +141,23 @@ class CreditoController extends Controller
 
     }
 
+    public function borrarStore($idDocumento)
+    {
+
+        $mensaje = 'Documento borrado...';
+        $documento = Documento::find($idDocumento);
+
+        $name=$documento->documento;
+        Storage::disk('public')->delete($name);
+
+
+
+        $documento->delete();
+
+        return redirect()->back()->with('success', $mensaje);
+
+    }
+
     public function create()
     {
         //
