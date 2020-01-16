@@ -10,7 +10,7 @@
 
 @section('content')
 
-	<div class="row col-md-10">
+	<div class="row col-md-8">
         <h5>LISTADO DE DOCUMENTOS PRESENTADOS</h5>
     </div>
 
@@ -19,7 +19,7 @@
         <input type="text" name="idSolicitud" class="form-control font-weight-bolder" value="{{ $idSolicitud }}" disabled>
     </div>
 
-    <div class="row col-md-10 mt-3">
+    <div class="row col-md-8 mt-3">
 
 	    @if ($mensaje = Session::get('success'))
 	        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
@@ -34,7 +34,7 @@
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Documento</th>
+						<th>Fecha / Hora</th>
 						<th>Revisión</th>
 						<th>Aprobación</th>
 						<th>Acciones</th>
@@ -46,7 +46,7 @@
 				    <tr>
 						
 						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-						<td style="text-align:left;"> {{ $fila->documento }} </td>
+						<td style="text-align:left;"> {{ $fila->created_at }} </td>
 						
 						<td style="text-align:center;">
 
@@ -91,7 +91,8 @@
 									<div class="modal-content">
 										
 										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">{{ $fila->documento }}</h5>
+
+											<h6 class="modal-title" id="exampleModalLabel">{{ $fila->documento }}</h6>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
@@ -102,16 +103,21 @@
 										</div>
 
 										<div class="modal-body">
-											<img src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" class="img-rounded" width="304" height="236" />
+
+											@if (strtolower(pathinfo($fila->documento, PATHINFO_EXTENSION) == 'pdf'))
+												<embed src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" 
+													   frameborder="0" width="100%" height="300px">
+											@else
+												<img src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" 
+													 class="img-fluid form-control estilo-img-previa">
+											@endif
+
 										</div>
 
 										<div class="modal-footer">
-
 											<button type="button" class="btn btn-success" data-dismiss="modal">Aprobar</button>
 											<button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>
 											<button type="button" class="btn btn-warning" data-dismiss="modal">Borrar</button>
-											<button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
-
 										</div>
 
 									</div>
@@ -132,7 +138,7 @@
 
 	</div>
 
-    <div class="row col-md-10">
+    <div class="row col-md-8">
 
         <form class="col-md-12 margin-form" 
               action="{{ route('documento.nuevo', [$idSolicitud]) }}"
@@ -157,7 +163,7 @@
              <div class="form-row">
             	<div class="col-md-12">
 	                <label class="label-margin">Descripción del documento</label>
-	                <textarea maxlength="200" name="descripcionDocumento" class="form-control" value="{{ old('descripcionImagen') }}" placeholder="Escriba una descripción del documento que está subiendo para revisión."></textarea>
+	                <textarea maxlength="200" name="descripcionDocumento" class="form-control" value="{{ old('descripcionImagen') }}" placeholder="escriba una breve descripción del contenido del documento que está subiendo para revisión..."></textarea>
             	</div>
             </div>
 

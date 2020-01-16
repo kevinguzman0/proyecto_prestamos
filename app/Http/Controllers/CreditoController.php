@@ -85,7 +85,7 @@ class CreditoController extends Controller
 
         $validatedData = Validator::make($request->all(),
                 [
-                    'documento'=> 'required|mimes:jpeg,bmp,png,gif,pdf,doc,docx,xls,xlsx|max:5120',
+                    'documento'=> 'required|mimes:jpeg,bmp,png,gif,jfif,pdf,doc,docx,xls,xlsx|max:10240',
                     'descripcionDocumento' => 'required',
                 ]);
 

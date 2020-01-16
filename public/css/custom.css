@@ -262,3 +262,11 @@ table.table-fit tbody td, table.table-fit tfoot td {
     padding-left: 0rem !important;
     padding-right: 0rem !important;
 }
+
+.modal-lg {
+    max-width: 60% !important;
+}
+
+.modal .modal-dialog {
+  max-width: 60% !important;
+}

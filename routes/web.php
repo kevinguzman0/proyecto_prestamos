@@ -18,8 +18,8 @@ use Illuminate\Database\Eloquent\Model;
 // -----------------------------------------------------------------------------------------------------------
 
 Auth::routes(['verify' => true]);
- 
-Route::get('/home', 'HomeController@index')->middleware('verified')->name('home');
+
+// -----------------------------------------------------------------------------------------------------------
 
 Route::get('/', function () {
     return view('principales.inicio');
@@ -33,17 +33,21 @@ Route::get('ingresar', function () {
     return view('principales.ingresar');
 })->name('ingresar');
 
-Route::post('salir', '\App\Http\Controllers\Auth\LoginController@logout')->name('salir');
-
 Route::get('simulador', function () {
     return view('simulador.index');
 })->name('simulador');
 
-Route::post('tabla_pagos', 'TablaPagosController@vistaTablaPagos')->name('simulador.screen');
-Route::get('tabla_pagos_pdf', 'TablaPagosController@pdfTablaPagos')->name('simulador.pdf');
-Route::post('cuota_pagos', 'TablaPagosController@vistaCuotaCredito')->name('simulador.cuota');
-
 // -----------------------------------------------------------------------------------------------------------
+
+Route::get('home', 'HomeController@index')->middleware('verified')->name('home');
+
+Route::post('salir', 'Auth\LoginController@logout')->name('salir');
+
+Route::post('tabla_pagos', 'TablaPagosController@vistaTablaPagos')->name('simulador.screen');
+
+Route::get('tabla_pagos_pdf', 'TablaPagosController@pdfTablaPagos')->name('simulador.pdf');
+
+Route::post('cuota_pagos', 'TablaPagosController@vistaCuotaCredito')->name('simulador.cuota');
 
 Route::get('mi-perfil', 'UsuarioController@index')->middleware('auth')->name('usuario.perfil');
 
@@ -56,10 +60,6 @@ Route::post('credito-store', 'CreditoController@store')->middleware('auth')->nam
 Route::get('mis-documentos/{idSolicitud}', 'CreditoController@table')->middleware('auth')->name('documentos.tabla');
 
 Route::post('documento-store/{idSolicitud}', 'CreditoController@documentStore')->middleware('auth')->name('documento.nuevo');
-
-// -----------------------------------------------------------------------------------------------------------
-
-Route::get('docUsuarios/{filename}', 'UsuarioController@displayImage')->name('image.displayImage');
 
 // -----------------------------------------------------------------------------------------------------------
 
