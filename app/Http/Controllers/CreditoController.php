@@ -115,28 +115,24 @@ class CreditoController extends Controller
 
     public function aprobadoStore($idDocumento)
     {
-        $mensaje = 'Documento aprobado...';
-        $documento = Documento::find($idDocumento);
 
+        $documento = Documento::find($idDocumento);
         $documento->aprobado=1;
         $documento->revisado=1;
-
         $documento->save();
-
+        $mensaje = 'Documento aprobado...';
         return redirect()->back()->with('success', $mensaje);
 
     }
 
     public function rechazadoStore($idDocumento)
     {
-        $mensaje = 'Documento rechazado...';
-        $documento = Documento::find($idDocumento);
 
+        $documento = Documento::find($idDocumento);
         $documento->aprobado=0;
         $documento->revisado=1;
-
         $documento->save();
-
+        $mensaje = 'Documento rechazado...';
         return redirect()->back()->with('success', $mensaje);
 
     }
@@ -144,16 +140,11 @@ class CreditoController extends Controller
     public function borrarStore($idDocumento)
     {
 
-        $mensaje = 'Documento borrado...';
         $documento = Documento::find($idDocumento);
-
         $name=$documento->documento;
         Storage::disk('public')->delete($name);
-
-
-
         $documento->delete();
-
+        $mensaje = 'Documento borrado...';
         return redirect()->back()->with('success', $mensaje);
 
     }
