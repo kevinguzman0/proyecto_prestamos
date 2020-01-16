@@ -13,7 +13,7 @@
 	<div class="row col-md-12">
 
 	    <div class="row col-md-12 mt-3">
-	        <h4>MI PERFIL</h4>
+	        <h4>MI INFORMACIÓN DE PERFIL</h4>
 	    </div>
 
 	    <div class="row col-md-12 mt-2">

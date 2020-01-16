@@ -9,6 +9,7 @@ use File;
 use Session;
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Validator;
 
 class TablaPagosController extends Controller
 {
@@ -26,6 +27,17 @@ class TablaPagosController extends Controller
      */
     public function vistaTablaPagos(Request $request)
     {
+
+        $validatedData = Validator::make($request->all(),
+            [
+                'valorPrestamo' => 'required|numeric',
+                'plazoCuotas' => 'required|numeric',
+            ]);
+
+        if($validatedData->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($validatedData);
+        }
 
         $valorPrestamo = (int)$request->input("valorPrestamo");
         $plazoCuotas = (int)$request->input("plazoCuotas");
@@ -145,6 +157,17 @@ class TablaPagosController extends Controller
 
     public function vistaCuotaCredito(Request $request)
     {
+
+        $validatedData = Validator::make($request->all(),
+            [
+                'valorPrestamo' => 'required|numeric',
+                'plazoCuotas' => 'required|numeric',
+            ]);
+
+        if($validatedData->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($validatedData);
+        }
 
         $valorPrestamo = (int)$request->input("valorPrestamo");
         $plazoCuotas = (int)$request->input("plazoCuotas");
