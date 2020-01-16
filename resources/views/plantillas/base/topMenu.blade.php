@@ -55,17 +55,9 @@
                                     Mis solicitudes
                                 </a>
                                 
-                                <a class="dropdown-item" href="{{ route('salir') }}"
-                                   onclick="event.preventDefault();
-                                            document.getElementById('logout-form-tm').submit();">
+                                <a class="dropdown-item" href="{{ route('salir') }}">
                                     {{ __('Logout') }}
                                 </a>
-
-                                <form id="logout-form-tm" action="{{ route('salir') }}" method="POST" style="display: none;">
-
-                                    @csrf
-
-                                </form>
 
                            </div>
 

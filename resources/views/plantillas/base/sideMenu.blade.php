@@ -66,17 +66,9 @@
 
 		                	<li class="margin-submenu">
 
-								<a href="{{ route('salir') }}"
-                               	   onclick="event.preventDefault();
-                                            document.getElementById('logout-form-sm').submit();">
+								<a href="{{ route('salir') }}">
                                 	{{ __('Logout') }}
                             	</a>
-
-	                            <form id="logout-form-sm" action="{{ route('salir') }}" method="POST" style="display: none;">
-
-	                                @csrf
-
-	                            </form>		                		
 
 		                	</li>
 

@@ -41,7 +41,7 @@ Route::get('simulador', function () {
 
 Route::get('home', 'HomeController@index')->middleware('verified')->name('home');
 
-Route::post('salir', 'Auth\LoginController@logout')->name('salir');
+Route::get('salir', 'Auth\LoginController@logout')->name('salir');
 
 Route::post('tabla_pagos', 'TablaPagosController@vistaTablaPagos')->name('simulador.screen');
 
