@@ -38,8 +38,7 @@ class CreditoController extends Controller
         }
         else
         {
-            $mensaje = 'Para realizar esta consulta, primero debe llenar su información de perfil...';
-            return view('creditos.tabla', compact('mensaje', 'usuario'));
+            return view('creditos.tabla', compact('usuario'));
         }
 
     }
