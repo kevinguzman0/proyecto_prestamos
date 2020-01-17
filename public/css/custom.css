@@ -232,7 +232,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
 .estilo-lista-errores {
     list-style-type: decimal-leading-zero !important;
     margin-bottom: 0px !important;
-    padding-left: 1.5rem !important;
+    /*padding-left: 1.5rem !important;*/
 }
 
 .dropdown-item {
@@ -258,7 +258,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
     padding-bottom: 0px !important;
 }
 
-.margin-form {
+.padding-form {
     padding-left: 0rem !important;
     padding-right: 0rem !important;
 }
@@ -305,4 +305,21 @@ table.table-fit tbody td, table.table-fit tfoot td {
 .margin-errors {
     margin-left: 15px !important;
     margin-right: 25px !important;
+}
+
+.header-tabla {
+    background: #c3e0ff !important;
+}
+
+.header-tabla-texto {
+    font-weight: normal !important;
+}
+
+.table thead th {
+    vertical-align: bottom !important;
+    border-bottom: none !important;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #ced4da !important;
 }

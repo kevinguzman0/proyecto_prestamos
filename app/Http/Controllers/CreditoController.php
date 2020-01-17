@@ -23,23 +23,23 @@ class CreditoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function tablaSolicitudes()
     {
 
-        $id = auth()->user()->id;
+        $idCliente = auth()->user()->id;
 
-        $usuario = User::find($id)->usuario;
+        $usuario = User::find($idCliente)->usuario;
 
         if ($usuario != null)
         {
-            $solicitudes = Usuario::find($id)->solicitudes;
-            $data = compact('solicitudes');
+            $solicitudes = Usuario::find($idCliente)->solicitudes;
+            $data = compact('solicitudes', 'usuario');
             return view('creditos.tabla', $data);
         }
         else
         {
             $mensaje = 'Para realizar esta consulta, primero debe llenar su información de perfil...';
-            return view('creditos.tabla', compact('mensaje'));
+            return view('creditos.tabla', compact('mensaje', 'usuario'));
         }
 
     }
@@ -50,7 +50,7 @@ class CreditoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function solicitudNueva(Request $request)
     {
 
         $id = auth()->user()->id;
@@ -62,15 +62,13 @@ class CreditoController extends Controller
         $solicitud->idEstadoSolicitud = $request->idEstadoSolicitud;
         $solicitud->idCliente = $request->idCliente;
         
-
         $cliente = Solicitud::find($request->idCliente)->cliente;
-
         $cliente->idPerfilUsuario = 2;
-
         $cliente->save();
+ 
         $solicitud->save();
 
-        return redirect()->route('usuario.solicitudes');
+        return redirect()->route('solicitudes.tabla');
     }   
 
     /**
@@ -79,18 +77,18 @@ class CreditoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function table($idSolicitud)
+    public function tablaDocumentos($idSolicitud)
     {
 
         $documentos = Solicitud::find($idSolicitud)->documentos;
-
-        $data = compact('documentos', 'idSolicitud');
+        $cliente = Solicitud::find($idSolicitud)->cliente;
+        $data = compact('documentos', 'idSolicitud', 'cliente');
 
         return view('creditos.documentos', $data);
 
     }
 
-    public function documentoStore(Request $request, $idSolicitud)
+    public function documentoNuevo(Request $request, $idSolicitud)
     {
 
         $documento = new Documento;
@@ -121,108 +119,68 @@ class CreditoController extends Controller
 
         Storage::disk('public')->put($archivo, File::get($file));
         $documento->save();
+        
         $mensaje = 'Documento subido correctamente...';
-        return redirect()->back()->with('success', $mensaje);
+
+        return redirect()->back()->with('mensajeVerde', $mensaje);
 
     }
 
     public function documentoAprobado($idDocumento)
     {
         $documento = Documento::find($idDocumento);
-        $documento->aprobado=1;
-        $documento->revisado=1;
+        $documento->aprobado = 1;
+        $documento->revisado = 1;
         $documento->save();
+        
         $mensaje = 'Documento aprobado...';
-        return redirect()->back()->with('success', $mensaje);
+        
+        return redirect()->back()->with('mensajeVerde', $mensaje);
 
     }
 
     public function documentoRechazado($idDocumento)
     {
         $documento = Documento::find($idDocumento);
-        $documento->aprobado=0;
-        $documento->revisado=1;
+        $documento->aprobado = 0;
+        $documento->revisado = 1;
         $documento->save();
+
         $mensaje = 'Documento rechazado...';
-        return redirect()->back()->with('success', $mensaje);
+        
+        return redirect()->back()->with('mensajeVerde', $mensaje);
 
     }
 
-    public function documentoBorrar($idDocumento)
+    public function documentoEliminar($idDocumento)
     {
         $documento = Documento::find($idDocumento);
-        $name=$documento->documento;
+        $name = $documento->documento;
         Storage::disk('public')->delete($name);
         $documento->delete();
-        $mensaje = 'Documento borrado...';
-        return redirect()->back()->with('success', $mensaje);
+
+        $mensaje = 'Documento eliminado...';
+        
+        return redirect()->back()->with('mensajeVerde', $mensaje);
 
     }
 
-    public function solicitudBorrar($idCredito)
+    public function solicitudEliminar($idSolicitud)
     {
         
-        $documentos = Solicitud::find($idCredito)->documentos;
+        $documentos = Solicitud::find($idSolicitud)->documentos;
 
         foreach ($documentos as $fila) {
 
-            documentoBorrar($fila->id);
+            documentoEliminar($fila->id);
 
         }
+        
         $documentos->delete();
         
         $mensaje = 'Solicitud eliminada...';
-        return redirect()->back()->with('success', $mensaje);
-    }
 
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Solicitud  $solicitud
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Solicitud $solicitud)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Solicitud  $solicitud
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Solicitud $solicitud)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Solicitud  $solicitud
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Solicitud $solicitud)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Solicitud  $solicitud
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Solicitud $solicitud)
-    {
-        //
+        return redirect()->back()->with('mensajeVerde', $mensaje);
     }
 
 }

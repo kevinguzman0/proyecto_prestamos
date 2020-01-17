@@ -10,9 +10,8 @@
 
         @auth
 
-	        @if(App\User::find(Auth()->user()->id)->usuario != null && App\Usuario::find(Auth()->user()->id)->user->email_verified_at != null)
-
-
+	        @if((App\User::find(Auth()->user()->id)->usuario != null) && 
+	            (App\Usuario::find(Auth()->user()->id)->user->email_verified_at != null))
 
 		        <div class="col-md-2 margenes-botones">
 					<a href="{{ route('simulador.pdf') }}" class="btn btn-dark mt-2 mb-2" target="_blank">
@@ -22,14 +21,18 @@
 
 		        <div class="col-md-2 margenes-botones">
 					<form class="col-md-12 pl-0 pr-0" method="POST">
+
 						@csrf
+						
 						<input type="hidden" name="monto" value="{{ $valorPrestamo }}">
 						<input type="hidden" name="plazo" value="{{ $plazoCuotas }}">
 						<input type="hidden" name="cuota" value="{{ $valorCuota }}">
 						<input type="hidden" name="interes" value="{{ $interes }}">
 						<input type="hidden" name="idEstadoSolicitud" value="1">
 						<input type="hidden" name="idCliente" value="{{ Auth::user()->id }}">
-						<input type="submit" formaction="{{ route('credito.store') }}" value="Solicitar crédito" name="btnSolicitarCredito" class="form-control btn btn-danger mt-2 mb-2">
+						
+						<input type="submit" formaction="{{ route('solicitud.nueva') }}" value="Solicitar crédito" name="btnSolicitarCredito" class="form-control btn btn-danger mt-2 mb-2">
+					
 					</form>
 		        </div>
 
@@ -37,8 +40,7 @@
 
 		        <div class="form-row col-md-12 alert alert-danger estilo-success" role="alert">
 		            <p class="alert-link">
-		            	Para solicitar este crédito o generarlo en archivo Pdf, primero debe llenar su información de perfil...
-		            	<a href="{{ route('usuario.perfil') }}">Haga click aqui para ir a su perfil.
+		            	Para solicitar este crédito o generarlo en archivo Pdf, primero debe llenar su información de perfil... <a href="{{ route('usuario.perfil') }}">Haga click aquí para crear su perfil.
 		            	</a>
 		            </p>
 		        </div>

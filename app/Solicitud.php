@@ -10,12 +10,12 @@ class Solicitud extends Model
     protected $table = 'solicitudes';
 
     protected $fillable = [
+        'idCliente',
+        'idEstadoSolicitud', 
         'monto', 
         'plazo', 
         'cuota', 
         'interes', 
-        'idEstadoSolicitud', 
-        'idCliente',
     ];
 
     protected $primaryKey = 'id';

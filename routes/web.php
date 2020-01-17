@@ -39,39 +39,54 @@ Route::get('simulador', function () {
 
 // -----------------------------------------------------------------------------------------------------------
 
-Route::get('home', 'HomeController@index')->middleware('verified')->name('home');
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::get('salir', 'Auth\LoginController@logout')->name('salir');
+	// -----------------------------------------------------------------------------------------------------------
 
-Route::post('tabla_pagos', 'TablaPagosController@vistaTablaPagos')->name('simulador.screen');
+	Route::get('home', 'HomeController@index')->name('home');
 
-Route::get('tabla_pagos_pdf', 'TablaPagosController@pdfTablaPagos')->name('simulador.pdf');
+	Route::get('salir', 'Auth\LoginController@logout')->name('salir');
 
-Route::post('cuota_pagos', 'TablaPagosController@vistaCuotaCredito')->name('simulador.cuota');
+	// -----------------------------------------------------------------------------------------------------------
 
-Route::get('mi-perfil', 'UsuarioController@index')->middleware('auth')->middleware('verified')->name('usuario.perfil');
+	Route::post('tabla-pagos', 'SimuladorController@vistaTablaPagos')->name('simulador.screen');
 
-Route::post('usuario-store', 'UsuarioController@store')->middleware('auth')->name('usuario.store');
+	Route::get('tabla-pagos-pdf', 'SimuladorController@pdfTablaPagos')->name('simulador.pdf');
 
-Route::get('mis-solicitudes', 'CreditoController@index')->middleware('auth')->middleware('verified')->name('usuario.solicitudes');
+	Route::post('cuota-pagos', 'SimuladorController@vistaCuotaCredito')->name('simulador.cuota');
 
-Route::post('credito-store', 'CreditoController@store')->middleware('auth')->name('credito.store');
+	// -----------------------------------------------------------------------------------------------------------
 
-Route::get('credito-eliminar/{idCredito}', 'CreditoController@solicitudBorrar')->middleware('auth')->name('credito.eliminar');
+	Route::get('mi-perfil', 'UsuarioController@miPerfil')->name('usuario.mi.perfil');
 
-Route::get('mis-documentos/{idSolicitud}', 'CreditoController@table')->middleware('auth')->name('documentos.tabla');
+	Route::post('usuario-perfil', 'UsuarioController@usuarioPerfil')->name('usuario.perfil');
 
-Route::post('documento-store/{idSolicitud}', 'CreditoController@documentoStore')->middleware('auth')->name('documento.nuevo');
+	// -----------------------------------------------------------------------------------------------------------
 
-Route::get('aprobado-store/{idDocumento}', 'CreditoController@documentoAprobado')->middleware('auth')->name('documento.aprobar');
+	Route::get('mis-solicitudes', 'CreditoController@tablaSolicitudes')->name('solicitudes.tabla');
 
-Route::get('rechazado-store/{idDocumento}', 'CreditoController@documentoRechazado')->middleware('auth')->name('documento.rechazar');
+	Route::get('mis-documentos/{idSolicitud}', 'CreditoController@tablaDocumentos')->name('documentos.tabla');
 
-Route::get('borrar-store/{idDocumento}', 'CreditoController@documentoBorrar')->middleware('auth')->name('documento.borrar');
+	Route::post('solicitud-nueva', 'CreditoController@solicitudNueva')->name('solicitud.nueva');
 
+	Route::post('documento-nuevo/{idSolicitud}', 'CreditoController@documentoNuevo')->name('documento.nuevo');
 
+	Route::get('solicitud-eliminar/{idSolicitud}', 'CreditoController@solicitudEliminar')->name('solicitud.eliminar');
 
-Route::get('clientes', 'ClienteController@index')->middleware('auth')->name('clientes.tabla');
+	Route::get('documento-aprobar/{idDocumento}', 'CreditoController@documentoAprobado')->name('documento.aprobar');
+
+	Route::get('documento-rechazar/{idDocumento}', 'CreditoController@documentoRechazado')->name('documento.rechazar');
+
+	Route::get('documento-eliminar/{idDocumento}', 'CreditoController@documentoEliminar')->name('documento.eliminar');
+
+	// -----------------------------------------------------------------------------------------------------------
+
+	Route::get('clientes', 'ClienteController@index')->name('clientes.tabla');
+
+	// -----------------------------------------------------------------------------------------------------------
+
+});
+
 // -----------------------------------------------------------------------------------------------------------
 
 // Borrar todas las cachés por consola

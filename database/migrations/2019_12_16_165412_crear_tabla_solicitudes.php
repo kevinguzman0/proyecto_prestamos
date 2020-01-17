@@ -16,12 +16,12 @@ class CrearTablaSolicitudes extends Migration
         Schema::create('solicitudes', function (Blueprint $table) {
 
             $table->bigIncrements('id'); 
+            $table->bigInteger('idCliente')->unsigned();
+            $table->bigInteger('idEstadoSolicitud')->unsigned();
             $table->integer('monto');
             $table->integer('plazo');
             $table->decimal('cuota', 13, 4);
             $table->decimal('interes', 5, 2);
-            $table->bigInteger('idEstadoSolicitud')->unsigned();
-            $table->bigInteger('idCliente')->unsigned();
 
             $table->timestamps();
             

@@ -18,16 +18,16 @@
 
 	    <div class="row col-md-12 mt-2">
 
-	        <form class="col-md-10" 
-	              action="{{ route('usuario.store') }}" 
+	        <form class="col-md-12" 
+	              action="{{ route('usuario.perfil') }}" 
 	              method="POST"
 	              enctype="multipart/form-data">
 
 	            @csrf
 
-			    @if ($message = Session::get('success'))
+			    @if ($mensaje = Session::get('mensajeVerde'))
 			        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
-			            <p class="alert-link">{{ $message }}</p>
+			            <p class="alert-link">{{ $mensaje }}</p>
 			        </div>
 			    @endif
 
@@ -165,7 +165,7 @@
 
 							<!-- 
 
-								Comando necesario para que la ubiación storage en public, permita ver imágenes subidas a dicha ubicación. Con el siguiente comando se crea un link simbólico.
+								Comando necesario para que la ubicación storage en public, permita ver imágenes subidas a dicha ubicación. Con el siguiente comando se crea un link simbólico.
 
 								php artisan storage:link 
 
@@ -184,7 +184,7 @@
 	            <input type="hidden" readonly maxlength="20" name="idPerfilUsuario" value="{{ $usuario->idPerfilUsuario }}" class="form-control">
 
 	            @if ($errors->any())
-	                <div class="alert alert-danger mt-3 mb-1">
+	                <div class="alert alert-danger mt-3 mb-1 pl-3 pr-3">
 	                    <ol class="estilo-lista-errores">
 	                        @foreach ($errors->all() as $error)
 	                            <li>{{ $error }}</li>

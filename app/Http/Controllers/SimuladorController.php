@@ -11,7 +11,7 @@ use Dompdf\Dompdf;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
 
-class TablaPagosController extends Controller
+class SimuladorController extends Controller
 {
 
     /**
@@ -64,7 +64,6 @@ class TablaPagosController extends Controller
 
         while($i <= $plazoCuotas)
         {
-            
             $intereses = round(($saldoInicial * $interes), $decimales);
             $abonoK = round(($valorCuota - $intereses), $decimales);
             $saldoK = round(($saldoInicial - $abonoK), $decimales);
@@ -77,9 +76,7 @@ class TablaPagosController extends Controller
             $listaPagos[$i]["saldoK"] = $fmt->format($saldoK);
 
             $i++;
-
             $saldoInicial = $saldoK;
-        
         }
 
         // Retornar el valor original del interés. Tal como está almacenado en configuración.
@@ -116,7 +113,6 @@ class TablaPagosController extends Controller
 
         while($i <= $plazoCuotas)
         {
-            
             $intereses = round(($saldoInicial * $interes), $decimales);
             $abonoK = round(($valorCuota - $intereses), $decimales);
             $saldoK = round(($saldoInicial - $abonoK), $decimales);
@@ -129,29 +125,12 @@ class TablaPagosController extends Controller
             $listaPagos[$i]["saldoK"] = $fmt->format($saldoK);
 
             $i++;
-
             $saldoInicial = $saldoK;
-        
         }
 
         $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
         
         return $data;
-
-    }
-
-    public function pdfTablaPagos(Request $request) 
-    {
-        
-        $valorPrestamo = $request->session()->get('valorPrestamo');
-        $plazoCuotas = $request->session()->get('plazoCuotas');
-        
-        $controller = App::make('\App\Http\Controllers\TablaPagosController');
-        $data = $controller->callAction('datosTablaPagos', compact('valorPrestamo', 'plazoCuotas'));
-
-        $pdf = \PDF::loadView('simulador.tablaPagosPdf', $data);
-        $pdf->setpaper('letter', 'portrait');
-        return $pdf->stream();
 
     }
 
@@ -198,6 +177,22 @@ class TablaPagosController extends Controller
         $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota");
 
         return view('simulador.cuotaPagosScreen', $data);
+
+    }
+
+    public function pdfTablaPagos(Request $request) 
+    {
+        
+        $valorPrestamo = $request->session()->get('valorPrestamo');
+        $plazoCuotas = $request->session()->get('plazoCuotas');
+        
+        $controller = App::make('\App\Http\Controllers\SimuladorController');
+        $data = $controller->callAction('datosTablaPagos', compact('valorPrestamo', 'plazoCuotas'));
+
+        $pdf = \PDF::loadView('simulador.tablaPagosPdf', $data);
+        $pdf->setpaper('letter', 'portrait');
+
+        return $pdf->stream();
 
     }
 

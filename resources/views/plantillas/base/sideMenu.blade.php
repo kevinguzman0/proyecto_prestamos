@@ -33,10 +33,6 @@
 
                 @guest
 
-                    <li>
-                        <a href="{{ route('ingresar') }}">{{ __('Login') }}</a>
-                    </li>
-
                     @if (Route::has('register'))
 
                         <li>
@@ -44,6 +40,10 @@
                         </li>
 
                     @endif
+
+                    <li>
+                        <a href="{{ route('ingresar') }}">{{ __('Login') }}</a>
+                    </li>
 
 	            @else
 
@@ -55,13 +55,13 @@
 
 	                        
 		                	<li class="margin-submenu">
-		                        <a href="{{ route('usuario.perfil') }}">
+		                        <a href="{{ route('usuario.mi.perfil') }}">
 		                            Mi perfil
 		                        </a>
 		                    </li>
 
 		                    <li class="margin-submenu">
-		                		 <a href="{{ route('usuario.solicitudes') }}">
+		                		 <a href="{{ route('solicitudes.tabla') }}">
 		                            Mis solicitudes
 		                        </a>
 		                	</li>

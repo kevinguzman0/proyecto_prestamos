@@ -10,18 +10,38 @@
 
 @section('content')
 
-	<div class="row col-md-8">
+	<div class="row col-md-12">
         <h5>LISTADO DE DOCUMENTOS PRESENTADOS</h5>
     </div>
 
-	<div class="row col-md-2">
-        <label class="label-margin">Solicitud Nro.</label>
-        <input type="text" name="idSolicitud" class="form-control font-weight-bolder" value="{{ $idSolicitud }}" disabled>
-    </div>
+	<div class="row col-md-12 padding-form">
 
-    <div class="row col-md-8 mt-3">
+		<div class="col-md-2">
+	        <label class="label-margin">Id Solicitud</label>
+	        <input type="text" name="idSolicitud" class="form-control font-weight-bolder" value="{{ $idSolicitud }}" disabled>
+	    </div>
 
-	    @if ($mensaje = Session::get('success'))
+		<div class="col-md-2">
+	        <label class="label-margin">Id Cliente</label>
+	        <input type="text" name="idCliente" class="form-control font-weight-bolder" value="{{ $cliente->id }}" disabled>
+	    </div>
+
+
+		<div class="col-md-5">
+	        <label class="label-margin">Nombre completo</label>
+	        <input type="text" name="nombres" class="form-control font-weight-bolder" value="{{ $cliente->nombres }} {{ $cliente->apellidos }}" disabled>
+	    </div>
+
+	    <div class="col-md-3">
+	        <label class="label-margin">Cédula</label>
+	        <input type="text" name="cedula" class="form-control font-weight-bolder" value="{{ $cliente->cedula }}" disabled>
+	    </div>
+
+	</div>
+
+    <div class="row col-md-12 mt-3">
+
+	    @if ($mensaje = Session::get('mensajeVerde'))
 	        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
 	            <p class="alert-link">{{ $mensaje }} </p>
 	        </div>
@@ -31,14 +51,14 @@
 
 			<tbody>
 
-				<thead>
+				<thead class="header-tabla">
 					<tr>
-						<th>Id</th>
-						<th>Archivo</th>
-						<th>Fecha / Hora</th>
-						<th>Revisión</th>
-						<th>Aprobación</th>
-						<th>Acciones</th>
+						<th class="header-tabla-texto">Id</th>
+						<th class="header-tabla-texto">Archivo</th>
+						<th class="header-tabla-texto">Fecha / Hora</th>
+						<th class="header-tabla-texto">Revisión</th>
+						<th class="header-tabla-texto">Aprobación</th>
+						<th class="header-tabla-texto">Acciones</th>
 					</tr>
 				</thead>
 
@@ -97,10 +117,10 @@
 
 						</td>
 						
-						<td>
+						<td style="text-align:center;">
 
 							<button type="button" class="btn btn-link link-tabla" data-toggle="modal" data-target="#documento_{{ $fila->id }}">
-							  Ver
+								<img src="{{ asset('icons/search.svg') }}" alt="Ver" width="24" height="24" title="Ver">
 							</button>
 
 							<!-- Modal -->
@@ -153,7 +173,7 @@
 
 											@if($fila->aprobado!=1)
 
-												<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ route('documento.borrar', [$fila->id]) }}'">Borrar</button>
+												<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ route('documento.eliminar', [$fila->id]) }}'">Eliminar</button>
 
 											@endif
 											
@@ -177,19 +197,19 @@
 
 	</div>
 
-    <div class="row col-md-8">
+    <div class="form-row col-md-12 padding-form">
 
-        <form class="col-md-12 margin-form" 
+        <form class="col-md-12" 
               action="{{ route('documento.nuevo', [$idSolicitud]) }}"
               method="POST"
               enctype="multipart/form-data">
 
             @csrf
 
-            <div class="form-row">
+            <div class="form-row col-md-12 padding-form">
             	<div class="col-md-12">
 					<div class="input-group">
-						<label class="control-label label-margin">Adjuntar archivo</label>
+						<label class="control-label label-margin">Adjuntar documento digital</label>
 						<input type="file" name="documento" class="filestyle" 
 							   data-text="Seleccionar" 
 							   data-dragdrop="false" 
@@ -199,38 +219,41 @@
 				</div>
             </div>
 
-             <div class="form-row">
+             <div class="form-row col-md-12 padding-form">
             	<div class="col-md-12">
 	                <label class="label-margin">Descripción del documento</label>
 	                <textarea maxlength="200" name="descripcionDocumento" class="form-control" value="{{ old('descripcionImagen') }}" placeholder="escriba una breve descripción del contenido del documento que está subiendo para revisión..."></textarea>
             	</div>
             </div>
 
-            @if ($errors->any())
-                <div class="alert alert-danger mt-3 mb-1">
-                    <ol class="estilo-lista-errores">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ol>
-                </div>
-            @endif
+            <div class="form-row col-md-12 mb-5 padding-form">
 
-            <div class="alert alert-warning mt-3 mb-1">
-                <span>
-                	No es posible modificar documentos presentados con anterioridad. Si necesita actualizar alguno, debe primero borrarlo y luego subirlo nuevamente. Desde ese momento el documento quedará para revisar nuevamente.
-                </span>
-            </div>
+	            <div class="alert alert-warning col-md-12 mt-3 mb-1 pl-3 pr-3">
+	                <span>
+	                	No es posible modificar documentos presentados con anterioridad. Si necesita actualizar alguno, debe primero borrarlo y luego subirlo nuevamente. Desde ese momento el documento quedará para revisar nuevamente.
+	                </span>
+	            </div>
 
-            <div class="form-row mb-5">
-            	<div class="col-md-12">
+		         @if ($errors->any())
+		            <div class="alert alert-danger col-md-12 mt-3 mb-1 pl-3 pr-3">
+		                <ol class="estilo-lista-errores">
+		                    @foreach ($errors->all() as $error)
+		                        <li>{{ $error }}</li>
+		                    @endforeach
+		                </ol>
+		            </div>
+		        @endif
+
+            	<div class="col-md-6">
 		            <label></label>
 		            <input type="submit" value="Grabar" name="btnGrabarUser" class="form-control btn btn-info">
             	</div>
-            	<div class="col-md-12">
+            	
+            	<div class="col-md-6">
 		            <label></label>
-		            <button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ route('usuario.solicitudes') }}'">Regresar</button>
+		            <button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ route('solicitudes.tabla') }}'">Regresar</button>
             	</div>
+
             </div>
             
         </form>

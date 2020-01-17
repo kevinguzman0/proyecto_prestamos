@@ -26,10 +26,6 @@
 
                     @guest
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ingresar') }}">{{ __('Login') }}</a>
-                        </li>
-
                         @if (Route::has('register'))
 
                             <li class="nav-item">
@@ -37,6 +33,10 @@
                             </li>
 
                         @endif
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('ingresar') }}">{{ __('Login') }}</a>
+                        </li>
 
                     @else
 
@@ -48,11 +48,11 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item" href="{{ route('usuario.perfil') }}">
+                                <a class="dropdown-item" href="{{ route('usuario.mi.perfil') }}">
                                     Mi perfil
                                 </a>
 
-                                <a class="dropdown-item" href="{{ route('usuario.solicitudes') }}">
+                                <a class="dropdown-item" href="{{ route('solicitudes.tabla') }}">
                                     Mis solicitudes
                                 </a>
                                 
