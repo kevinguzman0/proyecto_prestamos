@@ -24,31 +24,66 @@ class CreditoController extends Controller
     public function tablaSolicitudes($idCliente)
     {
 
+        //$mensaje = 'idCliente: [' . $idCliente . ']';
+        //return redirect()->route('test.visor')->with('mensajeVerde', $mensaje);
+
+        /*
+        if (empty($idCliente) || ($idCliente == null) || $idCliente == '')
+        {
+            $mensajeError = 'Atención, es imposible mostrar información. La URL es incorrecta. Contáctese con el administrador del sistema para revisar y corregir esta situación.';
+            abort(404, $mensajeError);        }
+        }
+        */
+
         try
         {
-           $cliente = User::findOrFail($idCliente)->usuario;
+            $cliente = Usuario::findOrFail($idCliente);
         }
         catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
             $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] no está registrada. Es imposible mostrar la información de solicitudes existente. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
-            abort(404, $mensajeError);
-        }
+            abort(404, $mensajeError);        }
 
         $solicitudes = Usuario::findOrFail($idCliente)->solicitudes;
-        return view('creditos.solicitudes', compact('solicitudes', 'cliente'));
+
+        if (count($solicitudes) == 0)
+        {
+            $mensajeVerde = 'El Cliente [ ' . $idCliente . ' ] no tiene Solicitudes registradas.';
+            $data = compact('cliente', 'solicitudes', 'mensajeVerde');
+        }
+        else
+        {
+            $data = compact('cliente', 'solicitudes');
+        }
+
+        return view('creditos.solicitudes', $data);
 
     }
 
     public function tablaDocumentos($idCliente, $idSolicitud)
     {
 
-        $cliente = Solicitud::findOrFail($idSolicitud)->cliente;
-
-        if ($cliente == null)
+        try
+        {
+            $validarCliente = Usuario::findOrFail($idCliente);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
             $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] asociado a la Solicitud [ ' . $idSolicitud . ' ] no está disponible. Es imposible mostrar la información de documentos registrados. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
             abort(404, $mensajeError);
         }
+
+        try
+        {
+            $validarSolicitud = Solicitud::findOrFail($idSolicitud);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensajeError = 'Atención, la información de la Solicitud [ ' . $idSolicitud . ' ] asociada al Cliente [ ' . $idCliente . ' ] no está disponible. Es imposible mostrar la información de documentos registrados. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
+        $cliente = Solicitud::findOrFail($idSolicitud)->cliente;
 
         $documentos = Solicitud::findOrFail($idSolicitud)->documentos;
 
@@ -59,7 +94,6 @@ class CreditoController extends Controller
         }
         else
         {
-            $mensajeVerde = '';
             $data = compact('cliente', 'idSolicitud', 'documentos');
         }
 
@@ -111,6 +145,16 @@ class CreditoController extends Controller
     public function documentoNuevo(Request $request, $idSolicitud)
     {
 
+        try
+        {
+            $validarSolicitud = Solicitud::findOrFail($idSolicitud);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensajeError = 'Atención, la información de la Solicitud [ ' . $idSolicitud . ' ] no está disponible. Es imposible continuar con el registro de nuevos documentos. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
         $validatedData = Validator::make($request->all(),
                 [
                     'documento'=> 'required|mimes:jpeg,bmp,png,gif,jfif,pdf,doc,docx,xls,xlsx,zip,rar,7z|max:10240',
@@ -139,7 +183,7 @@ class CreditoController extends Controller
         Storage::disk('public')->put($archivo, File::get($file));
         $documento->save();
         
-        $mensajeVerde = 'Documento subido correctamente...';
+        $mensajeVerde = 'Documento almacenado correctamente...';
 
         return redirect()->back()->with('mensajeVerde', $mensajeVerde);
 
@@ -154,7 +198,17 @@ class CreditoController extends Controller
         }
         catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
-            $mensajeError = 'Atención, la información del documento [ ' . $idDocumento . ' ] asociado a la Solicitud [ ' . $idSolicitud. ' ] no está disponible. Es imposible gestionar la información del documento registrado. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            $mensajeError = 'Atención, la información del documento [ ' . $idDocumento . ' ] asociado a la Solicitud [ ' . $idSolicitud. ' ] no está disponible. Es imposible continuar con la actualización del documento. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
+        try
+        {
+            $validarSolicitud = Solicitud::findOrFail($idSolicitud);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensajeError = 'Atención, la información de la Solicitud [ ' . $idSolicitud . ' ] asociada al Documento [ ' . $idDocumento . ' ] no está disponible. Es imposible continuar con la actualización del documento. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
             abort(404, $mensajeError);
         }
 
@@ -171,13 +225,23 @@ class CreditoController extends Controller
     public function documentoRechazado($idSolicitud, $idDocumento)
     {
 
-        try
+       try
         {
             $documento = Documento::findOrFail($idDocumento);
         }
         catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
-            $mensajeError = 'Atención, la información del documento [ ' . $idDocumento . ' ] asociado a la Solicitud [ ' . $idSolicitud. ' ] no está disponible. Es imposible gestionar la información del documento registrado. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            $mensajeError = 'Atención, la información del documento [ ' . $idDocumento . ' ] asociado a la Solicitud [ ' . $idSolicitud. ' ] no está disponible. Es imposible continuar con la actualización del documento. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
+        try
+        {
+            $validarSolicitud = Solicitud::findOrFail($idSolicitud);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensajeError = 'Atención, la información de la Solicitud [ ' . $idSolicitud . ' ] asociada al Documento [ ' . $idDocumento . ' ] no está disponible. Es imposible continuar con la actualización del documento. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
             abort(404, $mensajeError);
         }
 
@@ -194,13 +258,23 @@ class CreditoController extends Controller
     public function documentoEliminar($idSolicitud, $idDocumento)
     {
 
-        try
+       try
         {
             $documento = Documento::findOrFail($idDocumento);
         }
         catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
-            $mensajeError = 'Atención, la información del documento [ ' . $idDocumento . ' ] asociado a la Solicitud [ ' . $idSolicitud. ' ] no está disponible. Es imposible gestionar la información del documento registrado. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            $mensajeError = 'Atención, la información del documento [ ' . $idDocumento . ' ] asociado a la Solicitud [ ' . $idSolicitud. ' ] no está disponible. Es imposible continuar con la actualización del documento. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
+        try
+        {
+            $validarSolicitud = Solicitud::findOrFail($idSolicitud);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensajeError = 'Atención, la información de la Solicitud [ ' . $idSolicitud . ' ] asociada al Documento [ ' . $idDocumento . ' ] no está disponible. Es imposible continuar con la eliminación del documento. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
             abort(404, $mensajeError);
         }
 
@@ -217,6 +291,16 @@ class CreditoController extends Controller
     public function solicitudEliminar($idCliente, $idSolicitud)
     {
         
+       try
+        {
+            $documento = Documento::findOrFail($idDocumento);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensajeError = 'Atención, la información del documento [ ' . $idDocumento . ' ] asociado a la Solicitud [ ' . $idSolicitud. ' ] no está disponible. Es imposible continuar con la actualización del documento. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
         try
         {
             $solicitud = Solicitud::findOrFail($idSolicitud);
