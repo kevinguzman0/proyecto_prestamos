@@ -16,7 +16,7 @@
 
     <div class="row col-md-12 mb-3 mt-3">
 
-    	{{ $clientes->onEachSide(2)->links() }}
+    	{{ $perfiles->onEachSide(2)->links() }}
 
 		<table class="table table-striped table-bordered table-fit">
 
@@ -35,7 +35,7 @@
 
 				</thead>
 
-				@foreach ($clientes as $fila)
+				@foreach ($perfiles as $fila)
 
 				    <tr>
 

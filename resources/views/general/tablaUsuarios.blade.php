@@ -70,7 +70,7 @@
 									</div>
 
 
-							<a href="{{ route('usuario.mi.perfil') }}">
+							<a href="{{ route('mi.perfil') }}">
 								<img src="{{ asset('icons/search.svg') }}" alt="Presentar / Ver documentos" width="24" height="24" title="Ver perfil">
 							</a>
 

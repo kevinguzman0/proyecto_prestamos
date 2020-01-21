@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Usuario;
+use App\Perfil;
 
 use App\User;
 
@@ -15,9 +15,9 @@ class GeneralController extends Controller
 
     public function tablaClientes(){
 
-        $clientes = Usuario::paginate(2);
+        $perfiles = Perfil::paginate(2);
 
-        return view('general.tablaClientes', compact('clientes'));
+        return view('general.tablaClientes', compact('perfiles'));
 
     }
 
@@ -32,7 +32,7 @@ class GeneralController extends Controller
     public function usuarioEliminar($idCliente){
 
     	$usuario = User::find($idCliente);
-    	$perfil = Usuario::find($idCliente);
+    	$perfil = Perfil::find($idCliente);
 
     	if ($perfil != null) {
 
@@ -40,7 +40,7 @@ class GeneralController extends Controller
 
     	}
 
-     	$usuario->delete();
+     	$perfil->delete();
    
         
         $mensaje = 'El usuario [ ' . $idCliente . ' ] fue eliminado...';
