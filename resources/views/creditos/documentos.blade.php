@@ -26,7 +26,6 @@
 	        <input type="text" name="idCliente" class="form-control font-weight-bolder" value="{{ $cliente->id }}" disabled>
 	    </div>
 
-
 		<div class="col-md-5">
 	        <label class="label-margin">Nombre completo</label>
 	        <input type="text" name="nombres" class="form-control font-weight-bolder" value="{{ $cliente->nombres }} {{ $cliente->apellidos }}" disabled>
@@ -41,11 +40,12 @@
 
     <div class="row col-md-12 mt-3">
 
-	    @if ($mensaje = Session::get('mensajeVerde'))
-	        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
-	            <p class="alert-link">{{ $mensaje }} </p>
+		@isset($mensajeVerde)
+			<div class="form-row col-md-12 alert alert-success estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+	            {{ $mensajeVerde }}
+	            <button type="button" class="close" data-dismiss="alert">&times;</button>
 	        </div>
-	    @endif
+		@endisset
 
 		<table class="table table-striped table-bordered">
 
@@ -53,7 +53,7 @@
 
 				<thead class="header-tabla">
 					<tr>
-						<th class="header-tabla-texto">Id</th>
+						<th class="header-tabla-texto">Id Documento</th>
 						<th class="header-tabla-texto">Archivo</th>
 						<th class="header-tabla-texto">Fecha / Hora</th>
 						<th class="header-tabla-texto">Revisión</th>
@@ -161,19 +161,19 @@
 
 											@if($fila->aprobado!=1)
 
-												<button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href = '{{ route('documento.aprobar', [$fila->id]) }}'">Aprobar</button>
+												<button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoAprobado', [$idSolicitud, $fila->id]) }}'">Aprobar</button>
 
 											@endif
 
 											@if($fila->aprobado!=0)
 
-												<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="location.href = '{{ route('documento.rechazar', [$fila->id]) }}'">Rechazar</button>
+												<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoRechazado', [$idSolicitud, $fila->id]) }}'">Rechazar</button>
 
 											@endif
 
 											@if($fila->aprobado!=1)
 
-												<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ route('documento.eliminar', [$fila->id]) }}'">Eliminar</button>
+												<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoEliminar', [$idSolicitud, $fila->id]) }}'">Eliminar</button>
 
 											@endif
 											
@@ -228,19 +228,19 @@
 
             <div class="form-row col-md-12 mb-5 padding-form">
 
-	            <div class="alert alert-warning col-md-12 mt-3 mb-1 pl-3 pr-3">
-	                <span>
-	                	No es posible modificar documentos presentados con anterioridad. Si necesita actualizar alguno, debe primero borrarlo y luego subirlo nuevamente. Desde ese momento el documento quedará para revisar nuevamente.
-	                </span>
+	            <div class="alert alert-warning col-md-12 mt-3 mb-1 pl-3 pr-3 alert-dismissible fade show">
+                	No es posible modificar documentos presentados con anterioridad. Si necesita actualizar alguno, debe primero borrarlo y luego subirlo nuevamente. Desde ese momento el documento quedará para revisar nuevamente.
+                	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	            </div>
 
 		         @if ($errors->any())
-		            <div class="alert alert-danger col-md-12 mt-3 mb-1 pl-3 pr-3">
+		            <div class="alert alert-danger col-md-12 mt-3 mb-1 pl-3 pr-3 alert-dismissible fade show">
 		                <ol class="estilo-lista-errores">
 		                    @foreach ($errors->all() as $error)
 		                        <li>{{ $error }}</li>
 		                    @endforeach
 		                </ol>
+		                <button type="button" class="close" data-dismiss="alert">&times;</button>
 		            </div>
 		        @endif
 
@@ -251,7 +251,7 @@
             	
             	<div class="col-md-6">
 		            <label></label>
-		            <button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ route('solicitudes.tabla') }}'">Regresar</button>
+		            <button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ action('CreditoController@tablaSolicitudes', [$cliente->id]) }}'">Regresar</button>
             	</div>
 
             </div>

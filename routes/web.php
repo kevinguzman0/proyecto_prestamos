@@ -21,6 +21,10 @@ Auth::routes(['verify' => true]);
 
 // -----------------------------------------------------------------------------------------------------------
 
+Route::get('/admin', 'HomeController@admin')->name('admin')->middleware('admin');
+
+// -----------------------------------------------------------------------------------------------------------
+
 Route::get('/', function () {
     return view('principales.inicio');
 })->name('inicio');
@@ -36,6 +40,10 @@ Route::get('ingresar', function () {
 Route::get('simulador', function () {
     return view('simulador.index');
 })->name('simulador');
+
+Route::get('test-visor', function () {
+    return view('test.visor');
+})->name('test.visor');
 
 // -----------------------------------------------------------------------------------------------------------
 
@@ -63,21 +71,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::get('mis-solicitudes', 'CreditoController@tablaSolicitudes')->name('solicitudes.tabla');
-
-	Route::get('mis-documentos/{idSolicitud}', 'CreditoController@tablaDocumentos')->name('documentos.tabla');
+	Route::get('mis-solicitudes/{idCliente}', 'CreditoController@tablaSolicitudes')->name('solicitudes.tabla');
 
 	Route::post('solicitud-nueva', 'CreditoController@solicitudNueva')->name('solicitud.nueva');
 
+	Route::get('solicitud-eliminar/{idCliente}/{idSolicitud}', 'CreditoController@solicitudEliminar')->name('solicitud.eliminar');
+
+	// -----------------------------------------------------------------------------------------------------------
+
+	Route::get('mis-documentos/{idCliente}/{idSolicitud}', 'CreditoController@tablaDocumentos')->name('documentos.tabla');
+
 	Route::post('documento-nuevo/{idSolicitud}', 'CreditoController@documentoNuevo')->name('documento.nuevo');
 
-	Route::get('solicitud-eliminar/{idSolicitud}', 'CreditoController@solicitudEliminar')->name('solicitud.eliminar');
+	Route::get('documento-aprobar/{idSolicitud}/{idDocumento}', 'CreditoController@documentoAprobado')->name('documento.aprobar');
 
-	Route::get('documento-aprobar/{idDocumento}', 'CreditoController@documentoAprobado')->name('documento.aprobar');
+	Route::get('documento-rechazar/{idSolicitud}/{idDocumento}', 'CreditoController@documentoRechazado')->name('documento.rechazar');
 
-	Route::get('documento-rechazar/{idDocumento}', 'CreditoController@documentoRechazado')->name('documento.rechazar');
-
-	Route::get('documento-eliminar/{idDocumento}', 'CreditoController@documentoEliminar')->name('documento.eliminar');
+	Route::get('documento-eliminar/{idSolicitud}/{idDocumento}', 'CreditoController@documentoEliminar')->name('documento.eliminar');
 
 	// -----------------------------------------------------------------------------------------------------------
 

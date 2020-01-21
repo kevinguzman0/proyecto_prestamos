@@ -5,16 +5,14 @@ namespace App\Http\Controllers;
 use App\Solicitud;
 use App\Usuario;
 use App\User;
-use App\Documento;  
+use App\Documento; 
+
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\DB;
-
 
 class CreditoController extends Controller
 {
@@ -23,23 +21,49 @@ class CreditoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tablaSolicitudes()
+    public function tablaSolicitudes($idCliente)
     {
 
-        $idCliente = auth()->user()->id;
+        $cliente = User::find($idCliente)->usuario;
 
-        $usuario = User::find($idCliente)->usuario;
-
-        if ($usuario != null)
+        if ($cliente != null)
         {
-            $solicitudes = Usuario::find($idCliente)->solicitudes;
-            $data = compact('solicitudes', 'usuario');
-            return view('creditos.tabla', $data);
+            $solicitudes = Usuario::findOrFail($idCliente)->solicitudes;
+            return view('creditos.solicitudes', compact('solicitudes', 'cliente'));
         }
         else
         {
-            return view('creditos.tabla', compact('usuario'));
+            $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] no está registrada. Es imposible mostrar la información de solicitudes existente. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
         }
+
+    }
+
+    public function tablaDocumentos($idCliente, $idSolicitud)
+    {
+
+        $cliente = Solicitud::findOrFail($idSolicitud)->cliente;
+
+        if ($cliente == null)
+        {
+            $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] asociado a la Solicitud [ ' . $idSolicitud . ' ] no está disponible. Es imposible mostrar la información de documentos registrados. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
+        $documentos = Solicitud::findOrFail($idSolicitud)->documentos;
+
+        if (count($documentos) == 0)
+        {
+            $mensajeVerde = 'La Solicitud [ ' . $idSolicitud . ' ] del Cliente [ ' . $idCliente . ' ] no tiene documentos registrados.';
+            $data = compact('cliente', 'idSolicitud', 'documentos', 'mensajeVerde');
+        }
+        else
+        {
+            $mensajeVerde = '';
+            $data = compact('cliente', 'idSolicitud', 'documentos');
+        }
+
+        return view('creditos.documentos', $data);
 
     }
 
@@ -76,17 +100,6 @@ class CreditoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function tablaDocumentos($idSolicitud)
-    {
-
-        $documentos = Solicitud::find($idSolicitud)->documentos;
-        $cliente = Solicitud::find($idSolicitud)->cliente;
-        $data = compact('documentos', 'idSolicitud', 'cliente');
-
-        return view('creditos.documentos', $data);
-
-    }
-
     public function documentoNuevo(Request $request, $idSolicitud)
     {
 
@@ -119,67 +132,110 @@ class CreditoController extends Controller
         Storage::disk('public')->put($archivo, File::get($file));
         $documento->save();
         
-        $mensaje = 'Documento subido correctamente...';
+        $mensajeVerde = 'Documento subido correctamente...';
 
-        return redirect()->back()->with('mensajeVerde', $mensaje);
+        return redirect()->back()->with('mensajeVerde', $mensajeVerde);
 
     }
 
-    public function documentoAprobado($idDocumento)
+    public function documentoAprobado($idSolicitud, $idDocumento)
     {
-        $documento = Documento::find($idDocumento);
+
+        try
+        {
+            $documento = Documento::findOrFail($idDocumento);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensajeError = 'Atención, la información del documento [ ' . $idDocumento . ' ] asociado a la Solicitud [ ' . $idSolicitud. ' ] no está disponible. Es imposible gestionar la información del documento registrado. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
         $documento->aprobado = 1;
         $documento->revisado = 1;
         $documento->save();
-        
-        $mensaje = 'Documento aprobado...';
-        
-        return redirect()->back()->with('mensajeVerde', $mensaje);
+
+        $mensajeVerde = 'Documento aprobado...';
+
+        return redirect()->back()->with('mensajeVerde', $mensajeVerde);
 
     }
 
-    public function documentoRechazado($idDocumento)
+    public function documentoRechazado($idSolicitud, $idDocumento)
     {
-        $documento = Documento::find($idDocumento);
+
+        try
+        {
+            $documento = Documento::findOrFail($idDocumento);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensajeError = 'Atención, la información del documento [ ' . $idDocumento . ' ] asociado a la Solicitud [ ' . $idSolicitud. ' ] no está disponible. Es imposible gestionar la información del documento registrado. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
         $documento->aprobado = 0;
         $documento->revisado = 1;
         $documento->save();
 
-        $mensaje = 'Documento rechazado...';
-        
-        return redirect()->back()->with('mensajeVerde', $mensaje);
+        $mensajeVerde = 'Documento rechazado...';
+
+        return redirect()->back()->with('mensajeVerde', $mensajeVerde);
 
     }
 
-    public function documentoEliminar($idDocumento)
+    public function documentoEliminar($idSolicitud, $idDocumento)
     {
-        $documento = Documento::find($idDocumento);
-        $name = $documento->documento;
-        Storage::disk('public')->delete($name);
+
+        try
+        {
+            $documento = Documento::findOrFail($idDocumento);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensajeError = 'Atención, la información del documento [ ' . $idDocumento . ' ] asociado a la Solicitud [ ' . $idSolicitud. ' ] no está disponible. Es imposible gestionar la información del documento registrado. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
+        $archivo = $documento->documento;
+        Storage::disk('public')->delete($archivo);
         $documento->delete();
 
-        $mensaje = 'Documento eliminado...';
+        $mensajeVerde = 'Documento eliminado...';
         
-        return redirect()->back()->with('mensajeVerde', $mensaje);
+        return redirect()->back()->with('mensajeVerde', $mensajeVerde);
 
     }
 
-    public function solicitudEliminar($idSolicitud)
+    public function solicitudEliminar($idCliente, $idSolicitud)
     {
         
-        $documentos = Solicitud::find($idSolicitud)->documentos;
+        try
+        {
+            $solicitud = Solicitud::findOrFail($idSolicitud);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensaje = 'Atención, la Solicitud [ ' . $idSolicitud . ' ] no está disponible para su eliminación. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+        }
 
-        foreach ($documentos as $fila) {
-
-            documentoEliminar($fila->id);
-
+        $documentos = Solicitud::findOrFail($idSolicitud)->documentos;
+        if (count($documentos) > 0)
+        {
+            foreach ($documentos as $fila)
+            {
+                $this->documentoEliminar($idSolicitud, $fila->id);
+            }
+   
         }
         
-        $documentos->delete();
-        
-        $mensaje = 'Solicitud eliminada...';
+        $solicitud->delete();
+
+        $mensaje = 'La Solicitud [ ' . $idSolicitud . ' ] fue eliminada...';
 
         return redirect()->back()->with('mensajeVerde', $mensaje);
+
     }
 
 }

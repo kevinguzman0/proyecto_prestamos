@@ -38,11 +38,9 @@
 
 		    @else
 
-		        <div class="form-row col-md-12 alert alert-danger estilo-success" role="alert">
-		            <p class="alert-link">
-		            	Para solicitar este crédito o generarlo en archivo Pdf, primero debe llenar su información de perfil... <a href="{{ route('usuario.perfil') }}">Haga click aquí para crear su perfil.
-		            	</a>
-		            </p>
+		        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show" role="alert">
+					Para solicitar este crédito o generarlo en archivo Pdf, primero debe llenar su información de perfil... <a href="{{ route('usuario.perfil') }}">Haga click aquí para crear su perfil.</a>
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		        </div>
 
 		    @endif

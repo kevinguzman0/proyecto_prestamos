@@ -37,15 +37,16 @@
 
 	            </div>
 
-	            @if ($errors->any())
-	                <div class="alert alert-danger mt-3 mb-1 margin-errors">
-	                    <ol class="estilo-lista-errores">
-	                        @foreach ($errors->all() as $error)
-	                            <li>{{ $error }}</li>
-	                        @endforeach
-	                    </ol>
-	                </div>
-	            @endif
+		         @if ($errors->any())
+		            <div class="alert alert-danger col-md-12 mt-3 mb-1 pl-3 pr-3 alert-dismissible fade show">
+		                <ol class="estilo-lista-errores">
+		                    @foreach ($errors->all() as $error)
+		                        <li>{{ $error }}</li>
+		                    @endforeach
+		                </ol>
+		                <button type="button" class="close" data-dismiss="alert">&times;</button>
+		            </div>
+		        @endif
 
 	            <div class="form-row col-md-12 mb-4">
 

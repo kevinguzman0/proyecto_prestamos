@@ -49,7 +49,7 @@
 
                     <li class="dropdown">
 
- 		                <a href="#sidebarDropdown" role="button" data-toggle="collapse" aria-expanded="false" aria-haspopup="true" class="dropdown-toggle font-weight-bold" v-pre>{{ Auth::user()->name }} <span class="caret"></span></a>
+ 		                <a href="#sidebarDropdown" role="button" data-toggle="collapse" aria-expanded="false" aria-haspopup="true" class="dropdown-toggle user-menu" v-pre>{{ Auth::user()->name }} <span class="caret"></span></a>
 
 		                <ul class="collapse list-unstyled" id="sidebarDropdown">
 
@@ -61,7 +61,7 @@
 		                    </li>
 
 		                    <li class="margin-submenu">
-		                		 <a href="{{ route('solicitudes.tabla') }}">
+		                		 <a href="{{ action('CreditoController@tablaSolicitudes', [Auth::user()->id]) }}">
 		                            Mis solicitudes
 		                        </a>
 		                	</li>

@@ -18,27 +18,34 @@
 
 		<div class="col-md-2">
 	        <label class="label-margin">Id Cliente</label>
-	        <input type="text" name="idCliente" class="form-control font-weight-bolder" value="{{ $usuario->id }}" disabled>
+	        <input type="text" name="idCliente" class="form-control font-weight-bolder" value="{{ $cliente->id }}" disabled>
 	    </div>
 
 		<div class="col-md-4">
 	        <label class="label-margin">Nombre completo</label>
-	        <input type="text" name="nombres" class="form-control font-weight-bolder" value="{{ $usuario->nombres }} {{ $usuario->apellidos }}" disabled>
+	        <input type="text" name="nombres" class="form-control font-weight-bolder" value="{{ $cliente->nombres }} {{ $cliente->apellidos }}" disabled>
 	    </div>
 
 		<div class="col-md-2">
 	        <label class="label-margin">Cédula</label>
-	        <input type="text" name="cedula" class="form-control font-weight-bolder" value="{{ $usuario->cedula }}" disabled>
+	        <input type="text" name="cedula" class="form-control font-weight-bolder" value="{{ $cliente->cedula }}" disabled>
 	    </div>
 
 		<div class="col-md-4">
 	        <label class="label-margin">Email</label>
-	        <input type="text" name="email" class="form-control font-weight-bolder" value="{{ $usuario->email }}" disabled>
+	        <input type="text" name="email" class="form-control font-weight-bolder" value="{{ $cliente->email }}" disabled>
 	    </div>
 
 	</div>
 
     <div class="row col-md-12 mb-3 mt-3">
+
+	    @if ($mensaje = Session::get('mensajeVerde'))
+	        <div class="form-row col-md-12 alert alert-success estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+	            {{ $mensaje }}
+	            <button type="button" class="close" data-dismiss="alert">&times;</button>
+	        </div>
+	    @endif
 
 		<table class="table table-striped table-bordered">
 
@@ -74,13 +81,13 @@
 							<td>
 
 								@if($fila->idEstadoSolicitud<=3)
-									<a href="{{ route('documentos.tabla', [$fila->id]) }}" class="btn btn-link link-tabla">
-										<img src="{{ asset('icons/upload.svg') }}" alt="Subir documentos" width="24" height="24" title="Subir documentos">
+									<a href="{{ route('documentos.tabla', [$cliente->id, $fila->id]) }}">
+										<img src="{{ asset('icons/upload.svg') }}" alt="Subir/Ver documentos" width="24" height="24" title="Subir/Ver documentos">
 								</a>
 								@endif
 								
 								@if($fila->idEstadoSolicitud == 1)
-									<a href="{{ route('solicitud.eliminar', [$fila->id]) }}" class="btn btn-link link-tabla">
+									<a href="{{ route('solicitud.eliminar', [$cliente->id, $fila->id]) }}" class="btn btn-link link-tabla">
 										<img src="{{ asset('icons/trash.svg') }}" alt="Eliminar" width="24" height="24" title="Eliminar">
 									</a>
 								@endif
@@ -93,9 +100,9 @@
 
 				@else
 
-			        <div class="form-row col-md-12 alert alert-danger estilo-success" role="alert">
-			            <p class="alert-link">Para realizar esta consulta, primero debe llenar su información de perfil... <a href="{{ route('usuario.perfil') }}">Haga click aquí para crear su perfil. </a>
-		            	</p>
+			        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show" role="alert">
+			            Para realizar esta consulta, primero debe llenar su información de perfil... <a href="{{ route('usuario.perfil') }}">Haga click aquí para crear su perfil. </a>
+		            	<button type="button" class="close" data-dismiss="alert">&times;</button>
 			        </div>
 
 				@endif

@@ -26,8 +26,9 @@
 	            @csrf
 
 			    @if ($mensaje = Session::get('mensajeVerde'))
-			        <div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
-			            <p class="alert-link">{{ $mensaje }}</p>
+			        <div class="form-row col-md-12 alert alert-success estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+			            {{ $mensaje }}
+			            <button type="button" class="close" data-dismiss="alert">&times;</button>
 			        </div>
 			    @endif
 
@@ -149,15 +150,16 @@
 
 	            <input type="hidden" readonly maxlength="20" name="idPerfilUsuario" value="1" class="form-control">
 
-	            @if ($errors->any())
-	                <div class="alert alert-danger mt-3 mb-1 pl-3 pr-3">
-	                    <ol class="estilo-lista-errores">
-	                        @foreach ($errors->all() as $error)
-	                            <li>{{ $error }}</li>
-	                        @endforeach
-	                    </ol>
-	                </div>
-	            @endif
+		         @if ($errors->any())
+		            <div class="alert alert-danger col-md-12 mt-3 mb-1 pl-3 pr-3 alert-dismissible fade show">
+		                <ol class="estilo-lista-errores">
+		                    @foreach ($errors->all() as $error)
+		                        <li>{{ $error }}</li>
+		                    @endforeach
+		                </ol>
+		                <button type="button" class="close" data-dismiss="alert">&times;</button>
+		            </div>
+		        @endif
 
 	            <div class="form-row mb-5">
 

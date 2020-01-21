@@ -323,3 +323,17 @@ table.table-fit tbody td, table.table-fit tfoot td {
 .table-bordered td, .table-bordered th {
     border: 1px solid #ced4da !important;
 }
+
+.user-menu {
+    letter-spacing: 0.1rem !important;
+    text-transform: capitalize !important;
+}
+
+#sidebar ul.components {
+    border-bottom: none !important;
+}
+
+.estilo-mensaje-verde {
+    padding-bottom: 0.75rem !important;
+    height: fit-content !important;
+}
