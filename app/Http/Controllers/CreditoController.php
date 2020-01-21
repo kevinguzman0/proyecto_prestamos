@@ -24,18 +24,18 @@ class CreditoController extends Controller
     public function tablaSolicitudes($idCliente)
     {
 
-        $cliente = User::find($idCliente)->usuario;
-
-        if ($cliente != null)
+        try
         {
-            $solicitudes = Usuario::findOrFail($idCliente)->solicitudes;
-            return view('creditos.solicitudes', compact('solicitudes', 'cliente'));
+           $cliente = User::findOrFail($idCliente)->usuario;
         }
-        else
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
             $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] no está registrada. Es imposible mostrar la información de solicitudes existente. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
             abort(404, $mensajeError);
         }
+
+        $solicitudes = Usuario::findOrFail($idCliente)->solicitudes;
+        return view('creditos.solicitudes', compact('solicitudes', 'cliente'));
 
     }
 
