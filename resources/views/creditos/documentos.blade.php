@@ -120,7 +120,7 @@
 						<td style="text-align:center;">
 
 							<button type="button" class="btn btn-link link-tabla" data-toggle="modal" data-target="#documento_{{ $fila->id }}">
-								<img src="{{ asset('icons/search.svg') }}" alt="Ver" width="24" height="24" title="Ver">
+								<img src="{{ asset('icons/search.svg') }}" alt="Ver documento" width="24" height="24" title="Ver documento">
 							</button>
 
 							<!-- Modal -->
@@ -167,13 +167,13 @@
 
 											@if($fila->aprobado!=0)
 
-												<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoRechazado', [$idSolicitud, $fila->id]) }}'">Rechazar</button>
+												<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoRechazado', [$idSolicitud, $fila->id]) }}'">Rechazar</button>
 
 											@endif
 
 											@if($fila->aprobado!=1)
 
-												<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoEliminar', [$idSolicitud, $fila->id]) }}'">Eliminar</button>
+												<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoEliminar', [$idSolicitud, $fila->id]) }}'">Eliminar</button>
 
 											@endif
 											

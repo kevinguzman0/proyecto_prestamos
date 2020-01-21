@@ -337,3 +337,13 @@ table.table-fit tbody td, table.table-fit tfoot td {
     padding-bottom: 0.75rem !important;
     height: fit-content !important;
 }
+
+.modal-content-eliminar {
+    max-width: 70% !important;
+}
+
+.modal-dialog-eliminar {
+    display: flex !important;
+    justify-content: center !important;
+    overflow: auto !important;
+}
