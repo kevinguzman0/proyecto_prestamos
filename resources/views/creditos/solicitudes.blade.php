@@ -124,7 +124,7 @@
 				@else
 
 			        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show" role="alert">
-			            Para realizar esta consulta, primero debe llenar su información de perfil... <a href="{{ route('usuario.perfil') }}">Haga click aquí para crear su perfil. </a>
+			            Para realizar esta consulta, primero debe llenar su información de perfil... <a href="{{ route('usuario.mi.perfil') }}">Haga click aquí para crear su perfil. </a>
 		            	<button type="button" class="close" data-dismiss="alert">&times;</button>
 			        </div>
 
