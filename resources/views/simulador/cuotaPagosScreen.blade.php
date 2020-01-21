@@ -1,4 +1,4 @@
-@extends('simulador.index')
+@extends('simulador.liquidador')
 
 @section('contenidoCuota')
 	

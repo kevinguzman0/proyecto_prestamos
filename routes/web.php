@@ -38,7 +38,7 @@ Route::get('ingresar', function () {
 })->name('ingresar');
 
 Route::get('simulador', function () {
-    return view('simulador.index');
+    return view('simulador.liquidador');
 })->name('simulador');
 
 Route::get('test-visor', function () {
