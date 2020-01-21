@@ -76,7 +76,6 @@ class CreditoController extends Controller
     public function solicitudNueva(Request $request)
     {
 
-        $id = auth()->user()->id;
         $solicitud = new Solicitud;
         $solicitud->monto = $request->monto;
         $solicitud->plazo = $request->plazo;
@@ -85,13 +84,22 @@ class CreditoController extends Controller
         $solicitud->idEstadoSolicitud = $request->idEstadoSolicitud;
         $solicitud->idCliente = $request->idCliente;
         
-        $cliente = Solicitud::find($request->idCliente)->cliente;
-        $cliente->idPerfilUsuario = 2;
-        $cliente->save();
- 
         $solicitud->save();
 
-        return redirect()->route('solicitudes.tabla');
+        $cliente = Usuario::find($request->idCliente);
+
+        if ($cliente == null)
+        {
+            $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $solicitud->idCliente . ' ] asociado a la Solicitud [ ' . $solicitud->id . ' ] no está disponible. Es imposible continuar con el proceso de actualización de estado del Cliente. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
+        $cliente->idPerfilUsuario = 2;
+        $cliente->save();
+        $idCliente = $solicitud->idCliente;
+
+        return redirect()->route('solicitudes.tabla', compact('idCliente'));
+
     }   
 
     /**
@@ -102,8 +110,6 @@ class CreditoController extends Controller
 
     public function documentoNuevo(Request $request, $idSolicitud)
     {
-
-        $documento = new Documento;
 
         $validatedData = Validator::make($request->all(),
                 [
@@ -122,6 +128,7 @@ class CreditoController extends Controller
         $timeStamp = date_create()->format('Ymd-His');
         $archivo = 'doc-id-' . $idSolicitud . '-' . $timeStamp . '.' . $ext;
 
+        $documento = new Documento;
         $documento->idSolicitud = $idSolicitud;
         $documento->nombreOriginal = $originalFile;
         $documento->descripcionDocumento = $request->descripcionDocumento;
