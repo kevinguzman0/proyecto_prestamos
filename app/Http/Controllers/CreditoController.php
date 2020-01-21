@@ -24,27 +24,15 @@ class CreditoController extends Controller
     public function tablaSolicitudes($idCliente)
     {
 
-        //$mensaje = 'idCliente: [' . $idCliente . ']';
-        //return redirect()->route('test.visor')->with('mensajeVerde', $mensaje);
+        $cliente = Usuario::find($idCliente);
 
-        /*
-        if (empty($idCliente) || ($idCliente == null) || $idCliente == '')
-        {
-            $mensajeError = 'Atención, es imposible mostrar información. La URL es incorrecta. Contáctese con el administrador del sistema para revisar y corregir esta situación.';
-            abort(404, $mensajeError);        }
-        }
-        */
-
-        try
-        {
-            $cliente = Usuario::findOrFail($idCliente);
-        }
-        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        if ($cliente == null)
         {
             $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] no está registrada. Es imposible mostrar la información de solicitudes existente. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
-            abort(404, $mensajeError);        }
+            abort(404, $mensajeError);        
+        }
 
-        $solicitudes = Usuario::findOrFail($idCliente)->solicitudes;
+        $solicitudes = Usuario::find($idCliente)->solicitudes;
 
         if (count($solicitudes) == 0)
         {
@@ -291,13 +279,13 @@ class CreditoController extends Controller
     public function solicitudEliminar($idCliente, $idSolicitud)
     {
         
-       try
+        try
         {
-            $documento = Documento::findOrFail($idDocumento);
+            $validarCliente = Usuario::findOrFail($idCliente);
         }
         catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
-            $mensajeError = 'Atención, la información del documento [ ' . $idDocumento . ' ] asociado a la Solicitud [ ' . $idSolicitud. ' ] no está disponible. Es imposible continuar con la actualización del documento. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] asociado a la Solicitud [ ' . $idSolicitud . ' ] no está disponible. Es imposible continuar con el proceso de eliminación de la solicitud. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
             abort(404, $mensajeError);
         }
 
