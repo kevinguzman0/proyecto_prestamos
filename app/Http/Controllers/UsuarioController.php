@@ -24,7 +24,7 @@ class UsuarioController extends Controller
 
         $id = auth()->user()->id;
 
-        $usuario = Usuario::findOrFail($id);
+        $usuario = Usuario::find($id);
 
         if ($usuario == null) 
         {
@@ -49,7 +49,7 @@ class UsuarioController extends Controller
 
         $id = auth()->user()->id;
 
-        $usuario = Usuario::findOrFail($id);
+        $usuario = Usuario::find($id);
 
         if ($usuario == null) 
         {
