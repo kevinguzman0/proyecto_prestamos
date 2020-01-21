@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTablaUsuarios extends Migration
+class CrearTablaPerfiles extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CrearTablaUsuarios extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('perfiles', function (Blueprint $table) {
 
             $table->bigInteger('id')->unsigned()->primary();            
             $table->bigInteger('idPerfilUsuario')->unsigned();
@@ -44,6 +44,6 @@ class CrearTablaUsuarios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('perfiles');
     }
 }

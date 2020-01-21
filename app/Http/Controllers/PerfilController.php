@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Usuario;
+use App\Perfil;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
-class UsuarioController extends Controller
+class PerfilController extends Controller
 {
     
     /**
@@ -24,16 +24,16 @@ class UsuarioController extends Controller
 
         $id = auth()->user()->id;
 
-        $usuario = Usuario::find($id);
+        $perfil = Perfil::find($id);
 
-        if ($usuario == null) 
+        if ($perfil == null) 
         {
             return view('usuarios.nuevo');
         }
         else
         {
-            $storagePath = Storage::disk('public')->path($usuario->foto);
-            return view('usuarios.actualizar', compact('usuario', 'storagePath'));
+            $storagePath = Storage::disk('public')->path($perfil->foto);
+            return view('usuarios.actualizar', compact('perfil', 'storagePath'));
         }
 
     }
@@ -44,7 +44,7 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function usuarioPerfil(Request $request)
+    public function gestionarPerfil(Request $request)
     {
 
         $id = auth()->user()->id;
@@ -72,8 +72,8 @@ class UsuarioController extends Controller
                     'foto'=> 'required|mimes:jpeg,bmp,png,gif,jfif|max:5120',
                 ]);
 
-            $usuario = new Usuario;
-            $usuario->idPerfilUsuario = 1;
+            $usuario = new Perfil;
+            $perfil->idPerfilUsuario = 1;
             $mensaje = 'Perfil creado correctamente...';
 
         }
@@ -99,16 +99,16 @@ class UsuarioController extends Controller
 
                 ]);
 
-            if($usuario->email != $request->email)
+            if($perfil->email != $request->email)
             {
-                $user = Usuario::find($usuario->id)->user;
+                $user = Perfil::find($perfil->id)->user;
                 $user->email_verified_at = null;
                 $user->email=$request->email;
                 $user->save();
                 return redirect()->route('salir');
             }
 
-            $usuario->idPerfilUsuario = $request->idPerfilUsuario;
+            $perfil->idPerfilUsuario = $request->idPerfilUsuario;
             $mensaje = 'Perfil actualizado correctamente...';
 
         }
@@ -118,28 +118,28 @@ class UsuarioController extends Controller
             return redirect()->back()->withInput()->withErrors($validatedData);
         }
 
-        $usuario->id = $id;
-        $usuario->cedula = $request->cedula;
-        $usuario->nombres = $request->nombres;
-        $usuario->apellidos = $request->apellidos;
-        $usuario->email = $request->email;
-        $usuario->telefono1 = $request->telefono1;
-        $usuario->telefono2 = $request->telefono2;
-        $usuario->fechaNacimiento = $request->fechaNacimiento;
-        $usuario->direccion = $request->direccion;
-        $usuario->barrio = $request->barrio;
-        $usuario->ciudad = $request->ciudad;
-        $usuario->areaTrabajo = $request->areaTrabajo;
-        $usuario->cargoTrabajo = $request->cargoTrabajo;
-        $usuario->afiliadoFondo = $request->afiliadoFondo;
+        $perfil->id = $id;
+        $perfil->cedula = $request->cedula;
+        $perfil->nombres = $request->nombres;
+        $perfil->apellidos = $request->apellidos;
+        $perfil->email = $request->email;
+        $perfil->telefono1 = $request->telefono1;
+        $perfil->telefono2 = $request->telefono2;
+        $perfil->fechaNacimiento = $request->fechaNacimiento;
+        $perfil->direccion = $request->direccion;
+        $perfil->barrio = $request->barrio;
+        $perfil->ciudad = $request->ciudad;
+        $perfil->areaTrabajo = $request->areaTrabajo;
+        $perfil->cargoTrabajo = $request->cargoTrabajo;
+        $perfil->afiliadoFondo = $request->afiliadoFondo;
 
         $file = $request->file('foto');
         $ext = $request->file('foto')->getClientOriginalExtension();
-        $archivo = 'foto-id-' . $usuario->id . '.' . $ext;
-        $usuario->foto = strtolower($archivo);
+        $archivo = 'foto-id-' . $perfil->id . '.' . $ext;
+        $perfil->foto = strtolower($archivo);
 
         Storage::disk('public')->put($archivo, File::get($file));
-        $usuario->save();
+        $perfil->save();
 
         return redirect()->back()->with('mensajeVerde', $mensaje);
 

@@ -40,9 +40,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function usuario()
+    public function perfil()
     {
-       return $this->hasOne('App\Usuario', 'id', 'id');
+       return $this->hasOne('App\Perfil', 'id', 'id');
     }    
 
 }

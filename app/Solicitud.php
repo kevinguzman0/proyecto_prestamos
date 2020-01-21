@@ -28,7 +28,7 @@ class Solicitud extends Model
 	public function cliente()
 	{
 	
-		return $this->hasOne('App\Usuario', 'id', 'idCliente');
+		return $this->hasOne('App\Perfil', 'id', 'idCliente');
 	
 	}
 

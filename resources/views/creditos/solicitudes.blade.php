@@ -18,22 +18,22 @@
 
 		<div class="col-md-2">
 	        <label class="label-margin">Id Cliente</label>
-	        <input type="text" name="idCliente" class="form-control font-weight-bolder" value="{{ $cliente->id }}" disabled>
+	        <input type="text" name="idCliente" class="form-control font-weight-bolder" value="{{ $perfil->id }}" disabled>
 	    </div>
 
 		<div class="col-md-4">
 	        <label class="label-margin">Nombre completo</label>
-	        <input type="text" name="nombres" class="form-control font-weight-bolder" value="{{ $cliente->nombres }} {{ $cliente->apellidos }}" disabled>
+	        <input type="text" name="nombres" class="form-control font-weight-bolder" value="{{ $perfil->nombres }} {{ $perfil->apellidos }}" disabled>
 	    </div>
 
 		<div class="col-md-2">
 	        <label class="label-margin">Cédula</label>
-	        <input type="text" name="cedula" class="form-control font-weight-bolder" value="{{ $cliente->cedula }}" disabled>
+	        <input type="text" name="cedula" class="form-control font-weight-bolder" value="{{ $perfil->cedula }}" disabled>
 	    </div>
 
 		<div class="col-md-4">
 	        <label class="label-margin">Email</label>
-	        <input type="text" name="email" class="form-control font-weight-bolder" value="{{ $cliente->email }}" disabled>
+	        <input type="text" name="email" class="form-control font-weight-bolder" value="{{ $perfil->email }}" disabled>
 	    </div>
 
 	</div>
@@ -58,7 +58,7 @@
 
 			<tbody>
 
-		        @if(App\User::find(Auth()->user()->id)->usuario != null)
+		        @if(App\User::find(Auth()->user()->id)->perfil != null)
 
 					<thead class="header-tabla">
 						<tr>
@@ -88,7 +88,7 @@
 							<td style="text-align:left;">
 
 								@if($fila->idEstadoSolicitud<=3)
-									<a href="{{ route('documentos.tabla', [$cliente->id, $fila->id]) }}">
+									<a href="{{ route('documentos.tabla', [$perfil->id, $fila->id]) }}">
 										<img src="{{ asset('icons/book.svg') }}" alt="Presentar / Ver documentos" width="24" height="24" title="Presentar / Ver documentos">
 								</a>
 								@endif
@@ -114,7 +114,7 @@
 								          </div>
 									      <div class="modal-footer">
 									        <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
-									        <button type="button" class="btn btn-danger" onclick="location.href = '{{ route('solicitud.eliminar', [$cliente->id, $fila->id]) }}'">Eliminar</button>
+									        <button type="button" class="btn btn-danger" onclick="location.href = '{{ route('solicitud.eliminar', [$perfil->id, $fila->id]) }}'">Eliminar</button>
 									      </div>
 									    </div>
 									  </div>
@@ -131,7 +131,7 @@
 				@else
 
 			        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show" role="alert">
-			            Para realizar esta consulta, primero debe llenar su información de perfil... <a href="{{ route('usuario.mi.perfil') }}">Haga click aquí para crear su perfil. </a>
+			            Para realizar esta consulta, primero debe llenar su información de perfil... <a href="{{ route('mi.perfil') }}">Haga click aquí para crear su perfil. </a>
 		            	<button type="button" class="close" data-dismiss="alert">&times;</button>
 			        </div>
 

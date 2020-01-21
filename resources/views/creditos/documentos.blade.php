@@ -23,17 +23,17 @@
 
 		<div class="col-md-2">
 	        <label class="label-margin">Id Cliente</label>
-	        <input type="text" name="idCliente" class="form-control font-weight-bolder" value="{{ $cliente->id }}" disabled>
+	        <input type="text" name="idCliente" class="form-control font-weight-bolder" value="{{ $perfil->id }}" disabled>
 	    </div>
 
 		<div class="col-md-5">
 	        <label class="label-margin">Nombre completo</label>
-	        <input type="text" name="nombres" class="form-control font-weight-bolder" value="{{ $cliente->nombres }} {{ $cliente->apellidos }}" disabled>
+	        <input type="text" name="nombres" class="form-control font-weight-bolder" value="{{ $perfil->nombres }} {{ $perfil->apellidos }}" disabled>
 	    </div>
 
 	    <div class="col-md-3">
 	        <label class="label-margin">Cédula</label>
-	        <input type="text" name="cedula" class="form-control font-weight-bolder" value="{{ $cliente->cedula }}" disabled>
+	        <input type="text" name="cedula" class="form-control font-weight-bolder" value="{{ $perfil->cedula }}" disabled>
 	    </div>
 
 	</div>
@@ -251,7 +251,7 @@
             	
             	<div class="col-md-6">
 		            <label></label>
-		            <button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ action('CreditoController@tablaSolicitudes', [$cliente->id]) }}'">Regresar</button>
+		            <button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ action('CreditoController@tablaSolicitudes', [$perfil->id]) }}'">Regresar</button>
             	</div>
 
             </div>

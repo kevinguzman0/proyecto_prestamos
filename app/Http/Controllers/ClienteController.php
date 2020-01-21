@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 class ClienteController extends Controller
 {
 
-    public function index(){
+    public function tablaClientes(){
 
-        $clientes = Usuario::paginate(2);
+        $clientes = Usuario::paginate(6);
 
         return view('clientes.index', compact('clientes'));
 

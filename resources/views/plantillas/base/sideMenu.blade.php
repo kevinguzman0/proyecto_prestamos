@@ -55,7 +55,7 @@
 
 	                        
 		                	<li class="margin-submenu">
-		                        <a href="{{ route('usuario.mi.perfil') }}">
+		                        <a href="{{ route('mi.perfil') }}">
 		                            Mi perfil
 		                        </a>
 		                    </li>
