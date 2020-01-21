@@ -22,7 +22,24 @@
 
 					<li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
                     <li class="nav-link"><a href="{{ route('simulador') }}">Simulador</a></li>
-                    <li class="nav-link"><a href="{{ route('clientes.tabla') }}">Clientes</a></li>
+
+                    <li class="nav-item dropdown">
+
+                        <a id="navbarDropdown2" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Reportes</a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
+
+                            <a class="dropdown-item" href="{{ route('clientes.tabla') }}">
+                                Clientes
+                            </a>
+
+                            <a class="dropdown-item" href="{{ route('usuarios.tabla') }}">
+                                Usuarios registrados
+                            </a>
+
+                       </div>
+
+                    </li>
 
                     @guest
 

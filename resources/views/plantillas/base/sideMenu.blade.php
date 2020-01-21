@@ -29,7 +29,18 @@
 
 	            <li><a href="{{ route('simulador') }}">Simulador</a></li>
 
-	            <li><a href="{{ route('clientes.tabla') }}">Clientes</a></li>
+	            <li>
+
+	                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reportes</a>
+
+	                <ul class="collapse list-unstyled" id="homeSubmenu2">
+
+	                    <li class="margin-submenu"><a href="{{ route('clientes.tabla') }}">Clientes</a></li>
+	                    <li class="margin-submenu"><a href="{{ route('usuarios.tabla') }}">Usuarios registrados</a></li>
+
+	                </ul>
+
+	            </li>
 
                 @guest
 
