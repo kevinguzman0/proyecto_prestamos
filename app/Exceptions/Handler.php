@@ -46,6 +46,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if ($exception instanceof \PDOException) 
+        {
+            $mensajeError = 'Atención, ha ocurrido un error grave con la conexión a la Base de Datos. Contáctese con el administrador del sistema para revisar y corregir esta anomalía del Sistema.';
+            abort(404, $mensajeError);
+        }
+
         return parent::render($request, $exception);
+
     }
 }

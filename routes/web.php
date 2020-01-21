@@ -47,6 +47,22 @@ Route::get('test-visor', function () {
 
 // -----------------------------------------------------------------------------------------------------------
 
+Route::get('/testConnection', function () {
+try {
+      DB::connection()->getPdo();
+      if(DB::connection()->getDatabaseName()){
+          echo "Yes! Successfully connected to the DB: " . DB::connection()->getDatabaseName();
+          die;
+      }else{
+          die("Could not find the database. Please check your configuration.");
+      }
+  } catch (\Exception $e) {
+      die($e->GetMessage());
+  }
+});
+
+// -----------------------------------------------------------------------------------------------------------
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------

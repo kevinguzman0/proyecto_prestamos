@@ -82,9 +82,7 @@ class SimuladorController extends Controller
         // Retornar el valor original del interés. Tal como está almacenado en configuración.
         $interes = $interes * 100;
 
-        $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
-
-        return view('simulador.tablaPagosScreen', $data);
+        return view('simulador.tablaPagosScreen', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"));
 
     }
 
@@ -128,9 +126,7 @@ class SimuladorController extends Controller
             $saldoInicial = $saldoK;
         }
 
-        $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
-        
-        return $data;
+        return compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
 
     }
 
@@ -174,9 +170,7 @@ class SimuladorController extends Controller
         $interes = config('prestamos.interes') . "%";
         $valorCuota = $fmt->format($valorCuota);
 
-        $data = compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota");
-
-        return view('simulador.cuotaPagosScreen', $data);
+        return view('simulador.cuotaPagosScreen', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota"));
 
     }
 

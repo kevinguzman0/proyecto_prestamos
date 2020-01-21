@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Usuario;
+
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Validator;
@@ -22,7 +23,9 @@ class UsuarioController extends Controller
     {
 
         $id = auth()->user()->id;
-        $usuario = Usuario::find($id);
+
+        $usuario = Usuario::findOrFail($id);
+
         if ($usuario == null) 
         {
             return view('usuarios.nuevo');
@@ -45,7 +48,8 @@ class UsuarioController extends Controller
     {
 
         $id = auth()->user()->id;
-        $usuario = Usuario::find($id);
+
+        $usuario = Usuario::findOrFail($id);
 
         if ($usuario == null) 
         {

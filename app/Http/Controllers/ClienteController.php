@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Usuario;
+
+use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
@@ -12,9 +13,7 @@ class ClienteController extends Controller
 
         $clientes = Usuario::paginate(2);
 
-        $data = compact('clientes');
-
-        return view('clientes.index', $data);
+        return view('clientes.index', compact('clientes'));
 
     }
 }
