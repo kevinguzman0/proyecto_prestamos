@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Solicitud;
-use App\Usuario;
+use App\Perfil;
 use App\User;
 use App\Documento; 
 
@@ -24,15 +24,15 @@ class CreditoController extends Controller
     public function tablaSolicitudes($idCliente)
     {
 
-        $cliente = Usuario::find($idCliente);
+        $perfil = Perfil::find($idCliente);
 
-        if ($cliente == null)
+        if ($perfil == null)
         {
             $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] no está registrada. Es imposible mostrar la información de solicitudes existente. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
             abort(404, $mensajeError);        
         }
 
-        $solicitudes = Usuario::find($idCliente)->solicitudes;
+        $solicitudes = Perfil::find($idCliente)->solicitudes;
 
         if (count($solicitudes) == 0)
         {
@@ -41,7 +41,7 @@ class CreditoController extends Controller
         }
         else
         {
-            $data = compact('cliente', 'solicitudes');
+            $data = compact('perfil', 'solicitudes');
         }
 
         return view('creditos.solicitudes', $data);
@@ -53,7 +53,7 @@ class CreditoController extends Controller
 
         try
         {
-            $validarCliente = Usuario::findOrFail($idCliente);
+            $validarPerfil = Perfil::findOrFail($idCliente);
         }
         catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
@@ -108,16 +108,16 @@ class CreditoController extends Controller
         
         $solicitud->save();
 
-        $cliente = Usuario::find($request->idCliente);
+        $perfil = Perfil::find($request->idCliente);
 
-        if ($cliente == null)
+        if ($perfil == null)
         {
             $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $solicitud->idCliente . ' ] asociado a la Solicitud [ ' . $solicitud->id . ' ] no está disponible. Es imposible continuar con el proceso de actualización de estado del Cliente. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
             abort(404, $mensajeError);
         }
 
-        $cliente->idPerfilUsuario = 2;
-        $cliente->save();
+        $perfil->idPerfilUsuario = 2;
+        $perfil->save();
         $idCliente = $solicitud->idCliente;
 
         return redirect()->route('solicitudes.tabla', compact('idCliente'));
@@ -281,7 +281,7 @@ class CreditoController extends Controller
         
         try
         {
-            $validarCliente = Usuario::findOrFail($idCliente);
+            $validarPerfil = Perfil::findOrFail($idCliente);
         }
         catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
