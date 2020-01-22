@@ -21,6 +21,7 @@
 		<table class="table table-striped table-bordered">
 
 			<tbody>
+				
 				<thead class="header-tabla">
 
 					<tr>
@@ -51,9 +52,15 @@
 						<td style="text-align:left;"> {{ $fila->email }} </td>
 
 						<td style="text-align:left;">
-							<a href="{{ action('PerfilController@miPerfil', [Auth::user()->id]) }}">
+
+							<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
 								<img src="{{ asset('icons/search.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
 							</a>
+
+							<a href="{{ action('CreditoController@tablaSolicitudes', [$fila->id]) }}">
+								<img src="{{ asset('icons/list-check.svg') }}" alt="Ver solicitudes" width="24" height="24" title="Ver solicitudes">
+							</a>
+
 						</td>
 
 					</tr>

@@ -87,10 +87,10 @@
 
 							<td style="text-align:left;">
 
-								@if($fila->idEstadoSolicitud<=3)
-									<a href="{{ route('documentos.tabla', [$perfil->id, $fila->id]) }}">
+								@if($fila->idEstadoSolicitud <= 3)
+									<a href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">
 										<img src="{{ asset('icons/book.svg') }}" alt="Presentar / Ver documentos" width="24" height="24" title="Presentar / Ver documentos">
-								</a>
+									</a>
 								@endif
 								
 								@if($fila->idEstadoSolicitud == 1)
@@ -114,7 +114,7 @@
 								          </div>
 									      <div class="modal-footer">
 									        <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
-									        <button type="button" class="btn btn-danger" onclick="location.href = '{{ route('solicitud.eliminar', [$perfil->id, $fila->id]) }}'">Eliminar</button>
+									        <button type="button" class="btn btn-danger" onclick="location.href = '{{ route('solicitud.eliminar', [$fila->idCliente, $fila->id]) }}'">Eliminar</button>
 									      </div>
 									    </div>
 									  </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Perfil;
 use App\User;
+use App\Solicitud;
+use App\Documento;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
@@ -11,21 +13,40 @@ use Illuminate\Http\Request;
 class GeneralController extends Controller
 {
 
-    public function tablaPerfiles(){
+    public function tablaPerfiles()
+    {
 
         $perfiles = Perfil::paginate(10);
         return view('general.tablaPerfiles', compact('perfiles'));
 
     }
 
-    public function tablaUsuarios(){
+    public function tablaUsuarios()
+    {
 
         $usuarios = User::paginate(10);
         return view('general.tablaUsuarios', compact('usuarios'));
 
     }
 
-    public function usuarioEliminar($idUsuario){
+    public function tablaSolicitudes()
+    {
+
+        $solicitudes = Solicitud::paginate(10);
+        return view('general.tablaSolicitudes', compact('solicitudes'));
+
+    }
+
+    public function tablaDocumentos()
+    {
+
+        $documentos = Documento::paginate(10);
+        return view('general.tablaDocumentos', compact('documentos'));
+
+    }
+
+    public function usuarioEliminar($idUsuario)
+    {
 
     	$usuario = User::find($idUsuario);
  
@@ -53,7 +74,8 @@ class GeneralController extends Controller
 
     }
 
-    public function usuarioValidar($idUsuario){
+    public function usuarioValidar($idUsuario)
+    {
 
     	$usuario = User::find($idUsuario);
 
@@ -71,4 +93,5 @@ class GeneralController extends Controller
         return redirect()->back()->with('mensajeVerde', $mensaje);
 
     }
+
 }

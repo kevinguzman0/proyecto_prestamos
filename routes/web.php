@@ -87,7 +87,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::get('mis-solicitudes/{idCliente}', 'CreditoController@tablaSolicitudes')->name('solicitudes.tabla');
+	Route::get('mis-solicitudes/{idCliente}', 'CreditoController@tablaSolicitudes')->name('mis.solicitudes');
 
 	Route::post('solicitud-nueva', 'CreditoController@solicitudNueva')->name('solicitud.nueva');
 
@@ -95,7 +95,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::get('mis-documentos/{idCliente}/{idSolicitud}', 'CreditoController@tablaDocumentos')->name('documentos.tabla');
+	Route::get('mis-documentos/{idCliente}/{idSolicitud}', 'CreditoController@tablaDocumentos')->name('mis.documentos');
 
 	Route::post('documento-nuevo/{idSolicitud}', 'CreditoController@documentoNuevo')->name('documento.nuevo');
 
@@ -110,6 +110,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('usuarios', 'GeneralController@tablaUsuarios')->name('usuarios.tabla');
 
 	Route::get('perfiles', 'GeneralController@tablaPerfiles')->name('perfiles.tabla');
+
+	Route::get('solicitudes', 'GeneralController@tablaSolicitudes')->name('solicitudes.tabla');
+
+	Route::get('documentos', 'GeneralController@tablaDocumentos')->name('documentos.tabla');
 
 	Route::get('usuario-eliminar/{idCliente}', 'GeneralController@usuarioEliminar')->name('usuario.eliminar');
 

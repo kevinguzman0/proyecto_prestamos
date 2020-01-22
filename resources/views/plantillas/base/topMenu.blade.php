@@ -37,6 +37,13 @@
                                 Perfiles de usuario
                             </a>
 
+                            <a class="dropdown-item" href="{{ route('solicitudes.tabla') }}">
+                                Solicitudes de crédito
+                            </a>
+
+                            <a class="dropdown-item" href="{{ route('documentos.tabla') }}">
+                                Documentos presentados
+                            </a>
 
                        </div>
 

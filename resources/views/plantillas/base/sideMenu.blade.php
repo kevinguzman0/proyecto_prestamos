@@ -38,8 +38,17 @@
 	                    <li class="margin-submenu">
 	                    	<a href="{{ route('usuarios.tabla') }}">Usuarios registrados</a>
 	                    </li>
+
 	                    <li class="margin-submenu">
 	                    	<a href="{{ route('perfiles.tabla') }}">Perfiles de usuario</a>
+	                    </li>
+
+	                    <li class="margin-submenu">
+	                    	<a href="{{ route('solicitudes.tabla') }}">Solicitudes de crédito</a>
+	                    </li>
+	                    
+	                    <li class="margin-submenu">
+	                    	<a href="{{ route('documentos.tabla') }}">Documentos presentados</a>
 	                    </li>
 
 	                </ul>

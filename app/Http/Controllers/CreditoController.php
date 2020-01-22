@@ -118,7 +118,7 @@ class CreditoController extends Controller
         $perfil->save();
         $idCliente = $solicitud->idCliente;
 
-        return redirect()->route('solicitudes.tabla', compact('idCliente'));
+        return redirect()->route('mis.solicitudes', compact('idCliente'));
 
     }   
 
