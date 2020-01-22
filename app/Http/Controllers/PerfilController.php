@@ -67,7 +67,7 @@ class PerfilController extends Controller
                     'cedula' => 'required|unique:perfiles',
                     'nombres' => 'required',
                     'apellidos' => 'required',
-                    'email' => 'required|email|unique:perfiles',
+                    'email' => 'required|email',
                     'telefono1' => 'required',
                     'telefono2' => 'required',
                     'fechaNacimiento' => 'required',
