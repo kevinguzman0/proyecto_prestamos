@@ -41,7 +41,7 @@
 
 	                <div class="col-md-8">
 	                    <label class="label-margin">Email</label>
-	                    <input type="text" maxlength="100" name="email" class="form-control" value="{{ old('email', $emailUsuario ) }}" disabled>
+	                    <input type="text" maxlength="100" name="email" class="form-control" value="{{ old('email', $emailUsuario ) }}">
 	                </div>
 
 	                <div class="col-md-3">

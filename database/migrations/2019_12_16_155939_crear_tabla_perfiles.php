@@ -17,11 +17,11 @@ class CrearTablaPerfiles extends Migration
 
             $table->bigInteger('id')->unsigned()->primary();            
             $table->bigInteger('idPerfilUsuario')->unsigned();
-            $table->string('cedula', 15)->unique();
+            $table->string('cedula', 15);
             $table->string('nombres', 100);
             $table->string('apellidos', 100);
             $table->string('foto', 100);
-            $table->string('email', 100)->unique();
+            $table->string('email', 100);
             $table->string('telefono1', 15);
             $table->string('telefono2', 15);
             $table->date('fechaNacimiento');

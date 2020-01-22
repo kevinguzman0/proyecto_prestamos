@@ -316,17 +316,13 @@ class CreditoController extends Controller
             return redirect()->back()->with('mensajeVerde', $mensaje);
         }
 
-        $documentos = Solicitud::findOrFail($idSolicitud)->documentos;
+        $documentos = Documento::all()->where('idSolicitud', '=', $idSolicitud);
 
-        if (count($documentos) > 0)
+        foreach ($documentos as $fila)
         {
-            foreach ($documentos as $fila)
-            {
-                $this->documentoEliminar($idSolicitud, $fila->id);
-            }
-   
+            $this->documentoEliminar($idSolicitud, $fila->id);
         }
-        
+       
         $solicitud->delete();
 
         $mensaje = 'La Solicitud [ ' . $idSolicitud . ' ] fue eliminada...';
@@ -346,6 +342,13 @@ class CreditoController extends Controller
             abort(404, $mensajeError);        
         }
 
+        $solicitudes = Solicitud::all()->where('idCliente', '=', $idUsuario);
+
+        foreach ($solicitudes as $fila)
+        {
+            $this->solicitudEliminar($idUsuario, $fila->id);
+        }
+
         $perfil = Perfil::find($idUsuario);
 
         if ($perfil != null) 
@@ -363,13 +366,6 @@ class CreditoController extends Controller
 
         $usuario->delete();
 
-        $solicitudes = Solicitud::findOrFail($idUsuario);
-
-        foreach ($solicitudes as $fila)
-        {
-            $this->solicitudEliminar($idUsuario, $fila->id);
-        }
-        
         return redirect()->back()->with('mensajeVerde', $mensaje);
 
     }
