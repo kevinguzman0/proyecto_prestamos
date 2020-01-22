@@ -7,20 +7,14 @@
 @section('content')
 	
 	<style>
-		.page-break {
-		    page-break-after: always;
-		}
+		.paginate_break{
+			page-break-after: always;
+			border: 0;
+			margin: 0;
+			padding: 0;
+			}
 	</style>
 
     @yield('contenidoTabla')
-
-    <script type="text/php">
-	    if ( isset($pdf) ) {
-	        $pdf->page_script('
-	            $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
-	            $pdf->text(270, 730, "Pagina $PAGE_NUM de $PAGE_COUNT", $font, 10);
-	        ');
-	    }
-	</script>
 
 @endsection

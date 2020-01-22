@@ -11,6 +11,7 @@ use Dompdf\Dompdf;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
 use Input;
+
 class SimuladorController extends Controller
 {
 
@@ -28,21 +29,22 @@ class SimuladorController extends Controller
     public function vistaTablaPagos(Request $request)
     {
         
-        Input::flash();
-        
         $validatedData = Validator::make($request->all(),
             [
                 'valorPrestamo' => 'required|numeric',
                 'plazoCuotas' => 'required|numeric',
             ]);
 
+        $valorPrestamo = (int)$request->input("valorPrestamo");
+        $plazoCuotas = (int)$request->input("plazoCuotas");
+
         if($validatedData->fails())
         {
             return redirect()->back()->withInput()->withErrors($validatedData);
+            //Input::flash();
         }
 
-        $valorPrestamo = (int)$request->input("valorPrestamo");
-        $plazoCuotas = (int)$request->input("plazoCuotas");
+        
 
         $request->session()->put('valorPrestamo', $valorPrestamo);
         $request->session()->put('plazoCuotas', $plazoCuotas);
@@ -84,6 +86,7 @@ class SimuladorController extends Controller
         // Retornar el valor original del interés. Tal como está almacenado en configuración.
         $interes = $interes * 100;
 
+
         return view('simulador.tablaPagosScreen', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"));
 
     }
@@ -93,6 +96,12 @@ class SimuladorController extends Controller
 
         $valorPrestamo = $parametro1;
         $plazoCuotas = $parametro2;
+
+        if (($valorPrestamo == 0) && ($plazoCuotas == 0)) {
+
+                return view('principales.home');
+
+            }
 
         $saldoInicial = $valorPrestamo;
         $interes = config('prestamos.interes') / 100;
@@ -135,20 +144,19 @@ class SimuladorController extends Controller
     public function vistaCuotaCredito(Request $request)
     {
 
-        Input::flash();
         $validatedData = Validator::make($request->all(),
             [
                 'valorPrestamo' => 'required|numeric',
                 'plazoCuotas' => 'required|numeric',
             ]);
+        $valorPrestamo = (int)$request->input("valorPrestamo");
+        $plazoCuotas = (int)$request->input("plazoCuotas");
 
         if($validatedData->fails())
         {
             return redirect()->back()->withInput()->withErrors($validatedData);
+            //Input::flash();
         }
-
-        $valorPrestamo = (int)$request->input("valorPrestamo");
-        $plazoCuotas = (int)$request->input("plazoCuotas");
 
         $request->session()->put('valorPrestamo', $valorPrestamo);
         $request->session()->put('plazoCuotas', $plazoCuotas);

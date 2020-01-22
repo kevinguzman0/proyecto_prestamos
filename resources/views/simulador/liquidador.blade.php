@@ -65,10 +65,6 @@
 	        </form>
 
 	    </div>
-
-	    @yield('contenidoCuota')
-	
-	    @yield('contenidoTabla')
 	
 	</div>
 

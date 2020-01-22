@@ -1,6 +1,14 @@
-@extends('simulador.liquidador')
+@extends('plantillas.base.plantilla')
 
-@section('contenidoCuota')
+@include('plantillas.base.preCarga')
+
+@include('plantillas.base.postCarga')
+
+@include('plantillas.base.sideMenu')
+
+@include('plantillas.base.topMenu')
+
+@section('content')
 	
     <div class="row col-md-12">
         <h5>CUOTA ESTIMADA PARA EL CRÉDITO</h5>

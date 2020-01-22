@@ -2,9 +2,9 @@
 
 @section('contenidoTabla')
 
-    <div>
+    <div class="table-responsive paginate_break">
 
-		<table class="table table-striped table-bordered table-fit" style="width:100% !important;">
+		<table class="table-striped table-bordered table-condensed">
 
 			<thead>
 				<tr>
@@ -17,7 +17,7 @@
 				</tr>
 			</thead>
 
-			<tbody class="page-break">
+			<tbody>
 
 				@foreach ($listaPagos as $fila)
 
