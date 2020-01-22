@@ -228,7 +228,7 @@ class CreditoController extends Controller
 
         try
         {
-            $validarSolicitud = Solicitud::findOrFail($idSolicitud);
+            $solicitud = Solicitud::findOrFail($idSolicitud);
         }
         catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
