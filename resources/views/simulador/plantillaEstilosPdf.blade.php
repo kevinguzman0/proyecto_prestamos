@@ -5,6 +5,12 @@
 @include('plantillas.base.postCarga')
 
 @section('content')
+	
+	<style>
+		.page-break {
+		    page-break-after: always;
+		}
+	</style>
 
     @yield('contenidoTabla')
 
