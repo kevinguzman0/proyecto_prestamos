@@ -18,17 +18,19 @@
 
     	{{ $usuarios->onEachSide(2)->links() }}
 
-		<table class="table table-striped table-bordered table-fit">
+		<table class="table table-striped table-bordered">
 
 			<tbody>
-				<thead>
+				<thead class="header-tabla">
 
 					<tr>
-						<th>IdUsuario</th>
-						<th>Usuario</th>
-						<th>Email</th>
-						<th>Verificado</th>
-						<th>Acciones</th>
+						<th class="header-tabla-texto">Id</th>
+						<th class="header-tabla-texto text-center">Creación</th>
+						<th class="header-tabla-texto text-center">Modificación</th>
+						<th class="header-tabla-texto">Usuario</th>
+						<th class="header-tabla-texto">Email</th>
+						<th class="header-tabla-texto text-center">Verificación</th>
+						<th class="header-tabla-texto">Acciones</th>
 					</tr>
 
 				</thead>
@@ -38,45 +40,63 @@
 				    <tr>
 
 						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-						<td style="text-align:center; font-weight: bold;"> {{ $fila->name }} </td>
-						<td style="text-align:center;"> {{ $fila->email }} </td>
-						<td style="text-align:center; font-weight: bold;"> {{ $fila->email_verified_at }} </td>
+						<td class="estilo-celda-fecha"> {{ $fila->created_at }} </td>
+						<td class="estilo-celda-fecha"> {{ $fila->updated_at }} </td>
+						<td style="text-align:left;"> {{ $fila->name }} </td>
+						<td style="text-align:left;"> {{ $fila->email }} </td>
+						<td class="estilo-celda-fecha"> 
 
-						<td style="text-align:center; font-weight: bold;">
+							@if($fila->email_verified_at != null)
+								{{ $fila->email_verified_at }} 
+							@else
+								pendiente
+							@endif
 
-							<a href="" class="btn btn-link link-tabla" data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">
-										<img src="{{ asset('icons/trash.svg') }}" alt="Eliminar" width="24" height="24" title="Eliminar">
-									</a>
+						</td>
 
-									<div id="confirm-delete_{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
-									  <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
-									    <div class="modal-content modal-content-eliminar">
-									      <div class="modal-header">
-									        <h5 class="modal-title" id="exampleModalLiveLabel">Confirmar eliminación</h5>
-									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									          <span aria-hidden="true">&times;</span>
-									        </button>
-									      </div>
-									      <div class="modal-body">
-									        <p>La eliminación de este usuario será irreversible.</p>
-								            <p>Desea proceder?</p>
-								          </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
-									        <button type="button" class="btn btn-danger" onclick="location.href = '{{ route('usuario.eliminar', [$fila->id]) }}'">Eliminar</button>
-									      </div>
-									    </div>
-									  </div>
-									</div>
+						<td style="text-align:center;">
 
+							@if(Auth::user()->id != $fila->id)
+								<a class="btn btn-link link-tabla" data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">
+									<img src="{{ asset('icons/trash.svg') }}" alt="Eliminar" width="24" height="24" title="Eliminar">
+								</a>
 
-							<a href="{{ route('mi.perfil') }}">
-								<img src="{{ asset('icons/search.svg') }}" alt="Presentar / Ver documentos" width="24" height="24" title="Ver perfil">
+								<div id="confirm-delete_{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+								  <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
+								    <div class="modal-content modal-content-eliminar">
+								      <div class="modal-header">
+								        <h5 class="modal-title" id="exampleModalLiveLabel">Confirmar eliminación</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+								        <p>La eliminación de este usuario será irreversible.</p>
+							            <p>Desea proceder?</p>
+							          </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
+								        <button type="button" class="btn btn-danger" onclick="location.href = '{{ route('usuario.eliminar', [$fila->id]) }}'">Eliminar</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+							@endif
+
+							<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
+								@if(App\User::find($fila->id)->perfil != null)
+									<img src="{{ asset('icons/search.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
+								@else
+									<img src="{{ asset('icons/person.svg') }}" alt="Crear perfil" width="24" height="24" title="Crear perfil">
+								@endif
 							</a>
+							
+							@if($fila->email_verified_at == null)
+								<a href="{{ route('usuario.validar', [$fila->id]) }}">
+									<img src="{{ asset('icons/unlock.svg') }}" alt="Validar email / Desbloquear cuenta" width="24" height="24" title="Validar email / Desbloquear cuenta">
+								</a>
+							@endif
 
-							<a href="{{ route('usuario.validar', [$fila->id]) }}">
-								<img src="{{ asset('icons/unlock.svg') }}" alt="Presentar / Ver documentos" width="24" height="24" title="Validar">
-							</a>
 						</td>						
 
 					</tr>

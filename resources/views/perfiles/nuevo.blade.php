@@ -19,7 +19,7 @@
 	    <div class="row col-md-12 mt-2">
 
 	        <form class="col-md-12" 
-	              action="{{ route('gestionar.perfil') }}" 
+	              action="{{ route('gestionar.perfil', [$idCliente]) }}" 
 	              method="POST"
 	              enctype="multipart/form-data">
 
@@ -34,9 +34,14 @@
 
 	            <div class="form-row">
 
-	                <div class="col-md-9">
+	                <div class="col-md-1">
+	                    <label class="label-margin">ID</label>
+	                    <input type="text" name="id" class="form-control" value="{{ $idCliente }}" disabled>
+	                </div>
+
+	                <div class="col-md-8">
 	                    <label class="label-margin">Email</label>
-	                    <input type="text" maxlength="100" name="email" class="form-control" value="{{ old('email', Auth::user()->email ) }}">
+	                    <input type="text" maxlength="100" name="email" class="form-control" value="{{ old('email', $emailUsuario ) }}" disabled>
 	                </div>
 
 	                <div class="col-md-3">

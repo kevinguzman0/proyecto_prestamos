@@ -347,3 +347,13 @@ table.table-fit tbody td, table.table-fit tfoot td {
     justify-content: center !important;
     overflow: auto !important;
 }
+
+.ajuste-item-menu-top {
+    margin-left: 5em !important;
+}
+
+.estilo-celda-fecha {
+    text-align:center !important; 
+    font-size: small !important; 
+    vertical-align: middle !important;    
+}

@@ -95,7 +95,7 @@
 								
 								@if($fila->idEstadoSolicitud == 1)
 									
-									<a href="" class="btn btn-link link-tabla" data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">
+									<a class="btn btn-link link-tabla" data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">
 										<img src="{{ asset('icons/trash.svg') }}" alt="Eliminar" width="24" height="24" title="Eliminar">
 									</a>
 
@@ -131,7 +131,7 @@
 				@else
 
 			        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show" role="alert">
-			            Para realizar esta consulta, primero debe llenar su información de perfil... <a href="{{ route('mi.perfil') }}">Haga click aquí para crear su perfil. </a>
+			            Para realizar esta consulta, primero debe llenar su información de perfil... <a href="{{ action('PerfilController@miPerfil', [Auth::user()->id]) }}" class="font-weight-bold font-italic">Haga click aquí para crear su perfil. </a>
 		            	<button type="button" class="close" data-dismiss="alert">&times;</button>
 			        </div>
 

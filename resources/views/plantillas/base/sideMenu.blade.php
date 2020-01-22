@@ -35,8 +35,12 @@
 
 	                <ul class="collapse list-unstyled" id="homeSubmenu2">
 
-	                    <li class="margin-submenu"><a href="{{ route('clientes.tabla') }}">Clientes</a></li>
-	                    <li class="margin-submenu"><a href="{{ route('usuarios.tabla') }}">Usuarios registrados</a></li>
+	                    <li class="margin-submenu">
+	                    	<a href="{{ route('usuarios.tabla') }}">Usuarios registrados</a>
+	                    </li>
+	                    <li class="margin-submenu">
+	                    	<a href="{{ route('perfiles.tabla') }}">Perfiles de usuario</a>
+	                    </li>
 
 	                </ul>
 
@@ -66,7 +70,7 @@
 
 	                        
 		                	<li class="margin-submenu">
-		                        <a href="{{ route('mi.perfil') }}">
+		                        <a href="{{ action('PerfilController@miPerfil', [Auth::user()->id]) }}">
 		                            Mi perfil
 		                        </a>
 		                    </li>

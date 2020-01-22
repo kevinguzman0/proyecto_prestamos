@@ -81,9 +81,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::get('mi-perfil', 'PerfilController@miPerfil')->name('mi.perfil');
+	Route::get('mi-perfil/{idCliente}', 'PerfilController@miPerfil')->name('mi.perfil');
 
-	Route::post('gestionar-perfil', 'PerfilController@gestionarPerfil')->name('gestionar.perfil');
+	Route::post('gestionar-perfil/{idCliente}', 'PerfilController@gestionarPerfil')->name('gestionar.perfil');
 
 	// -----------------------------------------------------------------------------------------------------------
 
@@ -107,9 +107,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::get('clientes', 'GeneralController@tablaClientes')->name('clientes.tabla');
-
 	Route::get('usuarios', 'GeneralController@tablaUsuarios')->name('usuarios.tabla');
+
+	Route::get('perfiles', 'GeneralController@tablaPerfiles')->name('perfiles.tabla');
 
 	Route::get('usuario-eliminar/{idCliente}', 'GeneralController@usuarioEliminar')->name('usuario.eliminar');
 

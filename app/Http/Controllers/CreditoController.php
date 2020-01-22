@@ -37,7 +37,7 @@ class CreditoController extends Controller
         if (count($solicitudes) == 0)
         {
             $mensajeVerde = 'El Cliente [ ' . $idCliente . ' ] no tiene Solicitudes registradas.';
-            $data = compact('cliente', 'solicitudes', 'mensajeVerde');
+            $data = compact('perfil', 'solicitudes', 'mensajeVerde');
         }
         else
         {
@@ -53,7 +53,7 @@ class CreditoController extends Controller
 
         try
         {
-            $validarPerfil = Perfil::findOrFail($idCliente);
+            $perfil = Perfil::findOrFail($idCliente);
         }
         catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
@@ -71,18 +71,16 @@ class CreditoController extends Controller
             abort(404, $mensajeError);
         }
 
-        $cliente = Solicitud::findOrFail($idSolicitud)->cliente;
-
         $documentos = Solicitud::findOrFail($idSolicitud)->documentos;
 
         if (count($documentos) == 0)
         {
             $mensajeVerde = 'La Solicitud [ ' . $idSolicitud . ' ] del Cliente [ ' . $idCliente . ' ] no tiene documentos registrados.';
-            $data = compact('cliente', 'idSolicitud', 'documentos', 'mensajeVerde');
+            $data = compact('perfil', 'idSolicitud', 'documentos', 'mensajeVerde');
         }
         else
         {
-            $data = compact('cliente', 'idSolicitud', 'documentos');
+            $data = compact('perfil', 'idSolicitud', 'documentos');
         }
 
         return view('creditos.documentos', $data);
@@ -162,7 +160,7 @@ class CreditoController extends Controller
 
         $documento = new Documento;
         $documento->idSolicitud = $idSolicitud;
-        $documento->nombreOriginal = $originalFile;
+        $documento->archivoOriginal = $originalFile;
         $documento->descripcionDocumento = $request->descripcionDocumento;
         $documento->revisado = 0;
         $documento->aprobado = -1;

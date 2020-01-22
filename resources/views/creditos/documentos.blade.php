@@ -78,7 +78,7 @@
 							     		<p style='text-align: left;'>
 								     		NOMBRE DEL ARCHIVO
 								     		<br>
-								     		[ {{ $fila->nombreOriginal}} ]
+								     		[ {{ $fila->archivoOriginal}} ]
 								     		<br>
 								     		[ {{ $fila->documento}} ]
 							     		</p>
@@ -133,7 +133,7 @@
 										
 										<div class="modal-header">
 
-											<h6 class="modal-title" id="exampleModalLabel">{{ $fila->documento }}</h6>
+											<h6 class="modal-title" id="exampleModalLabel">Id Documento [ {{ $fila->id }} ] / {{ $fila->documento }}</h6>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
@@ -229,7 +229,7 @@
             <div class="form-row col-md-12 mb-5 padding-form">
 
 	            <div class="alert alert-warning col-md-12 mt-3 mb-1 pl-3 pr-3 alert-dismissible fade show">
-                	No es posible modificar documentos presentados con anterioridad. Si necesita actualizar alguno, debe primero borrarlo y luego subirlo nuevamente. Desde ese momento el documento quedará para revisar nuevamente.
+                	No es posible modificar documentos presentados con anterioridad. Si requiere o le piden actualizar actualizar alguno, debe proceder primero a borrarlo y luego a subirlo de nuevo. Desde ese momento el documento quedará para revisión.
                 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	            </div>
 

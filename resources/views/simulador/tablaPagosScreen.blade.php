@@ -10,8 +10,7 @@
 
         @auth
 
-	        @if((App\User::find(Auth()->user()->id)->usuario != null) && 
-	            (App\Perfil::find(Auth()->user()->id)->user->email_verified_at != null))
+	        @if(App\User::find(Auth()->user()->id)->perfil != null) 
 
 		        <div class="col-md-2 margenes-botones">
 					<a href="{{ route('simulador.pdf') }}" class="btn btn-dark mt-2 mb-2" target="_blank">
@@ -39,7 +38,7 @@
 		    @else
 
 		        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
-					Para solicitar este crédito o generarlo en archivo Pdf, primero debe llenar su información de perfil... <a href="{{ route('mi.perfil') }}">Haga click aquí para crear su perfil.</a>
+					Para solicitar este crédito o generarlo en archivo Pdf, primero debe llenar su información de perfil... <a href="{{ action('PerfilController@miPerfil', [Auth::user()->id]) }}" class="font-weight-bold font-italic">Haga click aquí para crear su perfil.</a>
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		        </div>
 

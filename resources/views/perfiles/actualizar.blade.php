@@ -19,7 +19,7 @@
 	    <div class="row col-md-12 mt-2">
 
 	        <form class="col-md-12" 
-	              action="{{ route('gestionar.perfil') }}" 
+	              action="{{ route('gestionar.perfil', [$perfil->id]) }}" 
 	              method="POST"
 	              enctype="multipart/form-data">
 

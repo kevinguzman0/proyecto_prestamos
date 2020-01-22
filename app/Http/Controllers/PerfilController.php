@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Perfil;
+use App\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -19,21 +20,28 @@ class PerfilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function miPerfil()
+    public function miPerfil($idCliente)
     {
 
-        $id = auth()->user()->id;
+        $usuario = User::find($idCliente);
 
-        $perfil = Perfil::find($id);
+        if ($usuario == null)
+        {
+            $mensajeError = 'Atención, el Usuario [ ' . $idCliente . ' ] no está registrado. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);        
+        }
+
+        $perfil = Perfil::find($idCliente);
 
         if ($perfil == null) 
         {
-            return view('usuarios.nuevo');
+            $emailUsuario = $usuario->email;
+            return view('perfiles.nuevo', compact('idCliente', 'emailUsuario'));
         }
         else
         {
             $storagePath = Storage::disk('public')->path($perfil->foto);
-            return view('usuarios.actualizar', compact('perfil', 'storagePath'));
+            return view('perfiles.actualizar', compact('perfil', 'storagePath'));
         }
 
     }
@@ -44,22 +52,20 @@ class PerfilController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function gestionarPerfil(Request $request)
+    public function gestionarPerfil(Request $request, $idCliente)
     {
 
-        $id = auth()->user()->id;
+        $perfil = Perfil::find($idCliente);
 
-        $usuario = Usuario::find($id);
-
-        if ($usuario == null) 
+        if ($perfil == null) 
         {
 
             $validatedData = Validator::make($request->all(),
                 [
-                    'cedula' => 'required|unique:usuarios',
+                    'cedula' => 'required|unique:perfiles',
                     'nombres' => 'required',
                     'apellidos' => 'required',
-                    'email' => 'required|email|unique:usuarios',
+                    'email' => 'required|email|unique:perfiles',
                     'telefono1' => 'required',
                     'telefono2' => 'required',
                     'fechaNacimiento' => 'required',
@@ -72,7 +78,7 @@ class PerfilController extends Controller
                     'foto'=> 'required|mimes:jpeg,bmp,png,gif,jfif|max:5120',
                 ]);
 
-            $usuario = new Perfil;
+            $perfil = new Perfil;
             $perfil->idPerfilUsuario = 1;
             $mensaje = 'Perfil creado correctamente...';
 
@@ -101,7 +107,7 @@ class PerfilController extends Controller
 
             if($perfil->email != $request->email)
             {
-                $user = Perfil::find($perfil->id)->user;
+                $user = User::find($perfil->id);
                 $user->email_verified_at = null;
                 $user->email=$request->email;
                 $user->save();
@@ -118,7 +124,7 @@ class PerfilController extends Controller
             return redirect()->back()->withInput()->withErrors($validatedData);
         }
 
-        $perfil->id = $id;
+        $perfil->id = $idCliente;
         $perfil->cedula = $request->cedula;
         $perfil->nombres = $request->nombres;
         $perfil->apellidos = $request->apellidos;
