@@ -114,14 +114,26 @@
 						
 						<td style="text-align:center;">  
 
-							<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idAnalizadoPor]) }}">
-								{{ $fila->idAnalizadoPor }} 
-							</a>
+							@if($fila->idAnalizadoPor != null)
+								<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idAnalizadoPor]) }}">
+									{{ $fila->idAnalizadoPor }} 
+								</a>
+							@else
+								<span class="estilo-celda-fecha">pendiente</span>
+							@endif
 
 						</td>
 
-						<td class="estilo-celda-fecha"> {{ $fila->analizadoEn }} </td>
+						<td class="estilo-celda-fecha"> 
 
+							@if($fila->analizadoEn != null)
+								{{ $fila->analizadoEn }} 
+							@else
+								pendiente
+							@endif
+
+						</td>
+						
 						<td style="text-align:center;">
 
 							<button type="button" class="btn btn-link link-tabla" data-toggle="modal" data-target="#documento_{{ $fila->id }}">
