@@ -85,7 +85,7 @@
 		                    </li>
 
 		                    <li class="margin-submenu">
-		                		 <a href="{{ action('CreditoController@tablaSolicitudes', [Auth::user()->id]) }}">
+		                		 <a href="{{ action('CreditoController@misSolicitudes', [Auth::user()->id]) }}">
 		                            Mis solicitudes
 		                        </a>
 		                	</li>

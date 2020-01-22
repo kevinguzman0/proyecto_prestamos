@@ -303,7 +303,7 @@
             	
             	<div class="col-md-6">
 		            <label></label>
-		            <button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ action('CreditoController@tablaSolicitudes', [$perfil->id]) }}'">Regresar</button>
+		            <button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ action('CreditoController@misSolicitudes', [$perfil->id]) }}'">Regresar</button>
             	</div>
 
             </div>
