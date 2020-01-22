@@ -219,7 +219,7 @@
 											          </div>
 												      <div class="modal-footer">
 												        <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
-												        <button type="button" class="btn btn-danger" onclick="location.href = '{{ action('CreditoController@documentoEliminar', [$fila->idSolicitud, $fila->id]) }}'">Eliminar</button>
+												        <button type="button" class="btn btn-danger" onclick="location.href = '{{ action('CreditoController@documentoEliminar', [$fila->idSolicitud, $fila->id]) }}'">Aceptar</button>
 												      </div>
 												    </div>
 												  </div>
