@@ -133,6 +133,7 @@ class SimuladorController extends Controller
     public function vistaCuotaCredito(Request $request)
     {
 
+        Input::flash();
         $validatedData = Validator::make($request->all(),
             [
                 'valorPrestamo' => 'required|numeric',
