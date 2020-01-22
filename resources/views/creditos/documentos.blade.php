@@ -202,7 +202,7 @@
 
 											@if($fila->aprobado!=1)
 
-												<a class="btn btn-link link-tabla" data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">Eliminar</a>
+												<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">Eliminar</button>
 
 												<div id="confirm-delete_{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
 												  <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
