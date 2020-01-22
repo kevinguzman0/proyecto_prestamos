@@ -95,6 +95,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::get('solicitud-aprobar/{idCliente}/{idSolicitud}', 'CreditoController@solicitudAprobar')->name('solicitud.aprobar');
 
+	Route::get('solicitud-rechazar/{idCliente}/{idSolicitud}', 'CreditoController@solicitudRechazar')->name('solicitud.rechazar');
+
 	// -----------------------------------------------------------------------------------------------------------
 
 	Route::get('mis-documentos/{idCliente}/{idSolicitud}', 'CreditoController@tablaDocumentos')->name('mis.documentos');
