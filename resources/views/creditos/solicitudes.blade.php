@@ -11,7 +11,7 @@
 @section('content')
 
 	<div class="row col-md-12">
-        <h5>MI HISTORIAL DE SOLICITUDES DE CRÉDITO</h5>
+        <h5>HISTORIAL DE SOLICITUDES DE CRÉDITO</h5>
     </div>
 
 	<div class="row col-md-12 padding-form">

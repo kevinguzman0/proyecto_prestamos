@@ -11,7 +11,7 @@
 @section('content')
 
 	<div class="row col-md-12">
-        <h5>LISTADO DE DOCUMENTOS PRESENTADOS</h5>
+        <h5>HISTORIAL DE DOCUMENTOS PRESENTADOS</h5>
     </div>
 
 	<div class="row col-md-12 padding-form">
@@ -58,6 +58,8 @@
 						<th class="header-tabla-texto">Fecha / Hora</th>
 						<th class="header-tabla-texto">Revisión</th>
 						<th class="header-tabla-texto">Aprobación</th>
+						<th class="header-tabla-texto">Analizado por</th>
+						<th class="header-tabla-texto">Analizado en</th>
 						<th class="header-tabla-texto">Acciones</th>
 					</tr>
 				</thead>
@@ -117,6 +119,16 @@
 
 						</td>
 						
+						<td style="text-align:center;">  
+
+							<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idAnalizadoPor]) }}">
+								{{ $fila->idAnalizadoPor }} 
+							</a>
+
+						</td>
+
+						<td style="text-align:center;"> {{ $fila->analizadoEn }} </td>
+
 						<td style="text-align:center;">
 
 							<button type="button" class="btn btn-link link-tabla" data-toggle="modal" data-target="#documento_{{ $fila->id }}">

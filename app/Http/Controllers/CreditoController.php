@@ -200,6 +200,8 @@ class CreditoController extends Controller
 
         $documento->aprobado = 1;
         $documento->revisado = 1;
+        $documento->idAnalizadoPor = auth()->user()->id;
+        $documento->analizadoEn = now();
         $documento->save();
 
         $mensajeVerde = 'Documento aprobado...';
@@ -233,6 +235,8 @@ class CreditoController extends Controller
 
         $documento->aprobado = 0;
         $documento->revisado = 1;
+        $documento->idAnalizadoPor = auth()->user()->id;
+        $documento->analizadoEn = now();
         $documento->save();
 
         $mensajeVerde = 'Documento rechazado...';

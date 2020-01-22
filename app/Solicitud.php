@@ -16,6 +16,8 @@ class Solicitud extends Model
         'plazo', 
         'cuota', 
         'interes', 
+        'idAnalizadoPor', 
+        'analizadoEn', 
     ];
 
     protected $primaryKey = 'id';

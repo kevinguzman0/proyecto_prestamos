@@ -14,6 +14,7 @@ class CrearTablaDocumentos extends Migration
     public function up()
     {
         Schema::create('documentos', function (Blueprint $table) {
+
             $table->bigIncrements('id');
             $table->bigInteger('idSolicitud')->unsigned();
             $table->string('documento', 100);
@@ -21,7 +22,11 @@ class CrearTablaDocumentos extends Migration
             $table->string('descripcionDocumento');
             $table->boolean('revisado');
             $table->boolean('aprobado'); 
+            $table->bigInteger('idAnalizadoPor')->unsigned();
+            $table->dateTime('analizadoEn');
+
             $table->timestamps();
+            
         });
     }
 

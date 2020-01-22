@@ -15,6 +15,8 @@ class Documento extends Model
         'descripcionDocumento', 
         'revisado', 
         'aprobado', 
+        'idAnalizadoPor', 
+        'analizadoEn', 
     ];
 
     protected $primaryKey = 'id';
