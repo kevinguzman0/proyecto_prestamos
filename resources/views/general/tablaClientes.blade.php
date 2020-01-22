@@ -10,6 +10,8 @@
 
 @section('content')
 	
+	<div class="row col-md-12">
+        <h5>LISTADO CLIENTES</h5>
     </div>
 
     <div class="row col-md-12 mb-3 mt-3">
