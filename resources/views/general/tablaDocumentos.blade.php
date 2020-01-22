@@ -32,6 +32,8 @@
 						<th class="header-tabla-texto">Fecha / Hora</th>
 						<th class="header-tabla-texto">Revisión</th>
 						<th class="header-tabla-texto">Aprobación</th>
+						<th class="header-tabla-texto">Analizado por</th>
+						<th class="header-tabla-texto">Analizado en</th>
 						<th class="header-tabla-texto">Acciones</th>
 					</tr>
 
@@ -80,7 +82,7 @@
 
 						</td>
 						
-						<td style="text-align:left;"> {{ $fila->created_at }} </td>
+						<td class="estilo-celda-fecha"> {{ $fila->created_at }} </td>
 						
 						<td style="text-align:center;">
 
@@ -110,6 +112,16 @@
 
 						</td>
 						
+						<td style="text-align:center;">  
+
+							<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idAnalizadoPor]) }}">
+								{{ $fila->idAnalizadoPor }} 
+							</a>
+
+						</td>
+
+						<td class="estilo-celda-fecha"> {{ $fila->analizadoEn }} </td>
+
 						<td style="text-align:center;">
 
 							<button type="button" class="btn btn-link link-tabla" data-toggle="modal" data-target="#documento_{{ $fila->id }}">

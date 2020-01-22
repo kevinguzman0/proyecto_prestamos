@@ -22,7 +22,7 @@ class CrearTablaSolicitudes extends Migration
             $table->integer('plazo');
             $table->decimal('cuota', 13, 4);
             $table->decimal('interes', 5, 2);
-            $table->bigInteger('idAnalizadoPor')->unsigned();
+            $table->bigInteger('idAnalizadoPor')->unsigned()->nullable();
             $table->dateTime('analizadoEn');
 
             $table->timestamps();

@@ -22,7 +22,7 @@ class CrearTablaDocumentos extends Migration
             $table->string('descripcionDocumento');
             $table->boolean('revisado');
             $table->boolean('aprobado'); 
-            $table->bigInteger('idAnalizadoPor')->unsigned();
+            $table->bigInteger('idAnalizadoPor')->unsigned()->nullable();
             $table->dateTime('analizadoEn');
 
             $table->timestamps();

@@ -33,6 +33,8 @@
 						<th class="header-tabla-texto">Cuota mensual</th>
 						<th class="header-tabla-texto">Interés</th>
 						<th class="header-tabla-texto">Estado solicitud</th>
+						<th class="header-tabla-texto">Analizado por</th>
+						<th class="header-tabla-texto">Analizado en</th>
 						<th class="header-tabla-texto">Acciones</th>
 					</tr>
 
@@ -58,6 +60,16 @@
 						<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
 						<td> {{ $fila->interes . '%' }} </td>
 						<td> {{ $fila->estado->nombreEstado }} </td>
+
+						<td style="text-align:center;">  
+
+							<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idAnalizadoPor]) }}">
+								{{ $fila->idAnalizadoPor }} 
+							</a>
+
+						</td>
+
+						<td class="estilo-celda-fecha"> {{ $fila->analizadoEn }} </td>
 
 						<td style="text-align:left;">
 
