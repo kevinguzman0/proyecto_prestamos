@@ -10,7 +10,7 @@ use Session;
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
-
+use Input;
 class SimuladorController extends Controller
 {
 
@@ -27,7 +27,7 @@ class SimuladorController extends Controller
      */
     public function vistaTablaPagos(Request $request)
     {
-        
+        Input::flash();
         $validatedData = Validator::make($request->all(),
             [
                 'valorPrestamo' => 'required|numeric',

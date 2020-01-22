@@ -231,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Input' => Illuminate\Support\Facades\Request::class,
 
     ],
 
