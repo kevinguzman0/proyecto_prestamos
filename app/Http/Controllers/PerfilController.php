@@ -103,7 +103,7 @@ class PerfilController extends Controller
                     'areaTrabajo' => 'required',
                     'cargoTrabajo' => 'required',
                     'afiliadoFondo' => 'required',
-                    'foto'=> 'required|mimes:jpeg,bmp,png,gif|max:5120',
+                    'foto'=> 'mimes:jpeg,bmp,png,gif|max:5120',
 
                 ]);
 
@@ -141,12 +141,17 @@ class PerfilController extends Controller
         $perfil->cargoTrabajo = $request->cargoTrabajo;
         $perfil->afiliadoFondo = $request->afiliadoFondo;
 
-        $file = $request->file('foto');
-        $ext = $request->file('foto')->getClientOriginalExtension();
-        $archivo = 'foto-id-' . $perfil->id . '.' . $ext;
-        $perfil->foto = strtolower($archivo);
+        if (Input::has('foto'))
+        {
+            
+            $file = $request->file('foto');
+            $ext = $request->file('foto')->getClientOriginalExtension();
+            $archivo = 'foto-id-' . $perfil->id . '.' . $ext;
+            $perfil->foto = strtolower($archivo);
+            Storage::disk('public')->put($archivo, File::get($file));
 
-        Storage::disk('public')->put($archivo, File::get($file));
+        }
+
         $perfil->save();
 
         return redirect()->back()->with('mensajeVerde', $mensaje);
