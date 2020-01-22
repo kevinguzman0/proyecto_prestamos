@@ -4,7 +4,7 @@
 
     <div>
 
-		<table class="table table-striped table-bordered table-fit page-break" style="width:100% !important;">
+		<table class="table table-striped table-bordered table-fit" style="width:100% !important;">
 
 			<thead>
 				<tr>
@@ -17,7 +17,7 @@
 				</tr>
 			</thead>
 
-			<tbody>
+			<tbody class="page-break">
 
 				@foreach ($listaPagos as $fila)
 
