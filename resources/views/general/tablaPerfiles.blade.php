@@ -50,7 +50,7 @@
 						<td style="text-align:left;"> {{ $fila->cedula }} </td>
 						<td style="text-align:left;"> {{ $fila->email }} </td>
 
-						<td style="text-align:center;">
+						<td style="text-align:left;">
 							<a href="{{ action('PerfilController@miPerfil', [Auth::user()->id]) }}">
 								<img src="{{ asset('icons/search.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
 							</a>

@@ -54,10 +54,10 @@
 
 						</td>
 
-						<td style="text-align:center;">
+						<td style="text-align:left;">
 
 							@if(Auth::user()->id != $fila->id)
-								<a class="btn btn-link link-tabla" data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">
+								<a data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">
 									<img src="{{ asset('icons/trash.svg') }}" alt="Eliminar" width="24" height="24" title="Eliminar">
 								</a>
 
