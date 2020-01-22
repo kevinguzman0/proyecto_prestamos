@@ -357,3 +357,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
     font-size: small !important; 
     vertical-align: middle !important;    
 }
+
+.link-tabla {
+    padding: 0px !important;
+}

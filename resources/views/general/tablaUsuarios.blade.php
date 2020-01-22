@@ -11,7 +11,7 @@
 @section('content')
 	
 	<div class="row col-md-12">
-        <h5>LISTADO DE USUARIOS REGISTRADOS</h5>
+        <h5>LISTADO GENERAL DE USUARIOS REGISTRADOS</h5>
     </div>
 
     <div class="row col-md-12 mb-3 mt-3">

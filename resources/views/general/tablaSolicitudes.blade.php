@@ -11,7 +11,7 @@
 @section('content')
 	
 	<div class="row col-md-12">
-        <h5>LISTADO DE SOLICITUDES DE CRÉDITO</h5>
+        <h5>LISTADO GENERAL DE SOLICITUDES DE CRÉDITO</h5>
     </div>
 
     <div class="row col-md-12 mb-3 mt-3">
@@ -43,7 +43,15 @@
 				    <tr>
 
 						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-						<td style="text-align:center;"> {{ $fila->idCliente }} </td>
+
+						<td style="text-align:center;"> 
+
+							<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idCliente]) }}">
+								{{ $fila->idCliente }} 
+							</a>
+
+						</td>
+						
 						<td class="estilo-celda-fecha"> {{ $fila->created_at }} </td>
 						<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
 						<td style="text-align:center;"> {{ $fila->plazo }} </td>

@@ -11,7 +11,7 @@
 @section('content')
 	
 	<div class="row col-md-12">
-        <h5>LISTADO DE DOCUMENTOS PRESENTADOS</h5>
+        <h5>LISTADO GENERAL DE DOCUMENTOS PRESENTADOS</h5>
     </div>
 
     <div class="row col-md-12 mb-3 mt-3">
@@ -27,6 +27,7 @@
 					<tr>
 						<th class="header-tabla-texto">Id</th>
 						<th class="header-tabla-texto">Solicitud</th>
+						<th class="header-tabla-texto">Cliente</th>
 						<th class="header-tabla-texto">Archivo</th>
 						<th class="header-tabla-texto">Fecha / Hora</th>
 						<th class="header-tabla-texto">Revisión</th>
@@ -42,7 +43,23 @@
 						
 						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
 
-						<td style="text-align:center;"> {{ $fila->idSolicitud }} </td>
+						<td style="text-align:center;"> 
+
+							<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('CreditoController@tablaSolicitudes', [$fila->solicitud->cliente->id]) }}">
+								{{ $fila->idSolicitud }}  
+							</a>
+
+						</td>
+
+						<td style="text-align:center;"> 
+
+							<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->solicitud->cliente->id]) }}">
+								{{ $fila->solicitud->cliente->id }} 
+							</a>
+
+						</td>
+
+						</td>
 
 						<td style="text-align:center;">
 
