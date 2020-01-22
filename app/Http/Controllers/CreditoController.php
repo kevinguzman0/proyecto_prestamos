@@ -367,7 +367,7 @@ class CreditoController extends Controller
 
         foreach ($solicitudes as $fila)
         {
-            $this->solicitudEliminar($idUsuario, $fila->idCliente);
+            $this->solicitudEliminar($idUsuario, $fila->id);
         }
         
         return redirect()->back()->with('mensajeVerde', $mensaje);
