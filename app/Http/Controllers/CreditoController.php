@@ -21,7 +21,7 @@ class CreditoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tablaSolicitudes($idCliente)
+    public function misSolicitudes($idCliente)
     {
 
         $perfil = Perfil::find($idCliente);
@@ -365,13 +365,9 @@ class CreditoController extends Controller
 
         $solicitudes = Solicitud::findOrFail($idUsuario);
 
-        if (count($solicitudes) > 0)
+        foreach ($solicitudes as $fila)
         {
-            foreach ($solicitudes as $fila)
-            {
-                $this->solicitudEliminar($idUsuario, $fila->id);
-            }
-   
+            $this->solicitudEliminar($idUsuario, $fila->idCliente);
         }
         
         return redirect()->back()->with('mensajeVerde', $mensaje);
