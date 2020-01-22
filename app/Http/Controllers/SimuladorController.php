@@ -27,7 +27,9 @@ class SimuladorController extends Controller
      */
     public function vistaTablaPagos(Request $request)
     {
+        
         Input::flash();
+        
         $validatedData = Validator::make($request->all(),
             [
                 'valorPrestamo' => 'required|numeric',

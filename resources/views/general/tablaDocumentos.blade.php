@@ -112,7 +112,7 @@
 
 						</td>
 						
-						<td style="text-align:center;">  
+						<td class="estilo-celda-fecha"> 
 
 							@if($fila->idAnalizadoPor != null)
 								<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idAnalizadoPor]) }}">
@@ -129,7 +129,7 @@
 							@if($fila->analizadoEn != null)
 								{{ $fila->analizadoEn }} 
 							@else
-								pendiente
+								<span class="estilo-celda-fecha">pendiente</span>
 							@endif
 
 						</td>
