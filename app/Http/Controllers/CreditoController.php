@@ -21,7 +21,7 @@ class CreditoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tablaSolicitudes($idCliente)
+    public function misSolicitudes($idCliente)
     {
 
         $perfil = Perfil::find($idCliente);

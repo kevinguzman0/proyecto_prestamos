@@ -77,7 +77,7 @@
                                     Mi perfil
                                 </a>
 
-                                <a class="dropdown-item" href="{{ action('CreditoController@tablaSolicitudes', [Auth::user()->id]) }}">
+                                <a class="dropdown-item" href="{{ action('CreditoController@misSolicitudes', [Auth::user()->id]) }}">
                                     Mis solicitudes
                                 </a>
                                 

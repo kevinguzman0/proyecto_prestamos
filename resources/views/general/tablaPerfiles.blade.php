@@ -57,7 +57,7 @@
 								<img src="{{ asset('icons/search.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
 							</a>
 
-							<a href="{{ action('CreditoController@tablaSolicitudes', [$fila->id]) }}">
+							<a href="{{ action('CreditoController@misSolicitudes', [$fila->id]) }}">
 								<img src="{{ asset('icons/list-check.svg') }}" alt="Ver solicitudes" width="24" height="24" title="Ver solicitudes">
 							</a>
 

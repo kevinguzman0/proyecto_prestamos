@@ -75,7 +75,7 @@
 
 						<td style="text-align:center;"> 
 
-							<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('CreditoController@tablaSolicitudes', [$fila->solicitud->cliente->id]) }}">
+							<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('CreditoController@misSolicitudes', [$fila->solicitud->cliente->id]) }}">
 								{{ $fila->idSolicitud }}  
 							</a>
 

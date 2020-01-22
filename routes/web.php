@@ -87,7 +87,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::get('mis-solicitudes/{idCliente}', 'CreditoController@tablaSolicitudes')->name('mis.solicitudes');
+	Route::get('mis-solicitudes/{idCliente}', 'CreditoController@misSolicitudes')->name('mis.solicitudes');
 
 	Route::post('solicitud-nueva', 'CreditoController@solicitudNueva')->name('solicitud.nueva');
 
