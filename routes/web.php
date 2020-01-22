@@ -97,6 +97,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::get('solicitud-rechazar/{idCliente}/{idSolicitud}', 'CreditoController@solicitudRechazar')->name('solicitud.rechazar');
 
+	Route::get('usuario-eliminar/{idCliente}', 'CreditoController@usuarioEliminar')->name('usuario.eliminar');
+
 	// -----------------------------------------------------------------------------------------------------------
 
 	Route::get('mis-documentos/{idCliente}/{idSolicitud}', 'CreditoController@tablaDocumentos')->name('mis.documentos');
@@ -120,8 +122,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('solicitudes', 'GeneralController@tablaSolicitudes')->name('solicitudes.tabla');
 
 	Route::get('documentos', 'GeneralController@tablaDocumentos')->name('documentos.tabla');
-
-	Route::get('usuario-eliminar/{idCliente}', 'GeneralController@usuarioEliminar')->name('usuario.eliminar');
 
 	Route::get('usuario-validar/{idCliente}', 'GeneralController@usuarioValidar')->name('usuario.validar');
 

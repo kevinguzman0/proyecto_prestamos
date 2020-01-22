@@ -6,7 +6,8 @@ use App\Perfil;
 use App\User;
 use App\Solicitud;
 use App\Documento;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
@@ -42,35 +43,6 @@ class GeneralController extends Controller
 
         $documentos = Documento::paginate(10);
         return view('general.tablaDocumentos', compact('documentos'));
-
-    }
-
-    public function usuarioEliminar($idUsuario)
-    {
-
-    	$usuario = User::find($idUsuario);
- 
-        if ($usuario == null)
-        {
-            $mensajeError = 'Atención, la información de registro del Usuario [ ' . $idUsuario . ' ] no está disponible. Es imposible proceder con la eliminación del usuario. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
-            abort(404, $mensajeError);        
-        }
-
-    	$perfil = Perfil::find($idUsuario);
-
-    	if ($perfil != null) 
-        {
-    		$perfil->delete();
-            $mensaje = 'El Usuario [ ' . $idUsuario . ' ] fue eliminado con toda su información de Perfil...';
-    	}
-        else
-        {
-            $mensaje = 'El Usuario [ ' . $idUsuario . ' ] fue eliminado...';
-        }
-
-     	$usuario->delete();
-        
-        return redirect()->back()->with('mensajeVerde', $mensaje);
 
     }
 

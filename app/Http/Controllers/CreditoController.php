@@ -335,6 +335,49 @@ class CreditoController extends Controller
 
     }
 
+    public function usuarioEliminar($idUsuario)
+    {
+
+        $usuario = User::find($idUsuario);
+ 
+        if ($usuario == null)
+        {
+            $mensajeError = 'Atención, la información de registro del Usuario [ ' . $idUsuario . ' ] no está disponible. Es imposible proceder con la eliminación del usuario. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);        
+        }
+
+        $perfil = Perfil::find($idUsuario);
+
+        if ($perfil != null) 
+        {
+            $perfil->delete();
+            $mensaje = 'El Usuario [ ' . $idUsuario . ' ] fue eliminado con toda su información de Perfil...';
+        }
+        else
+        {
+            $mensaje = 'El Usuario [ ' . $idUsuario . ' ] fue eliminado...';
+        }
+
+        $archivo = $perfil->foto;
+        Storage::disk('public')->delete($archivo);
+
+        $usuario->delete();
+
+        $solicitudes = Solicitud::findOrFail($idUsuario);
+
+        if (count($solicitudes) > 0)
+        {
+            foreach ($solicitudes as $fila)
+            {
+                $this->solicitudEliminar($idUsuario, $fila->id);
+            }
+   
+        }
+        
+        return redirect()->back()->with('mensajeVerde', $mensaje);
+
+    }
+
     public function solicitudAprobar($idCliente, $idSolicitud)
     {
         
