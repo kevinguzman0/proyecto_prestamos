@@ -313,6 +313,7 @@ table.table-fit tbody td, table.table-fit tfoot td {
 
 .header-tabla-texto {
     font-weight: normal !important;
+    text-align: center !important;
 }
 
 .table thead th {
@@ -360,4 +361,8 @@ table.table-fit tbody td, table.table-fit tfoot td {
 
 .link-tabla {
     padding: 0px !important;
+}
+
+td {
+    vertical-align: middle !important;
 }

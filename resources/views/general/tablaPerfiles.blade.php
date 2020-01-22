@@ -25,9 +25,9 @@
 				<thead class="header-tabla">
 
 					<tr>
-						<th class="header-tabla-texto text-center">Id Perfil</th>
-						<th class="header-tabla-texto text-center">Creación</th>
-						<th class="header-tabla-texto text-center">Modificación</th>
+						<th class="header-tabla-texto">Id</th>
+						<th class="header-tabla-texto">Creación</th>
+						<th class="header-tabla-texto">Modificación</th>
 						<th class="header-tabla-texto">Estado</th>
 						<th class="header-tabla-texto">Nombres</th>
 						<th class="header-tabla-texto">Apellidos</th>

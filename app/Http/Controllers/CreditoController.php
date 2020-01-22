@@ -190,7 +190,7 @@ class CreditoController extends Controller
 
         try
         {
-            $validarSolicitud = Solicitud::findOrFail($idSolicitud);
+            $solicitud = Solicitud::findOrFail($idSolicitud);
         }
         catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
         {
@@ -203,6 +203,9 @@ class CreditoController extends Controller
         $documento->idAnalizadoPor = auth()->user()->id;
         $documento->analizadoEn = now();
         $documento->save();
+
+        $solicitud->idEstadoSolicitud = 2;
+        $solicitud->save();
 
         $mensajeVerde = 'Documento aprobado...';
 
@@ -238,6 +241,9 @@ class CreditoController extends Controller
         $documento->idAnalizadoPor = auth()->user()->id;
         $documento->analizadoEn = now();
         $documento->save();
+
+        $solicitud->idEstadoSolicitud = 2;
+        $solicitud->save();
 
         $mensajeVerde = 'Documento rechazado...';
 
@@ -311,6 +317,7 @@ class CreditoController extends Controller
         }
 
         $documentos = Solicitud::findOrFail($idSolicitud)->documentos;
+
         if (count($documentos) > 0)
         {
             foreach ($documentos as $fila)
@@ -325,6 +332,88 @@ class CreditoController extends Controller
         $mensaje = 'La Solicitud [ ' . $idSolicitud . ' ] fue eliminada...';
 
         return redirect()->back()->with('mensajeVerde', $mensaje);
+
+    }
+
+    public function solicitudAprobar($idCliente, $idSolicitud)
+    {
+        
+        try
+        {
+            $perfil = Perfil::findOrFail($idCliente);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] asociado a la Solicitud [ ' . $idSolicitud . ' ] no está disponible. Es imposible continuar con el proceso de eliminación de la solicitud. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
+        try
+        {
+            $solicitud = Solicitud::findOrFail($idSolicitud);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensaje = 'Atención, la Solicitud [ ' . $idSolicitud . ' ] no está disponible para su eliminación. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+        }
+
+        $documentosRechazados = Solicitud::findOrFail($idSolicitud)->documentos->where('aprobado', '=', 0)->count();
+
+        if ($documentosRechazados > 0)
+        {
+            $mensajeRojo = 'La Solicitud [ ' . $idSolicitud . ' ] no se puede aprobar ya que tiene [ ' . $documentosRechazados . ' ] documento(s) rechazado(s).';
+            return redirect()->back()->with('mensajeRojo', $mensajeRojo);
+        }
+        else
+        {
+    
+            $solicitud->idAnalizadoPor = auth()->user()->id;
+            $solicitud->analizadoEn = now();
+            $solicitud->idEstadoSolicitud = 5;
+            $solicitud->save();
+
+            $perfil->idPerfilUsuario = 3;
+            $perfil->save();
+            $mensajeVerde = 'Solicitud aprobada...';
+            return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+
+        }
+
+    }
+
+    public function solicitudRechazar($idCliente, $idSolicitud)
+    {
+        
+        try
+        {
+            $perfil = Perfil::findOrFail($idCliente);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] asociado a la Solicitud [ ' . $idSolicitud . ' ] no está disponible. Es imposible continuar con el proceso de eliminación de la solicitud. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+
+        try
+        {
+            $solicitud = Solicitud::findOrFail($idSolicitud);
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exception) 
+        {
+            $mensaje = 'Atención, la Solicitud [ ' . $idSolicitud . ' ] no está disponible para su eliminación. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+        }
+
+        $solicitud->idAnalizadoPor = auth()->user()->id;
+        $solicitud->analizadoEn = now();
+        $solicitud->idEstadoSolicitud = 4;
+        $solicitud->save();
+
+        $perfil->idPerfilUsuario = 2;
+        $perfil->save();
+        $mensajeVerde = 'Solicitud rechazada...';
+        return redirect()->back()->with('mensajeVerde', $mensajeVerde);
 
     }
 
