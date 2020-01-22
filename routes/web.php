@@ -62,14 +62,13 @@ try {
 });
 
 // -----------------------------------------------------------------------------------------------------------
+Route::get('salir', 'Auth\LoginController@logout')->name('salir');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
 	Route::get('home', 'HomeController@index')->name('home');
-
-	Route::get('salir', 'Auth\LoginController@logout')->name('salir');
 
 	// -----------------------------------------------------------------------------------------------------------
 
@@ -107,7 +106,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::get('clientes', 'ClienteController@index')->name('clientes.tabla');
+	Route::get('clientes', 'GeneralController@tablaClientes')->name('clientes.tabla');
+
+	Route::get('usuarios', 'GeneralController@tablaUsuarios')->name('usuarios.tabla');
+
+	Route::get('usuario-eliminar/{idCliente}', 'GeneralController@usuarioEliminar')->name('usuario.eliminar');
+
+	Route::get('usuario-validar/{idCliente}', 'GeneralController@usuarioValidar')->name('usuario.validar');
 
 	// -----------------------------------------------------------------------------------------------------------
 
