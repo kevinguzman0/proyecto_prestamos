@@ -197,9 +197,11 @@
 											@endif
 
 											@if (in_array(strtolower(pathinfo($fila->documento, PATHINFO_EXTENSION)), array('doc', 'docx', 'xls', 'xlsx', 'zip', 'rar', '7z')))
-												<h4 class="modal-title" id="modal_body_descripcion">
-													Apreciado usuario, este archivo debe ser descargado
-												</h4>
+												<div style="text-align: left;">
+													<h5 class="modal-title" id="modal_body_descripcion">
+														Apreciado usuario. Este tipo de archivo debe ser descargado para poder ser revisado. Luego de hacerlo, regrese a esta pantalla para aprobarlo o rechazarlo.
+													</h5>
+												</div>	
 											@else
 												<img src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" 
 													 class="img-fluid form-control estilo-img-previa">
