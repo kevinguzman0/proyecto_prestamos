@@ -45,8 +45,6 @@ class SimuladorController extends Controller
             //Input::flash();
         }
 
-        
-
         $request->session()->put('valorPrestamo', $valorPrestamo);
         $request->session()->put('plazoCuotas', $plazoCuotas);
 
