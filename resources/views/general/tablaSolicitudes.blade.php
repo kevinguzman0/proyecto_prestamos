@@ -16,6 +16,34 @@
 
     <div class="row col-md-12 mb-3 mt-3">
 
+		@isset($mensajeVerde)
+			<div class="form-row col-md-12 alert alert-success estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+	            {{ $mensajeVerde }}
+	            <button type="button" class="close" data-dismiss="alert">&times;</button>
+	        </div>
+		@endisset
+
+	    @if ($mensaje = Session::get('mensajeVerde'))
+	        <div class="form-row col-md-12 alert alert-success estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+	            {{ $mensaje }}
+	            <button type="button" class="close" data-dismiss="alert">&times;</button>
+	        </div>
+	    @endif
+
+		@isset($mensajeRojo)
+			<div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+	            {{ $mensajeRojo }}
+	            <button type="button" class="close" data-dismiss="alert">&times;</button>
+	        </div>
+		@endisset
+
+	    @if ($mensaje = Session::get('mensajeRojo'))
+	        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+	            {{ $mensaje }}
+	            <button type="button" class="close" data-dismiss="alert">&times;</button>
+	        </div>
+	    @endif
+
     	{{ $solicitudes->onEachSide(2)->links() }}
 
 		<table class="table table-striped table-bordered">
@@ -27,7 +55,7 @@
 					<tr>
 						<th class="header-tabla-texto">Id</th>
 						<th class="header-tabla-texto">Cliente</th>
-						<th class="header-tabla-texto text-center">Fecha</th>
+						<th class="header-tabla-texto">Fecha</th>
 						<th class="header-tabla-texto">Monto</th>
 						<th class="header-tabla-texto">Plazo</th>
 						<th class="header-tabla-texto">Cuota mensual</th>
@@ -82,7 +110,7 @@
 							@endif
 
 						</td>
-						
+
 						<td style="text-align:left;">
 
 							@if($fila->idEstadoSolicitud <= 3)
@@ -91,6 +119,18 @@
 								</a>
 							@endif
 							
+							@if($fila->idEstadoSolicitud == 2)
+								<a href="{{ route('solicitud.aprobar', [$fila->idCliente, $fila->id]) }}">
+									<img src="{{ asset('icons/award.svg') }}" alt="Aprobar / Validar" width="24" height="24" title="Aprobar / Validar">
+								</a>
+							@endif
+							
+							@if($fila->idEstadoSolicitud == 2)
+								<a href="{{ route('solicitud.rechazar', [$fila->idCliente, $fila->id]) }}">
+									<img src="{{ asset('icons/x-octagon-fill.svg') }}" alt="Rechazar" width="24" height="24" title="Rechazar">
+								</a>
+							@endif
+
 							@if($fila->idEstadoSolicitud == 1)
 								
 								<a class="btn btn-link link-tabla" data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">

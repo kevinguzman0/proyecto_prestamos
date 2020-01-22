@@ -36,7 +36,7 @@ class CrearTablaPerfilesUsuario extends Migration
                   'created_at'=> Carbon::now(), 
                   'updated_at'=> Carbon::now()),
             array('nombrePerfil' => 'Beneficiario', 
-                  'descripcionPerfil' => 'Usuario registrado a quien se le aprobó y está pagando un préstamo.', 
+                  'descripcionPerfil' => 'Usuario registrado a quien se le aprobó su solicitud de crédito y/o está pagando un préstamo.', 
                   'created_at'=> Carbon::now(), 
                   'updated_at'=> Carbon::now()),
             array('nombrePerfil' => 'Cliente', 

@@ -63,7 +63,7 @@
 					<thead class="header-tabla">
 
 						<tr>
-							<th class="header-tabla-texto">Id Solicitud</th>
+							<th class="header-tabla-texto">Id</th>
 							<th class="header-tabla-texto">Fecha</th>
 							<th class="header-tabla-texto">Monto</th>
 							<th class="header-tabla-texto">Plazo</th>

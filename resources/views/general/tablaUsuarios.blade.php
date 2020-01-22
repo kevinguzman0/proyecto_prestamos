@@ -25,11 +25,11 @@
 
 					<tr>
 						<th class="header-tabla-texto">Id</th>
-						<th class="header-tabla-texto text-center">Creación</th>
-						<th class="header-tabla-texto text-center">Modificación</th>
+						<th class="header-tabla-texto">Creación</th>
+						<th class="header-tabla-texto">Modificación</th>
 						<th class="header-tabla-texto">Usuario</th>
 						<th class="header-tabla-texto">Email</th>
-						<th class="header-tabla-texto text-center">Verificación</th>
+						<th class="header-tabla-texto">Verificación</th>
 						<th class="header-tabla-texto">Acciones</th>
 					</tr>
 
