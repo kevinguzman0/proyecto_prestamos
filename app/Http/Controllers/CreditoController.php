@@ -278,6 +278,15 @@ class CreditoController extends Controller
 
     }
 
+    public function documentoDescargar($archivo){
+
+        $archivosMensaje = array('doc', 'docx', 'xls', 'xlsx', 'zip', 'rar', '7z');
+
+        $pathtoFile = public_path().'/storage/docUsuarios/'.$archivo;
+        return response()->download($pathtoFile);
+
+    }
+
     public function solicitudEliminar($idCliente, $idSolicitud)
     {
         

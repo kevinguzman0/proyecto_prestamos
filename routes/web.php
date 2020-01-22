@@ -105,6 +105,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::get('documento-eliminar/{idSolicitud}/{idDocumento}', 'CreditoController@documentoEliminar')->name('documento.eliminar');
 
+	Route::get('documento-descargar/{idDocumento}', 'CreditoController@documentoDescargar')->name('documento.descargar');
+
 	// -----------------------------------------------------------------------------------------------------------
 
 	Route::get('usuarios', 'GeneralController@tablaUsuarios')->name('usuarios.tabla');
