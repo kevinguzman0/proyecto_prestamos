@@ -19,10 +19,9 @@ class CreditoController extends Controller
 
     const REGISTRADO = 1;
     const INTERESADO = 2;
-    const BENEFICIARIO = 3;
-    const CLIENTE = 4;
-    const DIRECTIVO = 5;
-    const INACTIVO = 6;
+    const CLIENTE = 3;
+    const DIRECTIVO = 4;
+    const INACTIVO = 5;
 
     const SIN_ASIGNAR = -1;
 
@@ -120,31 +119,30 @@ class CreditoController extends Controller
     public function solicitudNueva(Request $request)
     {
 
-        $perfil = Perfil::find($request->idCliente);
+        $idCliente = auth()->user()->id;
+
+        $perfil = Perfil::find($idCliente);
 
         if (!$perfil)
+
         {
-            $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $solicitud->idCliente . ' ] asociado a la Solicitud [ ' . $solicitud->id . ' ] no está disponible. Es imposible continuar con el registro nuevas solicitudes. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] no está disponible. Es imposible continuar con el registro de nuevas solicitudes. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
             abort(404, $mensajeError);
         }
         else
         {
 
-            $perfil->idPerfilUsuario = self::INTERESADO;
+            $perfil->idEstadoPerfil = self::INTERESADO;
             $perfil->save();
 
             $solicitud = new Solicitud;
-            $solicitud->idCliente = auth()->user()->id;
+            $solicitud->idCliente = $idCliente;
             $solicitud->idEstadoSolicitud = self::PRESENTADA; 
             $solicitud->monto = $request->monto;
             $solicitud->plazo = $request->plazo;
             $solicitud->cuota = $request->cuota;
             $solicitud->interes = $request->interes;
-            $solicitud->idEstadoSolicitud = $request->idEstadoSolicitud;
-            $solicitud->idCliente = $request->idCliente;
             $solicitud->save();
-
-            $idCliente = $solicitud->idCliente;
 
             return redirect()->route('mis.solicitudes', compact('idCliente'));
 
@@ -465,7 +463,7 @@ class CreditoController extends Controller
                     $solicitud->idEstadoSolicitud = self::APROBADA;
                     $solicitud->save();
 
-                    $perfil->idPerfilUsuario = self::BENEFICIARIO;
+                    $perfil->idEstadoPerfil = self::INTERESADO;
                     $perfil->save();
 
                     $mensajeVerde = 'Solicitud aprobada...';
@@ -508,7 +506,7 @@ class CreditoController extends Controller
                 $solicitud->idEstadoSolicitud = self::RECHAZADA;
                 $solicitud->save();
 
-                $perfil->idPerfilUsuario = self::INTERESADO;
+                $perfil->idEstadoPerfil = self::INTERESADO;
                 $perfil->save();
 
                 $mensajeVerde = 'Solicitud rechazada...';

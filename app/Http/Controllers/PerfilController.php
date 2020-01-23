@@ -19,10 +19,9 @@ class PerfilController extends Controller
     
     const REGISTRADO = 1;
     const INTERESADO = 2;
-    const BENEFICIARIO = 3;
-    const CLIENTE = 4;
-    const DIRECTIVO = 5;
-    const INACTIVO = 6;
+    const CLIENTE = 3;
+    const DIRECTIVO = 4;
+    const INACTIVO = 5;
 
     const SIN_VALIDAR = null;
 
@@ -94,7 +93,7 @@ class PerfilController extends Controller
                 ]);
 
             $perfil = new Perfil;
-            $perfil->idPerfilUsuario = self::REGISTRADO;
+            $perfil->idEstadoPerfil = self::REGISTRADO;
             $mensaje = 'Perfil creado correctamente...';
 
         }
@@ -129,7 +128,6 @@ class PerfilController extends Controller
                 return redirect()->route('salir');
             }
 
-            $perfil->idPerfilUsuario = $request->idPerfilUsuario;
             $mensaje = 'Perfil actualizado correctamente...';
 
         }

@@ -18,7 +18,9 @@
 
                 <div class="card">
 
-                    <div class="card-header">{{ __('Welcome') }}</div>
+                    <div class="card-header">
+                        {{ __('Welcome') }} <span class="text-uppercase">{{ Auth::user()->name }}</span>
+                    </div>
 
                     <div class="card-body">
 
@@ -30,7 +32,7 @@
 
                         @endif
 
-                        {{ Auth::user()->name }}, {{ __('you are logged in!') }}
+                        <h3>{{ __('You are logged in!') }}</h3>
 
                     </div>
 

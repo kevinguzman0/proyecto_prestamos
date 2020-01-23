@@ -13,7 +13,7 @@
 	<div class="row col-md-12">
 
 	    <div class="row col-md-12 mt-3">
-	        <h4>MI INFORMACIÓN DE PERFIL</h4>
+	        <h4>INFORMACIÓN DE PERFIL</h4>
 	    </div>
 
 	    <div class="row col-md-12 mt-2">
@@ -181,8 +181,6 @@
 	                </div>
 
 	            </div>
-
-	            <input type="hidden" readonly maxlength="20" name="idPerfilUsuario" value="{{ $perfil->idPerfilUsuario }}" class="form-control">
 
 		         @if ($errors->any())
 		            <div class="alert alert-danger col-md-12 mt-3 mb-1 pl-3 pr-3 alert-dismissible fade show">

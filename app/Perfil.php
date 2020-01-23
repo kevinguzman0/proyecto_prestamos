@@ -11,7 +11,7 @@ class Perfil extends Model
  
     protected $fillable = [
     	'id',
-   		'idPerfilUsuario', 
+   		'idEstadoPerfil', 
    		'cedula', 
    		'nombres', 
    		'apellidos', 
@@ -37,9 +37,9 @@ class Perfil extends Model
 	
 	}
 
-    public function perfil()
+    public function estado()
     {
-       return $this->hasOne('App\PerfilUsuario', 'id', 'idPerfilUsuario');
+       return $this->hasOne('App\EstadoPerfil', 'id', 'idEstadoPerfil');
     }  
 
     public function solicitudes()

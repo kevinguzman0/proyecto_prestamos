@@ -45,7 +45,7 @@
 						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
 						<td class="estilo-celda-fecha"> {{ $fila->created_at }} </td>
 						<td class="estilo-celda-fecha"> {{ $fila->updated_at }} </td>
-						<td style="text-align:center;"> {{ $fila->perfil->nombrePerfil	 }} </td>
+						<td style="text-align:center;"> {{ $fila->estado->nombreEstado }} </td>
 						<td style="text-align:left;"> {{ $fila->nombres }} </td>
 						<td style="text-align:left;"> {{ $fila->apellidos }} </td>
 						<td style="text-align:left;"> {{ $fila->cedula }} </td>

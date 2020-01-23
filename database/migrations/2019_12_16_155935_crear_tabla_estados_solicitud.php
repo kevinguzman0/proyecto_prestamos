@@ -48,11 +48,11 @@ class CrearTablaEstadosSolicitud extends Migration
                   'created_at'=> Carbon::now(), 
                   'updated_at'=> Carbon::now()),
             array('nombreEstado' => 'Desembolsada', 
-                  'descripcionEstado' => 'Solicitud con desembolso efectivo.', 
+                  'descripcionEstado' => 'Solicitud aprobada, con entrega efectiva de dinero al beneficiario y reportada a tesorería para los respectivos descuentos mensuales o quincenales.', 
                   'created_at'=> Carbon::now(), 
                   'updated_at'=> Carbon::now()),
             array('nombreEstado' => 'En espera', 
-                  'descripcionEstado' => 'Solicitud aprobada con cumplimiento de requisitos. Queda en cola de espera para desembolso.', 
+                  'descripcionEstado' => 'Solicitud aprobada con cumplimiento de requisitos. Queda en cola de espera para desembolso futuro cuando se tengan recursos financieros disponibles.', 
                   'created_at'=> Carbon::now(), 
                   'updated_at'=> Carbon::now()),
         );
