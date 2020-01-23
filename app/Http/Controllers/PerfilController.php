@@ -144,6 +144,9 @@ class PerfilController extends Controller
         if (Input::has('foto'))
         {
             
+            $archivo = $perfil->foto;
+            Storage::disk('public')->delete($archivo);
+
             $file = $request->file('foto');
             $ext = $request->file('foto')->getClientOriginalExtension();
             $archivo = 'foto-id-' . $perfil->id . '.' . $ext;
