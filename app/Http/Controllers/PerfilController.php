@@ -27,23 +27,27 @@ class PerfilController extends Controller
 
         $usuario = User::find($idCliente);
 
-        if ($usuario == null)
+        if (!$usuario)
         {
             $mensajeError = 'Atención, el Usuario [ ' . $idCliente . ' ] no está registrado. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
             abort(404, $mensajeError);        
         }
-
-        $perfil = Perfil::find($idCliente);
-
-        if ($perfil == null) 
-        {
-            $emailUsuario = $usuario->email;
-            return view('perfiles.nuevo', compact('idCliente', 'emailUsuario'));
-        }
         else
         {
-            $storagePath = Storage::disk('public')->path($perfil->foto);
-            return view('perfiles.actualizar', compact('perfil', 'storagePath'));
+
+            $perfil = Perfil::find($idCliente);
+
+            if (!$perfil) 
+            {
+                $emailUsuario = $usuario->email;
+                return view('perfiles.nuevo', compact('idCliente', 'emailUsuario'));
+            }
+            else
+            {
+                $storagePath = Storage::disk('public')->path($perfil->foto);
+                return view('perfiles.actualizar', compact('perfil', 'storagePath'));
+            }
+
         }
 
     }
@@ -59,7 +63,7 @@ class PerfilController extends Controller
 
         $perfil = Perfil::find($idCliente);
 
-        if ($perfil == null) 
+        if (!$perfil) 
         {
 
             $validatedData = Validator::make($request->all(),
@@ -125,40 +129,44 @@ class PerfilController extends Controller
         {
             return redirect()->back()->withInput()->withErrors($validatedData);
         }
-
-        $perfil->id = $idCliente;
-        $perfil->cedula = $request->cedula;
-        $perfil->nombres = $request->nombres;
-        $perfil->apellidos = $request->apellidos;
-        $perfil->email = $request->email;
-        $perfil->telefono1 = $request->telefono1;
-        $perfil->telefono2 = $request->telefono2;
-        $perfil->fechaNacimiento = $request->fechaNacimiento;
-        $perfil->direccion = $request->direccion;
-        $perfil->barrio = $request->barrio;
-        $perfil->ciudad = $request->ciudad;
-        $perfil->areaTrabajo = $request->areaTrabajo;
-        $perfil->cargoTrabajo = $request->cargoTrabajo;
-        $perfil->afiliadoFondo = $request->afiliadoFondo;
-
-        if (Input::has('foto'))
+        else
         {
-            
-            $archivo = $perfil->foto;
-            Storage::disk('public')->delete($archivo);
 
-            $file = $request->file('foto');
-            $ext = $request->file('foto')->getClientOriginalExtension();
-            $archivo = 'foto-id-' . $perfil->id . '.' . $ext;
-            $perfil->foto = strtolower($archivo);
-            Storage::disk('public')->put($archivo, File::get($file));
+            $perfil->id = $idCliente;
+            $perfil->cedula = $request->cedula;
+            $perfil->nombres = $request->nombres;
+            $perfil->apellidos = $request->apellidos;
+            $perfil->email = $request->email;
+            $perfil->telefono1 = $request->telefono1;
+            $perfil->telefono2 = $request->telefono2;
+            $perfil->fechaNacimiento = $request->fechaNacimiento;
+            $perfil->direccion = $request->direccion;
+            $perfil->barrio = $request->barrio;
+            $perfil->ciudad = $request->ciudad;
+            $perfil->areaTrabajo = $request->areaTrabajo;
+            $perfil->cargoTrabajo = $request->cargoTrabajo;
+            $perfil->afiliadoFondo = $request->afiliadoFondo;
+
+            if (Input::has('foto'))
+            {
+                
+                $archivo = $perfil->foto;
+                Storage::disk('public')->delete($archivo);
+
+                $file = $request->file('foto');
+                $ext = $request->file('foto')->getClientOriginalExtension();
+                $archivo = 'foto-id-' . $perfil->id . '.' . $ext;
+                $perfil->foto = strtolower($archivo);
+                Storage::disk('public')->put($archivo, File::get($file));
+
+            }
+
+            $perfil->save();
+
+            return redirect()->back()->with('mensajeVerde', $mensaje);
 
         }
-
-        $perfil->save();
-
-        return redirect()->back()->with('mensajeVerde', $mensaje);
-
+    
     }
 
 }

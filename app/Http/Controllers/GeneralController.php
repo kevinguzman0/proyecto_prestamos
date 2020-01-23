@@ -51,19 +51,23 @@ class GeneralController extends Controller
 
     	$usuario = User::find($idUsuario);
 
-        if ($usuario == null)
+        if (!$usuario)
         {
             $mensajeError = 'Atención, la información de registro del Usuario [ ' . $idUsuario . ' ] no está disponible. Es imposible proceder con la validación de la cuenta. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
             abort(404, $mensajeError);        
         }
+        else
+        {
 
-        $usuario->email_verified_at = now();
-        $usuario->save();
-        
-        $mensaje = 'La cuenta del Usuario [ ' . $idUsuario . ' ] fue validada y ya puede ingresar en el sistema...';
-        
-        return redirect()->back()->with('mensajeVerde', $mensaje);
+            $usuario->email_verified_at = now();
+            $usuario->save();
+            
+            $mensaje = 'La cuenta del Usuario [ ' . $idUsuario . ' ] fue validada y ya puede ingresar en el sistema...';
+            
+            return redirect()->back()->with('mensajeVerde', $mensaje);
 
+        }
+    
     }
 
 }
