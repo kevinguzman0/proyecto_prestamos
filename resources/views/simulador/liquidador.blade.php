@@ -39,7 +39,7 @@
 
 		            </div>
 
-			         @if ($errors->any())
+			        @if ($errors->any())
 			            <div class="alert alert-danger col-md-12 mt-3 mb-1 pl-3 pr-3 alert-dismissible fade show">
 			                <ol class="estilo-lista-errores">
 			                    @foreach ($errors->all() as $error)
