@@ -17,6 +17,15 @@ use Input;
 class PerfilController extends Controller
 {
     
+    const REGISTRADO = 1;
+    const INTERESADO = 2;
+    const BENEFICIARIO = 3;
+    const CLIENTE = 4;
+    const DIRECTIVO = 5;
+    const INACTIVO = 6;
+
+    const SIN_VALIDAR = null;
+
     /**
      * Display a listing of the resource.
      *
@@ -85,7 +94,7 @@ class PerfilController extends Controller
                 ]);
 
             $perfil = new Perfil;
-            $perfil->idPerfilUsuario = 1;
+            $perfil->idPerfilUsuario = self::REGISTRADO;
             $mensaje = 'Perfil creado correctamente...';
 
         }
@@ -114,7 +123,7 @@ class PerfilController extends Controller
             if($perfil->email != $request->email)
             {
                 $user = User::find($perfil->id);
-                $user->email_verified_at = null;
+                $user->email_verified_at = self::SIN_VALIDAR;
                 $user->email=$request->email;
                 $user->save();
                 return redirect()->route('salir');

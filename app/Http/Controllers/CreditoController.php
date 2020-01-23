@@ -16,6 +16,24 @@ use Illuminate\Support\Facades\File;
 
 class CreditoController extends Controller
 {
+
+    const REGISTRADO = 1;
+    const INTERESADO = 2;
+    const BENEFICIARIO = 3;
+    const CLIENTE = 4;
+    const DIRECTIVO = 5;
+    const INACTIVO = 6;
+
+    const SIN_ASIGNAR = -1;
+
+    const PRESENTADA = 1;
+    const EN_ESTUDIO = 2;
+    const CON_PENDIENTES = 3;
+    const RECHAZADA = 4;
+    const APROBADA = 5;
+    const DESEMBOLSADA = 6;
+    const EN_ESPERA = 7;
+
     /**
      * Display a listing of the resource.
      *
@@ -112,10 +130,12 @@ class CreditoController extends Controller
         else
         {
 
-            $perfil->idPerfilUsuario = 2;
+            $perfil->idPerfilUsuario = self::INTERESADO;
             $perfil->save();
 
             $solicitud = new Solicitud;
+            $solicitud->idCliente = auth()->user()->id;
+            $solicitud->idEstadoSolicitud = self::PRESENTADA; 
             $solicitud->monto = $request->monto;
             $solicitud->plazo = $request->plazo;
             $solicitud->cuota = $request->cuota;
@@ -174,8 +194,8 @@ class CreditoController extends Controller
                 $documento->idSolicitud = $idSolicitud;
                 $documento->archivoOriginal = $originalFile;
                 $documento->descripcionDocumento = $request->descripcionDocumento;
-                $documento->revisado = 0;
-                $documento->aprobado = -1;
+                $documento->revisado = false;
+                $documento->aprobado = self::SIN_ASIGNAR;
                 $documento->documento = strtolower($archivo);
                 $documento->save();
 
@@ -214,13 +234,13 @@ class CreditoController extends Controller
             else
             {
 
-                $documento->aprobado = 1;
-                $documento->revisado = 1;
+                $documento->aprobado = true;
+                $documento->revisado = true;
                 $documento->idAnalizadoPor = auth()->user()->id;
                 $documento->analizadoEn = now();
                 $documento->save();
 
-                $solicitud->idEstadoSolicitud = 2;
+                $solicitud->idEstadoSolicitud = self::EN_ESTUDIO;
                 $solicitud->save();
 
                 $mensajeVerde = 'Documento aprobado...';
@@ -256,13 +276,13 @@ class CreditoController extends Controller
             else
             {
 
-                $documento->aprobado = 0;
-                $documento->revisado = 1;
+                $documento->aprobado = false;
+                $documento->revisado = true;
                 $documento->idAnalizadoPor = auth()->user()->id;
                 $documento->analizadoEn = now();
                 $documento->save();
 
-                $solicitud->idEstadoSolicitud = 2;
+                $solicitud->idEstadoSolicitud = self::EN_ESTUDIO;
                 $solicitud->save();
 
                 $mensajeVerde = 'Documento rechazado...';
@@ -442,10 +462,10 @@ class CreditoController extends Controller
             
                     $solicitud->idAnalizadoPor = auth()->user()->id;
                     $solicitud->analizadoEn = now();
-                    $solicitud->idEstadoSolicitud = 5;
+                    $solicitud->idEstadoSolicitud = self::APROBADA;
                     $solicitud->save();
 
-                    $perfil->idPerfilUsuario = 3;
+                    $perfil->idPerfilUsuario = self::BENEFICIARIO;
                     $perfil->save();
 
                     $mensajeVerde = 'Solicitud aprobada...';
@@ -485,10 +505,10 @@ class CreditoController extends Controller
 
                 $solicitud->idAnalizadoPor = auth()->user()->id;
                 $solicitud->analizadoEn = now();
-                $solicitud->idEstadoSolicitud = 4;
+                $solicitud->idEstadoSolicitud = self::RECHAZADA;
                 $solicitud->save();
 
-                $perfil->idPerfilUsuario = 2;
+                $perfil->idPerfilUsuario = self::INTERESADO;
                 $perfil->save();
 
                 $mensajeVerde = 'Solicitud rechazada...';

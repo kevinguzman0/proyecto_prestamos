@@ -35,8 +35,6 @@
 						<input type="hidden" name="plazo" value="{{ $plazoCuotas }}">
 						<input type="hidden" name="cuota" value="{{ $valorCuota }}">
 						<input type="hidden" name="interes" value="{{ $interes }}">
-						<input type="hidden" name="idEstadoSolicitud" value="1">
-						<input type="hidden" name="idCliente" value="{{ Auth::user()->id }}">
 						
 						<input type="submit" formaction="{{ route('solicitud.nueva') }}" value="Solicitar crédito" name="btnSolicitarCredito" class="form-control btn btn-danger mt-2 mb-2">
 					
