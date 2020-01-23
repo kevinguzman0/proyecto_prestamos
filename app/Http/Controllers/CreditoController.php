@@ -448,7 +448,7 @@ class CreditoController extends Controller
             else
             {
 
-                $documentosRechazados = Solicitud::findOrFail($idSolicitud)->documentos->where('aprobado', '=', 0)->count();
+                $documentosRechazados = Solicitud::find($idSolicitud)->documentos->where('aprobado', '=', 0)->count();
 
                 if ($documentosRechazados > 0)
                 {
