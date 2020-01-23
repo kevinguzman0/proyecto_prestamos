@@ -1,13 +1,13 @@
 
-	<a class="btn btn-link link-tabla" data-toggle="modal" data-target="#datos-ampliados-solicitudes-{{ $fila->id }}">
-	<img src="{{ asset('icons/three-dots.svg') }}" alt="ver información extendida de la solicitud" width="24" height="24" title="Ver información extendida de la solicitud">
+	<a href="#" class="btn btn-link link-tabla" data-toggle="modal" data-target="#datos-solicitud-{{ $fila->id }}">
+	<img src="{{ asset('icons/three-dots.svg') }}" alt="Ver información extendida de la solicitud" width="24" height="24" title="Ver información extendida de la solicitud">
 	</a>
 
-	<div id="datos-ampliados-solicitudes-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+	<div id="datos-solicitud-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
 		    <div class="modal-content modal-content-eliminar">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLiveLabel">Información extendida de la solicitud [ {{ $fila->id }} ]</h5>
+		        <h5 class="modal-title">Información extendida de la Solicitud [ {{ $fila->id }} ]</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
@@ -48,15 +48,13 @@
 	      				<div class="col-md-8 text-left">
 	      					 
 
-								@if($fila->idAnalizadoPor != null)
-									<a class="btn btn-link link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idAnalizadoPor]) }}">
-										[ {{ $fila->idAnalizadoPor }} ] - 
-                                        {{ $fila->revisor->nombres }}
-                                        {{ $fila->revisor->apellidos }}
-									</a>
-								@else
-									<span class="estilo-celda-fecha">pendiente</span>
-								@endif
+							@if($fila->idAnalizadoPor != null)
+								<a class="btn btn-link link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idAnalizadoPor]) }}">
+									[ {{ $fila->idAnalizadoPor }} ] - 
+	                                {{ $fila->revisor->nombres }}
+	                                {{ $fila->revisor->apellidos }}
+								</a>
+							@endif
 
 							
 	      				</div>
@@ -70,11 +68,9 @@
 	      				<div class="col-md-8 text-left">
 	      					 
 
-								@if($fila->analizadoEn != null)
-									{{ $fila->analizadoEn }} 
-								@else
-									<span class="estilo-celda-fecha">pendiente</span>
-								@endif
+							@if($fila->analizadoEn != null)
+								{{ $fila->analizadoEn }} 
+							@endif
 
 							
 	      				</div>

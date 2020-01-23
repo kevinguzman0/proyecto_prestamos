@@ -1,12 +1,12 @@
-	<a class="btn btn-link link-tabla" data-toggle="modal" data-target="#confirm-option{{ $fila->id }}">
-	<img src="{{ asset('icons/tools.svg') }}" alt="Acciones" width="24" height="24" title="Opciones de usuario">
+	<a href="#" class="btn btn-link link-tabla" data-toggle="modal" data-target="#acciones-perfil-{{ $fila->id }}">
+	<img src="{{ asset('icons/tools.svg') }}" alt="Ver menú de acciones" width="24" height="24" title="Ver menú de acciones">
 	</a>
 
-	<div id="confirm-option{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+	<div id="acciones-perfil-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
 		    <div class="modal-content modal-content-acciones">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLiveLabel">Perfil [ {{ $fila->id }} ]</h5>
+		        <h5 class="modal-title">Perfil [ {{ $fila->id }} ]</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
@@ -41,7 +41,7 @@
 
 	      				<div class="col-md-2">
 	      					<a href="{{ action('CreditoController@usuarioInactivo', [$fila->id]) }}">
-								<img src="{{ asset('icons/toggle-off.svg') }}" alt="Inactivar" width="24" height="24" title="Inactivar usuario">
+								<img src="{{ asset('icons/toggle-off.svg') }}" alt="Inactivar usuario" width="24" height="24" title="Inactivar usuario">
 							</a>
 	      				</div>
 
@@ -51,12 +51,12 @@
 
 	      				<div class="col-md-2">
 	      					<a href="{{ action('CreditoController@usuarioDirectivo', [$fila->id]) }}">
-								<img src="{{ asset('icons/bookmark.svg') }}" alt="Directivo" width="24" height="24" title="Cambiar a directivo">
+								<img src="{{ asset('icons/bookmark.svg') }}" alt="Convertir en Directivo" width="24" height="24" title="Convertir en Directivo">
 							</a>
 	      				</div>
 
 	      				<div class="col-md-10 text-left">
-	      					<p>Cambiar a directivo</p>
+	      					<p>Convertir en Directivo</p>
 	      				</div>
 
 		      		</div>

@@ -1,12 +1,12 @@
-    <a class="btn btn-link link-tabla" data-toggle="modal" data-target="#datos-ampliados-perfiles-{{ $fila->id }}">
-    <img src="{{ asset('icons/three-dots.svg') }}" alt="ver información extendida del perfil" width="24" height="24" title="Ver información extendida del perfil">
+    <a href="#" class="btn btn-link link-tabla" data-toggle="modal" data-target="#datos-perfil-{{ $fila->id }}">
+    <img src="{{ asset('icons/three-dots.svg') }}" alt="Ver información extendida del perfil" width="24" height="24" title="Ver información extendida del perfil">
     </a>
 
-    <div id="datos-ampliados-perfiles-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+    <div id="datos-perfil-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
             <div class="modal-content modal-content-eliminar">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLiveLabel">Información extendida del perfil [ {{ $fila->id }} ]</h5>
+                <h5 class="modal-title">Información extendida del Perfil [ {{ $fila->id }} ]</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>

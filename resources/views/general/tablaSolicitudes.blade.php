@@ -83,17 +83,15 @@
 						<td style="text-align: center;"> {{ $fila->interes . '%' }} </td>
 						<td style="text-align:center;">
 
-							@include('creditos.modal-datos-solicitudes')
+							@include('modals.datos-solicitudes')
 							
-							@include('creditos.modal-acciones-solicitudes')
+							@include('modals.acciones-solicitudes')
 							
 						</td>
-
 
 					</tr>
 				
 				@endforeach
-
 
 			</tbody>
 

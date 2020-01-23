@@ -1,12 +1,12 @@
-    <a class="btn btn-link link-tabla" data-toggle="modal" data-target="#datos-ampliados-usuarios-{{ $fila->id }}">
+    <a href="#" class="btn btn-link link-tabla" data-toggle="modal" data-target="#datos-usuario-{{ $fila->id }}">
     <img src="{{ asset('icons/three-dots.svg') }}" alt="ver información extendida del usuario" width="24" height="24" title="Ver información extendida del usuario">
     </a>
 
-    <div id="datos-ampliados-usuarios-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+    <div id="datos-usuario-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
             <div class="modal-content modal-content-eliminar">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLiveLabel">Información extendida del usuario [ {{ $fila->id }} ]</h5>
+                <h5 class="modal-title">Información extendida del usuario [ {{ $fila->id }} ]</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -48,8 +48,6 @@
                              
                             @if($fila->email_verified_at != null)
                                 {{ $fila->email_verified_at }} 
-                            @else
-                                pendiente
                             @endif
                             
                         </div>

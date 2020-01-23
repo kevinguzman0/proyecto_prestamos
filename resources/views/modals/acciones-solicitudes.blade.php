@@ -1,12 +1,12 @@
-	<a class="btn btn-link link-tabla" data-toggle="modal" data-target="#confirm-option{{ $fila->id }}">
+	<a href="#" class="btn btn-link link-tabla" data-toggle="modal" data-target="#acciones-solicitud-{{ $fila->id }}">
 		<img src="{{ asset('icons/tools.svg') }}" alt="Ver menú de acciones" width="24" height="24" title="Ver menú de acciones">
 	</a>
 
-	<div id="confirm-option{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+	<div id="acciones-solicitud-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
 		    <div class="modal-content modal-content-acciones">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLiveLabel">Solicitud [ {{ $fila->id }} ]</h5>
+		        <h5 class="modal-title">Solicitud [ {{ $fila->id }} ]</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
@@ -85,36 +85,17 @@
 		      			</div>
 
 		      			@if($fila->idEstadoSolicitud == 1)
-		      				<div class="col-md-2">
-		      					<a class="btn btn-link link-tabla" data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">
-									<img src="{{ asset('icons/trash.svg') }}" alt="Eliminar" width="24" height="24" title="Eliminar">
-								</a>
 
-								<div id="confirm-delete_{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
-								  <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
-								    <div class="modal-content modal-content-eliminar">
-								      <div class="modal-header">
-								        <h5 class="modal-title" id="exampleModalLiveLabel">Confirmar eliminación</h5>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								          <span aria-hidden="true">&times;</span>
-								        </button>
-								      </div>
-								      <div class="modal-body">
-								        <p>La eliminación de esta solicitud será irreversible. Adicionalmente, serán eliminados todos los documentos asociados que hayan sido presentados.</p>
-							            <p>Desea proceder?</p>
-							          </div>
-								      <div class="modal-footer">
-								        <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
-								        <button type="button" class="btn btn-danger" onclick="location.href = '{{ route('solicitud.eliminar', [$fila->idCliente, $fila->id]) }}'">Eliminar</button>
-								      </div>
-								    </div>
-								  </div>
-								</div>
-		      				</div>
+			      			<div class="col-md-2">
+	
+			      				@include('modals.eliminar-solicitudes')
+
+			      			</div>
 
 		      				<div class="col-md-10 text-left">
 		      					<p>Eliminar solicitud</p>
 		      				</div>
+
 		      			@endif
 
 		      		</div>

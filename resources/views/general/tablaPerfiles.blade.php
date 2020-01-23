@@ -47,9 +47,9 @@
 
 						<td style="text-align:center;">
 
-							@include('creditos.modal-datos-perfiles')
+							@include('modals.datos-perfiles')
 
-							@include('creditos.modal-acciones-perfiles')
+							@include('modals.acciones-perfiles')
 
 						</td>
 

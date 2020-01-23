@@ -40,40 +40,19 @@
 						<td style="text-align:left;"> {{ $fila->name }} </td>
 						<td style="text-align:left;"> {{ $fila->email }} </td>
 
-						<td style="text-align:left;">
+						<td style="text-align:center;">
 
-							@include('creditos.modal-acciones-usuarios')
+							@include('modals.datos-usuarios')
 
 							@if(Auth::user()->id != $fila->id)
-								<a href="#"data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">
-									<img src="{{ asset('icons/trash.svg') }}" alt="Eliminar" width="24" height="24" title="Eliminar">
-								</a>
 
-								<div id="confirm-delete_{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
-								  <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
-								    <div class="modal-content modal-content-eliminar">
-								      <div class="modal-header">
-								        <h5 class="modal-title" id="exampleModalLiveLabel">Confirmar eliminación</h5>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								          <span aria-hidden="true">&times;</span>
-								        </button>
-								      </div>
-								      <div class="modal-body">
-								        <p>La eliminación de este usuario será irreversible.</p>
-							            <p>Desea proceder?</p>
-							          </div>
-								      <div class="modal-footer">
-								        <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
-								        <button type="button" class="btn btn-danger" onclick="location.href = '{{ route('usuario.eliminar', [$fila->id]) }}'">Eliminar</button>
-								      </div>
-								    </div>
-								  </div>
-								</div>
+								@include('modals.eliminar-usuarios')
+
 							@endif
 
 							<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
 								@if(App\User::find($fila->id)->perfil != null)
-									<img src="{{ asset('icons/search.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
+									<img src="{{ asset('icons/eye.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
 								@else
 									<img src="{{ asset('icons/person.svg') }}" alt="Crear perfil" width="24" height="24" title="Crear perfil">
 								@endif
@@ -90,7 +69,6 @@
 					</tr>
 				
 				@endforeach
-
 
 			</tbody>
 
