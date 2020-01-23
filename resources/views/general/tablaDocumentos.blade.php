@@ -56,12 +56,8 @@
 						<th class="header-tabla-texto">Id</th>
 						<th class="header-tabla-texto">Solicitud</th>
 						<th class="header-tabla-texto">Cliente</th>
-						<th class="header-tabla-texto">Archivo</th>
-						<th class="header-tabla-texto">Fecha / Hora</th>
 						<th class="header-tabla-texto">Revisión</th>
 						<th class="header-tabla-texto">Aprobación</th>
-						<th class="header-tabla-texto">Analizado por</th>
-						<th class="header-tabla-texto">Analizado en</th>
 						<th class="header-tabla-texto">Acciones</th>
 					</tr>
 
@@ -83,35 +79,12 @@
 
 						<td style="text-align:center;"> 
 
-							<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->solicitud->cliente->id]) }}">
-								{{ $fila->solicitud->cliente->id }} 
+							<a class="btn btn-link link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->solicitud->cliente->id]) }}">
+								{{ $fila->solicitud->cliente->nombres }} {{ $fila->solicitud->cliente->apellidos }}
 							</a>
 
 						</td>
-
-						</td>
-
-						<td style="text-align:center;">
-
-							<img src="{{ asset('icons/document-richtext.svg') }}" 
-							     data-toggle="tooltip" data-placement="auto" data-html="true"
-							     width="24" height="24"
-							     title=
-							     	"
-							     		<p style='text-align: left;'>
-								     		NOMBRE DEL ARCHIVO
-								     		<br>
-								     		[ {{ $fila->archivoOriginal}} ]
-								     		<br>
-								     		[ {{ $fila->documento}} ]
-							     		</p>
-							     	"
-							     >							
-
-						</td>
-						
-						<td class="estilo-celda-fecha"> {{ $fila->created_at }} </td>
-						
+												
 						<td style="text-align:center;">
 
 							@if ($fila->revisado == 1)
@@ -139,33 +112,13 @@
 							@endif
 
 						</td>
-						
-						<td class="estilo-celda-fecha"> 
-
-							@if($fila->idAnalizadoPor != null)
-								<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idAnalizadoPor]) }}">
-									{{ $fila->idAnalizadoPor }} 
-								</a>
-							@else
-								<span class="estilo-celda-fecha">pendiente</span>
-							@endif
-
-						</td>
-
-						<td class="estilo-celda-fecha"> 
-
-							@if($fila->analizadoEn != null)
-								{{ $fila->analizadoEn }} 
-							@else
-								<span class="estilo-celda-fecha">pendiente</span>
-							@endif
-
-						</td>
 
 						<td style="text-align:center;">
 
+							@include('creditos.modal-acciones-documentos')
+
 							<button type="button" class="btn btn-link link-tabla" data-toggle="modal" data-target="#documento_{{ $fila->id }}">
-								<img src="{{ asset('icons/search.svg') }}" alt="Ver documento" width="24" height="24" title="Ver documento">
+								<img src="{{ asset('icons/eye.svg') }}" alt="Ver documento" width="24" height="24" title="Ver documento">
 							</button>
 
 							<!-- Modal -->

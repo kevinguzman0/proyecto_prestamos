@@ -25,11 +25,8 @@
 
 					<tr>
 						<th class="header-tabla-texto">Id</th>
-						<th class="header-tabla-texto">Creación</th>
-						<th class="header-tabla-texto">Modificación</th>
 						<th class="header-tabla-texto">Usuario</th>
 						<th class="header-tabla-texto">Email</th>
-						<th class="header-tabla-texto">Verificación</th>
 						<th class="header-tabla-texto">Acciones</th>
 					</tr>
 
@@ -40,21 +37,12 @@
 				    <tr>
 
 						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-						<td class="estilo-celda-fecha"> {{ $fila->created_at }} </td>
-						<td class="estilo-celda-fecha"> {{ $fila->updated_at }} </td>
 						<td style="text-align:left;"> {{ $fila->name }} </td>
 						<td style="text-align:left;"> {{ $fila->email }} </td>
-						<td class="estilo-celda-fecha"> 
-
-							@if($fila->email_verified_at != null)
-								{{ $fila->email_verified_at }} 
-							@else
-								pendiente
-							@endif
-
-						</td>
 
 						<td style="text-align:left;">
+
+							@include('creditos.modal-acciones-usuarios')
 
 							@if(Auth::user()->id != $fila->id)
 								<a href="#"data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">

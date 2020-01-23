@@ -64,14 +64,10 @@
 
 						<tr>
 							<th class="header-tabla-texto">Id</th>
-							<th class="header-tabla-texto">Fecha</th>
 							<th class="header-tabla-texto">Monto</th>
 							<th class="header-tabla-texto">Plazo</th>
 							<th class="header-tabla-texto">Cuota mensual</th>
 							<th class="header-tabla-texto">Interés</th>
-							<th class="header-tabla-texto">Estado solicitud</th>
-							<th class="header-tabla-texto">Analizado por</th>
-							<th class="header-tabla-texto">Analizado en</th>
 							<th class="header-tabla-texto">Acciones</th>
 						</tr>
 
@@ -82,36 +78,14 @@
 					    <tr>
 
 							<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-							<td class="estilo-celda-fecha"> {{ Date_format($fila->created_at, "d/m/Y") }} </td>
 							<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
 							<td style="text-align:center;"> {{ $fila->plazo }} </td>
 							<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
-							<td> {{ $fila->interes . '%' }} </td>
-							<td> {{ $fila->estado->nombreEstado }} </td>
+							<td style="text-align:center;"> {{ $fila->interes . '%' }} </td>
 
-							<td class="estilo-celda-fecha"> 
+							<td style="text-align:center;">
 
-								@if($fila->idAnalizadoPor != null)
-									<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idAnalizadoPor]) }}">
-										{{ $fila->idAnalizadoPor }} 
-									</a>
-								@else
-									<span class="estilo-celda-fecha">pendiente</span>
-								@endif
-
-							</td>
-
-							<td class="estilo-celda-fecha"> 
-
-								@if($fila->analizadoEn != null)
-									{{ $fila->analizadoEn }} 
-								@else
-									<span class="estilo-celda-fecha">pendiente</span>
-								@endif
-
-							</td>
-
-							<td style="text-align:left;">
+								@include('creditos.modal-datos-solicitudes')
 
 								@if($fila->idEstadoSolicitud <= 3)
 									<a href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">

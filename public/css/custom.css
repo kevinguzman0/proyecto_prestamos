@@ -343,6 +343,14 @@ table.table-fit tbody td, table.table-fit tfoot td {
     max-width: 70% !important;
 }
 
+.modal-content-acciones{
+    max-width: 50% !important;
+}
+
+.modal-content-documentos{
+    max-width: 80% !important;
+}
+
 .modal-dialog-eliminar {
     display: flex !important;
     justify-content: center !important;

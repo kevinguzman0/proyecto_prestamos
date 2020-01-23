@@ -26,4 +26,11 @@ class Documento extends Model
        return $this->hasOne('App\Solicitud', 'id', 'idSolicitud');
     }  
 
+    public function revisor()
+    {
+    
+        return $this->hasOne('App\Perfil', 'id', 'idAnalizadoPor');
+    
+    }
+
 }

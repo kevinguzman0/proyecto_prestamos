@@ -47,22 +47,6 @@ Route::get('test-visor', function () {
 
 // -----------------------------------------------------------------------------------------------------------
 
-Route::get('/testConnection', function () {
-try {
-      DB::connection()->getPdo();
-      if(DB::connection()->getDatabaseName()){
-          echo "Yes! Successfully connected to the DB: " . DB::connection()->getDatabaseName();
-          die;
-      }else{
-          die("Could not find the database. Please check your configuration.");
-      }
-  } catch (\Exception $e) {
-      die($e->GetMessage());
-  }
-});
-
-// -----------------------------------------------------------------------------------------------------------
-
 Route::get('salir', 'Auth\LoginController@logout')->name('salir');
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -97,7 +81,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::get('solicitud-rechazar/{idCliente}/{idSolicitud}', 'CreditoController@solicitudRechazar')->name('solicitud.rechazar');
 
+	Route::get('solicitud-pendiente/{idCliente}/{idSolicitud}', 'CreditoController@solicitudPendiente')->name('solicitud.pendiente');
+
+	Route::get('solicitud-desembolsada/{idCliente}/{idSolicitud}', 'CreditoController@solicitudDesembolsada')->name('solicitud.desembolsada');
+
+	Route::get('solicitud-espera/{idCliente}/{idSolicitud}', 'CreditoController@solicitudEnEspera')->name('solicitud.espera');
+
 	Route::get('usuario-eliminar/{idCliente}', 'CreditoController@usuarioEliminar')->name('usuario.eliminar');
+
+	Route::get('usuario-inactivo/{idCliente}', 'CreditoController@usuarioInactivo')->name('usuario.inactivo');
+
+	Route::get('usuario-directivo/{idCliente}', 'CreditoController@usuarioDirectivo')->name('usuario.directivo');
 
 	// -----------------------------------------------------------------------------------------------------------
 

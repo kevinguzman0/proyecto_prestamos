@@ -26,9 +26,6 @@
 
 					<tr>
 						<th class="header-tabla-texto">Id</th>
-						<th class="header-tabla-texto">Creación</th>
-						<th class="header-tabla-texto">Modificación</th>
-						<th class="header-tabla-texto">Estado</th>
 						<th class="header-tabla-texto">Nombres</th>
 						<th class="header-tabla-texto">Apellidos</th>
 						<th class="header-tabla-texto">Cédula</th>
@@ -43,23 +40,16 @@
 				    <tr>
 
 						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-						<td class="estilo-celda-fecha"> {{ $fila->created_at }} </td>
-						<td class="estilo-celda-fecha"> {{ $fila->updated_at }} </td>
-						<td style="text-align:center;"> {{ $fila->estado->nombreEstado }} </td>
 						<td style="text-align:left;"> {{ $fila->nombres }} </td>
 						<td style="text-align:left;"> {{ $fila->apellidos }} </td>
 						<td style="text-align:left;"> {{ $fila->cedula }} </td>
 						<td style="text-align:left;"> {{ $fila->email }} </td>
 
-						<td style="text-align:left;">
+						<td style="text-align:center;">
 
-							<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
-								<img src="{{ asset('icons/search.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
-							</a>
+							@include('creditos.modal-datos-perfiles')
 
-							<a href="{{ action('CreditoController@misSolicitudes', [$fila->id]) }}">
-								<img src="{{ asset('icons/list-check.svg') }}" alt="Ver solicitudes" width="24" height="24" title="Ver solicitudes">
-							</a>
+							@include('creditos.modal-acciones-perfiles')
 
 						</td>
 

@@ -425,6 +425,48 @@ class CreditoController extends Controller
 
     }
 
+    public function usuarioInactivo($idUsuario)
+    {
+        $perfil = Perfil::find($idUsuario);
+
+        if (!$perfil)
+        {
+            $mensaje = 'Atención, el usuario [ ' . $idUsuario . ' ] no está disponible para su actualización. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+        }
+        else
+        {
+            $perfil->idEstadoPerfil = self::INACTIVO;
+            $perfil->save();
+
+            $mensajeVerde = 'Usuario inactivado...';
+
+            return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+        }
+
+    }
+
+    public function usuarioDirectivo($idUsuario)
+    {
+        $perfil = Perfil::find($idUsuario);
+
+        if (!$perfil)
+        {
+            $mensaje = 'Atención, el usuario [ ' . $idUsuario . ' ] no está disponible para su actualización. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+        }
+        else
+        {
+            $perfil->idEstadoPerfil = self::DIRECTIVO;
+            $perfil->save();
+
+            $mensajeVerde = 'Usuario inactivado...';
+
+            return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+        }
+
+    }
+
     public function solicitudAprobar($idCliente, $idSolicitud)
     {
         
@@ -510,6 +552,120 @@ class CreditoController extends Controller
                 $perfil->save();
 
                 $mensajeVerde = 'Solicitud rechazada...';
+
+                return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+
+            }
+
+        }
+    
+    }
+
+    public function solicitudPendiente($idCliente, $idSolicitud)
+    {
+        
+        $perfil = Perfil::find($idCliente);
+
+        if (!$perfil)
+        {
+            $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] asociado a la Solicitud [ ' . $idSolicitud . ' ] no está disponible. Es imposible continuar con el proceso de actualización de la solicitud. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+        else
+        {
+
+            $solicitud = Solicitud::find($idSolicitud);
+
+            if (!$solicitud)
+            {
+                $mensaje = 'Atención, la Solicitud [ ' . $idSolicitud . ' ] no está disponible para su actualización. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+                return redirect()->back()->with('mensajeVerde', $mensaje);
+            }
+            else
+            {
+
+                $solicitud->idAnalizadoPor = auth()->user()->id;
+                $solicitud->analizadoEn = now();
+                $solicitud->idEstadoSolicitud = self::CON_PENDIENTES;
+                $solicitud->save();
+
+                $mensajeVerde = 'Solicitud actualizada...';
+
+                return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+
+            }
+
+        }
+    
+    }
+
+    public function solicitudDesembolsada($idCliente, $idSolicitud)
+    {
+        
+        $perfil = Perfil::find($idCliente);
+
+        if (!$perfil)
+        {
+            $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] asociado a la Solicitud [ ' . $idSolicitud . ' ] no está disponible. Es imposible continuar con el proceso de actualización de la solicitud. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+        else
+        {
+
+            $solicitud = Solicitud::find($idSolicitud);
+
+            if (!$solicitud)
+            {
+                $mensaje = 'Atención, la Solicitud [ ' . $idSolicitud . ' ] no está disponible para su actualización. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+                return redirect()->back()->with('mensajeVerde', $mensaje);
+            }
+            else
+            {
+
+                $solicitud->idAnalizadoPor = auth()->user()->id;
+                $solicitud->analizadoEn = now();
+                $solicitud->idEstadoSolicitud = self::DESEMBOLSADA;
+                $solicitud->save();
+
+                $mensajeVerde = 'Solicitud desembolsada...';
+
+                return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+
+            }
+
+        }
+    
+    }
+
+    public function solicitudEnEspera($idCliente, $idSolicitud)
+    {
+        
+        $perfil = Perfil::find($idCliente);
+
+        if (!$perfil)
+        {
+            $mensajeError = 'Atención, la información de perfil del Cliente [ ' . $idCliente . ' ] asociado a la Solicitud [ ' . $idSolicitud . ' ] no está disponible. Es imposible continuar con el proceso de actualización de la solicitud. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);
+        }
+        else
+        {
+
+            $solicitud = Solicitud::find($idSolicitud);
+
+            if (!$solicitud)
+            {
+                $mensaje = 'Atención, la Solicitud [ ' . $idSolicitud . ' ] no está disponible para su actualización. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+                return redirect()->back()->with('mensajeVerde', $mensaje);
+            }
+            else
+            {
+
+                $solicitud->idAnalizadoPor = auth()->user()->id;
+                $solicitud->analizadoEn = now();
+                $solicitud->idEstadoSolicitud = self::EN_ESPERA;
+                $solicitud->save();
+
+                $mensajeVerde = 'Solicitud en espera...';
 
                 return redirect()->back()->with('mensajeVerde', $mensajeVerde);
 

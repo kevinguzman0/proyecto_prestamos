@@ -34,6 +34,13 @@ class Solicitud extends Model
 	
 	}
 
+    public function revisor()
+    {
+    
+        return $this->hasOne('App\Perfil', 'id', 'idAnalizadoPor');
+    
+    }
+
     public function documentos()
     {
        return $this->hasMany('App\Documento', 'idSolicitud', 'id');
