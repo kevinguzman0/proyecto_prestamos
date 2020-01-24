@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Input;
 use NumberFormatter;
 use File;
 use Session;
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
-use Input;
 
 class SimuladorController extends Controller
 {
@@ -29,15 +29,12 @@ class SimuladorController extends Controller
     public function vistaTablaPagos(Request $request)
     {
         
-
         $validatedData = Validator::make($request->all(),
             [
                 'valorPrestamo' => 'required|numeric',
                 'plazoCuotas' => 'required|numeric',
+                'interes' => 'numeric',
             ]);
-
-        $valorPrestamo = (int)$request->input("valorPrestamo");
-        $plazoCuotas = (int)$request->input("plazoCuotas");
 
         if($validatedData->fails())
         {
@@ -46,11 +43,23 @@ class SimuladorController extends Controller
         else
         {
 
+            $valorPrestamo = (int)$request->input("valorPrestamo");
+            $plazoCuotas = (int)$request->input("plazoCuotas");
+
+            if(!$request->input('interes'))
+            {
+                $interes = config('prestamos.interes') / 100;
+            }
+            else
+            {
+                $interes = $request->input("interes") / 100;
+            }
+
             $request->session()->put('valorPrestamo', $valorPrestamo);
             $request->session()->put('plazoCuotas', $plazoCuotas);
+            $request->session()->put('interes', $interes);
 
             $saldoInicial = $valorPrestamo;
-            $interes = config('prestamos.interes') / 100;
             $decimales = 4;
             $i = 1;
             $fmt = new NumberFormatter("en-US", NumberFormatter::CURRENCY);
@@ -92,20 +101,14 @@ class SimuladorController extends Controller
     
     }
 
-    public function datosTablaPagos($parametro1, $parametro2)
+    public function datosTablaPagos($parametro1, $parametro2, $parametro3)
     {
 
         $valorPrestamo = $parametro1;
         $plazoCuotas = $parametro2;
-
-        if (($valorPrestamo == 0) && ($plazoCuotas == 0)) {
-
-                return view('principales.home');
-
-            }
+        $interes = $parametro3 / 100;
 
         $saldoInicial = $valorPrestamo;
-        $interes = config('prestamos.interes') / 100;
         $decimales = 4;
         $i = 1;
         $fmt = new NumberFormatter("en-US", NumberFormatter::CURRENCY);
@@ -150,8 +153,6 @@ class SimuladorController extends Controller
                 'valorPrestamo' => 'required|numeric',
                 'plazoCuotas' => 'required|numeric',
             ]);
-        $valorPrestamo = (int)$request->input("valorPrestamo");
-        $plazoCuotas = (int)$request->input("plazoCuotas");
 
         if($validatedData->fails())
         {
@@ -160,8 +161,12 @@ class SimuladorController extends Controller
         else
         {
 
+            $valorPrestamo = (int)$request->input("valorPrestamo");
+            $plazoCuotas = (int)$request->input("plazoCuotas");
+
             $request->session()->put('valorPrestamo', $valorPrestamo);
             $request->session()->put('plazoCuotas', $plazoCuotas);
+            $request->session()->put('interes', config('prestamos.interes'));
 
             $saldoInicial = $valorPrestamo;
             $interes = config('prestamos.interes') / 100;
@@ -194,9 +199,10 @@ class SimuladorController extends Controller
         
         $valorPrestamo = $request->session()->get('valorPrestamo');
         $plazoCuotas = $request->session()->get('plazoCuotas');
+        $interes = $request->session()->get('interes');
         
         $controller = App::make('\App\Http\Controllers\SimuladorController');
-        $data = $controller->callAction('datosTablaPagos', compact('valorPrestamo', 'plazoCuotas'));
+        $data = $controller->callAction('datosTablaPagos', compact('valorPrestamo', 'plazoCuotas', 'interes'));
 
         $pdf = \PDF::loadView('simulador.tablaPagosPdf', $data);
         $pdf->setpaper('letter', 'portrait');

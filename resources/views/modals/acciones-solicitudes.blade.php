@@ -14,6 +14,9 @@
             <div class="modal-body">
                 <div class="col-md-12">
                     <div class="row col-md-12">
+ 
+
+ 
                         @if($fila->idEstadoSolicitud <= 3)
                             <div class="col-md-2">
                                 <a href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">

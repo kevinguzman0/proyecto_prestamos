@@ -22,6 +22,12 @@
 	        </div>
 	    @endif
 
+		@isset($mensajeVerde)
+			<div class="form-row col-md-12 alert alert-success estilo-success" role="alert">
+	            <p class="alert-link">{{ $mensajeVerde }} </p>
+	        </div>
+		@endisset
+			    
 	</div>
 
 @endsection

@@ -99,6 +99,18 @@
 
 								@endif
 
+	                            <form method="POST" action="{{ route('simulador.screen') }}">
+
+	                                @csrf
+	                                
+	                                <input type="hidden" name="valorPrestamo" value="{{ $fila->monto }}">
+	                                <input type="hidden" name="plazoCuotas" value="{{ $fila->plazo }}">
+	                                <input type="hidden" name="interes" value="{{ $fila->interes }}">
+	                                
+	                                <input type="image" src="{{ asset('icons/document-spreadsheet.svg') }}"name="btnVerTablaPagos" style="width: 24px; height: 24px;" alt="Generar tabla de pagos" title="Generar tabla de pagos">
+	                                
+	                            </form>
+
 							</td>
 
 						</tr>

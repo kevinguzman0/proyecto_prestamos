@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-md-2">
                             <a href="{{ action('CreditoController@misSolicitudes', [$fila->id]) }}">
-                                <img src="{{ asset('icons/archive.svg') }}" alt="Ver solicitudes" width="24" height="24" title="Ver solicitudes" />
+                                <img src="{{ asset('icons/folder-symlink.svg') }}" alt="Ver solicitudes" width="24" height="24" title="Ver solicitudes" />
                             </a>
                         </div>
                         <div class="col-md-10 text-left">
