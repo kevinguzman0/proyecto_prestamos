@@ -22,7 +22,7 @@
 
                     <div class="card-body">
 
-                        <form method="POST" action="{{ route('password.update') }}">
+                        <form method="POST" action="{{ route('cambiar.password') }}">
 
                             @csrf
 
@@ -83,7 +83,7 @@
                                 <div class="col-md-6 offset-md-4">
 
                                     <button type="submit" class="btn btn-primary">
-                                        Cambiar contraseña
+                                        Proceder
                                     </button>
 
                                 </div>

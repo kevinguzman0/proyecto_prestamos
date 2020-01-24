@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+
 use Input;
 
 class PerfilController extends Controller
@@ -173,7 +177,58 @@ class PerfilController extends Controller
             return redirect()->back()->with('mensajeVerde', $mensaje);
 
         }
+
+    }
     
+    public function cambiarPassword(Request $request)
+    {
+
+        $idUsuario = Auth::user()->id;
+
+        $usuario = User::find($idUsuario);
+
+        if (!$usuario) 
+        {
+            $mensajeError = 'Atención, la información de registro del Usuario [ ' . $idUsuario . ' ] no está disponible. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);        
+        }
+        else
+        {
+
+            $myPassword = $request->input("myPassword");
+            $password = $request->input("password");
+            $passwordConfirmation = $request->input("password_confirmation");
+
+            $validatedData = Validator::make($request->all(),
+                [
+                    'myPassword' => 'required',
+                    'password' => 'required|confirmed|min:8',
+                ]);
+
+            if($validatedData->fails())
+            {
+                return redirect()->back()->withInput()->withErrors($validatedData);
+            }
+            else
+            {
+
+                if (!Hash::check($myPassword, $usuario->password))
+                {
+                    $mensajeError = 'Atención, no ha pasado la comprobación de seguridad para cambiar su contraseña. Intente de nuevo o contáctese con el administrador del sistema para revisar esta situación.';
+                    abort(404, $mensajeError);  
+                }
+                else
+                {
+                    $usuario->password = Hash::make($password);
+                    $usuario->save();
+
+                    return redirect()->route('salir');
+                }
+
+            }
+
+        }        
+
     }
 
 }
