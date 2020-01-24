@@ -81,6 +81,10 @@
                                     Mis solicitudes
                                 </a>
                                 
+                                <a class="dropdown-item" href="{{ route('cambiar.mi.password') }}">
+                                    Cambiar contraseña
+                                </a>
+
                                 <a class="dropdown-item" href="{{ route('salir') }}">
                                     {{ __('Logout') }}
                                 </a>
