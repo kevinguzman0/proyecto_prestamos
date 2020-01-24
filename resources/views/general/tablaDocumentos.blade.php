@@ -80,7 +80,8 @@
 						<td style="text-align:center;"> 
 
 							<a class="btn btn-link link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->solicitud->cliente->id]) }}">
-								{{ $fila->solicitud->cliente->nombres }} {{ $fila->solicitud->cliente->apellidos }}
+								{{ $fila->solicitud->cliente->nombres }} 
+								{{ $fila->solicitud->cliente->apellidos }}
 							</a>
 
 						</td>
