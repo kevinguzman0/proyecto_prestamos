@@ -69,6 +69,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::post('gestionar-perfil/{idCliente}', 'PerfilController@gestionarPerfil')->name('gestionar.perfil');
 
+	Route::get('mi-password', function () {
+	    return view('perfiles.password');
+	})->name('cambiar.mi.password');
+
+	Route::post('cambiar-password', 'PerfilController@cambiarPassword')->name('cambiar.password');
+
 	// -----------------------------------------------------------------------------------------------------------
 
 	Route::get('mis-solicitudes/{idCliente}', 'CreditoController@misSolicitudes')->name('mis.solicitudes');

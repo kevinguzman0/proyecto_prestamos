@@ -90,6 +90,12 @@
 		                        </a>
 		                	</li>
 
+		                    <li class="margin-submenu">
+		                		 <a href="{{ route('cambiar.mi.password') }}">
+		                            Cambiar contraseña
+		                        </a>
+		                	</li>
+
 		                	<li class="margin-submenu">
 
 								<a href="{{ route('salir') }}">
