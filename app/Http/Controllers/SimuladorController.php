@@ -106,7 +106,7 @@ class SimuladorController extends Controller
 
         $valorPrestamo = $parametro1;
         $plazoCuotas = $parametro2;
-        $interes = $parametro3 / 100;
+        $interes = $parametro3;
 
         $saldoInicial = $valorPrestamo;
         $decimales = 4;
@@ -200,11 +200,23 @@ class SimuladorController extends Controller
         $valorPrestamo = $request->session()->get('valorPrestamo');
         $plazoCuotas = $request->session()->get('plazoCuotas');
         $interes = $request->session()->get('interes');
-        
+    
         $controller = App::make('\App\Http\Controllers\SimuladorController');
         $data = $controller->callAction('datosTablaPagos', compact('valorPrestamo', 'plazoCuotas', 'interes'));
 
-        $pdf = \PDF::loadView('simulador.tablaPagosPdf', $data);
+
+        $fmt = new NumberFormatter("en-US", NumberFormatter::CURRENCY);
+        $fValorPrestamo = $fmt->format($valorPrestamo);
+        $fInteres = $interes . "%";
+
+        $tmpValorCuota = (int)$data['valorCuota'];
+
+        dd(gettype($valorPrestamo), gettype($tmpValorCuota));
+
+
+        $fValorCuota = $fmt->format($tmpValorCuota);        
+
+        $pdf = \PDF::loadView('simulador.tablaPagosPdf', $data, $fValorPrestamo, $fValorCuota, $fInteres);
         $pdf->setpaper('letter', 'portrait');
 
         return $pdf->stream();

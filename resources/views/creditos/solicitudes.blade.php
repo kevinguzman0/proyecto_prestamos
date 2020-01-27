@@ -83,7 +83,7 @@
 							<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
 							<td style="text-align:center;"> {{ $fila->interes . '%' }} </td>
 
-							<td style="text-align:center;">
+							<td style="text-align:center;" class="input-group">
 
 								@include('modals.datos-solicitudes')
 
@@ -106,8 +106,10 @@
 	                                <input type="hidden" name="valorPrestamo" value="{{ $fila->monto }}">
 	                                <input type="hidden" name="plazoCuotas" value="{{ $fila->plazo }}">
 	                                <input type="hidden" name="interes" value="{{ $fila->interes }}">
-	                                
-	                                <input type="image" src="{{ asset('icons/document-spreadsheet.svg') }}"name="btnVerTablaPagos" style="width: 24px; height: 24px;" alt="Generar tabla de pagos" title="Generar tabla de pagos">
+
+	                                <button type="submit" class="button-image">
+	                                	<img src="{{ asset('icons/document-spreadsheet.svg') }}" alt="Generar tabla de pagos" width="24" height="24" title="Generar tabla de pagos">
+	                                </button>
 	                                
 	                            </form>
 
