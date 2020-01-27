@@ -145,9 +145,10 @@ class SimuladorController extends Controller
         $fValorPrestamo = $fmt->format($valorPrestamo);
         $fInteres = ($interes * 100) . "%";
         $tmpValorCuota = $valorCuota;
-        $fValorCuota = $fmt->format($tmpValorCuota);        
+        $fValorCuota = $fmt->format($tmpValorCuota);
+        $fecha = now();        
 
-        return compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos", "fValorPrestamo", "fInteres", "fValorCuota");
+        return compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos", "fValorPrestamo", "fInteres", "fValorCuota", "fecha");
 
     }
 
