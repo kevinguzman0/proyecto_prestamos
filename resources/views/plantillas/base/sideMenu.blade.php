@@ -27,7 +27,7 @@
 
 	            </li>
 
-	            <li><a href="{{ route('simulador') }}">Simulador</a></li>
+	            <li><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
 
 	            <li>
 

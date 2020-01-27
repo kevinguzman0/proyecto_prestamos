@@ -21,7 +21,7 @@
                     <!-- Authentication Links -->
 
 					<li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
-                    <li class="nav-link"><a href="{{ route('simulador') }}">Simulador</a></li>
+                    <li class="nav-link"><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
 
                     <li class="nav-item dropdown">
 
