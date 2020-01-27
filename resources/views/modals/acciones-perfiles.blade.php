@@ -54,6 +54,14 @@
                         <div class="col-md-10 text-left">
                             Convertir en Directivo
                         </div>
+                        <div class="col-md-2">
+                            <a href="{{ action('CreditoController@usuarioNoDirectivo', [$fila->id]) }}">
+                                <img src="{{ asset('icons/person.svg') }}" alt="Retirar permiso de Directivo" width="24" height="24" title="Retirar permiso de Directivo" />
+                            </a>
+                        </div>
+                        <div class="col-md-10 text-left">
+                            Retirar permiso de Directivo
+                        </div>
                     </div>
                 </div>
             </div>

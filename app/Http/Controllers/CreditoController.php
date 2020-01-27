@@ -461,7 +461,28 @@ class CreditoController extends Controller
             $perfil->idEstadoPerfil = self::DIRECTIVO;
             $perfil->save();
 
-            $mensajeVerde = 'Usuario inactivado...';
+            $mensajeVerde = 'Usuario definido como Directivo...';
+
+            return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+        }
+
+    }
+
+    public function usuarioNoDirectivo($idUsuario)
+    {
+        $perfil = Perfil::find($idUsuario);
+
+        if (!$perfil)
+        {
+            $mensaje = 'Atención, el usuario [ ' . $idUsuario . ' ] no está disponible para su actualización. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+        }
+        else
+        {
+            $perfil->idEstadoPerfil = self::REGISTRADO;
+            $perfil->save();
+
+            $mensajeVerde = 'Usuario registrado...';
 
             return redirect()->back()->with('mensajeVerde', $mensajeVerde);
         }

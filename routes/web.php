@@ -99,6 +99,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::get('usuario-directivo/{idCliente}', 'CreditoController@usuarioDirectivo')->name('usuario.directivo');
 
+	Route::get('usuario-no-directivo/{idCliente}', 'CreditoController@usuarioNoDirectivo')->name('usuario.No.directivo');
+
 	Route::get('datos-correo/{idCliente}', 'CreditoController@datosCorreo')->name('datos.correo');
 
 	Route::post('enviar-correo/{idCliente}', 'CreditoController@enviarCorreo')->name('enviar.correo');
