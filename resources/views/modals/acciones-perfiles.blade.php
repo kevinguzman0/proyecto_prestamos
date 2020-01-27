@@ -31,6 +31,14 @@
                             Ver solicitudes
                         </div>
                         <div class="col-md-2">
+                            <a href="{{ action('CreditoController@datosCorreo', [$fila->id]) }}">
+                                <img src="{{ asset('icons/envelope.svg') }}" alt="Enviar correo" width="24" height="24" title="Enviar correo" />
+                            </a>
+                        </div>
+                        <div class="col-md-10 text-left">
+                            Enviar correo a cliente
+                        </div>
+                        <div class="col-md-2">
                             <a href="{{ action('CreditoController@usuarioInactivo', [$fila->id]) }}">
                                 <img src="{{ asset('icons/toggle-off.svg') }}" alt="Inactivar usuario" width="24" height="24" title="Inactivar usuario" />
                             </a>

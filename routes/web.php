@@ -99,6 +99,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::get('usuario-directivo/{idCliente}', 'CreditoController@usuarioDirectivo')->name('usuario.directivo');
 
+	Route::get('datos-correo/{idCliente}', 'CreditoController@datosCorreo')->name('datos.correo');
+
+	Route::post('enviar-correo/{idCliente}', 'CreditoController@enviarCorreo')->name('enviar.correo');
 	// -----------------------------------------------------------------------------------------------------------
 
 	Route::get('mis-documentos/{idCliente}/{idSolicitud}', 'CreditoController@tablaDocumentos')->name('mis.documentos');
@@ -124,6 +127,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('documentos', 'GeneralController@tablaDocumentos')->name('documentos.tabla');
 
 	Route::get('usuario-validar/{idCliente}', 'GeneralController@usuarioValidar')->name('usuario.validar');
+
+
 
 	// -----------------------------------------------------------------------------------------------------------
 
