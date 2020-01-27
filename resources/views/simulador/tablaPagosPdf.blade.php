@@ -20,6 +20,8 @@
             
             <span><b>Préstamos de Libre Inversión</b></span>
             <br>
+            <span style="color: black;">Documento generado en: <b>{{ $fecha }}</b></span>
+            <br>
             <span>Tabla de Pagos para un crédito de <span class="font-italic text-muted">{{ $fValorPrestamo }}</span>, pagadero en un plazo de <span class="font-italic text-muted">{{ $plazoCuotas }}</span> meses (cuotas), con un interés mensual del <span class="font-italic text-muted">{{ $fInteres }}</span> y cuotas estimadas de <span class="font-italic text-muted">{{ $fValorCuota }}</span>.
             </span>
 
