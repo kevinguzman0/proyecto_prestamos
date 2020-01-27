@@ -141,7 +141,13 @@ class SimuladorController extends Controller
             $saldoInicial = $saldoK;
         }
 
-        return compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos");
+        $fmt = new NumberFormatter("en-US", NumberFormatter::CURRENCY);
+        $fValorPrestamo = $fmt->format($valorPrestamo);
+        $fInteres = ($interes * 100) . "%";
+        $tmpValorCuota = $valorCuota;
+        $fValorCuota = $fmt->format($tmpValorCuota);        
+
+        return compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos", "fValorPrestamo", "fInteres", "fValorCuota");
 
     }
 
@@ -204,19 +210,7 @@ class SimuladorController extends Controller
         $controller = App::make('\App\Http\Controllers\SimuladorController');
         $data = $controller->callAction('datosTablaPagos', compact('valorPrestamo', 'plazoCuotas', 'interes'));
 
-
-        $fmt = new NumberFormatter("en-US", NumberFormatter::CURRENCY);
-        $fValorPrestamo = $fmt->format($valorPrestamo);
-        $fInteres = $interes . "%";
-
-        $tmpValorCuota = (int)$data['valorCuota'];
-
-        dd(gettype($valorPrestamo), gettype($tmpValorCuota));
-
-
-        $fValorCuota = $fmt->format($tmpValorCuota);        
-
-        $pdf = \PDF::loadView('simulador.tablaPagosPdf', $data, $fValorPrestamo, $fValorCuota, $fInteres);
+        $pdf = \PDF::loadView('simulador.tablaPagosPdf', $data);
         $pdf->setpaper('letter', 'portrait');
 
         return $pdf->stream();

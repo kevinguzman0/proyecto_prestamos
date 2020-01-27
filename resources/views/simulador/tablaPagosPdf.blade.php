@@ -18,14 +18,9 @@
 
         <div class="pdf-header">
             
-            <span>Préstamos de Libre Inversión</span>
+            <span><b>Préstamos de Libre Inversión</b></span>
             <br>
-            <span>Tabla de Pagos</span>
-            <br>
-            <span>
-
-                Crédito de <span class="font-italic text-muted">{{ $fValorPrestamo }}</span>, pagadero en un plazo de <span class="font-italic text-muted">{{ $plazoCuotas }}</span> meses (cuotas), con un interés mensual del <span class="font-italic text-muted">{{ $fInteres }}</span> y cuota estimada de <span class="font-italic text-muted">{{ $fValorCuota }}</span>.
-
+            <span>Tabla de Pagos para un crédito de <span class="font-italic text-muted">{{ $fValorPrestamo }}</span>, pagadero en un plazo de <span class="font-italic text-muted">{{ $plazoCuotas }}</span> meses (cuotas), con un interés mensual del <span class="font-italic text-muted">{{ $fInteres }}</span> y cuotas estimadas de <span class="font-italic text-muted">{{ $fValorCuota }}</span>.
             </span>
 
         </div>
