@@ -447,6 +447,27 @@ class CreditoController extends Controller
 
     }
 
+    public function usuarioReactivo($idUsuario)
+    {
+        $perfil = Perfil::find($idUsuario);
+
+        if (!$perfil)
+        {
+            $mensaje = 'Atención, el usuario [ ' . $idUsuario . ' ] no está disponible para su actualización. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+        }
+        else
+        {
+            $perfil->idEstadoPerfil = self::REGISTRADO;
+            $perfil->save();
+
+            $mensajeVerde = 'Usuario reactivado...';
+
+            return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+        }
+
+    }
+
     public function usuarioDirectivo($idUsuario)
     {
         $perfil = Perfil::find($idUsuario);

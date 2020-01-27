@@ -47,6 +47,14 @@
                             Inactivar usuario
                         </div>
                         <div class="col-md-2">
+                            <a href="{{ action('CreditoController@usuarioReactivo', [$fila->id]) }}">
+                                <img src="{{ asset('icons/toggle-on.svg') }}" alt="Reactivar usuario" width="24" height="24" title="Reactivar usuario" />
+                            </a>
+                        </div>
+                        <div class="col-md-10 text-left">
+                            Reactivar usuario
+                        </div>
+                        <div class="col-md-2">
                             <a href="{{ action('CreditoController@usuarioDirectivo', [$fila->id]) }}">
                                 <img src="{{ asset('icons/bookmark.svg') }}" alt="Convertir en Directivo" width="24" height="24" title="Convertir en Directivo" />
                             </a>

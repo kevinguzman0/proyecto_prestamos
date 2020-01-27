@@ -97,6 +97,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::get('usuario-inactivo/{idCliente}', 'CreditoController@usuarioInactivo')->name('usuario.inactivo');
 
+	Route::get('usuario-reactivo/{idCliente}', 'CreditoController@usuarioReactivo')->name('usuario.Reactivo');
+
 	Route::get('usuario-directivo/{idCliente}', 'CreditoController@usuarioDirectivo')->name('usuario.directivo');
 
 	Route::get('usuario-no-directivo/{idCliente}', 'CreditoController@usuarioNoDirectivo')->name('usuario.No.directivo');
