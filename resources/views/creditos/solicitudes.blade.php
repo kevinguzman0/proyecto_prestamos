@@ -113,6 +113,10 @@
 	                                
 	                            </form>
 
+	                            <a href="{{ route('simulador') }}">
+									<img src="{{ asset('icons/window.svg') }}" alt="Crear solicitud" width="24" height="24" title="Crear solicitud">
+								</a>
+
 							</td>
 
 						</tr>

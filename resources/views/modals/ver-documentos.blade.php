@@ -25,12 +25,18 @@
                 @endif
             </div>
             <div class="modal-footer">
-                @if($fila->aprobado!=1)
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoAprobado', [$fila->idSolicitud, $fila->id]) }}'">Aprobar</button>
-                @endif
-                @if($fila->aprobado!=0)
-                    <button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoRechazado', [$fila->idSolicitud, $fila->id]) }}'">Rechazar</button>
-                @endif
+
+                @hasanyrole('directivo')
+                
+                    @if($fila->aprobado!=1)
+                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoAprobado', [$fila->idSolicitud, $fila->id]) }}'">Aprobar</button>
+                    @endif
+                    @if($fila->aprobado!=0)
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoRechazado', [$fila->idSolicitud, $fila->id]) }}'">Rechazar</button>
+                    @endif
+
+                @endhasanyrole
+
                 @if($fila->aprobado!=1)
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">Eliminar</button>
                     <div id="confirm-delete_{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">

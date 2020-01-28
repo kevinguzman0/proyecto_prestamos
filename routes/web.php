@@ -146,5 +146,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Borrar todas las cachés por consola
 // php artisan optimize:clear
 // php artisan clear-compiled
+// php artisan storage:link 
 
 // -----------------------------------------------------------------------------------------------------------
