@@ -20,25 +20,41 @@
 
                     <!-- Authentication Links -->
 
-                    @guest
+                    
 
                         <li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
-
-                        <li class="nav-link"><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
-
-                    @else
-
-                        @hasanyrole ('administrador|registrado|directivo')
-
-                            <li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
-
-                        @endhasanyrole
 
                         @hasanyrole ('registrado|directivo')
 
                             <li class="nav-link"><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
 
                         @endhasanyrole
+
+
+
+                         <li class="nav-item dropdown">
+                            <a id="navbarDropdown2" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Conócenos</a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
+
+                                <a class="dropdown-item" href="#">
+                                    Quienes somos
+                                </a>
+
+                                <a class="dropdown-item" href="#">
+                                    Cómo contactarnos
+                                </a>
+
+                                <a class="dropdown-item" href="#">
+                                    Servicios
+                                </a>
+
+                                <a class="dropdown-item" href="#">
+                                    Estatutos
+                                </a>
+
+                            </div>
+                        </li>
 
                         @hasanyrole ('administrador|directivo')
 
@@ -73,8 +89,6 @@
                             </li>
 
                         @endhasanyrole
-
-                    @endguest
 
                     @guest
 
