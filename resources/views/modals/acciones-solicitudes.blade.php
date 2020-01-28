@@ -22,7 +22,7 @@
                                 </a>
                             </div>
                             <div class="col-md-10 text-left">
-                                Listado de documentos
+                                <a href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">Listado de documentos</a>
                             </div>
                         @endif
 
@@ -35,7 +35,7 @@
                                     </a>
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    Aprobar / Validar
+                                    <a href="{{ route('solicitud.aprobar', [$fila->idCliente, $fila->id]) }}">Aprobar / Validar</a>
                                 </div>
                             @endif
 
@@ -46,7 +46,7 @@
                                     </a>
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    Rechazar
+                                    <a href="{{ route('solicitud.rechazar', [$fila->idCliente, $fila->id]) }}">Rechazar</a>
                                 </div>
                             @endif
                             <div class="col-md-2">
@@ -55,7 +55,7 @@
                                 </a>
                             </div>
                             <div class="col-md-10 text-left">
-                                Marcar con documentos pendientes
+                                 <a href="{{ action('CreditoController@solicitudPendiente', [$fila->idCliente, $fila->id]) }}">Marcar con documentos pendientes</a>
                             </div>
                             <div class="col-md-2">
                                 <a href="{{ action('CreditoController@solicitudDesembolsada', [$fila->idCliente, $fila->id]) }}">
@@ -63,7 +63,7 @@
                                 </a>
                             </div>
                             <div class="col-md-10 text-left">
-                                Marcar como solicitud desembolsada
+                                <a href="{{ action('CreditoController@solicitudDesembolsada', [$fila->idCliente, $fila->id]) }}">Marcar como solicitud desembolsada</a>
                             </div>
                             <div class="col-md-2">
                                 <a href="{{ action('CreditoController@solicitudEnEspera', [$fila->idCliente, $fila->id]) }}">
@@ -71,14 +71,14 @@
                                 </a>
                             </div>
                             <div class="col-md-10 text-left">
-                                Marcar como solicitud en espera
+                                <a href="{{ action('CreditoController@solicitudEnEspera', [$fila->idCliente, $fila->id]) }}">Marcar como solicitud en espera</a>
                             </div>
                             @if($fila->idEstadoSolicitud == 1)
                                 <div class="col-md-2">
                                     @include('modals.eliminar-solicitudes')
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    Eliminar solicitud
+                                    <a href="{{ action('CreditoController@solicitudEnEspera', [$fila->idCliente, $fila->id]) }}">Eliminar solicitud</a>
                                 </div>
                             @endif
                         @endif
