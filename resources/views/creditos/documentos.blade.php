@@ -166,7 +166,17 @@
             	
             	<div class="col-md-6">
 		            <label></label>
-		            <button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ action('CreditoController@misSolicitudes', [$perfil->id]) }}'">Regresar</button>
+
+
+		            @if(Auth()->user()->id == $perfil->id)
+
+		            	<button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ action('CreditoController@misSolicitudes', [$perfil->id]) }}'">Regresar</button>
+
+		            @else
+
+		            	<button type="button" class="form-control btn btn-dark" onclick="location.href = '{{ route('solicitudes.tabla') }}'">Regresar</button>
+
+		            @endif
             	</div>
 
             </div>

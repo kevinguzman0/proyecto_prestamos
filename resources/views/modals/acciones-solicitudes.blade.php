@@ -22,8 +22,7 @@
                                 </a>
                             </div>
                             <div class="col-md-10 text-left">
-                                <a href="{{ action('PerfilController@miPerfil', [Auth::user()->id]) }}" class="font-weight-bold font-italic">Listado de documentos</a>
-                                
+                                Listado de documentos
                             </div>
                         @endif
 
