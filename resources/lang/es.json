@@ -30,5 +30,6 @@
     "click here to request another": "pulse aquí para que le enviemos otro",
     "Dashboard": "Tablero",
     "Welcome": "Bienvenido",
-    "You are logged in!": "Estás conectado!"
+    "You are logged in!": "Estás conectado!",
+    "User does not have the right roles.": "El usuario no tiene los roles correctos.",
 }
