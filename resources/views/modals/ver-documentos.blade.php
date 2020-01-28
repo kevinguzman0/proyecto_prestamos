@@ -27,7 +27,7 @@
             <div class="modal-footer">
 
                 @hasanyrole('directivo')
-                
+
                     @if($fila->aprobado!=1)
                         <button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoAprobado', [$fila->idSolicitud, $fila->id]) }}'">Aprobar</button>
                     @endif
@@ -37,7 +37,8 @@
 
                 @endhasanyrole
 
-                @if($fila->aprobado!=1)
+                @if(($fila->solicitud->idEstadoSolicitud <= 3) && ($fila->aprobado == 0))
+
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete_{{ $fila->id }}">Eliminar</button>
                     <div id="confirm-delete_{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">

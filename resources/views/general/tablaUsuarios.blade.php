@@ -34,42 +34,49 @@
 
 				@foreach ($usuarios as $fila)
 
-				    <tr>
+					@if(!$fila->hasAnyRole('administrador'))
 
-						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-						<td style="text-align:left;"> {{ $fila->name }} </td>
-						<td style="text-align:left;"> {{ $fila->email }} </td>
+					    <tr>
 
-						<td style="text-align:center;">
+							<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
+							<td style="text-align:left;"> {{ $fila->name }} </td>
+							<td style="text-align:left;"> {{ $fila->email }} </td>
 
-							@include('modals.datos-usuarios')
+							<td style="text-align:center;">
 
-							@if(Auth::user()->id != $fila->id)
+								@include('modals.datos-usuarios')
+								
+								@hasanyrole('directivo')
 
-								@include('modals.eliminar-usuarios')
+									@if(Auth::user()->id != $fila->id)
 
-							@endif
+										@include('modals.eliminar-usuarios')
 
-							@if (!Auth::user()->hasAnyRole('administrador'))
-								<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
-									@if(App\User::find($fila->id)->perfil != null)
-										<img src="{{ asset('icons/eye.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
-									@else
-										<img src="{{ asset('icons/camera.svg') }}" alt="Crear perfil" width="24" height="24" title="Crear perfil">
 									@endif
-								</a>
-							@endif
-							
-							@if($fila->email_verified_at == null)
-								<a href="{{ route('usuario.validar', [$fila->id]) }}">
-									<img src="{{ asset('icons/unlock.svg') }}" alt="Validar email / Desbloquear cuenta" width="24" height="24" title="Validar email / Desbloquear cuenta">
-								</a>
-							@endif
 
-						</td>						
+								@endhasanyrole
 
-					</tr>
-				
+								@if (!Auth::user()->hasAnyRole('administrador'))
+									<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
+										@if(App\User::find($fila->id)->perfil != null)
+											<img src="{{ asset('icons/eye.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
+										@else
+											<img src="{{ asset('icons/camera.svg') }}" alt="Crear perfil" width="24" height="24" title="Crear perfil">
+										@endif
+									</a>
+								@endif
+								
+								@if($fila->email_verified_at == null)
+									<a href="{{ route('usuario.validar', [$fila->id]) }}">
+										<img src="{{ asset('icons/unlock.svg') }}" alt="Validar email / Desbloquear cuenta" width="24" height="24" title="Validar email / Desbloquear cuenta">
+									</a>
+								@endif
+
+							</td>						
+
+						</tr>
+					@endif
+
 				@endforeach
 
 			</tbody>

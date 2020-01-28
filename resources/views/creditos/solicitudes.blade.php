@@ -100,7 +100,7 @@
 									</a>
 								@endif
 
-								@if($fila->idEstadoSolicitud == 1)
+								@if($fila->idEstadoSolicitud <= 3)
 
 									@include('modals.eliminar-solicitudes')
 
