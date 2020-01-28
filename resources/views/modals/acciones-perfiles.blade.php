@@ -20,7 +20,7 @@
                             </a>
                         </div>
                         <div class="col-md-10 text-left">
-                            Ver perfil
+                            <a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">Ver perfil</a>       
                         </div>
 
                         @hasanyrole('directivo')
@@ -31,7 +31,7 @@
                                 </a>
                             </div>
                             <div class="col-md-10 text-left">
-                                Ver solicitudes
+                                <a href="{{ action('CreditoController@misSolicitudes', [$fila->id]) }}">Ver solicitudes</a>
                             </div>
                             @if(($fila->id) != (Auth::user()->id))
 
@@ -41,16 +41,14 @@
                                     </a>
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    Enviar correo a cliente
+                                    <a href="{{ action('PerfilController@datosCorreo', [$fila->id]) }}">Enviar correo a cliente</a>
                                 </div>
                             @endif
 
                             @if($fila->user->hasAnyRole('registrado'))
 
-                                 <div class="col-md-2">
-                                    <a href="{{ action('PerfilController@usuarioInactivar', [$fila->id]) }}">
-                                        <img src="{{ asset('icons/toggle-off.svg') }}" alt="Inactivar usuario" width="24" height="24" title="Inactivar usuario" />
-                                    </a>
+                                <div class="col-md-2">
+                                    @include('modals.desactivar-usuario')
                                 </div>
                                 <div class="col-md-10 text-left">
                                     Inactivar usuario
@@ -61,9 +59,7 @@
                             @if($fila->user->hasAnyRole('inactivo'))
 
                                  <div class="col-md-2">
-                                    <a href="">
-                                        <img src="{{ asset('icons/toggle-on.svg') }}" alt="Activar usuario" width="24" height="24" title="Activar usuario" />
-                                    </a>
+                                    @include('modals.activar-usuario')
                                 </div>
                                 <div class="col-md-10 text-left">
                                     Activar usuario
