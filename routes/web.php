@@ -73,17 +73,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::middleware('role:directivo')->group(function () {
-
-		Route::get('usuario-eliminar/{idCliente}', 'PerfilController@usuarioEliminar')->name('usuario.eliminar');
+	Route::middleware('role:directivo|administrador')->group(function () {
 
 		Route::get('usuario-inactivar/{idCliente}', 'PerfilController@usuarioInactivar')->name('usuario.inactivar');
 
 		Route::get('usuario-activar/{idCliente}', 'PerfilController@usuarioActivar')->name('usuario.activar');
 
-		Route::get('datos-correo/{idCliente}', 'PerfilController@datosCorreo')->name('datos.correo');
+		Route::middleware('role:directivo')->group(function () {
 
-		Route::post('enviar-correo/{idCliente}', 'PerfilController@enviarCorreo')->name('enviar.correo');
+			Route::get('usuario-eliminar/{idCliente}', 'PerfilController@usuarioEliminar')->name('usuario.eliminar');
+
+			Route::get('datos-correo/{idCliente}', 'PerfilController@datosCorreo')->name('datos.correo');
+
+			Route::post('enviar-correo/{idCliente}', 'PerfilController@enviarCorreo')->name('enviar.correo');
+
+		});
 
 	});
 
