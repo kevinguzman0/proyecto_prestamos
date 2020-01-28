@@ -354,4 +354,69 @@ public function usuarioEliminar($idUsuario)
 
     }
 
+    public function usuarioActivar($idUsuario)
+    {
+        $perfil = Perfil::find($idUsuario);
+
+        if (!$perfil)
+        {
+            $mensaje = 'Atención, el usuario [ ' . $idUsuario . ' ] no está disponible para su actualización. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+        }
+        else
+        {
+            $perfil->idEstadoPerfil = self::REGISTRADO;
+            $perfil->save();
+
+            $mensajeVerde = 'Usuario activado...';
+
+            return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+        }
+
+    }
+
+    public function datosCorreo($idCliente)
+    {
+
+        $datosCliente = Perfil::find($idCliente);
+        return view('creditos.correo', compact('datosCliente'));
+
+    }
+
+    public function enviarCorreo(Request $request, $idCliente)
+    {
+
+        $validatedData = Validator::make($request->all(),
+                    [
+                        'asunto'=> 'required',
+                        'mensaje' => 'required',
+                    ]);
+
+        if($validatedData->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($validatedData);
+        }
+
+        else
+        {
+
+            $datosCliente = Perfil::find($idCliente);
+
+            $mensajeVerde = 'Correo enviado...';
+
+            $subject = "Asunto del correo";
+            $for = $datosCliente->email;
+            $msj=$request->mensaje;
+
+            Mail::send('creditos.email',$request->all(), function($msj) use($subject,$for){
+                $msj->from("hernanarangoisaza@gmail.com","kevinguzman");
+                $msj->subject($subject);
+                $msj->to($for);
+            });
+
+            return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+        }
+
+    }
+
 }

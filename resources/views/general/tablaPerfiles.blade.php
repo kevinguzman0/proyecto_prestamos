@@ -14,7 +14,35 @@
         <h5>LISTADO GENERAL DE PERFILES</h5>
     </div>
 
-    <div class="row col-md-12 mb-3 mt-3">
+		@isset($mensajeVerde)
+			<div class="form-row col-md-12 alert alert-success estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+	            {{ $mensajeVerde }}
+	            <button type="button" class="close" data-dismiss="alert">&times;</button>
+	        </div>
+		@endisset
+
+	    @if ($mensaje = Session::get('mensajeVerde'))
+	        <div class="form-row col-md-12 alert alert-success estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+	            {{ $mensaje }}
+	            <button type="button" class="close" data-dismiss="alert">&times;</button>
+	        </div>
+	    @endif
+
+		@isset($mensajeRojo)
+			<div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+	            {{ $mensajeRojo }}
+	            <button type="button" class="close" data-dismiss="alert">&times;</button>
+	        </div>
+		@endisset
+
+	    @if ($mensaje = Session::get('mensajeRojo'))
+	        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+	            {{ $mensaje }}
+	            <button type="button" class="close" data-dismiss="alert">&times;</button>
+	        </div>
+	    @endif
+
+        <div class="row col-md-12 mb-3 mt-3">
 
     	{{ $perfiles->onEachSide(2)->links() }}
 

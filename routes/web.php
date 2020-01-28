@@ -75,6 +75,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::post('cambiar-password', 'PerfilController@cambiarPassword')->name('cambiar.password');
 
+	Route::get('usuario-eliminar/{idCliente}', 'PerfilController@usuarioEliminar')->name('usuario.eliminar');
+
+	Route::get('usuario-inactivar/{idCliente}', 'PerfilController@usuarioInactivar')->name('usuario.inactivar');
+
+	Route::get('usuario-directivo/{idCliente}', 'PerfilController@usuarioDirectivo')->name('usuario.directivo');
+
+	Route::get('usuario-activar/{idCliente}', 'PerfilController@usuarioActivar')->name('usuario.activar');
+
+	Route::get('usuario-directivo/{idCliente}', 'PerfilController@usuarioDirectivo')->name('usuario.directivo');
+
+	Route::get('usuario-no-directivo/{idCliente}', 'PerfilController@usuarioNoDirectivo')->name('usuario.no.directivo');
+
+	Route::get('datos-correo/{idCliente}', 'PerfilController@datosCorreo')->name('datos.correo');
+
+	Route::post('enviar-correo/{idCliente}', 'PerfilController@enviarCorreo')->name('enviar.correo');
+
 	// -----------------------------------------------------------------------------------------------------------
 
 	Route::get('mis-solicitudes/{idCliente}', 'CreditoController@misSolicitudes')->name('mis.solicitudes');
@@ -93,21 +109,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::get('solicitud-espera/{idCliente}/{idSolicitud}', 'CreditoController@solicitudEnEspera')->name('solicitud.espera');
 
-	Route::get('usuario-eliminar/{idCliente}', 'PerfilController@usuarioEliminar')->name('usuario.eliminar');
-
-	Route::get('usuario-inactivar/{idCliente}', 'PerfilController@usuarioInactivar')->name('usuario.inactivar');
-
-	Route::get('usuario-directivo/{idCliente}', 'PerfilController@usuarioDirectivo')->name('usuario.directivo');
-
-	Route::get('usuario-activar/{idCliente}', 'CreditoController@usuarioActivar')->name('usuario.activar');
-
-	Route::get('usuario-directivo/{idCliente}', 'CreditoController@usuarioDirectivo')->name('usuario.directivo');
-
-	Route::get('usuario-no-directivo/{idCliente}', 'PerfilController@usuarioNoDirectivo')->name('usuario.no.directivo');
-
-	Route::get('datos-correo/{idCliente}', 'CreditoController@datosCorreo')->name('datos.correo');
-
-	Route::post('enviar-correo/{idCliente}', 'CreditoController@enviarCorreo')->name('enviar.correo');
 	// -----------------------------------------------------------------------------------------------------------
 
 	Route::get('mis-documentos/{idCliente}/{idSolicitud}', 'CreditoController@tablaDocumentos')->name('mis.documentos');

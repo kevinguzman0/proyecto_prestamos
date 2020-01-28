@@ -33,7 +33,7 @@
                                 Ver solicitudes
                             </div>
                             <div class="col-md-2">
-                                <a href="{{ action('CreditoController@datosCorreo', [$fila->id]) }}">
+                                <a href="{{ action('PerfilController@datosCorreo', [$fila->id]) }}">
                                     <img src="{{ asset('icons/envelope.svg') }}" alt="Enviar correo" width="24" height="24" title="Enviar correo" />
                                 </a>
                             </div>
@@ -49,6 +49,14 @@
                                 Inactivar usuario
                             </div>
                         @endif
+                        <div class="col-md-2">
+                            <a href="{{ action('PerfilController@usuarioActivar', [$fila->id]) }}">
+                                <img src="{{ asset('icons/toggle-on.svg') }}" alt="Activar usuario" width="24" height="24" title="Activar usuario" />
+                            </a>
+                        </div>
+                        <div class="col-md-10 text-left">
+                            Activar usuario
+                        </div>
                         @if ($fila->idEstadoPerfil != 4)
                             <div class="col-md-2">
                                 <a href="{{ action('PerfilController@usuarioDirectivo', [$fila->id]) }}">
@@ -61,47 +69,6 @@
                         @endif
                         <div class="col-md-2">
                             <a href="{{ action('PerfilController@usuarioNoDirectivo', [$fila->id]) }}">
-                            <a href="{{ action('CreditoController@misSolicitudes', [$fila->id]) }}">
-                                <img src="{{ asset('icons/folder-symlink.svg') }}" alt="Ver solicitudes" width="24" height="24" title="Ver solicitudes" />
-                            </a>
-                        </div>
-                        <div class="col-md-10 text-left">
-                            Ver solicitudes
-                        </div>
-                        <div class="col-md-2">
-                            <a href="{{ action('CreditoController@datosCorreo', [$fila->id]) }}">
-                                <img src="{{ asset('icons/envelope.svg') }}" alt="Enviar correo" width="24" height="24" title="Enviar correo" />
-                            </a>
-                        </div>
-                        <div class="col-md-10 text-left">
-                            Enviar correo a cliente
-                        </div>
-                        <div class="col-md-2">
-                            <a href="{{ action('CreditoController@usuarioInactivo', [$fila->id]) }}">
-                                <img src="{{ asset('icons/toggle-off.svg') }}" alt="Inactivar usuario" width="24" height="24" title="Inactivar usuario" />
-                            </a>
-                        </div>
-                        <div class="col-md-10 text-left">
-                            Inactivar usuario
-                        </div>
-                        <div class="col-md-2">
-                            <a href="{{ action('CreditoController@usuarioReactivo', [$fila->id]) }}">
-                                <img src="{{ asset('icons/toggle-on.svg') }}" alt="Reactivar usuario" width="24" height="24" title="Reactivar usuario" />
-                            </a>
-                        </div>
-                        <div class="col-md-10 text-left">
-                            Reactivar usuario
-                        </div>
-                        <div class="col-md-2">
-                            <a href="{{ action('CreditoController@usuarioDirectivo', [$fila->id]) }}">
-                                <img src="{{ asset('icons/bookmark.svg') }}" alt="Convertir en Directivo" width="24" height="24" title="Convertir en Directivo" />
-                            </a>
-                        </div>
-                        <div class="col-md-10 text-left">
-                            Convertir en Directivo
-                        </div>
-                        <div class="col-md-2">
-                            <a href="{{ action('CreditoController@usuarioNoDirectivo', [$fila->id]) }}">
                                 <img src="{{ asset('icons/person.svg') }}" alt="Retirar permiso de Directivo" width="24" height="24" title="Retirar permiso de Directivo" />
                             </a>
                         </div>
