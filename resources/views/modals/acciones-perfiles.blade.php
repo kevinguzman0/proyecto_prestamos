@@ -33,16 +33,20 @@
                             <div class="col-md-10 text-left">
                                 Ver solicitudes
                             </div>
-                            <div class="col-md-2">
-                                <a href="{{ action('PerfilController@datosCorreo', [$fila->id]) }}">
-                                    <img src="{{ asset('icons/envelope.svg') }}" alt="Enviar correo" width="24" height="24" title="Enviar correo" />
-                                </a>
-                            </div>
-                            <div class="col-md-10 text-left">
-                                Enviar correo a cliente
-                            </div>
+                            @if(($fila->id) != (Auth::user()->id))
+
+                                <div class="col-md-2">
+                                    <a href="{{ action('PerfilController@datosCorreo', [$fila->id]) }}">
+                                        <img src="{{ asset('icons/envelope.svg') }}" alt="Enviar correo" width="24" height="24" title="Enviar correo" />
+                                    </a>
+                                </div>
+                                <div class="col-md-10 text-left">
+                                    Enviar correo a cliente
+                                </div>
+                            @endif
 
                             @if($fila->user->hasAnyRole('registrado'))
+
                                  <div class="col-md-2">
                                     <a href="{{ action('PerfilController@usuarioInactivar', [$fila->id]) }}">
                                         <img src="{{ asset('icons/toggle-off.svg') }}" alt="Inactivar usuario" width="24" height="24" title="Inactivar usuario" />
@@ -51,7 +55,12 @@
                                 <div class="col-md-10 text-left">
                                     Inactivar usuario
                                 </div>
-                                <div class="col-md-2">
+
+                            @endif
+
+                            @if($fila->user->hasAnyRole('inactivo'))
+
+                                 <div class="col-md-2">
                                     <a href="{{ action('PerfilController@usuarioActivar', [$fila->id]) }}">
                                         <img src="{{ asset('icons/toggle-on.svg') }}" alt="Activar usuario" width="24" height="24" title="Activar usuario" />
                                     </a>
@@ -60,6 +69,7 @@
                                     Activar usuario
                                 </div>
                             @endif
+                            
 
                         @endhasanyrole
 
