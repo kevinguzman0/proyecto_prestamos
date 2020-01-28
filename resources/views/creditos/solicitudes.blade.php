@@ -31,17 +31,15 @@
 	        <input type="text" name="cedula" class="form-control font-weight-bolder" value="{{ $perfil->cedula }}" disabled>
 	    </div>
 
-		<div class="col-md-4">
+		<div class="col-md-3">
 	        <label class="label-margin">Email</label>
 	        <input type="text" name="email" class="form-control font-weight-bolder" value="{{ $perfil->email }}" disabled>
 	    </div>
 
-        <div class="col-md-1">
-        	<label></label>
-            <button type="button" class="btn btn-primary" onclick="location.href = '{{ route('simulador') }}'">Crear</button>
+        <div class="col-md-2">
+        	<label class="label-margin"></label>
+            <button type="button" class="btn btn-warning boton-crear form-control" onclick="location.href = '{{ route('simulador') }}'">Crear</button>
         </div>
-
-	    	                            
 
 	</div>
 

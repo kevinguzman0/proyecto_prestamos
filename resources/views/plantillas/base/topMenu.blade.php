@@ -20,8 +20,6 @@
 
                     <!-- Authentication Links -->
 
-                    
-
                         <li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
 
                         @hasanyrole ('registrado|directivo')
@@ -30,12 +28,11 @@
 
                         @endhasanyrole
 
+                        <li class="nav-item dropdown">
 
+                            <a id="navbarDropdown3" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Conócenos</a>
 
-                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown2" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Conócenos</a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown3">
 
                                 <a class="dropdown-item" href="#">
                                     Quienes somos
@@ -54,13 +51,14 @@
                                 </a>
 
                             </div>
+
                         </li>
 
                         @hasanyrole ('administrador|directivo')
 
                             <li class="nav-item dropdown">
 
-                                <a id="navbarDropdown2" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Maestros</a>
+                                <a id="navbarDropdown2" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu ajuste-item-maestro-menu-top" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Maestros</a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
 
