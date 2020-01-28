@@ -18,11 +18,11 @@
                         @if($fila->idEstadoSolicitud <= 3)
                             <div class="col-md-2">
                                 <a href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">
-                                    <img src="{{ asset('icons/book.svg') }}" alt="Presentar / Ver documentos" width="24" height="24" title="Presentar / Ver documentos" />
+                                    <img src="{{ asset('icons/book.svg') }}" alt="Listado de documentos" width="24" height="24" title="Listado de documentos" />
                                 </a>
                             </div>
                             <div class="col-md-10 text-left">
-                                Presentar / Ver documentos
+                                Listado de documentos
                             </div>
                         @endif
 
@@ -55,7 +55,7 @@
                                 </a>
                             </div>
                             <div class="col-md-10 text-left">
-                                Con documentos pendientes
+                                Marcar con documentos pendientes
                             </div>
                             <div class="col-md-2">
                                 <a href="{{ action('CreditoController@solicitudDesembolsada', [$fila->idCliente, $fila->id]) }}">
@@ -63,7 +63,7 @@
                                 </a>
                             </div>
                             <div class="col-md-10 text-left">
-                                Solicitud desembolsada
+                                Marcar como solicitud desembolsada
                             </div>
                             <div class="col-md-2">
                                 <a href="{{ action('CreditoController@solicitudEnEspera', [$fila->idCliente, $fila->id]) }}">
@@ -71,7 +71,7 @@
                                 </a>
                             </div>
                             <div class="col-md-10 text-left">
-                                Solicitud en espera
+                                Marcar como solicitud en espera
                             </div>
                             @if($fila->idEstadoSolicitud == 1)
                                 <div class="col-md-2">
