@@ -61,33 +61,33 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::middleware('role:directivo')->group(function () {
+	Route::get('mi-perfil/{idCliente}', 'PerfilController@miPerfil')->name('mi.perfil');
 
-		Route::get('mi-perfil/{idCliente}', 'PerfilController@miPerfil')->name('mi.perfil');
+	Route::post('gestionar-perfil/{idCliente}', 'PerfilController@gestionarPerfil')->name('gestionar.perfil');
 
-		Route::post('gestionar-perfil/{idCliente}', 'PerfilController@gestionarPerfil')->name('gestionar.perfil');
+	Route::get('mi-password', function () {
+	    return view('perfiles.password');
+	})->name('cambiar.mi.password');
 
-		Route::get('mi-password', function () {
-		    return view('perfiles.password');
-		})->name('cambiar.mi.password');
-
-		Route::post('cambiar-password', 'PerfilController@cambiarPassword')->name('cambiar.password');
-
-	});
+	Route::post('cambiar-password', 'PerfilController@cambiarPassword')->name('cambiar.password');
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::middleware('role:directivo')->group(function () {
-
-		Route::get('usuario-eliminar/{idCliente}', 'PerfilController@usuarioEliminar')->name('usuario.eliminar');
+	Route::middleware('role:directivo|administrador')->group(function () {
 
 		Route::get('usuario-inactivar/{idCliente}', 'PerfilController@usuarioInactivar')->name('usuario.inactivar');
 
 		Route::get('usuario-activar/{idCliente}', 'PerfilController@usuarioActivar')->name('usuario.activar');
 
-		Route::get('datos-correo/{idCliente}', 'PerfilController@datosCorreo')->name('datos.correo');
+		Route::middleware('role:directivo')->group(function () {
 
-		Route::post('enviar-correo/{idCliente}', 'PerfilController@enviarCorreo')->name('enviar.correo');
+			Route::get('usuario-eliminar/{idCliente}', 'PerfilController@usuarioEliminar')->name('usuario.eliminar');
+
+			Route::get('datos-correo/{idCliente}', 'PerfilController@datosCorreo')->name('datos.correo');
+
+			Route::post('enviar-correo/{idCliente}', 'PerfilController@enviarCorreo')->name('enviar.correo');
+
+		});
 
 	});
 
