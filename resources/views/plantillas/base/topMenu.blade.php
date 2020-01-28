@@ -24,22 +24,23 @@
 
                         <li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
 
+                        <li class="nav-link"><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
 
                     @else
 
-                        @if (Auth::user()->hasAnyRole('administrador', 'registrado', 'directivo'))
+                        @hasanyrole ('administrador|registrado|directivo')
 
                             <li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
 
-                        @endif
+                        @endhasanyrole
 
-                        @if (Auth::user()->hasAnyRole('registrado','directivo'))
+                        @hasanyrole ('registrado|directivo')
 
                             <li class="nav-link"><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
 
-                        @endif
+                        @endhasanyrole
 
-                        @if (Auth::user()->hasAnyRole('administrador','directivo'))
+                        @hasanyrole ('administrador|directivo')
 
                             <li class="nav-item dropdown">
 
@@ -55,7 +56,7 @@
                                         Perfiles de usuario
                                     </a>
 
-                                    @if (Auth::user()->hasAnyRole('directivo'))
+                                    @hasanyrole ('directivo')
 
                                         <a class="dropdown-item" href="{{ route('solicitudes.tabla') }}">
                                             Solicitudes de crédito
@@ -65,13 +66,13 @@
                                             Documentos presentados
                                         </a>
 
-                                    @endif
+                                    @endhasanyrole
 
                                </div>
 
                             </li>
 
-                        @endrole
+                        @endhasanyrole
 
                     @endguest
 
@@ -103,13 +104,13 @@
                                     Mi perfil
                                 </a>
 
-                                @if (!Auth::user()->hasAnyRole('administrador'))
+                                @hasanyrole ('directivo|registrado')
 
                                     <a class="dropdown-item" href="{{ action('CreditoController@misSolicitudes', [Auth::user()->id]) }}">
                                         Mis solicitudes
                                     </a>
 
-                                @endif  
+                                @endhasanyrole  
                                 
                                 <a class="dropdown-item" href="{{ route('cambiar.mi.password') }}">
                                     Cambiar contraseña
