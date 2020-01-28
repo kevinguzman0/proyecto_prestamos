@@ -12,6 +12,12 @@
 
                 <li><a href="{{ route('inicio') }}">Inicio</a></li>
 
+                @hasanyrole ('registrado|directivo')
+
+                	<li><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
+
+                @endhasanyrole
+
 	            <li>
 
 	                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Conócenos</a>
@@ -27,33 +33,39 @@
 
 	            </li>
 
-	            <li><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
+	            @hasanyrole ('administrador|directivo')
 
-	            <li>
+		            <li>
 
-	                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Maestros</a>
+		                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Maestros</a>
 
-	                <ul class="collapse list-unstyled" id="homeSubmenu2">
+		                <ul class="collapse list-unstyled" id="homeSubmenu2">
 
-	                    <li class="margin-submenu">
-	                    	<a href="{{ route('usuarios.tabla') }}">Usuarios registrados</a>
-	                    </li>
+		                    <li class="margin-submenu">
+		                    	<a href="{{ route('usuarios.tabla') }}">Usuarios registrados</a>
+		                    </li>
 
-	                    <li class="margin-submenu">
-	                    	<a href="{{ route('perfiles.tabla') }}">Perfiles de usuario</a>
-	                    </li>
+		                    <li class="margin-submenu">
+		                    	<a href="{{ route('perfiles.tabla') }}">Perfiles de usuario</a>
+		                    </li>
 
-	                    <li class="margin-submenu">
-	                    	<a href="{{ route('solicitudes.tabla') }}">Solicitudes de crédito</a>
-	                    </li>
-	                    
-	                    <li class="margin-submenu">
-	                    	<a href="{{ route('documentos.tabla') }}">Documentos presentados</a>
-	                    </li>
+		                    @hasanyrole ('directivo')
 
-	                </ul>
+			                    <li class="margin-submenu">
+			                    	<a href="{{ route('solicitudes.tabla') }}">Solicitudes de crédito</a>
+			                    </li>
+			                    
+			                    <li class="margin-submenu">
+			                    	<a href="{{ route('documentos.tabla') }}">Documentos presentados</a>
+			                    </li>
 
-	            </li>
+			                @endhasanyrole
+
+		                </ul>
+
+		            </li>
+
+		        @endhasanyrole
 
                 @guest
 
@@ -84,11 +96,15 @@
 		                        </a>
 		                    </li>
 
-		                    <li class="margin-submenu">
-		                		 <a href="{{ action('CreditoController@misSolicitudes', [Auth::user()->id]) }}">
-		                            Mis solicitudes
-		                        </a>
-		                	</li>
+		                    @hasanyrole ('directivo|registrado')
+
+			                    <li class="margin-submenu">
+			                		 <a href="{{ action('CreditoController@misSolicitudes', [Auth::user()->id]) }}">
+			                            Mis solicitudes
+			                        </a>
+			                	</li>
+
+			                @endhasanyrole
 
 		                    <li class="margin-submenu">
 		                		 <a href="{{ route('cambiar.mi.password') }}">

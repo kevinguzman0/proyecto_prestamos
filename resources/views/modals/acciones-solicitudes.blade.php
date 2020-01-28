@@ -78,7 +78,7 @@
                                     @include('modals.eliminar-solicitudes')
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    <a href="{{ action('CreditoController@solicitudEnEspera', [$fila->idCliente, $fila->id]) }}">Eliminar solicitud</a>
+                                    Eliminar solicitud
                                 </div>
                             @endif
                         @endif
