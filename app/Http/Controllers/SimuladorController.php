@@ -43,6 +43,8 @@ class SimuladorController extends Controller
         else
         {
 
+            $idCliente = $request->input("idCliente");
+
             $valorPrestamo = (int)$request->input("valorPrestamo");
             $plazoCuotas = (int)$request->input("plazoCuotas");
 
@@ -95,7 +97,7 @@ class SimuladorController extends Controller
             // Retornar el valor original del interés. Tal como está almacenado en configuración.
             $interes = $interes * 100;
 
-            return view('simulador.tablaPagosScreen', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos"));
+            return view('simulador.tablaPagosScreen', compact("valorPrestamo", "plazoCuotas", "interes", "valorCuota", "listaPagos", "idCliente"));
 
         }
     

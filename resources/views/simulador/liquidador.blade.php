@@ -37,6 +37,8 @@
 		                    <input type="text" maxlength="3" id="plazoCuotas" name="plazoCuotas" class="form-control" value="{{ old('plazoCuotas') }}">
 		                </div>
 
+		                <input type="hidden" name="idCliente" value="{{ Auth()->user()->id }}">
+
 		            </div>
 
 			        @if ($errors->any())
