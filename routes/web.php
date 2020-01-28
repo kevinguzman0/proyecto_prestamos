@@ -61,19 +61,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::middleware('role:directivo')->group(function () {
+	Route::get('mi-perfil/{idCliente}', 'PerfilController@miPerfil')->name('mi.perfil');
 
-		Route::get('mi-perfil/{idCliente}', 'PerfilController@miPerfil')->name('mi.perfil');
+	Route::post('gestionar-perfil/{idCliente}', 'PerfilController@gestionarPerfil')->name('gestionar.perfil');
 
-		Route::post('gestionar-perfil/{idCliente}', 'PerfilController@gestionarPerfil')->name('gestionar.perfil');
+	Route::get('mi-password', function () {
+	    return view('perfiles.password');
+	})->name('cambiar.mi.password');
 
-		Route::get('mi-password', function () {
-		    return view('perfiles.password');
-		})->name('cambiar.mi.password');
-
-		Route::post('cambiar-password', 'PerfilController@cambiarPassword')->name('cambiar.password');
-
-	});
+	Route::post('cambiar-password', 'PerfilController@cambiarPassword')->name('cambiar.password');
 
 	// -----------------------------------------------------------------------------------------------------------
 
