@@ -21,10 +21,6 @@ Auth::routes(['verify' => true]);
 
 // -----------------------------------------------------------------------------------------------------------
 
-Route::get('/admin', 'HomeController@admin')->name('admin')->middleware('admin');
-
-// -----------------------------------------------------------------------------------------------------------
-
 Route::get('/', function () {
     return view('principales.inicio');
 })->name('inicio');
@@ -65,77 +61,101 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::get('mi-perfil/{idCliente}', 'PerfilController@miPerfil')->name('mi.perfil');
+	Route::middleware('role:directivo')->group(function () {
 
-	Route::post('gestionar-perfil/{idCliente}', 'PerfilController@gestionarPerfil')->name('gestionar.perfil');
+		Route::get('mi-perfil/{idCliente}', 'PerfilController@miPerfil')->name('mi.perfil');
 
-	Route::get('mi-password', function () {
-	    return view('perfiles.password');
-	})->name('cambiar.mi.password');
+		Route::post('gestionar-perfil/{idCliente}', 'PerfilController@gestionarPerfil')->name('gestionar.perfil');
 
-	Route::post('cambiar-password', 'PerfilController@cambiarPassword')->name('cambiar.password');
+		Route::get('mi-password', function () {
+		    return view('perfiles.password');
+		})->name('cambiar.mi.password');
 
-	Route::get('usuario-eliminar/{idCliente}', 'PerfilController@usuarioEliminar')->name('usuario.eliminar');
+		Route::post('cambiar-password', 'PerfilController@cambiarPassword')->name('cambiar.password');
 
-	Route::get('usuario-inactivar/{idCliente}', 'PerfilController@usuarioInactivar')->name('usuario.inactivar');
-
-	Route::get('usuario-directivo/{idCliente}', 'PerfilController@usuarioDirectivo')->name('usuario.directivo');
-
-	Route::get('usuario-activar/{idCliente}', 'PerfilController@usuarioActivar')->name('usuario.activar');
-
-	Route::get('usuario-directivo/{idCliente}', 'PerfilController@usuarioDirectivo')->name('usuario.directivo');
-
-	Route::get('usuario-no-directivo/{idCliente}', 'PerfilController@usuarioNoDirectivo')->name('usuario.no.directivo');
-
-	Route::get('datos-correo/{idCliente}', 'PerfilController@datosCorreo')->name('datos.correo');
-
-	Route::post('enviar-correo/{idCliente}', 'PerfilController@enviarCorreo')->name('enviar.correo');
+	});
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::get('mis-solicitudes/{idCliente}', 'CreditoController@misSolicitudes')->name('mis.solicitudes');
+	Route::middleware('role:directivo')->group(function () {
 
-	Route::post('solicitud-nueva', 'CreditoController@solicitudNueva')->name('solicitud.nueva');
+		Route::get('usuario-eliminar/{idCliente}', 'PerfilController@usuarioEliminar')->name('usuario.eliminar');
 
-	Route::get('solicitud-eliminar/{idCliente}/{idSolicitud}', 'CreditoController@solicitudEliminar')->name('solicitud.eliminar');
+		Route::get('usuario-inactivar/{idCliente}', 'PerfilController@usuarioInactivar')->name('usuario.inactivar');
 
-	Route::get('solicitud-aprobar/{idCliente}/{idSolicitud}', 'CreditoController@solicitudAprobar')->name('solicitud.aprobar');
+		Route::get('usuario-activar/{idCliente}', 'PerfilController@usuarioActivar')->name('usuario.activar');
 
-	Route::get('solicitud-rechazar/{idCliente}/{idSolicitud}', 'CreditoController@solicitudRechazar')->name('solicitud.rechazar');
+		Route::get('datos-correo/{idCliente}', 'PerfilController@datosCorreo')->name('datos.correo');
 
-	Route::get('solicitud-pendiente/{idCliente}/{idSolicitud}', 'CreditoController@solicitudPendiente')->name('solicitud.pendiente');
+		Route::post('enviar-correo/{idCliente}', 'PerfilController@enviarCorreo')->name('enviar.correo');
 
-	Route::get('solicitud-desembolsada/{idCliente}/{idSolicitud}', 'CreditoController@solicitudDesembolsada')->name('solicitud.desembolsada');
-
-	Route::get('solicitud-espera/{idCliente}/{idSolicitud}', 'CreditoController@solicitudEnEspera')->name('solicitud.espera');
+	});
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::get('mis-documentos/{idCliente}/{idSolicitud}', 'CreditoController@tablaDocumentos')->name('mis.documentos');
+	Route::middleware('role:administrador')->group(function () {
 
-	Route::post('documento-nuevo/{idSolicitud}', 'CreditoController@documentoNuevo')->name('documento.nuevo');
+		Route::get('usuario-directivo/{idCliente}', 'PerfilController@usuarioDirectivo')->name('usuario.directivo');
 
-	Route::get('documento-aprobar/{idSolicitud}/{idDocumento}', 'CreditoController@documentoAprobado')->name('documento.aprobar');
+		Route::get('usuario-no-directivo/{idCliente}', 'PerfilController@usuarioNoDirectivo')->name('usuario.no.directivo');
 
-	Route::get('documento-rechazar/{idSolicitud}/{idDocumento}', 'CreditoController@documentoRechazado')->name('documento.rechazar');
-
-	Route::get('documento-eliminar/{idSolicitud}/{idDocumento}', 'CreditoController@documentoEliminar')->name('documento.eliminar');
-
-	Route::get('documento-descargar/{idDocumento}', 'CreditoController@documentoDescargar')->name('documento.descargar');
+	});
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::get('usuarios', 'GeneralController@tablaUsuarios')->name('usuarios.tabla');
+	Route::middleware('role:registrado|directivo')->group(function () {
 
-	Route::get('perfiles', 'GeneralController@tablaPerfiles')->name('perfiles.tabla');
+		Route::get('mis-solicitudes/{idCliente}', 'CreditoController@misSolicitudes')->name('mis.solicitudes');
 
-	Route::get('solicitudes', 'GeneralController@tablaSolicitudes')->name('solicitudes.tabla');
+		Route::post('solicitud-nueva', 'CreditoController@solicitudNueva')->name('solicitud.nueva');
 
-	Route::get('documentos', 'GeneralController@tablaDocumentos')->name('documentos.tabla');
+		Route::get('solicitud-eliminar/{idCliente}/{idSolicitud}', 'CreditoController@solicitudEliminar')->name('solicitud.eliminar');
 
-	Route::get('usuario-validar/{idCliente}', 'GeneralController@usuarioValidar')->name('usuario.validar');
+		Route::get('solicitud-aprobar/{idCliente}/{idSolicitud}', 'CreditoController@solicitudAprobar')->name('solicitud.aprobar');
 
+		Route::get('solicitud-rechazar/{idCliente}/{idSolicitud}', 'CreditoController@solicitudRechazar')->name('solicitud.rechazar');
 
+		Route::get('solicitud-pendiente/{idCliente}/{idSolicitud}', 'CreditoController@solicitudPendiente')->name('solicitud.pendiente');
+
+		Route::get('solicitud-desembolsada/{idCliente}/{idSolicitud}', 'CreditoController@solicitudDesembolsada')->name('solicitud.desembolsada');
+
+		Route::get('solicitud-espera/{idCliente}/{idSolicitud}', 'CreditoController@solicitudEnEspera')->name('solicitud.espera');
+
+		// -----------------------------------------------------------------------------------------------------------
+
+		Route::get('mis-documentos/{idCliente}/{idSolicitud}', 'CreditoController@tablaDocumentos')->name('mis.documentos');
+
+		Route::post('documento-nuevo/{idSolicitud}', 'CreditoController@documentoNuevo')->name('documento.nuevo');
+
+		Route::get('documento-aprobar/{idSolicitud}/{idDocumento}', 'CreditoController@documentoAprobado')->name('documento.aprobar');
+
+		Route::get('documento-rechazar/{idSolicitud}/{idDocumento}', 'CreditoController@documentoRechazado')->name('documento.rechazar');
+
+		Route::get('documento-eliminar/{idSolicitud}/{idDocumento}', 'CreditoController@documentoEliminar')->name('documento.eliminar');
+
+		Route::get('documento-descargar/{idDocumento}', 'CreditoController@documentoDescargar')->name('documento.descargar');
+
+	});
+
+	// -----------------------------------------------------------------------------------------------------------
+
+	Route::middleware('role:administrador|directivo')->group(function () {
+
+		Route::get('usuarios', 'GeneralController@tablaUsuarios')->name('usuarios.tabla');
+
+		Route::get('perfiles', 'GeneralController@tablaPerfiles')->name('perfiles.tabla');
+
+		Route::middleware('role:directivo')->group(function () {
+
+			Route::get('solicitudes', 'GeneralController@tablaSolicitudes')->name('solicitudes.tabla');
+
+			Route::get('documentos', 'GeneralController@tablaDocumentos')->name('documentos.tabla');
+
+			Route::get('usuario-validar/{idCliente}', 'GeneralController@usuarioValidar')->name('usuario.validar');
+
+		});
+
+	});
 
 	// -----------------------------------------------------------------------------------------------------------
 
