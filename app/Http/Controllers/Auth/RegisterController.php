@@ -71,6 +71,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
     }
 
     public function register(Request $request)
@@ -80,6 +81,8 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         // $this->guard()->login($user);
+
+        $user->assignRole('registrado');
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());

@@ -37,23 +37,27 @@
 
 				@foreach ($perfiles as $fila)
 
-				    <tr>
+					@if(!$fila->user->hasAnyRole('administrador'))
+				    
+					    <tr>
 
-						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-						<td style="text-align:left;"> {{ $fila->nombres }} </td>
-						<td style="text-align:left;"> {{ $fila->apellidos }} </td>
-						<td style="text-align:left;"> {{ $fila->cedula }} </td>
-						<td style="text-align:left;"> {{ $fila->email }} </td>
+							<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
+							<td style="text-align:left;"> {{ $fila->nombres }} </td>
+							<td style="text-align:left;"> {{ $fila->apellidos }} </td>
+							<td style="text-align:left;"> {{ $fila->cedula }} </td>
+							<td style="text-align:left;"> {{ $fila->email }} </td>
 
-						<td style="text-align:center;">
+							<td style="text-align:center;">
 
-							@include('modals.datos-perfiles')
+								@include('modals.datos-perfiles')
 
-							@include('modals.acciones-perfiles')
+								@include('modals.acciones-perfiles')
 
-						</td>
+							</td>
 
-					</tr>
+						</tr>
+
+					@endif
 				
 				@endforeach
 

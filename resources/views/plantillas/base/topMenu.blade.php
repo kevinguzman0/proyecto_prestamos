@@ -20,34 +20,60 @@
 
                     <!-- Authentication Links -->
 
-					<li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
-                    <li class="nav-link"><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
+                    @guest
 
-                    <li class="nav-item dropdown">
+                        <li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
 
-                        <a id="navbarDropdown2" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Reportes</a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
+                    @else
 
-                            <a class="dropdown-item" href="{{ route('usuarios.tabla') }}">
-                                Usuarios registrados
-                            </a>
+                        @if (Auth::user()->hasAnyRole('administrador', 'registrado', 'directivo'))
 
-                            <a class="dropdown-item" href="{{ route('perfiles.tabla') }}">
-                                Perfiles de usuario
-                            </a>
+                            <li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
 
-                            <a class="dropdown-item" href="{{ route('solicitudes.tabla') }}">
-                                Solicitudes de crédito
-                            </a>
+                        @endif
 
-                            <a class="dropdown-item" href="{{ route('documentos.tabla') }}">
-                                Documentos presentados
-                            </a>
+                        @if (Auth::user()->hasAnyRole('registrado','directivo'))
 
-                       </div>
+                            <li class="nav-link"><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
 
-                    </li>
+                        @endif
+
+                        @if (Auth::user()->hasAnyRole('administrador','directivo'))
+
+                            <li class="nav-item dropdown">
+
+                                <a id="navbarDropdown2" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Maestros</a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
+
+                                    <a class="dropdown-item" href="{{ route('usuarios.tabla') }}">
+                                        Usuarios registrados
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('perfiles.tabla') }}">
+                                        Perfiles de usuario
+                                    </a>
+
+                                    @if (Auth::user()->hasAnyRole('directivo'))
+
+                                        <a class="dropdown-item" href="{{ route('solicitudes.tabla') }}">
+                                            Solicitudes de crédito
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('documentos.tabla') }}">
+                                            Documentos presentados
+                                        </a>
+
+                                    @endif
+
+                               </div>
+
+                            </li>
+
+                        @endrole
+
+                    @endguest
 
                     @guest
 
@@ -77,9 +103,13 @@
                                     Mi perfil
                                 </a>
 
-                                <a class="dropdown-item" href="{{ action('CreditoController@misSolicitudes', [Auth::user()->id]) }}">
-                                    Mis solicitudes
-                                </a>
+                                @if (!Auth::user()->hasAnyRole('administrador'))
+
+                                    <a class="dropdown-item" href="{{ action('CreditoController@misSolicitudes', [Auth::user()->id]) }}">
+                                        Mis solicitudes
+                                    </a>
+
+                                @endif  
                                 
                                 <a class="dropdown-item" href="{{ route('cambiar.mi.password') }}">
                                     Cambiar contraseña

@@ -50,13 +50,15 @@
 
 							@endif
 
-							<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
-								@if(App\User::find($fila->id)->perfil != null)
-									<img src="{{ asset('icons/eye.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
-								@else
-									<img src="{{ asset('icons/person.svg') }}" alt="Crear perfil" width="24" height="24" title="Crear perfil">
-								@endif
-							</a>
+							@if (!Auth::user()->hasAnyRole('administrador'))
+								<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
+									@if(App\User::find($fila->id)->perfil != null)
+										<img src="{{ asset('icons/eye.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
+									@else
+										<img src="{{ asset('icons/camera.svg') }}" alt="Crear perfil" width="24" height="24" title="Crear perfil">
+									@endif
+								</a>
+							@endif
 							
 							@if($fila->email_verified_at == null)
 								<a href="{{ route('usuario.validar', [$fila->id]) }}">

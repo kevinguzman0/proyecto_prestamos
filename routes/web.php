@@ -93,13 +93,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::get('solicitud-espera/{idCliente}/{idSolicitud}', 'CreditoController@solicitudEnEspera')->name('solicitud.espera');
 
-	Route::get('usuario-eliminar/{idCliente}', 'CreditoController@usuarioEliminar')->name('usuario.eliminar');
+	Route::get('usuario-eliminar/{idCliente}', 'PerfilController@usuarioEliminar')->name('usuario.eliminar');
 
-	Route::get('usuario-inactivo/{idCliente}', 'CreditoController@usuarioInactivo')->name('usuario.inactivo');
+	Route::get('usuario-inactivar/{idCliente}', 'PerfilController@usuarioInactivar')->name('usuario.inactivo');
 
-	Route::get('usuario-directivo/{idCliente}', 'CreditoController@usuarioDirectivo')->name('usuario.directivo');
+	Route::get('usuario-directivo/{idCliente}', 'PerfilController@usuarioDirectivo')->name('usuario.directivo');
 
-	Route::get('usuario-no-directivo/{idCliente}', 'CreditoController@usuarioNoDirectivo')->name('usuario.No.directivo');
+	Route::get('usuario-no-directivo/{idCliente}', 'PerfilController@usuarioNoDirectivo')->name('usuario.No.directivo');
 
 	Route::get('datos-correo/{idCliente}', 'CreditoController@datosCorreo')->name('datos.correo');
 

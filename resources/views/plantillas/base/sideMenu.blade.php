@@ -31,7 +31,7 @@
 
 	            <li>
 
-	                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reportes</a>
+	                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Maestros</a>
 
 	                <ul class="collapse list-unstyled" id="homeSubmenu2">
 

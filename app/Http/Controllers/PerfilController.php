@@ -231,4 +231,127 @@ class PerfilController extends Controller
 
     }
 
+    public function usuarioDirectivo($idUsuario)
+    {
+        $perfil = Perfil::find($idUsuario);
+
+        if (!$perfil)
+        {
+            $mensaje = 'Atención, el usuario [ ' . $idUsuario . ' ] no está disponible para su actualización. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+        }
+        else
+        {
+            $perfil->idEstadoPerfil = self::DIRECTIVO;
+            $perfil->save();
+
+            $usuario = User::find($idUsuario);
+            $usuario->assignRole('directivo');
+            $usuario->removeRole('registrado');
+
+            $mensajeVerde = 'Usuario definido como Directivo...';
+
+            return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+        }
+
+    }
+
+    public function usuarioNoDirectivo($idUsuario)
+    {
+        $perfil = Perfil::find($idUsuario);
+
+        if (!$perfil)
+        {
+            $mensaje = 'Atención, el usuario [ ' . $idUsuario . ' ] no está disponible para su actualización. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+        }
+        else
+        {
+            $perfil->idEstadoPerfil = self::REGISTRADO;
+            $perfil->save();
+
+            $usuario = User::find($idUsuario);
+            $usuario->assignRole('registrado');
+            $usuario->removeRole('directivo');
+
+            $mensajeVerde = 'Usuario registrado...';
+
+            return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+        }
+
+    }
+
+public function usuarioEliminar($idUsuario)
+    {
+
+        $usuario = User::find($idUsuario);
+ 
+        if (!$usuario)
+        {
+            $mensajeError = 'Atención, la información de registro del Usuario [ ' . $idUsuario . ' ] no está disponible. Es imposible proceder con la eliminación del usuario. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            abort(404, $mensajeError);        
+        }
+        else
+        {
+
+            $solicitudes = Solicitud::all()->where('idCliente', '=', $idUsuario);
+
+            foreach ($solicitudes as $fila)
+            {
+                $this->solicitudEliminar($idUsuario, $fila->id);
+            }
+
+            $usuario->delete();
+
+            $perfil = Perfil::find($idUsuario);
+
+            if (!$perfil) 
+            {
+                $mensaje = 'El Usuario [ ' . $idUsuario . ' ] fue eliminado...';
+            }
+            else
+            {
+
+                $archivo = $perfil->foto;
+                Storage::disk('public')->delete($archivo);
+
+                $perfil->delete();
+                $mensaje = 'El Usuario [ ' . $idUsuario . ' ] fue eliminado con toda su información de Perfil...';
+
+            }
+
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+
+        }
+
+    }
+
+    public function usuarioInactivar($idUsuario)
+    {
+        $perfil = Perfil::find($idUsuario);
+
+        if (!$perfil)
+        {
+            $mensaje = 'Atención, el usuario [ ' . $idUsuario . ' ] no está disponible para su actualización. Contáctese con el administrador del sistema para revisar y corregir esta inconsistencia en la Base de Datos.';
+            return redirect()->back()->with('mensajeVerde', $mensaje);
+        }
+        else
+        {
+            $perfil->idEstadoPerfil = self::INACTIVO;
+            $perfil->save();
+
+            $usuario = User::find($idUsuario);
+            $usuario->assignRole('inactivo');
+            //$usuario->syncRoles(['directivo', 'registrado', 'administrador']);
+            $usuario->removeRole('directivo');
+            $usuario->removeRole('registrado');
+            $usuario->removeRole('administrador');
+
+            $mensajeVerde = 'Usuario inactivado...';
+
+            return redirect()->back()->with('mensajeVerde', $mensajeVerde);
+        }
+
+    }
+
 }
