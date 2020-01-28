@@ -384,7 +384,7 @@ public function usuarioEliminar($idUsuario)
     {
 
         $datosCliente = Perfil::find($idCliente);
-        return view('creditos.correo', compact('datosCliente'));
+        return view('perfiles.correo', compact('datosCliente'));
 
     }
 
@@ -413,7 +413,7 @@ public function usuarioEliminar($idUsuario)
             $for = $datosCliente->email;
             $msj=$request->mensaje;
 
-            Mail::send('creditos.email',$request->all(), function($msj) use($subject,$for){
+            Mail::send('perfiles.email',$request->all(), function($msj) use($subject,$for){
                 $msj->from("hernanarangoisaza@gmail.com","kevinguzman");
                 $msj->subject($subject);
                 $msj->to($for);
