@@ -25,7 +25,7 @@
 
 	            @csrf
 
-	            <fieldset @if(true) disabled @endif>
+	            <fieldset @if(Auth()->user()->id != $perfil->id) disabled @endif>
 
 				    @if ($mensaje = Session::get('mensajeVerde'))
 				        <div class="form-row col-md-12 alert alert-success estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">

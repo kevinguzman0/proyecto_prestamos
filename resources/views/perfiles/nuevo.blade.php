@@ -32,7 +32,7 @@
 			        </div>
 			    @endif
 
-	            <fieldset @if(true) disabled @endif>
+	            <fieldset @if(Auth()->user()->id != $idCliente) disabled @endif>
 
 		            <div class="form-row">
 

@@ -129,7 +129,8 @@
 							   data-text="Seleccionar" 
 							   data-dragdrop="false" 
 							   data-btnClass="btn-dark"
-							   data-placeholder="archivo no seleccionado">
+							   data-placeholder="archivo no seleccionado"
+							   @if(Auth()->user()->id != $perfil->id) disabled @endif>
 					</div>
 				</div>
             </div>
@@ -137,7 +138,7 @@
              <div class="form-row col-md-12 padding-form">
             	<div class="col-md-12">
 	                <label class="label-margin">Descripción del documento</label>
-	                <textarea maxlength="200" name="descripcionDocumento" class="form-control" value="{{ old('descripcionImagen') }}" placeholder="escriba una breve descripción del contenido del documento que está subiendo para revisión..."></textarea>
+	                <textarea maxlength="200" name="descripcionDocumento" class="form-control" value="{{ old('descripcionImagen') }}" placeholder="escriba una breve descripción del contenido del documento que está subiendo para revisión..."  @if(Auth()->user()->id != $perfil->id) disabled @endif></textarea>
             	</div>
             </div>
 
@@ -161,7 +162,7 @@
 
             	<div class="col-md-6">
 		            <label></label>
-		            <input type="submit" value="Grabar" name="btnGrabarUser" class="form-control btn btn-info">
+		            <input type="submit" value="Grabar" name="btnGrabarUser" class="form-control btn btn-info"  @if(Auth()->user()->id != $perfil->id) disabled @endif>
             	</div>
             	
             	<div class="col-md-6">

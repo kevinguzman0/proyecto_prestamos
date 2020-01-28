@@ -61,7 +61,7 @@
                             @if($fila->user->hasAnyRole('inactivo'))
 
                                  <div class="col-md-2">
-                                    <a href="{{ action('PerfilController@usuarioActivar', [$fila->id]) }}">
+                                    <a href="">
                                         <img src="{{ asset('icons/toggle-on.svg') }}" alt="Activar usuario" width="24" height="24" title="Activar usuario" />
                                     </a>
                                 </div>
@@ -78,9 +78,7 @@
                             @if($fila->user->hasAnyRole('directivo'))
 
                                 <div class="col-md-2">
-                                    <a href="{{ action('PerfilController@usuarioInactivar', [$fila->id]) }}">
-                                        <img src="{{ asset('icons/toggle-off.svg') }}" alt="Inactivar usuario" width="24" height="24" title="Inactivar usuario" />
-                                    </a>
+                                    @include('modals.desactivar-usuario')
                                 </div>
                                 <div class="col-md-10 text-left">
                                     Inactivar usuario
@@ -90,9 +88,7 @@
 
                             @if($fila->idEstadoPerfil == 5)
                                  <div class="col-md-2">
-                                    <a href="{{ action('PerfilController@usuarioActivar', [$fila->id]) }}">
-                                        <img src="{{ asset('icons/toggle-on.svg') }}" alt="Activar usuario" width="24" height="24" title="Activar usuario" />
-                                    </a>
+                                   @include('modals.activar-usuario')
                                 </div>
                                 <div class="col-md-10 text-left">
                                     Activar usuario
@@ -101,9 +97,7 @@
 
                             @if ($fila->idEstadoPerfil < 4)
                                 <div class="col-md-2">
-                                    <a href="{{ action('PerfilController@usuarioDirectivo', [$fila->id]) }}">
-                                        <img src="{{ asset('icons/bookmark.svg') }}" alt="Convertir en Directivo" width="24" height="24" title="Convertir en Directivo" />
-                                    </a>
+                                     @include('modals.activar-directivo')
                                 </div>
                                 <div class="col-md-10 text-left">
                                     Convertir en Directivo
@@ -112,9 +106,7 @@
 
                             @if ($fila->idEstadoPerfil == 4)
                                 <div class="col-md-2">
-                                    <a href="{{ action('PerfilController@usuarioNoDirectivo', [$fila->id]) }}">
-                                        <img src="{{ asset('icons/person.svg') }}" alt="Retirar permiso de Directivo" width="24" height="24" title="Retirar permiso de Directivo" />
-                                    </a>
+                                    @include('modals.desactivar-directivo')
                                 </div>
                                 <div class="col-md-10 text-left">
                                     Retirar permiso de Directivo
