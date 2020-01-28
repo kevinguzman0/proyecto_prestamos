@@ -26,59 +26,64 @@
                             </div>
                         @endif
 
-		      			@if($fila->idEstadoSolicitud == 2)
+                        @if(($fila->idCliente) != (Auth::user()->id))
+
+    		      			@if($fila->idEstadoSolicitud == 2)
+                                <div class="col-md-2">
+                                    <a href="{{ route('solicitud.aprobar', [$fila->idCliente, $fila->id]) }}">
+                                        <img src="{{ asset('icons/award.svg') }}" alt="Aprobar / Validar" width="24" height="24" title="Aprobar / Validar" />
+                                    </a>
+                                </div>
+                                <div class="col-md-10 text-left">
+                                    Aprobar / Validar
+                                </div>
+                            @endif
+
+    		      			@if($fila->idEstadoSolicitud == 2)
                             <div class="col-md-2">
-                                <a href="{{ route('solicitud.aprobar', [$fila->idCliente, $fila->id]) }}">
-                                    <img src="{{ asset('icons/award.svg') }}" alt="Aprobar / Validar" width="24" height="24" title="Aprobar / Validar" />
+                                    <a href="{{ route('solicitud.rechazar', [$fila->idCliente, $fila->id]) }}">
+                                        <img src="{{ asset('icons/x-octagon-fill.svg') }}" alt="Rechazar" width="24" height="24" title="Rechazar" />
+                                    </a>
+                                </div>
+                                <div class="col-md-10 text-left">
+                                    Rechazar
+                                </div>
+                            @endif
+                            <div class="col-md-2">
+                                <a href="{{ action('CreditoController@solicitudPendiente', [$fila->idCliente, $fila->id]) }}">
+                                    <img src="{{ asset('icons/alarm.svg') }}" alt="Con documentos pendientes" width="24" height="24" title="Con documentos pendientes" />
                                 </a>
                             </div>
                             <div class="col-md-10 text-left">
-                                Aprobar / Validar
+                                Con documentos pendientes
                             </div>
+                            <div class="col-md-2">
+                                <a href="{{ action('CreditoController@solicitudDesembolsada', [$fila->idCliente, $fila->id]) }}">
+                                    <img src="{{ asset('icons/check-circle.svg') }}" alt="Solicitud desembolsada" width="24" height="24" title="Solicitud desembolsada" />
+                                </a>
+                            </div>
+                            <div class="col-md-10 text-left">
+                                Solicitud desembolsada
+                            </div>
+                            <div class="col-md-2">
+                                <a href="{{ action('CreditoController@solicitudEnEspera', [$fila->idCliente, $fila->id]) }}">
+                                    <img src="{{ asset('icons/clock.svg') }}" alt="Solicitud en espera" width="24" height="24" title="Solicitud en espera" />
+                                </a>
+                            </div>
+                            <div class="col-md-10 text-left">
+                                Solicitud en espera
+                            </div>
+                            @if($fila->idEstadoSolicitud == 1)
+                                <div class="col-md-2">
+                                    @include('modals.eliminar-solicitudes')
+                                </div>
+                                <div class="col-md-10 text-left">
+                                    Eliminar solicitud
+                                </div>
+                            @endif
                         @endif
 
-		      			@if($fila->idEstadoSolicitud == 2)
-                        <div class="col-md-2">
-                                <a href="{{ route('solicitud.rechazar', [$fila->idCliente, $fila->id]) }}">
-                                    <img src="{{ asset('icons/x-octagon-fill.svg') }}" alt="Rechazar" width="24" height="24" title="Rechazar" />
-                                </a>
-                            </div>
-                            <div class="col-md-10 text-left">
-                                Rechazar
-                            </div>
-                        @endif
-                        <div class="col-md-2">
-                            <a href="{{ action('CreditoController@solicitudPendiente', [$fila->idCliente, $fila->id]) }}">
-                                <img src="{{ asset('icons/alarm.svg') }}" alt="Con documentos pendientes" width="24" height="24" title="Con documentos pendientes" />
-                            </a>
-                        </div>
-                        <div class="col-md-10 text-left">
-                            Con documentos pendientes
-                        </div>
-                        <div class="col-md-2">
-                            <a href="{{ action('CreditoController@solicitudDesembolsada', [$fila->idCliente, $fila->id]) }}">
-                                <img src="{{ asset('icons/check-circle.svg') }}" alt="Solicitud desembolsada" width="24" height="24" title="Solicitud desembolsada" />
-                            </a>
-                        </div>
-                        <div class="col-md-10 text-left">
-                            Solicitud desembolsada
-                        </div>
-                        <div class="col-md-2">
-                            <a href="{{ action('CreditoController@solicitudEnEspera', [$fila->idCliente, $fila->id]) }}">
-                                <img src="{{ asset('icons/clock.svg') }}" alt="Solicitud en espera" width="24" height="24" title="Solicitud en espera" />
-                            </a>
-                        </div>
-                        <div class="col-md-10 text-left">
-                            Solicitud en espera
-                        </div>
-                        @if($fila->idEstadoSolicitud == 1)
-                            <div class="col-md-2">
-                                @include('modals.eliminar-solicitudes')
-                            </div>
-                            <div class="col-md-10 text-left">
-                                Eliminar solicitud
-                            </div>
-                        @endif
+                        
                     </div>
                 </div>
             </div>

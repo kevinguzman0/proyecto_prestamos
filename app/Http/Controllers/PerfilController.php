@@ -368,6 +368,11 @@ public function usuarioEliminar($idUsuario)
             $perfil->idEstadoPerfil = self::REGISTRADO;
             $perfil->save();
 
+            $usuario = User::find($idUsuario);
+            $usuario->removeRole('inactivo');
+            $usuario->assignRole('registrado');
+            
+
             $mensajeVerde = 'Usuario activado...';
 
             return redirect()->back()->with('mensajeVerde', $mensajeVerde);
