@@ -21,7 +21,7 @@
 	        <input type="text" name="idCliente" class="form-control font-weight-bolder" value="{{ $perfil->id }}" disabled>
 	    </div>
 
-		<div class="col-md-4">
+		<div class="col-md-3">
 	        <label class="label-margin">Nombre completo</label>
 	        <input type="text" name="nombres" class="form-control font-weight-bolder" value="{{ $perfil->nombres }} {{ $perfil->apellidos }}" disabled>
 	    </div>
@@ -35,6 +35,13 @@
 	        <label class="label-margin">Email</label>
 	        <input type="text" name="email" class="form-control font-weight-bolder" value="{{ $perfil->email }}" disabled>
 	    </div>
+
+        <div class="col-md-1">
+        	<label></label>
+            <button type="button" class="btn btn-primary" onclick="location.href = '{{ route('simulador') }}'">Crear</button>
+        </div>
+
+	    	                            
 
 	</div>
 
@@ -112,10 +119,6 @@
 	                                </button>
 	                                
 	                            </form>
-
-	                            <a href="{{ route('simulador') }}">
-									<img src="{{ asset('icons/window.svg') }}" alt="Crear solicitud" width="24" height="24" title="Crear solicitud">
-								</a>
 
 							</td>
 
