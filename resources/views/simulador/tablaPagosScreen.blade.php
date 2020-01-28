@@ -26,20 +26,24 @@
 					</a>
 		        </div>
 
-		        <div class="col-md-2 margenes-botones">
-					<form class="col-md-12 pl-0 pr-0" method="POST">
+				@if(Auth()->user()->id == $idCliente)
 
-						@csrf
+			        <div class="col-md-2 margenes-botones">
+						<form class="col-md-12 pl-0 pr-0" method="POST">
+
+							@csrf
+							
+							<input type="hidden" name="monto" value="{{ $valorPrestamo }}">
+							<input type="hidden" name="plazo" value="{{ $plazoCuotas }}">
+							<input type="hidden" name="cuota" value="{{ $valorCuota }}">
+							<input type="hidden" name="interes" value="{{ $interes }}">
+							
+							<input type="submit" formaction="{{ route('solicitud.nueva') }}" value="Solicitar crédito" name="btnSolicitarCredito" class="form-control btn btn-danger mt-2 mb-2">
 						
-						<input type="hidden" name="monto" value="{{ $valorPrestamo }}">
-						<input type="hidden" name="plazo" value="{{ $plazoCuotas }}">
-						<input type="hidden" name="cuota" value="{{ $valorCuota }}">
-						<input type="hidden" name="interes" value="{{ $interes }}">
-						
-						<input type="submit" formaction="{{ route('solicitud.nueva') }}" value="Solicitar crédito" name="btnSolicitarCredito" class="form-control btn btn-danger mt-2 mb-2">
-					
-					</form>
-		        </div>
+						</form>
+			        </div>
+
+		        @endif
 
 		    @else
 
