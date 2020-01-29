@@ -23,8 +23,9 @@ class GeneralController extends Controller
         $perfiles = Perfil::paginate(10);
         $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
         $idPerfiles = Perfil::distinct()->get();
+        $paginacion = 'si';
 
-        return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles'));
+        return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'));
 
     }
 
@@ -80,15 +81,18 @@ class GeneralController extends Controller
     {
 
         $filtro = $request->filtro;
+        $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
+        $idPerfiles = Perfil::distinct()->get();
+        $paginacion = 'no';
 
         if (!$filtro)
         {
-            $mensaje = 'El filtro no ha generado resultados visibles, pruebe con otra búsqueda...'; 
-            return view('general.tablaPerfiles')->with('mensajeRojo', $mensaje);
+            $mensaje = 'No se han recibido criterios de búsqueda con el filtro. Pruebe con otra búsqueda...'; 
+            $perfiles = Perfil::paginate(10);
+            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'))->with('mensajeRojo', $mensaje);
         }
         else
         {
-            $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
 
             Builder::macro('whereLike', function($attributes, string $searchTerm) {
                 foreach(Arr::wrap($attributes) as $attribute) {
@@ -97,11 +101,12 @@ class GeneralController extends Controller
                 return $this;
             });
 
-            $perfiles = Perfil::whereLike(['nombres', 'apellidos', 'cedula', 'email'], $filtro)->get();
+            $perfiles = Perfil::whereLike(['nombres', 'apellidos', 'cedula', 'email'], $filtro)
+                        ->get();
 
             $mensaje = 'La información de Perfiles visualizada está filtrada por algunos campos que contienen el texto [ ' . $filtro . ' ]... ';
 
-            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil'))->with('mensajeVerde', $mensaje);
+            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'))->with('mensajeVerde', $mensaje);
 
         }
 
@@ -121,7 +126,9 @@ class GeneralController extends Controller
 
             $perfiles = Perfil::paginate(10);
 
-            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles'))->with('mensajeRojo', $mensaje);
+            $paginacion = 'si';
+
+            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'))->with('mensajeRojo', $mensaje);
 
         }
         else
@@ -146,9 +153,11 @@ class GeneralController extends Controller
 
             $perfiles = Perfil::where($filtros)->get();
 
+            $paginacion = 'no';
+
             //$cboEstadosPerfil = Perfil::select('idEstadoPerfil')->where($filtros)->distinct()->get();
 
-            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles'))->with('mensajeVerde', $mensaje);
+            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'))->with('mensajeVerde', $mensaje);
             
         }
 
@@ -158,8 +167,11 @@ class GeneralController extends Controller
     {
 
         $perfiles = Perfil::paginate(10);
-        return view('general.tablaPerfiles', compact('perfiles'));
+        $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
+        $idPerfiles = Perfil::distinct()->get();
+        $paginacion = 'si';
 
+        return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'));
     }
 
 }
