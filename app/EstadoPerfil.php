@@ -18,7 +18,7 @@ class EstadoPerfil extends Model
 
     public function perfiles()
     {
-       return $this->hasMany('App\Perfil', 'idEstadoPerfil', 'id')->withDefault();
+       return $this->hasMany('App\Perfil', 'idEstadoPerfil', 'id');
     }     
 
 }
