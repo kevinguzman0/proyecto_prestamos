@@ -48,34 +48,58 @@
     	{{ $perfiles->onEachSide(2)->links() }}
 		--}}
 
-	    <div class="row col-md-12 mb-3 mt-3">
+		<div class="input-group row col-md-12 mb-3 mt-3">
 
-	        <form class="col-md-12" 
+			<form class="col-md-12" action="{{ action('GeneralController@buscadorPerfiles') }}"
 	              method="POST">
 
 	            @csrf
 
-	            <div class="col-md-10">
-                    <label class="label-margin">Filtro</label>
-                    <input type="text" name="filtro" value="{{ old('filtro') }}" class="form-control" placeholder="escriba los caracteres.">
-                </div>
-			
-	            <div class="col-md-2">
-                    <label></label>
-                    <input type="submit" value="Buscar" name="btnBuscar" formaction="{{ action('GeneralController@buscadorPerfiles') }}" class="form-control btn btn-warning">
-                </div>
+			    <div class="input-group col-md-12">
 
-				<div class="col-md-2">
-					<label></label>
-					<input type="submit" value="Mostrar todos" name="btnMostrarTodos" formaction="{{ action('GeneralController@todosPerfiles') }}" class="form-control btn btn-dark">
-				</div>
+			    	<input type="text" name="filtro" class="form-control col-md-10" placeholder="Buscar">
+
+			  		<div class="input-group-append">
+
+				      	<button class="btn btn-secondary border-boton-buscar" type="submit" name="btnBuscar">
+
+				        	<i class="fa fa-search"></i>
+
+				      	</button>
+
+				    </div>
+
+			      	<input type="submit" value="Mostrar todos" name="btnMostrarTodos" formaction="{{ action('GeneralController@todosPerfiles') }}" class="form-control btn btn-dark col-md-2 ml-3">
+
+			    </div>
 
 			</form>
+	  </div>
 
-	    </div>
+	  	@isset($perfiles)
 
+		  	<div class="dropdown col-md-12 mb-3 mt-3">
+
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Estados de perfil
+				</button>
+
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+					@foreach ($cboEstadosPerfil as $item)
+
+				    	<a class="dropdown-item" data-value="{{ $item->idEstadoPerfil }}" href="{{ action('GeneralController@todosPerfiles') }}">{{ $item->estado->nombreEstado }}</a>
+
+					@endforeach
+
+				</div>
+
+			</div>
+
+		@endisset
+
+		
 		@isset($perfiles)
-
 			<table class="table table-striped table-bordered">
 
 				<tbody>

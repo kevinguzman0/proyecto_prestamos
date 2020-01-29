@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use DB;
 
 class GeneralController extends Controller
 {
@@ -20,7 +21,9 @@ class GeneralController extends Controller
     {
 
         $perfiles = Perfil::paginate(10);
-        return view('general.tablaPerfiles', compact('perfiles'));
+        $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
+
+        return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil'));
 
     }
 
@@ -99,6 +102,11 @@ class GeneralController extends Controller
             return view('general.tablaPerfiles', compact('perfiles'))->with('mensajeVerde', $mensaje);
 
         }
+
+    }
+
+    public function cboEstadosPerfil()
+    {
 
     }
 
