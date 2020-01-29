@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 
 class GeneralController extends Controller
 {
@@ -68,6 +70,44 @@ class GeneralController extends Controller
 
         }
     
+    }
+
+    public function buscadorPerfiles(Request $request)
+    {
+
+        $filtro = $request->filtro;
+
+        if (!$filtro)
+        {
+            $mensaje = 'El filtro no ha generado resultados visibles, pruebe con otra búsqueda...'; 
+            return view('general.tablaPerfiles')->with('mensajeVerde', $mensaje);
+        }
+        else
+        {
+
+            Builder::macro('whereLike', function($attributes, string $searchTerm) {
+                foreach(Arr::wrap($attributes) as $attribute) {
+                    $this->orWhere($attribute, 'LIKE', "%{$searchTerm}%");
+                }
+                return $this;
+            });
+
+            $perfiles = Perfil::whereLike(['nombres', 'apellidos', 'cedula', 'email'], $filtro)->get();
+
+            $mensaje = 'La información de Perfiles visualizada está filtrada por algunos campos que contienen el texto [ ' . $filtro . ' ]... ';
+
+            return view('general.tablaPerfiles', compact('perfiles'))->with('mensajeVerde', $mensaje);
+
+        }
+
+    }
+
+    public function todosPerfiles()
+    {
+
+        $perfiles = Perfil::paginate(10);
+        return view('general.tablaPerfiles', compact('perfiles'));
+
     }
 
 }
