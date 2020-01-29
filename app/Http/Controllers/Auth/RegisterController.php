@@ -88,4 +88,9 @@ class RegisterController extends Controller
                         ?: redirect($this->redirectPath());
     }
 
+    protected function redirectTo()
+    {
+        return route('validar.email');
+    }
+
 }

@@ -41,6 +41,10 @@ Route::get('test-visor', function () {
     return view('test.visor');
 })->name('test.visor');
 
+Route::get('validar-email', function () {
+    return view('errors.verify');
+})->name('validar.email');
+
 // -----------------------------------------------------------------------------------------------------------
 
 Route::get('salir', 'Auth\LoginController@logout')->name('salir');
