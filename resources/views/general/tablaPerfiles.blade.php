@@ -75,79 +75,93 @@
 			</form>
 	  </div>
 
-	  	@isset($perfiles)
+		<div class="input-group row col-md-12 mb-3 mt-3">
 
-	  		<div class="container col-md-12 mb-3 mt-3">
-			  <div class="row">
-			    <div class="col-sm-3">
-			      <select class="form-control">
-			      	@foreach ($cboEstadosPerfil as $item)
-				        <option value="{{ $item->idEstadoPerfil }}">{{ $item->estado->nombreEstado }}</option>
-				    @endforeach
-			      </select>
-			    </div>
-			    <div class="col-sm-3">
-			      <select class="form-control">
-			      	@foreach ($perfiles as $item)
-				        <option value="{{ $item->id }}">{{ $item->id }}</option>
-				    @endforeach
-			      </select>
-			    </div>
-			  </div>
-			</div>
+			<form class="col-md-12" method="POST">
 
+	            @csrf
 
-		@endisset
-		
-		@isset($perfiles)
-			<table class="table table-striped table-bordered">
+			  	@isset($perfiles)
 
-				<tbody>
-					
-					<thead class="header-tabla">
+			  		<div class="container col-md-12 mb-3 mt-3">
+					  
+					  <div class="row">
+					    <div class="col-sm-3">
+					      <select class="form-control" id="cboEstadosPerfil" name="cboEstadosPerfil">
+					      	@foreach ($cboEstadosPerfil as $item)
+						        <option value="{{ $item->idEstadoPerfil }}">{{ $item->estado->nombreEstado }}</option>
+						    @endforeach
+					      </select>
+					    </div>
 
-						<tr>
-							<th class="header-tabla-texto">Id</th>
-							<th class="header-tabla-texto">Nombres</th>
-							<th class="header-tabla-texto">Apellidos</th>
-							<th class="header-tabla-texto">Cédula</th>
-							<th class="header-tabla-texto">Email</th>
-							<th class="header-tabla-texto">Acciones</th>
-						</tr>
+					    <div class="col-sm-3">
+					      <select class="form-control" id="idPerfiles" name="idPerfiles">
+					      	@foreach ($perfiles as $item)
+						        <option value="{{ $item->id }}">{{ $item->id }}</option>
+						    @endforeach
+					      </select>
+					    </div>
+					  </div>
+					</div>
 
-					</thead>
+				@endisset
 
-					@foreach ($perfiles as $fila)
+		      	<input type="submit" value="Filtrar" name="btnFiltrar" formaction="{{ action('GeneralController@filtrosPerfiles') }}" class="form-control btn btn-dark col-md-2 ml-3">
+			
+			</form>
 
-						@if(!$fila->user->hasAnyRole('administrador'))
-					    
-						    <tr>
+			@isset($perfiles)
+				<table class="table table-striped table-bordered">
 
-								<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-								<td style="text-align:left;"> {{ $fila->nombres }} </td>
-								<td style="text-align:left;"> {{ $fila->apellidos }} </td>
-								<td style="text-align:left;"> {{ $fila->cedula }} </td>
-								<td style="text-align:left;"> {{ $fila->email }} </td>
+					<tbody>
+						
+						<thead class="header-tabla">
 
-								<td style="text-align:center;">
-
-									@include('modals.datos-perfiles')
-
-									@include('modals.acciones-perfiles')
-
-								</td>
-
+							<tr>
+								<th class="header-tabla-texto">Id</th>
+								<th class="header-tabla-texto">Nombres</th>
+								<th class="header-tabla-texto">Apellidos</th>
+								<th class="header-tabla-texto">Cédula</th>
+								<th class="header-tabla-texto">Email</th>
+								<th class="header-tabla-texto">Acciones</th>
 							</tr>
 
-						@endif
-					
-					@endforeach
+						</thead>
 
-				</tbody>
+						@foreach ($perfiles as $fila)
 
-			</table>
+							@if(!$fila->user->hasAnyRole('administrador'))
+						    
+							    <tr>
 
-		@endisset
+									<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
+									<td style="text-align:left;"> {{ $fila->nombres }} </td>
+									<td style="text-align:left;"> {{ $fila->apellidos }} </td>
+									<td style="text-align:left;"> {{ $fila->cedula }} </td>
+									<td style="text-align:left;"> {{ $fila->email }} </td>
+
+									<td style="text-align:center;">
+
+										@include('modals.datos-perfiles')
+
+										@include('modals.acciones-perfiles')
+
+									</td>
+
+								</tr>
+
+							@endif
+						
+						@endforeach
+
+					</tbody>
+
+				</table>
+
+			@endisset
+
+
+		</div>
 
 	</div>
 
