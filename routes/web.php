@@ -149,9 +149,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 		Route::get('perfiles', 'GeneralController@tablaPerfiles')->name('perfiles.tabla');
 
-		Route::post('perfiles/filtrado', 'GeneralController@buscadorPerfiles')->name('perfiles.buscar');
+		Route::post('perfiles/busqueda', 'GeneralController@buscadorPerfiles')->name('perfiles.buscar');
 
 		Route::post('perfiles', 'GeneralController@todosPerfiles')->name('perfiles.todos');
+
+		Route::post('perfiles/filtrado', 'GeneralController@filtrosPerfiles')->name('perfiles.filtrar');
 
 		Route::middleware('role:directivo')->group(function () {
 

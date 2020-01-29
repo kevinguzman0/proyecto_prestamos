@@ -87,6 +87,7 @@ class GeneralController extends Controller
         }
         else
         {
+            $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
 
             Builder::macro('whereLike', function($attributes, string $searchTerm) {
                 foreach(Arr::wrap($attributes) as $attribute) {
@@ -99,14 +100,16 @@ class GeneralController extends Controller
 
             $mensaje = 'La información de Perfiles visualizada está filtrada por algunos campos que contienen el texto [ ' . $filtro . ' ]... ';
 
-            return view('general.tablaPerfiles', compact('perfiles'))->with('mensajeVerde', $mensaje);
+            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil'))->with('mensajeVerde', $mensaje);
 
         }
 
     }
 
-    public function cboEstadosPerfil()
+    public function filtrosPerfiles(Request $request)
     {
+
+        dd($request);
 
     }
 
