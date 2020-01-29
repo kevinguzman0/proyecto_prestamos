@@ -38,7 +38,7 @@
 
         <div class="col-md-2">
         	<label class="label-margin"></label>
-            <button type="button" class="btn btn-warning boton-crear form-control" onclick="location.href = '{{ route('simulador') }}'">Crear</button>
+            <button type="button" class="btn btn-warning boton-crear form-control" onclick="location.href = '{{ route('simulador') }}'">Solicitar</button>
         </div>
 
 	</div>

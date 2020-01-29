@@ -446,6 +446,13 @@ td {
     margin-left: 2em !important;
 }
 
+.ajuste-boton-regresar {
+    padding-right: 30px !important;
+    padding-left: 0px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
 
 /* --------------------------------------------------------------------------------------------- */
 

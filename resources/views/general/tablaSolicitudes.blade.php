@@ -77,6 +77,7 @@
 							</a>
 
 						</td>
+
 						<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
 						<td style="text-align:center;"> {{ $fila->plazo }} </td>
 						<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
