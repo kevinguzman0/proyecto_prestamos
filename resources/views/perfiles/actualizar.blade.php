@@ -154,12 +154,16 @@
 
 		                <div class="col-md-8">
 							<div class="input-group">
-								<label class="control-label label-margin">Foto Personal</label>
-								<input type="file" name="foto" id="foto" class="filestyle"
-									   data-text="Seleccionar" 
-									   data-dragdrop="false" 
-									   data-btnClass="btn-dark"
-									   data-placeholder="archivo no seleccionado">
+
+					            @if(Auth()->user()->id == $perfil->id) 
+									<label class="control-label label-margin">Foto Personal</label>
+									<input type="file" name="foto" id="foto" class="filestyle"
+										   data-text="Seleccionar" 
+										   data-dragdrop="false" 
+										   data-btnClass="btn-dark"
+										   data-placeholder="archivo no seleccionado">
+								@endif
+
 							</div>
 		                </div>
 
@@ -174,7 +178,12 @@
 
 								-->
 
-								<label class="control-label label-margin">Vista previa</label>
+					            @if(Auth()->user()->id == $perfil->id) 
+									<label class="control-label label-margin">Vista previa</label>
+								@else
+									<label class="control-label label-margin">Foto de perfil</label>
+								@endif
+
 								<div>
 									<img src="{{ asset('storage/docUsuarios') }}{{ '/' . $perfil->foto }}? {{ mt_rand(0, 100000) }}" width="200" class="img-fluid form-control estilo-img-previa" 
 									name="imageProfile" id="imageProfile">
@@ -196,14 +205,18 @@
 			            </div>
 			        @endif
 		            
-		            <div class="form-row mb-5">
+		            @if(Auth()->user()->id == $perfil->id) 
 
-		                <div class="col-md-12">
-		                    <label></label>
-		                    <input type="submit" value="Actualizar" name="btnActualizarUser" class="form-control btn btn-info">
-		                </div>
+			            <div class="form-row mb-5">
 
-		            </div>
+			                <div class="col-md-12">
+			                    <label></label>
+			                    <input type="submit" value="Actualizar" name="btnActualizarUser" class="form-control btn btn-info">
+			                </div>
+
+			            </div>
+
+		            @endif
 
 		        </fieldset>
 	            

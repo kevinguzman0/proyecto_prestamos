@@ -57,7 +57,7 @@
 	    @else
 
 	        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
-				Para solicitar este crédito o generarlo en archivo Pdf, primero debe registrarse y llenar su información de perfil... <a href="{{ route('registrarse') }}" class="font-weight-bold font-italic">Haga click aquí para registrarse y luego crear su perfil.</a>
+				Para solicitar este crédito o generarlo en archivo Pdf, debe ingresar al sistema con sus credenciales. Sí no las tiene, debe registrarse y llenar su información de perfil... <a href="{{ route('registrarse') }}" class="font-weight-bold font-italic">Haga click aquí para registrarse y luego crear su perfil.</a>
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 	        </div>
 
