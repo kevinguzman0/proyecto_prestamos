@@ -87,26 +87,36 @@
 					  
 					  <div class="row">
 					    <div class="col-sm-3">
-					      <select class="form-control" id="cboEstadosPerfil" name="cboEstadosPerfil">
-					      	@foreach ($cboEstadosPerfil as $item)
-						        <option value="{{ $item->idEstadoPerfil }}">{{ $item->estado->nombreEstado }}</option>
-						    @endforeach
-					      </select>
+					    	<label>Estados de Perfil</label>
+					      	<select class="form-control" id="cboEstadosPerfil" name="cboEstadosPerfil">
+
+						      	<option value="-1">Todos</option>
+						      	@foreach ($cboEstadosPerfil as $item)
+							        <option value="{{ $item->idEstadoPerfil }}">{{ $item->estado->nombreEstado }}</option>
+							    @endforeach
+					      	</select>
 					    </div>
 
 					    <div class="col-sm-3">
-					      <select class="form-control" id="idPerfiles" name="idPerfiles">
-					      	@foreach ($perfiles as $item)
-						        <option value="{{ $item->id }}">{{ $item->id }}</option>
-						    @endforeach
-					      </select>
+					    	<label>Id Perfil</label>
+					      	<select class="form-control" id="idPerfiles" name="cboIdPerfiles">
+					      	
+						      	<option value="-1">Todos</option>
+						      	@foreach ($perfiles as $item)
+							        <option value="{{ $item->id }}">{{ $item->id }}</option>
+							    @endforeach
+					      	</select>
 					    </div>
 					  </div>
 					</div>
 
 				@endisset
 
-		      	<input type="submit" value="Filtrar" name="btnFiltrar" formaction="{{ action('GeneralController@filtrosPerfiles') }}" class="form-control btn btn-dark col-md-2 ml-3">
+				<div class="container col-md-12 mb-3 mt-3">
+
+		      		<input type="submit" value="Filtrar" name="btnFiltrar" formaction="{{ action('GeneralController@filtrosPerfiles') }}" class="form-control btn btn-dark col-md-2 ml-3">
+
+		      	</div>
 			
 			</form>
 
