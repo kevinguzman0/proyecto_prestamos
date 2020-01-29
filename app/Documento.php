@@ -23,13 +23,13 @@ class Documento extends Model
 
     public function solicitud()
     {
-       return $this->hasOne('App\Solicitud', 'id', 'idSolicitud');
+       return $this->hasOne('App\Solicitud', 'id', 'idSolicitud')->withDefault();
     }  
 
     public function revisor()
     {
     
-        return $this->hasOne('App\Perfil', 'id', 'idAnalizadoPor');
+        return $this->hasOne('App\Perfil', 'id', 'idAnalizadoPor')->withDefault();
     
     }
 
