@@ -112,12 +112,6 @@
 
 				    	<a class="dropdown-item" data-value="{{ $item->id }}" href="#">{{ $item->id }}</a>
 
-				    	<li>
-				    		<a href="#" class="dropdown-item" data-value="{{ $item->idEstadoPerfil }}">
-				    			{{ $item->estado->nombreEstado }}
-				    		</a>
-				    	</li>
-
 					@endforeach
 
 				</div>
