@@ -6,7 +6,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
         <div class="modal-content modal-content-acciones">
             <div class="modal-header">
-                <h5 class="modal-title">Perfil [ {{ $fila->id }} ]</h5>
+                <h5 class="modal-title">Perfil [ {{ $fila->id }} - {{ $fila->nombres }} {{ $fila->apellidos }} ]</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

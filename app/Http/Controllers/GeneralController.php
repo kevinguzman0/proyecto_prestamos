@@ -80,7 +80,7 @@ class GeneralController extends Controller
         if (!$filtro)
         {
             $mensaje = 'El filtro no ha generado resultados visibles, pruebe con otra búsqueda...'; 
-            return view('general.tablaPerfiles')->with('mensajeVerde', $mensaje);
+            return view('general.tablaPerfiles')->with('mensajeRojo', $mensaje);
         }
         else
         {
