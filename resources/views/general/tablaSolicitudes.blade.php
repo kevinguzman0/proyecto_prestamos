@@ -88,7 +88,7 @@
 							
 							@include('modals.acciones-solicitudes')
 
-                            <form method="POST" action="{{ route('simulador.screen') }}">
+                            <form class="col-md-2" method="POST" action="{{ route('simulador.screen') }}">
 
                                 @csrf
                                 
