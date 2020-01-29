@@ -22,8 +22,9 @@ class GeneralController extends Controller
 
         $perfiles = Perfil::paginate(10);
         $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
+        $idPerfiles = Perfil::distinct()->get();
 
-        return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil'));
+        return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles'));
 
     }
 
@@ -111,44 +112,43 @@ class GeneralController extends Controller
         $id = $request->cboIdPerfiles;
         $idEstadoPerfil = $request->cboEstadosPerfil;
 
+        $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
+        $idPerfiles = Perfil::distinct()->get();
+
         if (($id == -1) && ($idEstadoPerfil == -1)) {
 
             $mensaje = 'No se han aplicado filtros...'; 
-            $perfiles = Perfil::paginate(10);
-            $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
 
-            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil'))->with('mensajeRojo', $mensaje);
+            $perfiles = Perfil::paginate(10);
+
+            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles'))->with('mensajeRojo', $mensaje);
 
         }
         else
         {
-            if (($id != -1) && ($idEstadoPerfil != -1)) {
-
+            if (($id != -1) && ($idEstadoPerfil != -1))
+            {
                 $filtros = array('id' => $id, 'idEstadoPerfil' => $idEstadoPerfil);
-                
             }
             else{
-                if ($id == -1) {
-
+                if ($id == -1) 
+                {
                     $filtros = array('idEstadoPerfil' => $idEstadoPerfil);
-
-
                 }
-                else{
+                else
+                {
                     $filtros = array('id' => $id);
-
                 }
 
             }
 
             $mensaje = 'Se aplicaron filtros...'; 
 
-            $perfiles=DB::table('perfiles')->where($filtros)->get();
+            $perfiles = Perfil::where($filtros)->get();
 
-            //$cboEstadosPerfil = DB::table('perfiles')->where($filtros)->select('idEstadoPerfil')->distinct()->get();
+            //$cboEstadosPerfil = Perfil::select('idEstadoPerfil')->where($filtros)->distinct()->get();
 
-            $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
-            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil'))->with('mensajeVerde', $mensaje);
+            return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles'))->with('mensajeVerde', $mensaje);
             
         }
 
