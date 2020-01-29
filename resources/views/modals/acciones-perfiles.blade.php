@@ -53,7 +53,7 @@
                                     @include('modals.desactivar-usuario')
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    Inactivar usuario
+                                   <a href="{{ action('PerfilController@usuarioInactivar', [$fila->id]) }}">Inactivar usuario</a>
                                 </div>
 
                             @endif
@@ -64,7 +64,7 @@
                                     @include('modals.activar-usuario')
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    Activar usuario
+                                    <a href="{{ action('PerfilController@usuarioActivar', [$fila->id]) }}">Activar usuario</a>
                                 </div>
                             @endif
 
@@ -78,7 +78,7 @@
                                     @include('modals.desactivar-usuario')
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    Inactivar usuario
+                                    <a href="{{ action('PerfilController@usuarioInactivar', [$fila->id]) }}">Inactivar usuario</a>
                                 </div>
                                 
                             @endif
@@ -88,7 +88,7 @@
                                    @include('modals.activar-usuario')
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    Activar usuario
+                                    <a href="{{ action('PerfilController@usuarioActivar', [$fila->id]) }}">Activar usuario</a>
                                 </div>
                             @endif
 
@@ -97,7 +97,7 @@
                                      @include('modals.activar-directivo')
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    Convertir en Directivo
+                                     <a href="{{ action('PerfilController@usuarioDirectivo', [$fila->id]) }}">Convertir en Directivo</a>
                                 </div>
                             @endif
 
@@ -106,7 +106,7 @@
                                     @include('modals.desactivar-directivo')
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    Retirar permiso de Directivo
+                                    <a href="{{ action('PerfilController@usuarioNoDirectivo', [$fila->id]) }}">Retirar permiso de Directivo</a>
                                 </div>
                             @endif
 
