@@ -1,6 +1,11 @@
-<a href="#" data-toggle="modal" data-target="#activar-directivo-{{ $fila->id }}">
-    <img src="{{ asset('icons/bookmark.svg') }}" alt="Convertir en Directivo" width="24" height="24" title="Convertir en Directivo" />
-</a>
+<div class="col-md-2">
+    <a href="#" data-toggle="modal" data-target="#activar-directivo-{{ $fila->id }}">
+        <img src="{{ asset('icons/bookmark.svg') }}" alt="Convertir en Directivo" width="24" height="24" title="Convertir en Directivo" />
+    </a>
+</div>
+<div class="col-md-10 text-left">
+    Convertir en Directivo
+</div>
 
 <div id="activar-directivo-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">

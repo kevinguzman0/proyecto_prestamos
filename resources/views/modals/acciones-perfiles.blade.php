@@ -48,24 +48,11 @@
                             @endif
 
                             @if($fila->user->hasAnyRole('registrado'))
-
-                                <div class="col-md-2">
-                                    @include('modals.desactivar-usuario')
-                                </div>
-                                <div class="col-md-10 text-left">
-                                    Inactivar usuario
-                                </div>
-
+                                @include('modals.desactivar-usuario')
                             @endif
 
                             @if($fila->user->hasAnyRole('inactivo'))
-
-                                 <div class="col-md-2">
-                                    @include('modals.activar-usuario')
-                                </div>
-                                <div class="col-md-10 text-left">
-                                    Activar usuario
-                                </div>
+                                @include('modals.activar-usuario')
                             @endif
 
                         @endhasanyrole
@@ -73,41 +60,19 @@
                         @hasanyrole('administrador')
 
                             @if($fila->user->hasAnyRole('directivo'))
-
-                                <div class="col-md-2">
-                                    @include('modals.desactivar-usuario')
-                                </div>
-                                <div class="col-md-10 text-left">
-                                    Inactivar usuario
-                                </div>
-                                
+                                @include('modals.desactivar-usuario')
                             @endif
 
                             @if($fila->idEstadoPerfil == 5)
-                                 <div class="col-md-2">
-                                   @include('modals.activar-usuario')
-                                </div>
-                                <div class="col-md-10 text-left">
-                                    Activar usuario
-                                </div>
+                                @include('modals.activar-usuario')
                             @endif
 
                             @if ($fila->idEstadoPerfil < 4)
-                                <div class="col-md-2">
-                                     @include('modals.activar-directivo')
-                                </div>
-                                <div class="col-md-10 text-left">
-                                    Convertir en Directivo
-                                </div>
+                                 @include('modals.activar-directivo')
                             @endif
 
                             @if ($fila->idEstadoPerfil == 4)
-                                <div class="col-md-2">
-                                    @include('modals.desactivar-directivo')
-                                </div>
-                                <div class="col-md-10 text-left">
-                                    Retirar permiso de Directivo
-                                </div>
+                                @include('modals.desactivar-directivo')
                             @endif
 
                         @endhasanyrole
