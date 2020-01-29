@@ -88,7 +88,29 @@
 
 					@foreach ($cboEstadosPerfil as $item)
 
-				    	<a class="dropdown-item" data-value="{{ $item->idEstadoPerfil }}" href="{{ action('GeneralController@todosPerfiles') }}">{{ $item->estado->nombreEstado }}</a>
+				    	<a class="dropdown-item" data-value="#">{{ $item->estado->nombreEstado }}</a>
+
+					@endforeach
+
+				</div>
+
+			</div>
+
+		@endisset
+
+		@isset($perfiles)
+
+		  	<div class="dropdown col-md-12 mb-3 mt-3">
+
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Id Perfil
+				</button>
+
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+					@foreach ($perfiles as $item)
+
+				    	<a class="dropdown-item" data-value="{{ $item->id }}" href="#">{{ $item->id }}</a>
 
 					@endforeach
 
