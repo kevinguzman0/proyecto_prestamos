@@ -33,18 +33,18 @@ class Perfil extends Model
 	public function user()
 	{
 	
-		return $this->hasOne('App\User', 'id', 'id');
+		return $this->hasOne('App\User', 'id', 'id')->withDefault();
 	
 	}
 
     public function estado()
     {
-       return $this->hasOne('App\EstadoPerfil', 'id', 'idEstadoPerfil');
+       return $this->hasOne('App\EstadoPerfil', 'id', 'idEstadoPerfil')->withDefault();
     }  
 
     public function solicitudes()
     {
-       return $this->hasMany('App\Solicitud', 'idCliente', 'id');
+       return $this->hasMany('App\Solicitud', 'idCliente', 'id')->withDefault();
     }
 
 }
