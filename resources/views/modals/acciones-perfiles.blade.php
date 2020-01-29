@@ -52,6 +52,14 @@
                             @endif
 
                             @if($fila->user->hasAnyRole('inactivo'))
+
+                                @include('modals.activar-usuario')
+
+                                @include('modals.desactivar-usuario')
+
+                            @endif
+
+                            @if($fila->user->hasAnyRole('inactivo'))
                                 @include('modals.activar-usuario')
                             @endif
 
@@ -69,6 +77,22 @@
 
                             @if ($fila->idEstadoPerfil < 4)
                                  @include('modals.activar-directivo')
+                            @endif
+
+                            @if ($fila->idEstadoPerfil == 4)
+
+                                @include('modals.desactivar-directivo')
+
+                                @include('modals.desactivar-usuario')
+
+                            @endif
+
+                            @if($fila->idEstadoPerfil == 5)
+                                @include('modals.activar-usuario')
+                            @endif
+
+                            @if ($fila->idEstadoPerfil < 4)
+                                @include('modals.activar-directivo')
                             @endif
 
                             @if ($fila->idEstadoPerfil == 4)

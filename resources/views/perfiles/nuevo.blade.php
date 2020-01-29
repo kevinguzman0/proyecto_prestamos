@@ -142,16 +142,29 @@
 
 		            <div class="form-row">
 
-		                <div class="col-md-12">
+		                <div class="col-md-8">
 							<div class="input-group">
 								<label class="control-label label-margin">Foto Personal</label>
-								<input type="file" name="foto" class="filestyle" 
+								<input type="file" name="foto" id="foto" class="filestyle" 
 									   data-text="Seleccionar" 
 									   data-dragdrop="false" 
 									   data-btnClass="btn-dark"
 									   data-placeholder="archivo no seleccionado">
 							</div>
 		                </div>
+
+		                <div class="col-md-4">
+
+							<label class="control-label label-margin">Vista previa</label>
+
+							<div>
+								<img src="{{ asset('storage/docUsuarios') }}{{ '/' . 'sinFoto.png' }}? {{ mt_rand(0, 100000) }}" width="200" class="img-fluid form-control estilo-img-previa" 
+								name="imageProfile" id="imageProfile">
+							</div>
+							 
+		                </div>
+
+		            </div>
 
 		            </div>
 
@@ -166,12 +179,10 @@
 			            </div>
 			        @endif
 
-		            <div class="form-row mb-5">
+		            <div class="row col-md-12 mt-3">
 
-		                <div class="col-md-12">
-		                    <label></label>
-		                    <input type="submit" value="Grabar" name="btnGrabarUser" class="form-control btn btn-info">
-		                </div>
+	                    <label></label>
+	                    <input type="submit" value="Grabar" name="btnGrabarUser" class="form-control btn btn-info">
 
 		            </div>
 
