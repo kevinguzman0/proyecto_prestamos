@@ -50,8 +50,7 @@
 
 		<div class="input-group row col-md-12 mb-3 mt-3">
 
-			<form class="col-md-12" action="{{ action('GeneralController@buscadorPerfiles') }}"
-	              method="POST">
+			<form class="col-md-12" method="POST">
 
 	            @csrf
 
@@ -61,7 +60,7 @@
 
 			  		<div class="input-group-append">
 
-				      	<button class="btn btn-secondary border-boton-buscar" type="submit" name="btnBuscar">
+				      	<button class="btn btn-secondary border-boton-buscar" type="submit" name="btnBuscar"  formaction="{{ action('GeneralController@buscadorPerfiles') }}">
 
 				        	<i class="fa fa-search"></i>
 
@@ -78,44 +77,32 @@
 
 	  	@isset($perfiles)
 
-		  	<div class="dropdown col-md-12 mb-3 mt-3">
-
-				<button class="btn btn-secondary dropdown-toggle" type="button" id="ddEstadosPerfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Estados de perfil
-				</button>
-
-				<div class="dropdown-menu" aria-labelledby="ddEstadosPerfil">
-
-					@foreach ($cboEstadosPerfil as $item)
-
-				    	<a class="dropdown-item" data-value="#">{{ $item->estado->nombreEstado }}</a>
-
-					@endforeach
-
-				</div>
-
+	  		<div class="container">
+			  <div class="row">
+			    <div class="col-sm-3">
+			      <select class="form-control">
+			      	@foreach ($cboEstadosPerfil as $item)
+				        <option value="{{ $item->idEstadoPerfil }}">{{ $item->estado->nombreEstado }}</option>
+				    @endforeach
+			      </select>
+			    </div>
+			  </div>
 			</div>
 
 		@endisset
 
 		@isset($perfiles)
 
-		  	<div class="dropdown col-md-12 mb-3 mt-3">
-
-				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Id Perfil
-				</button>
-
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-					@foreach ($perfiles as $item)
-
-				    	<a class="dropdown-item" data-value="{{ $item->id }}" href="#">{{ $item->id }}</a>
-
-					@endforeach
-
-				</div>
-
+			<div class="container">
+			  <div class="row">
+			    <div class="col-sm-3">
+			      <select class="form-control">
+			      	@foreach ($perfiles as $item)
+				        <option value="{{ $item->id }}">{{ $item->id }}</option>
+				    @endforeach
+			      </select>
+			    </div>
+			  </div>
 			</div>
 
 		@endisset
