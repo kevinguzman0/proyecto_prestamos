@@ -4,7 +4,9 @@
     </a>
 </div>
 <div class="col-md-10 text-left">
-    Inactivar usuario
+    <a href="#" data-toggle="modal" data-target="#desactivar-usuario-{{ $fila->id }}">
+        Inactivar usuario
+    </a>
 </div>
 
 <div id="desactivar-usuario-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">

@@ -4,7 +4,9 @@
     </a>
 </div>
 <div class="col-md-10 text-left">
-    Activar usuario
+    <a href="#" data-toggle="modal" data-target="#activar-usuario-{{ $fila->id }}">
+        Activar usuario
+    </a>
 </div>
 
 <div id="activar-usuario-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">

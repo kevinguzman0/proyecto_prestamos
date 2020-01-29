@@ -1,10 +1,12 @@
 <div class="col-md-2">
-   <a href="#" data-toggle="modal" data-target="#eliminar-solicitud-{{ $fila->id }}">
+    <a href="#" data-toggle="modal" data-target="#eliminar-solicitud-{{ $fila->id }}">
         <img src="{{ asset('icons/trash.svg') }}" alt="Eliminar solicitud" width="24" height="24" title="Eliminar solicitud" />
     </a>
 </div>
 <div class="col-md-10 text-left">
-    Eliminar solicitud
+    <a href="#" data-toggle="modal" data-target="#eliminar-solicitud-{{ $fila->id }}">
+        Eliminar solicitud
+    </a>
 </div>
 
 <div id="eliminar-solicitud-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">

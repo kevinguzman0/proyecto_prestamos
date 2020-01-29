@@ -4,7 +4,9 @@
     </a>
 </div>
 <div class="col-md-10 text-left">
-    Convertir en Directivo
+    <a href="#" data-toggle="modal" data-target="#activar-directivo-{{ $fila->id }}">
+        Convertir en Directivo
+    </a>
 </div>
 
 <div id="activar-directivo-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">

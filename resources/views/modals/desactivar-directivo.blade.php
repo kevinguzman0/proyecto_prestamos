@@ -4,7 +4,9 @@
     </a>
 </div>
 <div class="col-md-10 text-left">
-    Retirar permiso de Directivo
+    <a href="#" data-toggle="modal" data-target="#desactivar-directivo-{{ $fila->id }}">
+        Retirar permiso de Directivo
+    </a>
 </div>
 
 <div id="desactivar-directivo-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
