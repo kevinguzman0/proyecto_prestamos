@@ -1,6 +1,11 @@
-<a href="#" data-toggle="modal" data-target="#desactivar-usuario-{{ $fila->id }}">
-    <img src="{{ asset('icons/toggle-off.svg') }}" alt="Desactivar usuario" width="24" height="24" title="Desactivar usuario" />
-</a>
+<div class="col-md-2">
+    <a href="#" data-toggle="modal" data-target="#desactivar-usuario-{{ $fila->id }}">
+        <img src="{{ asset('icons/toggle-off.svg') }}" alt="Desactivar usuario" width="24" height="24" title="Desactivar usuario" />
+    </a>
+</div>
+<div class="col-md-10 text-left">
+    Inactivar usuario
+</div>
 
 <div id="desactivar-usuario-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">

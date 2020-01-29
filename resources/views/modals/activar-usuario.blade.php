@@ -1,6 +1,11 @@
-<a href="#" data-toggle="modal" data-target="#activar-usuario-{{ $fila->id }}">
-    <img src="{{ asset('icons/toggle-on.svg') }}" alt="Activar usuario" width="24" height="24" title="Activar usuario" />
-</a>
+<div class="col-md-2">
+    <a href="#" data-toggle="modal" data-target="#activar-usuario-{{ $fila->id }}">
+        <img src="{{ asset('icons/toggle-on.svg') }}" alt="Activar usuario" width="24" height="24" title="Activar usuario" />
+    </a>
+</div>
+<div class="col-md-10 text-left">
+    Activar usuario
+</div>
 
 <div id="activar-usuario-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
