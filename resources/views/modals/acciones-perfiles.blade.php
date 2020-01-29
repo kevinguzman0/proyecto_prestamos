@@ -14,6 +14,7 @@
             <div class="modal-body">
                 <div class="col-md-12">
                     <div class="row col-md-12">
+
                         <div class="col-md-2">
                             <a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
                                 <img src="{{ asset('icons/search.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil" />
@@ -33,6 +34,7 @@
                             <div class="col-md-10 text-left">
                                 <a href="{{ action('CreditoController@misSolicitudes', [$fila->id]) }}">Ver solicitudes</a>
                             </div>
+
                             @if(($fila->id) != (Auth::user()->id))
 
                                 <div class="col-md-2">
@@ -65,7 +67,6 @@
                                     Activar usuario
                                 </div>
                             @endif
-                            
 
                         @endhasanyrole
 
@@ -108,6 +109,7 @@
                                     Retirar permiso de Directivo
                                 </div>
                             @endif
+
                         @endhasanyrole
 
                     </div>
