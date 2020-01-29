@@ -43,7 +43,7 @@ class Solicitud extends Model
 
     public function documentos()
     {
-       return $this->hasMany('App\Documento', 'idSolicitud', 'id');
+       return $this->hasMany('App\Documento', 'idSolicitud', 'id'); 
     }
 
 }

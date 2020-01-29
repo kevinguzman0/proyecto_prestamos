@@ -44,7 +44,7 @@ class Perfil extends Model
 
     public function solicitudes()
     {
-       return $this->hasMany('App\Solicitud', 'idCliente', 'id');
+       return $this->hasMany('App\Solicitud', 'idCliente', 'id'); 
     }
 
 }
