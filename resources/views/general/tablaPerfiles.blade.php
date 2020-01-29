@@ -80,15 +80,19 @@
 
 		  	<div class="dropdown col-md-12 mb-3 mt-3">
 
-				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="ddEstadosPerfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				Estados de perfil
 				</button>
 
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<div class="dropdown-menu" aria-labelledby="ddEstadosPerfil">
 
 					@foreach ($cboEstadosPerfil as $item)
 
-				    	<a class="dropdown-item" data-value="{{ $item->idEstadoPerfil }}" href="{{ action('GeneralController@todosPerfiles') }}">{{ $item->estado->nombreEstado }}</a>
+				    	<li>
+				    		<a href="#" class="dropdown-item" data-value="{{ $item->idEstadoPerfil }}">
+				    			{{ $item->estado->nombreEstado }}
+				    		</a>
+				    	</li>
 
 					@endforeach
 
