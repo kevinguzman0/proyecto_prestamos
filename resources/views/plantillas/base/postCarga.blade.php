@@ -19,6 +19,7 @@
     <script src="{{ asset('js/custom.js') }}"></script>
 
     <script type="text/javascript">
+
         $(document).ready(function () {
 
             $("#sidebar").mCustomScrollbar({
@@ -31,9 +32,24 @@
                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             });
 
-            $('[data-toggle="tooltip"]').tooltip()
+            $('[data-toggle="tooltip"]').tooltip();
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#imageProfile').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            
+            $("#foto").change(function(){
+                readURL(this);
+            });
 
         });
+
     </script>
 
 @endsection

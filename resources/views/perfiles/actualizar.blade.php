@@ -155,7 +155,7 @@
 		                <div class="col-md-8">
 							<div class="input-group">
 								<label class="control-label label-margin">Foto Personal</label>
-								<input type="file" name="foto" class="filestyle"
+								<input type="file" name="foto" id="foto" class="filestyle"
 									   data-text="Seleccionar" 
 									   data-dragdrop="false" 
 									   data-btnClass="btn-dark"
@@ -176,7 +176,8 @@
 
 								<label class="control-label label-margin">Vista previa</label>
 								<div>
-									<img src="{{ asset('storage/docUsuarios') }}{{ '/' . $perfil->foto }}" width="200" class="img-fluid form-control estilo-img-previa">
+									<img src="{{ asset('storage/docUsuarios') }}{{ '/' . $perfil->foto }}? {{ mt_rand(0, 100000) }}" width="200" class="img-fluid form-control estilo-img-previa" 
+									name="imageProfile" id="imageProfile">
 								</div>
 							 
 							@endif
@@ -211,5 +212,8 @@
 	    </div>
 
 	</div>
+
+
+
 
 @endsection
