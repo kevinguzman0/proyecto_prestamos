@@ -77,7 +77,7 @@
 
 	  	@isset($perfiles)
 
-	  		<div class="container">
+	  		<div class="container col-md-12 mb-3 mt-3">
 			  <div class="row">
 			    <div class="col-sm-3">
 			      <select class="form-control">
@@ -86,15 +86,6 @@
 				    @endforeach
 			      </select>
 			    </div>
-			  </div>
-			</div>
-
-		@endisset
-
-		@isset($perfiles)
-
-			<div class="container">
-			  <div class="row">
 			    <div class="col-sm-3">
 			      <select class="form-control">
 			      	@foreach ($perfiles as $item)
@@ -105,8 +96,8 @@
 			  </div>
 			</div>
 
-		@endisset
 
+		@endisset
 		
 		@isset($perfiles)
 			<table class="table table-striped table-bordered">
