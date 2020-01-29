@@ -49,6 +49,10 @@ Route::get('validar-email', function () {
 
 Route::get('salir', 'Auth\LoginController@logout')->name('salir');
 
+Route::post('tabla-pagos', 'SimuladorController@vistaTablaPagos')->name('simulador.screen');
+
+Route::post('cuota-pagos', 'SimuladorController@vistaCuotaCredito')->name('simulador.cuota');
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
@@ -57,11 +61,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	Route::post('tabla-pagos', 'SimuladorController@vistaTablaPagos')->name('simulador.screen');
-
 	Route::get('tabla-pagos-pdf', 'SimuladorController@pdfTablaPagos')->name('simulador.pdf');
-
-	Route::post('cuota-pagos', 'SimuladorController@vistaCuotaCredito')->name('simulador.cuota');
 
 	// -----------------------------------------------------------------------------------------------------------
 

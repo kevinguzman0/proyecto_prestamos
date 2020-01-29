@@ -12,11 +12,7 @@
 
                 <li><a href="{{ route('inicio') }}">Inicio</a></li>
 
-                @hasanyrole ('registrado|directivo')
-
-                	<li><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
-
-                @endhasanyrole
+            	<li><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
 
 	            <li>
 

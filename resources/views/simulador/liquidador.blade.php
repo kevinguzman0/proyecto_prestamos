@@ -37,7 +37,11 @@
 		                    <input type="text" maxlength="3" id="plazoCuotas" name="plazoCuotas" class="form-control" value="{{ old('plazoCuotas') }}">
 		                </div>
 
-		                <input type="hidden" name="idCliente" value="{{ Auth()->user()->id }}">
+		                @auth
+		                	<input type="hidden" name="idCliente" value="{{ Auth()->user()->id }}">
+	                	@else
+		                	<input type="hidden" name="idCliente" value="n/a">
+	                	@endauth	
 
 		            </div>
 

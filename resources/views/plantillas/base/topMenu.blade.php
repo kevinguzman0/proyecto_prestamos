@@ -22,11 +22,7 @@
 
                         <li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
 
-                        @hasanyrole ('registrado|directivo')
-
-                            <li class="nav-link"><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
-
-                        @endhasanyrole
+                        <li class="nav-link"><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
 
                         <li class="nav-item dropdown">
 

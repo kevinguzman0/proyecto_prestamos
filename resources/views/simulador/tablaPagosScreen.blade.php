@@ -45,7 +45,7 @@
 
 		        @endif
 
-		    @else
+	        @else
 
 		        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
 					Para solicitar este crédito o generarlo en archivo Pdf, primero debe llenar su información de perfil... <a href="{{ action('PerfilController@miPerfil', [Auth::user()->id]) }}" class="font-weight-bold font-italic">Haga click aquí para crear su perfil.</a>
@@ -53,6 +53,13 @@
 		        </div>
 
 		    @endif
+
+	    @else
+
+	        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+				Para solicitar este crédito o generarlo en archivo Pdf, primero debe registrarse y llenar su información de perfil... <a href="{{ route('registrarse') }}" class="font-weight-bold font-italic">Haga click aquí para registrarse y luego crear su perfil.</a>
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	        </div>
 
         @endauth	
 
