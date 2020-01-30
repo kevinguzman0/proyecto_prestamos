@@ -109,9 +109,10 @@
 							      	
 								      	<option value="-1">Todos</option>
 								      	@foreach ($idUsuarios as $item)
-									        <option value="{{ $item->id }}">{{ $item->id }}</option>
+								      		@if($item->id != 1)
+									        	<option value="{{ $item->id }}">{{ $item->id }}</option>
+									        @endif
 									    @endforeach
-
 							      	</select>
 
 							    </div>
