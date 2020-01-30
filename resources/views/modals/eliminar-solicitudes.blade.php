@@ -3,6 +3,13 @@
         <img src="{{ asset('icons/trash.svg') }}" alt="Eliminar solicitud" width="24" height="24" title="Eliminar solicitud" />
     </a>
 </div>
+
+<div class="col-md-10 text-left">
+    <a href="#" data-toggle="modal" data-target="#eliminar-solicitud-{{ $fila->id }}">
+        Eliminar solicitud
+    </a>
+</div>
+
 <div id="eliminar-solicitud-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
         <div class="modal-content modal-content-eliminar">
