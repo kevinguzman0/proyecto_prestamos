@@ -3,6 +3,7 @@
         <img src="{{ asset('icons/tools.svg') }}" alt="Ver menú de acciones" width="24" height="24" title="Ver menú de acciones" />
     </a>
 </div>
+
 <div id="acciones-solicitud-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
         <div class="modal-content modal-content-acciones">
