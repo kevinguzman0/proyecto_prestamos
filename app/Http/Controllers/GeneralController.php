@@ -49,7 +49,11 @@ class GeneralController extends Controller
     {
 
         $documentos = Documento::paginate(10);
-        return view('general.tablaDocumentos', compact('documentos'));
+        $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
+        $idDocumentos = Documento::distinct()->get();
+        $paginacion = 'si';
+
+        return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'));
 
     }
 
@@ -160,8 +164,6 @@ class GeneralController extends Controller
             $fechaFinal = $fInicial;
         }
 
-        dd($fechaInicial, $fechaFinal);
-
         $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
         $idPerfiles = Perfil::distinct()->get();
 
@@ -245,6 +247,186 @@ class GeneralController extends Controller
         $paginacion = 'si';
 
         return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'));
+    }
+
+
+
+    public function buscadorDocumentos(Request $request)
+    {
+
+        $filtro = $request->filtro;
+        $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
+        $idDocumentos = Documento::distinct()->get();
+        $paginacion = 'no';
+
+        if (!$filtro)
+        {
+            $mensaje = 'No se han recibido criterios de búsqueda con el filtro. Pruebe con otra búsqueda...'; 
+
+            $documentos = Documento::paginate(10);
+
+            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'))->with('mensajeRojo', $mensaje);
+        }
+        else
+        {
+
+            Builder::macro('whereLike', function($attributes, string $searchTerm) {
+                foreach(Arr::wrap($attributes) as $attribute) {
+                    $this->orWhere($attribute, 'LIKE', "%{$searchTerm}%");
+                }
+                return $this;
+            });
+
+            $documentos = Documento::whereLike(['archivoOriginal', 
+                                           'descripcionDocumento'], $filtro)
+                        ->get();
+
+            $mensaje = 'La información de Documentos visualizada está filtrada por algunos campos que contienen el texto [ ' . $filtro . ' ]... ';
+
+            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'))->with('mensajeVerde', $mensaje);
+
+        }
+
+    }
+
+    public function filtrosDocumentos(Request $request)
+    {
+
+        $id = $request->cboIdDocumentos;
+        $idSolicitud = $request->cboIdSolicitud;
+        $procesoDocumento = $request->procesoDocumento;
+        $estadoDocumento = $request->estadoDocumento;
+
+        $analizadoPor = $request->cboAnalizadoPor;
+
+        $fechaDe = $request->cboFechaDe;
+        $fInicial = $request->fechaInicial;
+        $fFinal = $request->fechaFinal;
+
+        $fechaInicial = $fInicial;
+        $fechaFinal = $fFinal;
+
+        if (($fInicial != null) && ($fFinal != null)) 
+        {
+            if ($fInicial < $fFinal)
+            {
+                $fechaInicial = $fInicial;
+                $fechaFinal = $fFinal;
+            }
+            else
+            {
+                $fechaInicial = $fFinal;
+                $fechaFinal = $fInicial;
+            }
+        }
+
+        if (($fInicial == null) && ($fFinal != null)) 
+        {
+            $fechaInicial = $fFinal;
+        }
+
+        if (($fInicial != null) && ($fFinal == null)) 
+        {
+            $fechaFinal = $fInicial;
+        }
+
+        $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
+        $idDocumentos = Documento::distinct()->get();
+
+        $filtros = array();
+
+        $contieneFiltros = false;
+
+        if ($id != -1)
+        {
+            $filtros['id'] = $id; 
+            $contieneFiltros = true;
+        }
+
+        if ($idSolicitud != -1) 
+        {
+            $filtros['idSolicitud'] = $idSolicitud;
+            $contieneFiltros = true;
+        } 
+
+        if ($procesoDocumento != -1) 
+        {
+            $filtros['procesoDocumento'] = $procesoDocumento;
+            $contieneFiltros = true;
+        } 
+
+        if ($estadoDocumento != -1) 
+        {
+            $filtros['estadoDocumento'] = $estadoDocumento;
+            $contieneFiltros = true;
+        } 
+
+        if ($analizadoPor != -1) 
+        {
+            $filtros['analizadoPor'] = $analizadoPor;
+            $contieneFiltros = true;
+        } 
+
+        if ($fechaInicial != null) 
+        {
+            $contieneFiltros = true;
+        } 
+
+        if ($fechaFinal != null) 
+        {
+            $contieneFiltros = true;
+        }
+
+        if ($contieneFiltros == false)
+        {
+
+            $mensaje = 'No se han aplicado filtros...'; 
+            $documentos = Documento::paginate(10);
+            $paginacion = 'si';
+
+            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'))->with('mensajeRojo', $mensaje);
+
+        }
+        else
+        {
+
+            if (($fechaInicial == null) && ($fechaFinal == null)) 
+            {
+                $documentos = Documento::where($filtros)->get();
+            }
+            else
+            {
+                if (($fechaInicial != null) && ($fechaInicial != null)) 
+                {
+                    $documentos = Perfil::where($filtros)
+                                ->whereDate($fechaDe,'>=', $fechaInicial)
+                                ->whereDate($fechaDe,'<=', $fechaFinal)
+                                ->get();
+                }
+             }
+
+            $mensaje = 'Se aplicaron filtros...'; 
+            $paginacion = 'no';
+
+            //$cboEstadosPerfil = Perfil::select('idEstadoPerfil')->where($filtros)->distinct()->get();
+
+            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'))->with('mensajeVerde', $mensaje);
+
+        }
+
+    }
+
+
+    public function todosDocumentos()
+    {
+
+        $documentos = Documento::paginate(10);
+        $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
+        $idDocumentos = Documento::distinct()->get();
+        $paginacion = 'si';
+
+        return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'));
+
     }
 
 }
