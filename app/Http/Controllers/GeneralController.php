@@ -519,19 +519,19 @@ class GeneralController extends Controller
 
         if ($procesoDocumento != -1) 
         {
-            $filtros['revisado'] = $procesoDocumento;
+            $filtros['procesoDocumento'] = $procesoDocumento;
             $contieneFiltros = true;
         } 
 
-        if ($estadoDocumento != -2) 
+        if ($estadoDocumento != -1) 
         {
-            $filtros['aprobado'] = $estadoDocumento;
+            $filtros['estadoDocumento'] = $estadoDocumento;
             $contieneFiltros = true;
         } 
 
         if ($analizadoPor != -1) 
         {
-            $filtros['idAnalizadoPor'] = $analizadoPor;
+            $filtros['analizadoPor'] = $analizadoPor;
             $contieneFiltros = true;
         } 
 
@@ -683,7 +683,6 @@ class GeneralController extends Controller
             $filtros['id'] = $id; 
             $contieneFiltros = true;
         }
-        dd($id)
 
         if ($idEstadoSolicitud != -1) 
         {
