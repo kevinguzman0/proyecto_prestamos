@@ -3,14 +3,20 @@
 </a>
 
 <div class="modal fade" id="ver-documento-{{ $fila->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+    
     <div class="modal-dialog" role="document">
+    
         <div class="modal-content">
+    
             <div class="modal-header">
+    
                 <h6 class="modal-title">Id Documento [ {{ $fila->id }} ] / {{ $fila->documento }}</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+    
             </div>
+    
             <div class="modal-body">
 
                 <div class="modal-body-descripcion">
@@ -18,13 +24,14 @@
                 </div>
 
                 @if ((strtolower(pathinfo($fila->documento, PATHINFO_EXTENSION) == 'pdf')))
+
                     <iframe id="pdfdoc" src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" width="100%" height="500px"></iframe>
 
                 @else
 
                     @if (in_array(strtolower(pathinfo($fila->documento, PATHINFO_EXTENSION)), array('doc', 'docx', 'xls', 'xlsx', 'zip', 'rar', '7z')))
 
-                    <h4 class="modal-title" id="modal_body_descripcion">Apreciado usuario, este archivo debe ser descargado</h4>
+                        <h4 class="modal-title" id="modal_body_descripcion">Apreciado usuario, este archivo debe ser descargado</h4>
 
                     @else
 
@@ -33,8 +40,6 @@
                     @endif
                     
                 @endif
-
-                
 
             </div>
 
@@ -62,7 +67,11 @@
                 @endif
 
                 <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoDescargar', [$fila->documento]) }}'">Descargar</button>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
