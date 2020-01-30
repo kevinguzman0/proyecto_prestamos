@@ -76,10 +76,6 @@
 
 							      	<button class="btn btn-dark" type="submit" name="btnBuscar"  formaction="{{ action('GeneralController@buscadorPerfiles') }}">
 
-							        	{{-- 
-							        	<i class="fa fa-search"></i>
-							        	--}}
-
 							        	Buscar
 
 							      	</button>

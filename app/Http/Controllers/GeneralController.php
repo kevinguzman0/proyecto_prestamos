@@ -133,16 +133,34 @@ class GeneralController extends Controller
         $fInicial = $request->fechaInicial;
         $fFinal = $request->fechaFinal;
 
-        if ($fInicial < $fFinal)
+        $fechaInicial = $fInicial;
+        $fechaFinal = $fFinal;
+
+        if (($fInicial != null) && ($fFinal != null)) 
         {
-            $fechaInicial = $fInicial;
-            $fechaFinal = $fFinal;
+            if ($fInicial < $fFinal)
+            {
+                $fechaInicial = $fInicial;
+                $fechaFinal = $fFinal;
+            }
+            else
+            {
+                $fechaInicial = $fFinal;
+                $fechaFinal = $fInicial;
+            }
         }
-        else
+
+        if (($fInicial == null) && ($fFinal != null)) 
         {
             $fechaInicial = $fFinal;
+        }
+
+        if (($fInicial != null) && ($fFinal == null)) 
+        {
             $fechaFinal = $fInicial;
         }
+
+        dd($fechaInicial, $fechaFinal);
 
         $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
         $idPerfiles = Perfil::distinct()->get();
@@ -192,9 +210,7 @@ class GeneralController extends Controller
         else
         {
 
-            //dd($fechaInicial, $fechaFinal);
-
-            if (($fechaInicial == null) && ($fechaInicial == null)) 
+            if (($fechaInicial == null) && ($fechaFinal == null)) 
             {
                 $perfiles = Perfil::where($filtros)->get();
             }
@@ -207,11 +223,7 @@ class GeneralController extends Controller
                                 ->whereDate($fechaDe,'<=', $fechaFinal)
                                 ->get();
                 }
-                else
-                {
-
-                }
-            }
+             }
 
             $mensaje = 'Se aplicaron filtros...'; 
             $paginacion = 'no';
