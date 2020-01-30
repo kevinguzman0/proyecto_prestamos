@@ -98,25 +98,7 @@
 
 					    <div class="form-row col-md-12 padding-form">
 
-						  	@isset($cboEstadosSolicitudes)
-
-							    <div class="col-md-2">
-
-							    	<label class="label-margin">Estados de solicitudes</label>
-							      	<select class="form-control" id="cboEstadosSolicitudes" name="cboEstadosSolicitudes">
-
-								      	<option value="-1">Todos</option>
-								      	@foreach ($cboEstadosSolicitudes as $item)
-									        <option value="{{ $item->idEstadoSolicitud }}">{{ $item->estado->nombreEstado }}</option>
-									    @endforeach
-
-							      	</select>
-
-							    </div>
-
-						    @endisset
-
-						  	@isset($idSolicitud)
+				    		@isset($idSolicitud)
 
 							    <div class="col-md-2">
 
@@ -134,6 +116,100 @@
 
 						    @endisset	
 
+						    @isset($cboIdCliente)
+
+							    <div class="col-md-2">
+
+							    	<label class="label-margin">Id Cliente</label>
+							      	<select class="form-control" id="cboIdCliente" name="cboIdCliente">
+							      	
+								      	<option value="-1">Todos</option>
+								      	@foreach ($cboIdCliente as $item)
+									        <option value="{{ $item->idCliente }}">{{ $item->cliente->nombres }}</option>
+									    @endforeach
+
+							      	</select>
+
+							    </div>
+
+						    @endisset					
+
+						  	@isset($cboEstadosSolicitudes)
+
+							    <div class="col-md-2">
+
+							    	<label class="label-margin">Estado solicitud</label>
+							      	<select class="form-control" id="cboIdEstadosSolicitudes" name="cboIdEstadosSolicitudes">
+
+								      	<option value="-1">Todos</option>
+								      	@foreach ($cboEstadosSolicitudes as $item)
+									        <option value="{{ $item->idEstadoSolicitud }}">{{ $item->estado->nombreEstado }}</option>
+									    @endforeach
+
+							      	</select>
+
+							    </div>
+
+						    @endisset
+
+						    @isset($cboPlazo)
+
+							    <div class="col-md-2">
+
+							    	<label class="label-margin">Plazo</label>
+							      	<select class="form-control" id="cboPlazo" name="cboPlazo">
+
+								      	<option value="-1">Todos</option>
+								      	@foreach ($cboPlazo as $item)
+									        <option value="{{ $item->plazo }}">{{ $item->plazo }}</option>
+									    @endforeach
+
+							      	</select>
+
+							    </div>
+
+						    @endisset		
+
+						    @isset($cboInteres)
+
+							    <div class="col-md-2">
+
+							    	<label class="label-margin">Interés</label>
+							      	<select class="form-control" id="cboInteres" name="cboInteres">
+
+								      	<option value="-1">Todos</option>
+								      	@foreach ($cboInteres as $item)
+									        <option value="{{ $item->interes }}">{{ $item->interes }}</option>
+									    @endforeach
+
+							      	</select>
+
+							    </div>
+
+						    @endisset	
+
+						     @isset($cboIdAnalizadoPor)
+
+							    <div class="col-md-2">
+
+							    	<label class="label-margin">Analizado por</label>
+							      	<select class="form-control" id="cboIdAnalizadoPor" name="cboIdAnalizadoPor">
+
+								      	<option value="-1">Todos</option>
+								      	@foreach ($cboIdAnalizadoPor as $item)
+									        <option value="{{ $item->idAnalizadoPor }}">{{ $item->revisor->nombres }}</option>
+									    @endforeach
+
+							      	</select>
+
+							    </div>
+
+						    @endisset									  	   					 
+
+						</div>
+
+					    <div class="form-row col-md-12 padding-form">
+
 						    <div class="col-md-2">
 
 						    	<label class="label-margin">Fecha de</label>
@@ -141,15 +217,11 @@
 						      	
 							      	<option value="created_at">Creación</option>
 							      	<option value="updated_at">Modificación</option>
-							      	<option value="updated_at">Análisis</option>
+							      	<option value="analizadoEn">Análisis</option>
 						      	</select>
 
-						    </div>					 
+						    </div>
 
-						</div>
-
-					    <div class="form-row col-md-12 padding-form">
-						   
 			                <div class="col-md-3">
 			                    <label class="label-margin">Fecha inicial</label>
 			                    <input type="date" name="fechaInicial" class="form-control">
