@@ -53,7 +53,7 @@ class GeneralController extends Controller
 
         $documentos = Documento::paginate(10);
         $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
-        $idDocumentos = Documento::distinct()->get();
+        $idDocumentos = Documento::select('id')->get();
         $paginacion = 'si';
 
         return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'));
@@ -421,7 +421,7 @@ class GeneralController extends Controller
 
         $filtro = $request->filtro;
         $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
-        $idDocumentos = Documento::distinct()->get();
+        $idDocumentos = Documento::select('id')->get();
         $paginacion = 'no';
 
         if (!$filtro)
@@ -496,7 +496,7 @@ class GeneralController extends Controller
         }
 
         $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
-        $idDocumentos = Documento::distinct()->get();
+        $idDocumentos = Documento::select('id')->get();
 
         $filtros = array();
 
@@ -573,21 +573,18 @@ class GeneralController extends Controller
             $mensaje = 'Se aplicaron filtros...'; 
             $paginacion = 'no';
 
-            //$cboEstadosPerfil = Perfil::select('idEstadoPerfil')->where($filtros)->distinct()->get();
-
             return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'))->with('mensajeVerde', $mensaje);
 
         }
 
     }
 
-
     public function todosDocumentos()
     {
 
         $documentos = Documento::paginate(10);
         $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
-        $idDocumentos = Documento::distinct()->get();
+        $idDocumentos = Documento::select('id')->get();
         $paginacion = 'si';
 
         return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'));

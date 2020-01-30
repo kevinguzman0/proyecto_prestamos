@@ -88,7 +88,7 @@
 
 						      	<input type="submit" value="Mostrar todos" name="btnMostrarTodos" formaction="{{ action('GeneralController@todosDocumentos') }}" class="form-control btn btn-success">
 
-						        </div>
+						    </div>
 
 			            </div>
 
@@ -136,7 +136,7 @@
 
 						    @endisset
 
-						     <div class="col-md-2">
+						    <div class="col-md-2">
 
 						    	<label class="label-margin">Proceso Documento</label>
 						      	<select class="form-control" id="procesoDocumento" name="procesoDocumento">
@@ -220,119 +220,93 @@
 
         </div>
 
+        @isset($documentos)
 
+			<table class="table table-striped table-bordered">
 
+				<tbody>
 
+					<thead class="header-tabla">
 
+						<tr>
+							<th class="header-tabla-texto">Id</th>
+							<th class="header-tabla-texto">Solicitud</th>
+							<th class="header-tabla-texto">Cliente</th>
+							<th class="header-tabla-texto">Revisión</th>
+							<th class="header-tabla-texto">Aprobación</th>
+							<th class="header-tabla-texto">Acciones</th>
+						</tr>
 
+					</thead>
 
+					@foreach ($documentos as $fila)
 
+					    <tr>
+							
+							<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
 
+							<td style="text-align:center;"> 
 
+								<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('CreditoController@misSolicitudes', [$fila->solicitud->cliente->id]) }}">
+									{{ $fila->idSolicitud }}  
+								</a>
 
+							</td>
 
+							<td style="text-align:center;"> 
 
+								<a class="btn btn-link link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->solicitud->cliente->id]) }}">
+									{{ $fila->solicitud->cliente->nombres }} 
+									{{ $fila->solicitud->cliente->apellidos }}
+								</a>
 
+							</td>
+													
+							<td style="text-align:center;">
 
+								@if ($fila->revisado == 1)
+									<img src="{{ asset('icons/check-success.svg') }}" alt="Revisado" width="24" height="24" title="Revisado">
+								@endif
 
+								@if ($fila->revisado == 0)
+									<img src="{{ asset('icons/info.svg') }}" alt="Sin revisar" width="24" height="24" title="Sin revisar">
+								@endif
 
+							</td>
+							
+							<td style="text-align:center;"> 
 
+								@if ($fila->aprobado == 1)
+									<img src="{{ asset('icons/check-success.svg') }}" alt="Aceptado" width="24" height="24" title="Aceptado">
+								@endif
 
+								@if ($fila->aprobado == 0)
+									<img src="{{ asset('icons/x-danger.svg') }}" alt="Rechazado" width="24" height="24" title="Rechazado">
+								@endif
 
+								@if ($fila->aprobado == -1)
+									<img src="{{ asset('icons/info.svg') }}" alt="Sin evaluar" width="24" height="24" title="Sin evaluar">
+								@endif
 
+							</td>
 
+							<td style="text-align:center;">
 
+								@include('modals.datos-documentos')
 
+								@include('modals.ver-documentos')
 
+							</td>
 
+						</tr>
+					
+					@endforeach
 
+				</tbody>
 
+			</table>
 
-    	{{ $documentos->onEachSide(2)->links() }}
-
-		<table class="table table-striped table-bordered">
-
-			<tbody>
-
-				<thead class="header-tabla">
-
-					<tr>
-						<th class="header-tabla-texto">Id</th>
-						<th class="header-tabla-texto">Solicitud</th>
-						<th class="header-tabla-texto">Cliente</th>
-						<th class="header-tabla-texto">Revisión</th>
-						<th class="header-tabla-texto">Aprobación</th>
-						<th class="header-tabla-texto">Acciones</th>
-					</tr>
-
-				</thead>
-
-				@foreach ($documentos as $fila)
-
-				    <tr>
-						
-						<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-
-						<td style="text-align:center;"> 
-
-							<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('CreditoController@misSolicitudes', [$fila->solicitud->cliente->id]) }}">
-								{{ $fila->idSolicitud }}  
-							</a>
-
-						</td>
-
-						<td style="text-align:center;"> 
-
-							<a class="btn btn-link link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->solicitud->cliente->id]) }}">
-								{{ $fila->solicitud->cliente->nombres }} 
-								{{ $fila->solicitud->cliente->apellidos }}
-							</a>
-
-						</td>
-												
-						<td style="text-align:center;">
-
-							@if ($fila->revisado == 1)
-								<img src="{{ asset('icons/check-success.svg') }}" alt="Revisado" width="24" height="24" title="Revisado">
-							@endif
-
-							@if ($fila->revisado == 0)
-								<img src="{{ asset('icons/info.svg') }}" alt="Sin revisar" width="24" height="24" title="Sin revisar">
-							@endif
-
-						</td>
-						
-						<td style="text-align:center;"> 
-
-							@if ($fila->aprobado == 1)
-								<img src="{{ asset('icons/check-success.svg') }}" alt="Aceptado" width="24" height="24" title="Aceptado">
-							@endif
-
-							@if ($fila->aprobado == 0)
-								<img src="{{ asset('icons/x-danger.svg') }}" alt="Rechazado" width="24" height="24" title="Rechazado">
-							@endif
-
-							@if ($fila->aprobado == -1)
-								<img src="{{ asset('icons/info.svg') }}" alt="Sin evaluar" width="24" height="24" title="Sin evaluar">
-							@endif
-
-						</td>
-
-						<td style="text-align:center;">
-
-							@include('modals.datos-documentos')
-
-							@include('modals.ver-documentos')
-
-						</td>
-
-					</tr>
-				
-				@endforeach
-
-			</tbody>
-
-		</table>
+		@endisset
 
 	</div>
 
