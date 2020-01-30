@@ -1,4 +1,3 @@
-
 <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#datos-solicitud-{{ $fila->id }}">
     <img src="{{ asset('icons/three-dots.svg') }}" alt="Ver información extendida de la solicitud" width="36" height="36" title="Ver información extendida de la solicitud" />
 </a>

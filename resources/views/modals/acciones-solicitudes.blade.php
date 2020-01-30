@@ -75,7 +75,7 @@
                                 <a href="{{ action('CreditoController@solicitudEnEspera', [$fila->idCliente, $fila->id]) }}">Marcar como solicitud en espera</a>
                             </div>
                             @if($fila->idEstadoSolicitud == 1)
-                                @include('modals.eliminar-solicitudes')
+                                @include('modals.eliminar-solicitudes', ['tipo' => 'modal'])
                             @endif
                         @endif
 

@@ -1,12 +1,20 @@
-<div class="col-md-2">
+@if($tipo == 'modal')
+    <div class="col-md-2">
+        <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#eliminar-solicitud-{{ $fila->id }}">
+            <img src="{{ asset('icons/trash.svg') }}" alt="Eliminar solicitud" width="36" height="36" title="Eliminar solicitud" />
+        </a>
+    </div>
+
+    <div class="d-flex align-items-center col-md-10 text-left">
+        <a href="#" data-toggle="modal" data-target="#eliminar-solicitud-{{ $fila->id }}">Eliminar solicitud</a>
+    </div>
+@endif
+
+@if($tipo == 'acciones')
     <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#eliminar-solicitud-{{ $fila->id }}">
         <img src="{{ asset('icons/trash.svg') }}" alt="Eliminar solicitud" width="36" height="36" title="Eliminar solicitud" />
     </a>
-</div>
-
-<div class="d-flex align-items-center col-md-10 text-left">
-    <a href="#" data-toggle="modal" data-target="#eliminar-solicitud-{{ $fila->id }}">Eliminar solicitud</a>
-</div>
+@endif
 
 <div id="eliminar-solicitud-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
