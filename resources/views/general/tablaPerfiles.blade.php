@@ -100,6 +100,24 @@
 
 					    <div class="form-row col-md-12 padding-form">
 
+					    	@isset($idPerfiles)
+
+							    <div class="col-md-2">
+
+							    	<label class="label-margin">Id Perfil</label>
+							      	<select class="form-control" id="cboIdPerfiles" name="cboIdPerfiles">
+							      	
+								      	<option value="-1">Todos</option>
+								      	@foreach ($idPerfiles as $item)
+									        <option value="{{ $item->id }}">{{ $item->id }}</option>
+									    @endforeach
+
+							      	</select>
+
+							    </div>
+
+						    @endisset
+
 						  	@isset($cboEstadosPerfil)
 
 							    <div class="col-md-2">
@@ -110,24 +128,6 @@
 								      	<option value="-1">Todos</option>
 								      	@foreach ($cboEstadosPerfil as $item)
 									        <option value="{{ $item->idEstadoPerfil }}">{{ $item->estado->nombreEstado }}</option>
-									    @endforeach
-
-							      	</select>
-
-							    </div>
-
-						    @endisset
-
-						  	@isset($idPerfiles)
-
-							    <div class="col-md-2">
-
-							    	<label class="label-margin">Id Perfil</label>
-							      	<select class="form-control" id="cboIdPerfiles" name="cboIdPerfiles">
-							      	
-								      	<option value="-1">Todos</option>
-								      	@foreach ($idPerfiles as $item)
-									        <option value="{{ $item->id }}">{{ $item->id }}</option>
 									    @endforeach
 
 							      	</select>
