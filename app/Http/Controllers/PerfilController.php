@@ -281,7 +281,7 @@ class PerfilController extends Controller
 
     }
 
-public function usuarioEliminar($idUsuario)
+    public function usuarioEliminar($idUsuario)
     {
 
         $usuario = User::find($idUsuario);

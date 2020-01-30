@@ -227,9 +227,8 @@
 									@endif
 									
 									@if($fila->email_verified_at == null)
-										<a href="{{ route('usuario.validar', [$fila->id]) }}">
-											<img src="{{ asset('icons/unlock.svg') }}" alt="Validar email / Desbloquear cuenta" width="32" height="32" title="Validar email / Desbloquear cuenta">
-										</a>
+
+										@include('modals.validar-usuarios')
 									@endif
 
 								</td>						
