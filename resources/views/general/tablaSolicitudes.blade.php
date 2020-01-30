@@ -141,7 +141,7 @@
 						      	
 							      	<option value="created_at">Creación</option>
 							      	<option value="updated_at">Modificación</option>
-							      	
+							      	<option value="updated_at">Análisis</option>
 						      	</select>
 
 						    </div>					 
