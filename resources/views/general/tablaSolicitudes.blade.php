@@ -121,7 +121,7 @@
 							    <div class="col-md-2">
 
 							    	<label class="label-margin">Id Solicitud</label>
-							      	<select class="form-control" id="cboIdSolicitud" name="cboIdSolicitud">
+							      	<select class="form-control" id="cboIdSolicitudes" name="cboIdSolicitudes">
 							      	
 								      	<option value="-1">Todos</option>
 								      	@foreach ($idSolicitud as $item)

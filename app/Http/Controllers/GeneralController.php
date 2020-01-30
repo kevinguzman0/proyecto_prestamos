@@ -635,7 +635,7 @@ class GeneralController extends Controller
     public function filtrosSolicitudes(Request $request)
     {
         
-        $id = $request->cboIdSolicitud;
+        $id = $request->cboIdSolicitudes;
         $idEstadoSolicitud = $request->cboEstadosSolicitudes;        
 
         $fechaDe = $request->cboFechaDeSolicitud;
@@ -683,6 +683,7 @@ class GeneralController extends Controller
             $filtros['id'] = $id; 
             $contieneFiltros = true;
         }
+        dd($id)
 
         if ($idEstadoSolicitud != -1) 
         {
