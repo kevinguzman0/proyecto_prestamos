@@ -50,94 +50,152 @@
 
 		@endif
 
-		<form class="col-md-12 padding-form" method="POST">
+		<p>
+			<button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#seccionFiltros" aria-expanded="false" aria-controls="collapseExample">
+				Sección de filtros
+			</button>
+		</p>
 
-            @csrf
+        <div class="form-row col-md-12 padding-form">		
 
-            <div class="form-row col-md-12 padding-form">
-            	
-			    <div class="input-group col-md-10">
+			<div class="collapse col-md-12 mb-3" id="seccionFiltros">
 
-			    	<input type="text" name="filtro" class="form-control" placeholder="escriba texto a buscar...">
+				<div class="card card-body">
 
-			  		<div class="input-group-append">
+					<form class="col-md-12 padding-form" method="POST">
 
-				      	<button class="btn btn-dark" type="submit" name="btnBuscar"  formaction="{{ action('GeneralController@buscadorPerfiles') }}">
+			            @csrf
 
-				        	{{-- 
-				        	<i class="fa fa-search"></i>
-				        	--}}
+			            <div class="form-row col-md-12 padding-form">
+			            	
+						    <div class="input-group col-md-10">
 
-				        	Buscar
+						    	<input type="text" name="filtro" class="form-control" placeholder="escriba texto a buscar...">
 
-				      	</button>
+						  		<div class="input-group-append">
 
-				    </div>
+							      	<button class="btn btn-dark" type="submit" name="btnBuscar"  formaction="{{ action('GeneralController@buscadorPerfiles') }}">
 
-			    </div>
+							        	{{-- 
+							        	<i class="fa fa-search"></i>
+							        	--}}
 
-			    <div class="col-md-2">
+							        	Buscar
 
-			      	<input type="submit" value="Mostrar todos" name="btnMostrarTodos" formaction="{{ action('GeneralController@todosPerfiles') }}" class="form-control btn btn-warning">
+							      	</button>
 
-			        </div>
+							    </div>
 
-            </div>
+						    </div>
 
-		</form>
+						    <div class="col-md-2">
 
-		<form class="col-md-12 mb-3 padding-form" method="POST">
+						      	<input type="submit" value="Mostrar todos" name="btnMostrarTodos" formaction="{{ action('GeneralController@todosPerfiles') }}" class="form-control btn btn-success">
 
-            @csrf
+						        </div>
 
-		    <div class="form-row col-md-12 padding-form">
+			            </div>
 
-			  	@isset($cboEstadosPerfil)
+					</form>
 
-				    <div class="col-md-3">
+					<form class="col-md-12 padding-form" method="POST">
 
-				    	<label class="label-margin">Estados de Perfil</label>
-				      	<select class="form-control" id="cboEstadosPerfil" name="cboEstadosPerfil">
+			            @csrf
 
-					      	<option value="-1">Todos</option>
-					      	@foreach ($cboEstadosPerfil as $item)
-						        <option value="{{ $item->idEstadoPerfil }}">{{ $item->estado->nombreEstado }}</option>
-						    @endforeach
+					    <div class="form-row col-md-12 padding-form">
 
-				      	</select>
+						  	@isset($cboEstadosPerfil)
 
-				    </div>
+							    <div class="col-md-2">
 
-			    @endisset
+							    	<label class="label-margin">Estados de Perfil</label>
+							      	<select class="form-control" id="cboEstadosPerfil" name="cboEstadosPerfil">
 
-			  	@isset($idPerfiles)
+								      	<option value="-1">Todos</option>
+								      	@foreach ($cboEstadosPerfil as $item)
+									        <option value="{{ $item->idEstadoPerfil }}">{{ $item->estado->nombreEstado }}</option>
+									    @endforeach
 
-				    <div class="col-md-3">
+							      	</select>
 
-				    	<label class="label-margin">Id Perfil</label>
-				      	<select class="form-control" id="idPerfiles" name="cboIdPerfiles">
-				      	
-					      	<option value="-1">Todos</option>
-					      	@foreach ($idPerfiles as $item)
-						        <option value="{{ $item->id }}">{{ $item->id }}</option>
-						    @endforeach
+							    </div>
 
-				      	</select>
+						    @endisset
 
-				    </div>
+						  	@isset($idPerfiles)
 
-			    @endisset
+							    <div class="col-md-2">
 
-				<div class="col-md-1">
+							    	<label class="label-margin">Id Perfil</label>
+							      	<select class="form-control" id="cboIdPerfiles" name="cboIdPerfiles">
+							      	
+								      	<option value="-1">Todos</option>
+								      	@foreach ($idPerfiles as $item)
+									        <option value="{{ $item->id }}">{{ $item->id }}</option>
+									    @endforeach
 
-		      		<label class="label-margin"></label>
-		      		<input type="submit" value="Filtrar" name="btnFiltrar" formaction="{{ action('GeneralController@filtrosPerfiles') }}" class="form-control btn btn-dark boton-filtrar">
+							      	</select>
 
-		      	</div>
+							    </div>
+
+						    @endisset
+
+						    <div class="col-md-2">
+
+						    	<label class="label-margin">Afiliado</label>
+						      	<select class="form-control" id="afiliadoFondo" name="afiliadoFondo">
+						      	
+							      	<option value="-1">Todos</option>
+							      	<option value="1">Si</option>
+							      	<option value="0">No</option>
+
+						      	</select>
+
+						    </div>
+
+						</div>
+
+					    <div class="form-row col-md-12 padding-form">
+
+						    <div class="col-md-2">
+
+						    	<label class="label-margin">Fecha de</label>
+						      	<select class="form-control" id="cboFechaDe" name="cboFechaDe">
+						      	
+							      	<option value="created_at">Creación</option>
+							      	<option value="updated_at">Modificación</option>
+							      	<option value="fechaNacimiento">Nacimiento</option>
+
+						      	</select>
+
+						    </div>
+
+			                <div class="col-md-3">
+			                    <label class="label-margin">Fecha inicial</label>
+			                    <input type="date" name="fechaInicial" class="form-control">
+			                </div>
+
+			                <div class="col-md-3">
+			                    <label class="label-margin">Fecha Final</label>
+			                    <input type="date" name="fechaFinal" class="form-control">
+			                </div>
+
+							<div class="col-md-2 ml-auto">
+
+					      		<label class="label-margin"></label>
+					      		<input type="submit" value="Filtrar" name="btnFiltrar" formaction="{{ action('GeneralController@filtrosPerfiles') }}" class="form-control btn btn-dark boton-filtrar">
+
+					      	</div>
+
+						</div>
+					
+					</form>	
+
+				</div>
 
 			</div>
-		
-		</form>
+
+        </div>
 
 		@isset($perfiles)
 

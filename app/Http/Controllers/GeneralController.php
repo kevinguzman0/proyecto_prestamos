@@ -101,7 +101,17 @@ class GeneralController extends Controller
                 return $this;
             });
 
-            $perfiles = Perfil::whereLike(['nombres', 'apellidos', 'cedula', 'email'], $filtro)
+            $perfiles = Perfil::whereLike(['nombres', 
+                                           'apellidos', 
+                                           'cedula', 
+                                           'email', 
+                                           'telefono1', 
+                                           'telefono2',
+                                           'direccion',
+                                           'barrio',
+                                           'ciudad',
+                                           'areaTrabajo',
+                                           'cargoTrabajo'], $filtro)
                         ->get();
 
             $mensaje = 'La información de Perfiles visualizada está filtrada por algunos campos que contienen el texto [ ' . $filtro . ' ]... ';
@@ -114,18 +124,66 @@ class GeneralController extends Controller
 
     public function filtrosPerfiles(Request $request)
     {
+        
         $id = $request->cboIdPerfiles;
         $idEstadoPerfil = $request->cboEstadosPerfil;
+        $afiliadoFondo = $request->afiliadoFondo;
+
+        $fechaDe = $request->cboFechaDe;
+        $fInicial = $request->fechaInicial;
+        $fFinal = $request->fechaFinal;
+
+        if ($fInicial < $fFinal)
+        {
+            $fechaInicial = $fInicial;
+            $fechaFinal = $fFinal;
+        }
+        else
+        {
+            $fechaInicial = $fFinal;
+            $fechaFinal = $fInicial;
+        }
 
         $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
         $idPerfiles = Perfil::distinct()->get();
 
-        if (($id == -1) && ($idEstadoPerfil == -1)) {
+        $filtros = array();
+
+        $contieneFiltros = false;
+
+        if ($id != -1)
+        {
+            $filtros['id'] = $id; 
+            $contieneFiltros = true;
+        }
+
+        if ($idEstadoPerfil != -1) 
+        {
+            $filtros['idEstadoPerfil'] = $idEstadoPerfil;
+            $contieneFiltros = true;
+        } 
+
+        if ($afiliadoFondo != -1) 
+        {
+            $filtros['afiliadoFondo'] = $afiliadoFondo;
+            $contieneFiltros = true;
+        } 
+
+        if ($fechaInicial != null) 
+        {
+            $contieneFiltros = true;
+        } 
+
+        if ($fechaFinal != null) 
+        {
+            $contieneFiltros = true;
+        }
+
+        if ($contieneFiltros == false)
+        {
 
             $mensaje = 'No se han aplicado filtros...'; 
-
             $perfiles = Perfil::paginate(10);
-
             $paginacion = 'si';
 
             return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'))->with('mensajeRojo', $mensaje);
@@ -133,32 +191,35 @@ class GeneralController extends Controller
         }
         else
         {
-            if (($id != -1) && ($idEstadoPerfil != -1))
+
+            //dd($fechaInicial, $fechaFinal);
+
+            if (($fechaInicial == null) && ($fechaInicial == null)) 
             {
-                $filtros = array('id' => $id, 'idEstadoPerfil' => $idEstadoPerfil);
+                $perfiles = Perfil::where($filtros)->get();
             }
-            else{
-                if ($id == -1) 
+            else
+            {
+                if (($fechaInicial != null) && ($fechaInicial != null)) 
                 {
-                    $filtros = array('idEstadoPerfil' => $idEstadoPerfil);
+                    $perfiles = Perfil::where($filtros)
+                                ->whereDate($fechaDe,'>=', $fechaInicial)
+                                ->whereDate($fechaDe,'<=', $fechaFinal)
+                                ->get();
                 }
                 else
                 {
-                    $filtros = array('id' => $id);
-                }
 
+                }
             }
 
             $mensaje = 'Se aplicaron filtros...'; 
-
-            $perfiles = Perfil::where($filtros)->get();
-
             $paginacion = 'no';
 
             //$cboEstadosPerfil = Perfil::select('idEstadoPerfil')->where($filtros)->distinct()->get();
 
             return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'))->with('mensajeVerde', $mensaje);
-            
+
         }
 
     }
