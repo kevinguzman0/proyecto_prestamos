@@ -12,18 +12,32 @@
                 </button>
             </div>
             <div class="modal-body">
+
                 <div class="modal-body-descripcion">
                     <h6 class="modal-title" id="modal_body_descripcion">{{ $fila->descripcionDocumento }}</h6>
                 </div>
+
                 @if ((strtolower(pathinfo($fila->documento, PATHINFO_EXTENSION) == 'pdf')))
                     <iframe id="pdfdoc" src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" width="100%" height="500px"></iframe>
-                @endif
-                @if (in_array(strtolower(pathinfo($fila->documento, PATHINFO_EXTENSION)), array('doc', 'docx', 'xls', 'xlsx', 'zip', 'rar', '7z')))
-                    <h4 class="modal-title" id="modal_body_descripcion">Apreciado usuario, este archivo debe ser descargado</h4>
+
                 @else
-                    <img src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" class="img-fluid form-control estilo-img-previa" />
+
+                    @if (in_array(strtolower(pathinfo($fila->documento, PATHINFO_EXTENSION)), array('doc', 'docx', 'xls', 'xlsx', 'zip', 'rar', '7z')))
+
+                    <h4 class="modal-title" id="modal_body_descripcion">Apreciado usuario, este archivo debe ser descargado</h4>
+
+                    @else
+
+                        <img src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" class="img-fluid form-control estilo-img-previa" />
+
+                    @endif
+                    
                 @endif
+
+                
+
             </div>
+
             <div class="modal-footer">
 
                 @hasanyrole('directivo')
