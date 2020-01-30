@@ -1,9 +1,10 @@
 <div class="col-md-2">
-    <a href="#" data-toggle="modal" data-target="#activar-usuario-{{ $fila->id }}">
-        <img src="{{ asset('icons/toggle-on.svg') }}" alt="Activar usuario" width="24" height="24" title="Activar usuario" />
+    <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#activar-usuario-{{ $fila->id }}">
+        <img src="{{ asset('icons/toggle-on.svg') }}" alt="Activar usuario" width="36" height="36" title="Activar usuario" />
     </a>
 </div>
-<div class="col-md-10 text-left">
+
+<div class="d-flex align-items-center col-md-10 text-left">
     <a href="#" data-toggle="modal" data-target="#activar-usuario-{{ $fila->id }}">
         Activar usuario
     </a>

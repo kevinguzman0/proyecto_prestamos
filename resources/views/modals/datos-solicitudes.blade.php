@@ -1,8 +1,7 @@
-<div class="col-md-2">
-    <a href="#" class="btn btn-link link-tabla" data-toggle="modal" data-target="#datos-solicitud-{{ $fila->id }}">
-        <img src="{{ asset('icons/three-dots.svg') }}" alt="Ver información extendida de la solicitud" width="24" height="24" title="Ver información extendida de la solicitud" />
-    </a>
-</div>
+
+<a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#datos-solicitud-{{ $fila->id }}">
+    <img src="{{ asset('icons/three-dots.svg') }}" alt="Ver información extendida de la solicitud" width="36" height="36" title="Ver información extendida de la solicitud" />
+</a>
 
 <div id="datos-solicitud-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
@@ -18,8 +17,6 @@
                     <div class="row col-md-12">
                         <div class="col-md-4 text-right font-weight-bold">Fecha</div>
                         <div class="col-md-8 text-left">{{ $fila->created_at }}</div>
-                        <div class="col-md-4 text-right font-weight-bold">Estado solicitud</div>
-                        <div class="col-md-8 text-left">{{ $fila->estado->nombreEstado }}</div>
                         <div class="col-md-4 text-right font-weight-bold">Analizado por</div>
                         <div class="col-md-8 text-left">
                             @if($fila->idAnalizadoPor != null)

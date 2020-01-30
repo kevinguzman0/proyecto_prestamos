@@ -1,5 +1,5 @@
-<a href="#" class="btn btn-link link-tabla" data-toggle="modal" data-target="#datos-perfil-{{ $fila->id }}">
-    <img src="{{ asset('icons/three-dots.svg') }}" alt="Ver información extendida del perfil" width="24" height="24" title="Ver información extendida del perfil" />
+<a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#datos-perfil-{{ $fila->id }}">
+    <img src="{{ asset('icons/three-dots.svg') }}" alt="Ver información extendida del perfil" width="36" height="36" title="Ver información extendida del perfil" />
 </a>
 
 <div id="datos-perfil-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
@@ -20,8 +20,6 @@
                         <div class="col-md-8 text-left">{{ $fila->created_at }}</div>
                         <div class="col-md-4 text-right font-weight-bold">Modificación</div>
                         <div class="col-md-8 text-left">{{ $fila->updated_at }}</div>
-                        <div class="col-md-4 text-right font-weight-bold">Estado</div>
-                        <div class="col-md-8 text-left">{{ $fila->estado->nombreEstado }}</div>
                     </div>
                 </div>
             </div>

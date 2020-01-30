@@ -70,7 +70,7 @@
 							<td style="text-align:left;"> {{ $fila->name }} </td>
 							<td style="text-align:left;"> {{ $fila->email }} </td>
 
-							<td style="text-align:center;">
+							<td style="text-align:left;">
 
 								@include('modals.datos-usuarios')
 								
@@ -87,16 +87,16 @@
 								@if (!Auth::user()->hasAnyRole('administrador'))
 									<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
 										@if(App\User::find($fila->id)->perfil != null)
-											<img src="{{ asset('icons/eye.svg') }}" alt="Ver perfil" width="24" height="24" title="Ver perfil">
+											<img src="{{ asset('icons/person-fill.svg') }}" alt="Ver perfil" width="36" height="36" title="Ver perfil">
 										@else
-											<img src="{{ asset('icons/camera.svg') }}" alt="Crear perfil" width="24" height="24" title="Crear perfil">
+											<img src="{{ asset('icons/camera.svg') }}" alt="Crear perfil" width="36" height="36" title="Crear perfil">
 										@endif
 									</a>
 								@endif
 								
 								@if($fila->email_verified_at == null)
 									<a href="{{ route('usuario.validar', [$fila->id]) }}">
-										<img src="{{ asset('icons/unlock.svg') }}" alt="Validar email / Desbloquear cuenta" width="24" height="24" title="Validar email / Desbloquear cuenta">
+										<img src="{{ asset('icons/unlock.svg') }}" alt="Validar email / Desbloquear cuenta" width="36" height="36" title="Validar email / Desbloquear cuenta">
 									</a>
 								@endif
 

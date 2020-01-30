@@ -81,27 +81,15 @@
 						<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
 						<td style="text-align:center;"> {{ $fila->plazo }} </td>
 						<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
-						<td style="text-align: center;"> {{ $fila->interes . '%' }} </td>
-						<td style="text-align:center;" class="input-group">
+						<td style="text-align:center;"> {{ $fila->interes . '%' }} </td>
+						<td style="text-align:center;">
 
 							@include('modals.datos-solicitudes')
 							
 							@include('modals.acciones-solicitudes')
 
-                            <form class="col-md-2" method="POST" action="{{ route('simulador.screen') }}">
+							@include('modulos.liquidador-solicitudes')
 
-                                @csrf
-                                
-                                <input type="hidden" name="valorPrestamo" value="{{ $fila->monto }}">
-                                <input type="hidden" name="plazoCuotas" value="{{ $fila->plazo }}">
-                                <input type="hidden" name="interes" value="{{ $fila->interes }}">
-
-                                <button type="submit" class="button-image">
-                                	<img src="{{ asset('icons/document-spreadsheet.svg') }}" alt="Generar tabla de pagos" width="24" height="24" title="Generar tabla de pagos">
-                                </button>
-                                
-                            </form>
-							
 						</td>
 
 					</tr>

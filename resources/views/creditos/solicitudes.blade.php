@@ -18,22 +18,22 @@
 
 		<div class="col-md-2">
 	        <label class="label-margin">Id Cliente</label>
-	        <input type="text" name="idCliente" class="form-control font-weight-bolder" value="{{ $perfil->id }}" disabled>
+	        <input type="text" name="idCliente" class="form-control" value="{{ $perfil->id }}" disabled>
 	    </div>
 
 		<div class="col-md-3">
 	        <label class="label-margin">Nombre completo</label>
-	        <input type="text" name="nombres" class="form-control font-weight-bolder" value="{{ $perfil->nombres }} {{ $perfil->apellidos }}" disabled>
+	        <input type="text" name="nombres" class="form-control" value="{{ $perfil->nombres }} {{ $perfil->apellidos }}" disabled>
 	    </div>
 
 		<div class="col-md-2">
 	        <label class="label-margin">Cédula</label>
-	        <input type="text" name="cedula" class="form-control font-weight-bolder" value="{{ $perfil->cedula }}" disabled>
+	        <input type="text" name="cedula" class="form-control" value="{{ $perfil->cedula }}" disabled>
 	    </div>
 
 		<div class="col-md-3">
 	        <label class="label-margin">Email</label>
-	        <input type="text" name="email" class="form-control font-weight-bolder" value="{{ $perfil->email }}" disabled>
+	        <input type="text" name="email" class="form-control" value="{{ $perfil->email }}" disabled>
 	    </div>
 
         <div class="col-md-2">
@@ -69,6 +69,7 @@
 
 						<tr>
 							<th class="header-tabla-texto">Id</th>
+							<th class="header-tabla-texto">Estado</th>
 							<th class="header-tabla-texto">Monto</th>
 							<th class="header-tabla-texto">Plazo</th>
 							<th class="header-tabla-texto">Cuota mensual</th>
@@ -83,6 +84,7 @@
 					    <tr>
 
 							<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
+							<td style="text-align:center;"> {{ $fila->estado->nombreEstado }} </td>
 							<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
 							<td style="text-align:center;"> {{ $fila->plazo }} </td>
 							<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
@@ -94,7 +96,7 @@
 
 								@if($fila->idEstadoSolicitud <= 3)
 									<a href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">
-										<img src="{{ asset('icons/book.svg') }}" alt="Presentar / Ver documentos" width="24" height="24" title="Presentar / Ver documentos">
+										<img src="{{ asset('icons/documents.svg') }}" alt="Documentos" width="36" height="36" title="Documentos">
 									</a>
 								@endif
 
@@ -104,19 +106,7 @@
 
 								@endif
 
-	                            <form method="POST" action="{{ route('simulador.screen') }}">
-
-	                                @csrf
-	                                
-	                                <input type="hidden" name="valorPrestamo" value="{{ $fila->monto }}">
-	                                <input type="hidden" name="plazoCuotas" value="{{ $fila->plazo }}">
-	                                <input type="hidden" name="interes" value="{{ $fila->interes }}">
-
-	                                <button type="submit" class="button-image">
-	                                	<img src="{{ asset('icons/document-spreadsheet.svg') }}" alt="Generar tabla de pagos" width="24" height="24" title="Generar tabla de pagos">
-	                                </button>
-	                                
-	                            </form>
+								@include('modulos.liquidador-solicitudes')
 
 							</td>
 

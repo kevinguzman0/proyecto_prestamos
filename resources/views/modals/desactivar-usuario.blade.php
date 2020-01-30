@@ -1,9 +1,10 @@
 <div class="col-md-2">
-    <a href="#" data-toggle="modal" data-target="#desactivar-usuario-{{ $fila->id }}">
-        <img src="{{ asset('icons/toggle-off.svg') }}" alt="Desactivar usuario" width="24" height="24" title="Desactivar usuario" />
+    <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#desactivar-usuario-{{ $fila->id }}">
+        <img src="{{ asset('icons/toggle-off.svg') }}" alt="Desactivar usuario" width="36" height="36" title="Desactivar usuario" />
     </a>
 </div>
-<div class="col-md-10 text-left">
+
+<div class="d-flex align-items-center col-md-10 text-left">
     <a href="#" data-toggle="modal" data-target="#desactivar-usuario-{{ $fila->id }}">
         Inactivar usuario
     </a>

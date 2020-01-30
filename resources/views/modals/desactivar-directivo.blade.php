@@ -1,9 +1,10 @@
 <div class="col-md-2">
-    <a href="#" data-toggle="modal" data-target="#desactivar-directivo-{{ $fila->id }}">
-        <img src="{{ asset('icons/person.svg') }}" alt="Retirar permiso de Directivo" width="24" height="24" title="Retirar permiso de Directivo" />
+    <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#desactivar-directivo-{{ $fila->id }}">
+        <img src="{{ asset('icons/person.svg') }}" alt="Retirar permiso de Directivo" width="36" height="36" title="Retirar permiso de Directivo" />
     </a>
 </div>
-<div class="col-md-10 text-left">
+
+<div class="d-flex align-items-center col-md-10 text-left">
     <a href="#" data-toggle="modal" data-target="#desactivar-directivo-{{ $fila->id }}">
         Retirar permiso de Directivo
     </a>
