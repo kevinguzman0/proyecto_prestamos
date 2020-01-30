@@ -139,7 +139,6 @@ class GeneralController extends Controller
         $id = $request->cboIdPerfiles;
         $idEstadoPerfil = $request->cboEstadosPerfil;
         $afiliadoFondo = $request->afiliadoFondo;
-
         $fechaDe = $request->cboFechaDe;
         $fInicial = $request->fechaInicial;
         $fFinal = $request->fechaFinal;
@@ -237,8 +236,6 @@ class GeneralController extends Controller
             $mensaje = 'Se aplicaron filtros...'; 
             $paginacion = 'no';
 
-            //$cboEstadosPerfil = Perfil::select('idEstadoPerfil')->where($filtros)->distinct()->get();
-
             return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'))->with('mensajeVerde', $mensaje);
 
         }
@@ -254,6 +251,7 @@ class GeneralController extends Controller
         $paginacion = 'si';
 
         return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'));
+
     }
 
     public function buscadorUsuarios(Request $request)
@@ -296,7 +294,6 @@ class GeneralController extends Controller
         
         $id = $request->cboIdUsuarios;
         $verificacionEmail = $request->verificacionEmail;
-
         $fechaDe = $request->cboFechaDe;
         $fInicial = $request->fechaInicial;
         $fFinal = $request->fechaFinal;
@@ -418,6 +415,7 @@ class GeneralController extends Controller
         $paginacion = 'si';
 
         return view('general.tablaUsuarios', compact('usuarios', 'idUsuarios', 'paginacion'));
+
     }
 
     public function buscadorDocumentos(Request $request)
@@ -448,7 +446,7 @@ class GeneralController extends Controller
             });
 
             $documentos = Documento::whereLike(['archivoOriginal', 
-                                           'descripcionDocumento'], $filtro)
+                                                'descripcionDocumento'], $filtro)
                         ->get();
 
             $mensaje = 'La información de Documentos visualizada está filtrada por algunos campos que contienen el texto [ ' . $filtro . ' ]... ';
@@ -466,9 +464,7 @@ class GeneralController extends Controller
         $idSolicitud = $request->cboIdSolicitud;
         $procesoDocumento = $request->procesoDocumento;
         $estadoDocumento = $request->estadoDocumento;
-
         $analizadoPor = $request->cboAnalizadoPor;
-
         $fechaDe = $request->cboFechaDe;
         $fInicial = $request->fechaInicial;
         $fFinal = $request->fechaFinal;
@@ -698,8 +694,6 @@ class GeneralController extends Controller
             $fechaFinal = $fInicial;
         }
 
-        
-
         $cboEstadosSolicitudes = Solicitud::select('idEstadoSolicitud')->distinct()->get();
         $idSolicitud = Solicitud::distinct()->get();
 
@@ -719,7 +713,6 @@ class GeneralController extends Controller
             $contieneFiltros = true;
         } 
 
-        
         if ($fechaInicial != null) 
         {
             $contieneFiltros = true;
@@ -761,23 +754,21 @@ class GeneralController extends Controller
             $mensaje = 'Se aplicaron filtros...'; 
             $paginacion = 'no';
 
-            //$cboEstadosPerfil = Perfil::select('idEstadoPerfil')->where($filtros)->distinct()->get();
-
             return view('general.tablaSolicitudes', compact('solicitudes', 'cboEstadosSolicitudes', 'idSolicitud', 'paginacion'))->with('mensajeVerde', $mensaje);
 
         }
 
     }
 
-     public function todosSolicitudes()
+    public function todosSolicitudes()
     {
 
         $solicitudes = Solicitudes::paginate(10);
         $cboEstadosSolicitudes = Solicitudes::select('idEstadosSolicitudes')->distinct()->get();
         $idSolicitud = Solicitudes::distinct()->get();
-        $paginacionSolicitud = 'si';
+        $paginacion = 'si';
 
-        return view('general.tablaSolicitudes', compact('solicitudes', 'cboEstadosSolicitudes', 'idSolicitud', 'paginacionSolicitud'));
+        return view('general.tablaSolicitudes', compact('solicitudes', 'cboEstadosSolicitudes', 'idSolicitud', 'paginacion'));
     }
 
 }
