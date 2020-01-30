@@ -79,6 +79,7 @@
 									@if($fila->email_verified_at == null)
 
 										@include('modals.validar-usuarios')
+										
 									@endif
 
 								</td>						
