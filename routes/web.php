@@ -166,6 +166,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::post('documentos', 'GeneralController@todosDocumentos')->name('documentos.todos');
 
 		Route::post('documentos/filtrado', 'GeneralController@filtrosDocumentos')->name('documentos.filtrar');
+
+		Route::post('solicitudes/busqueda', 'GeneralController@buscadorSolicitudes')->name('solicitudes.buscar');
+
+		Route::post('solicitudes', 'GeneralController@todosSolicitudes')->name('solicitudes.todos');
+
+		Route::post('solicitudes/filtrado', 'GeneralController@filtrosSolicitudes')->name('solicitudes.filtrar');
 		
 		Route::middleware('role:directivo')->group(function () {
 

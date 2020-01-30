@@ -44,7 +44,10 @@ class GeneralController extends Controller
     {
 
         $solicitudes = Solicitud::paginate(10);
-        return view('general.tablaSolicitudes', compact('solicitudes'));
+        $cboEstadosSolicitudes = Solicitud::select('idEstadoSolicitud')->distinct()->get();
+        $idSolicitud = Solicitud::distinct()->get();
+        $paginacion = 'si';
+        return view('general.tablaSolicitudes', compact('solicitudes', 'cboEstadosSolicitudes', 'idSolicitud', 'paginacion'));
 
     }
 
@@ -589,6 +592,163 @@ class GeneralController extends Controller
 
         return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'));
 
+    }
+
+     public function buscadorSolicitudes(Request $request)
+    {
+
+        $filtro = $request->filtro;
+        $cboEstadosSolicitudes = Solicitud::select('idEstadosSolicitudes')->distinct()->get();
+        $idSolicitud = Solicitud::distinct()->get();
+        $paginacionSolicitud = 'no';
+
+        if (!$filtro)
+        {
+            $mensaje = 'No se han recibido criterios de búsqueda con el filtro. Pruebe con otra búsqueda...'; 
+            $solicitudes = Solicitud::paginate(10);
+            return view('general.tablaPerfiles', compact('solcitudes', 'idEstadosSolicitudes', 'idSolicitud', 'paginacion'))->with('mensajeRojo', $mensaje);
+        }
+        else
+        {
+
+            Builder::macro('whereLike', function($attributes, string $searchTerm) {
+                foreach(Arr::wrap($attributes) as $attribute) {
+                    $this->orWhere($attribute, 'LIKE', "%{$searchTerm}%");
+                }
+                return $this;
+            });
+
+            $solicitudes = Perfil::whereLike(['monto', 
+                                           'plazo', 
+                                           'cuota', 
+                                           'interes'], $filtro)
+                        ->get();
+
+            $mensaje = 'La información de Solicitudes visualizada está filtrada por algunos campos que contienen el texto [ ' . $filtro . ' ]... ';
+
+            return view('general.tablaSolicitudes', compact('solicitudes', 'idEstadosSolicitudes', 'idSolicitud', 'paginacionSolicitud'))->with('mensajeVerde', $mensaje);
+
+        }
+
+    }
+
+    public function filtrosSolicitudes(Request $request)
+    {
+        
+        $id = $request->cboIdSolicitud;
+        $idEstadoSolicitud = $request->cboEstadosSolicitudes;        
+
+        $fechaDe = $request->cboFechaDeSolicitud;
+        $fInicial = $request->fechaInicial;
+        $fFinal = $request->fechaFinal;
+
+        $fechaInicial = $fInicial;
+        $fechaFinal = $fFinal;
+
+        if (($fInicial != null) && ($fFinal != null)) 
+        {
+            if ($fInicial < $fFinal)
+            {
+                $fechaInicial = $fInicial;
+                $fechaFinal = $fFinal;
+            }
+            else
+            {
+                $fechaInicial = $fFinal;
+                $fechaFinal = $fInicial;
+            }
+        }
+
+        if (($fInicial == null) && ($fFinal != null)) 
+        {
+            $fechaInicial = $fFinal;
+        }
+
+        if (($fInicial != null) && ($fFinal == null)) 
+        {
+            $fechaFinal = $fInicial;
+        }
+
+        
+
+        $cboEstadosSolicitudes = Solicitud::select('idEstadoSolicitud')->distinct()->get();
+        $idSolicitud = Solicitud::distinct()->get();
+
+        $filtros = array();
+
+        $contieneFiltros = false;
+
+        if ($id != -1)
+        {
+            $filtros['id'] = $id; 
+            $contieneFiltros = true;
+        }
+
+        if ($idEstadoSolicitud != -1) 
+        {
+            $filtros['idEstadoSolicitud'] = $idEstadoSolicitud;
+            $contieneFiltros = true;
+        } 
+
+        
+        if ($fechaInicial != null) 
+        {
+            $contieneFiltros = true;
+        } 
+
+        if ($fechaFinal != null) 
+        {
+            $contieneFiltros = true;
+        }
+
+        if ($contieneFiltros == false)
+        {
+
+            $mensaje = 'No se han aplicado filtros...'; 
+            $solicitudes = Solicitud::paginate(10);
+            $paginacion = 'si';
+
+            return view('general.tablaSolicitudes', compact('solicitudes', 'cboEstadosSolicitudes', 'idPerfiles', 'paginacion'))->with('mensajeRojo', $mensaje);
+
+        }
+        else
+        {
+
+            if (($fechaInicial == null) && ($fechaFinal == null)) 
+            {
+                $solicitudes = Perfil::where($filtros)->get();
+            }
+            else
+            {
+                if (($fechaInicial != null) && ($fechaInicial != null)) 
+                {
+                    $solicitudes = Perfil::where($filtros)
+                                ->whereDate($fechaDe,'>=', $fechaInicial)
+                                ->whereDate($fechaDe,'<=', $fechaFinal)
+                                ->get();
+                }
+             }
+
+            $mensaje = 'Se aplicaron filtros...'; 
+            $paginacion = 'no';
+
+            //$cboEstadosPerfil = Perfil::select('idEstadoPerfil')->where($filtros)->distinct()->get();
+
+            return view('general.tablaSolicitudes', compact('solicitudes', 'cboEstadosSolicitudes', 'idSolicitud', 'paginacion'))->with('mensajeVerde', $mensaje);
+
+        }
+
+    }
+
+     public function todosSolicitudes()
+    {
+
+        $solicitudes = Solicitudes::paginate(10);
+        $cboEstadosSolicitudes = Solicitudes::select('idEstadosSolicitudes')->distinct()->get();
+        $idSolicitud = Solicitudes::distinct()->get();
+        $paginacionSolicitud = 'si';
+
+        return view('general.tablaSolicitudes', compact('solicitudes', 'cboEstadosSolicitudes', 'idSolicitud', 'paginacionSolicitud'));
     }
 
 }
