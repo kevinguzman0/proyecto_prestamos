@@ -154,7 +154,8 @@
 						    	<label class="label-margin">Estado Documento</label>
 						      	<select class="form-control" id="estadoDocumento" name="estadoDocumento">
 						      	
-							      	<option value="-1">Todos</option>
+							      	<option value="-2">Todos</option>
+							      	<option value="-1">Sin revisado</option>
 							      	<option value="1">Aprobado</option>
 							      	<option value="0">Rechazado</option>
 

@@ -519,19 +519,19 @@ class GeneralController extends Controller
 
         if ($procesoDocumento != -1) 
         {
-            $filtros['procesoDocumento'] = $procesoDocumento;
+            $filtros['revisado'] = $procesoDocumento;
             $contieneFiltros = true;
         } 
 
-        if ($estadoDocumento != -1) 
+        if ($estadoDocumento != -2) 
         {
-            $filtros['estadoDocumento'] = $estadoDocumento;
+            $filtros['aprobado'] = $estadoDocumento;
             $contieneFiltros = true;
         } 
 
         if ($analizadoPor != -1) 
         {
-            $filtros['analizadoPor'] = $analizadoPor;
+            $filtros['idAnalizadoPor'] = $analizadoPor;
             $contieneFiltros = true;
         } 
 
