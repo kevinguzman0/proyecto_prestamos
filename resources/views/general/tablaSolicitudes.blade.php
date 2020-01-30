@@ -28,6 +28,7 @@
 			<button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#seccionFiltros" aria-expanded="false" aria-controls="collapseExample">
 				Ver filtros disponibles
 			</button>
+			
 		</p>
 
         <div class="form-row col-md-12 padding-form">		
