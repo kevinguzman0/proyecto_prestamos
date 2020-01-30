@@ -508,3 +508,21 @@ td {
     border-top-right-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
 }
+
+.boton-filtrar {
+    margin-left: 0px !important;
+    margin-top: 15px !important;
+}
+
+.texto-filtro {
+    font-size: 1em !important;
+}
+
+.boton-acciones {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.boton-acciones-inline {
+    display: inline !important;
+}

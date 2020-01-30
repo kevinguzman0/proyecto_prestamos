@@ -1,8 +1,8 @@
-<div class="col-md-2">
-    <a href="#" class="btn btn-link link-tabla" data-toggle="modal" data-target="#acciones-solicitud-{{ $fila->id }}">
-        <img src="{{ asset('icons/tools.svg') }}" alt="Ver menú de acciones" width="24" height="24" title="Ver menú de acciones" />
-    </a>
-</div>
+
+<a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#acciones-solicitud-{{ $fila->id }}">
+    <img src="{{ asset('icons/tools.svg') }}" alt="Ver menú de acciones" width="36" height="36" title="Ver menú de acciones" />
+</a>
+
 <div id="acciones-solicitud-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-eliminar" role="document">
         <div class="modal-content modal-content-acciones">
@@ -19,11 +19,11 @@
                         @if($fila->idEstadoSolicitud <= 3)
                             <div class="col-md-2">
                                 <a href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">
-                                    <img src="{{ asset('icons/book.svg') }}" alt="Listado de documentos" width="24" height="24" title="Listado de documentos" />
+                                    <img src="{{ asset('icons/documents.svg') }}" alt="Ver documentos entregados" width="36" height="36" title="Ver documentos entregados" />
                                 </a>
                             </div>
-                            <div class="col-md-10 text-left">
-                                <a href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">Listado de documentos</a>
+                            <div class="d-flex align-items-center col-md-10 text-left">
+                                <a href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">Ver documentos entregados</a>
                             </div>
                         @endif
 
@@ -32,46 +32,46 @@
     		      			@if($fila->idEstadoSolicitud == 2)
                                 <div class="col-md-2">
                                     <a href="{{ route('solicitud.aprobar', [$fila->idCliente, $fila->id]) }}">
-                                        <img src="{{ asset('icons/award.svg') }}" alt="Aprobar / Validar" width="24" height="24" title="Aprobar / Validar" />
+                                        <img src="{{ asset('icons/award.svg') }}" alt="Marcar como aprobada" width="36" height="36" title="Marcar como aprobada" />
                                     </a>
                                 </div>
-                                <div class="col-md-10 text-left">
-                                    <a href="{{ route('solicitud.aprobar', [$fila->idCliente, $fila->id]) }}">Aprobar / Validar</a>
+                                <div class="d-flex align-items-center col-md-10 text-left">
+                                    <a href="{{ route('solicitud.aprobar', [$fila->idCliente, $fila->id]) }}">Marcar como aprobada</a>
                                 </div>
                             @endif
 
     		      			@if($fila->idEstadoSolicitud == 2)
                             <div class="col-md-2">
                                     <a href="{{ route('solicitud.rechazar', [$fila->idCliente, $fila->id]) }}">
-                                        <img src="{{ asset('icons/x-octagon-fill.svg') }}" alt="Rechazar" width="24" height="24" title="Rechazar" />
+                                        <img src="{{ asset('icons/x-octagon-fill.svg') }}" alt="Marcar como rechazada" width="36" height="36" title="Marcar como rechazada" />
                                     </a>
                                 </div>
-                                <div class="col-md-10 text-left">
-                                    <a href="{{ route('solicitud.rechazar', [$fila->idCliente, $fila->id]) }}">Rechazar</a>
+                                <div class="d-flex align-items-center col-md-10 text-left">
+                                    <a href="{{ route('solicitud.rechazar', [$fila->idCliente, $fila->id]) }}">Marcar como rechazada</a>
                                 </div>
                             @endif
                             <div class="col-md-2">
                                 <a href="{{ action('CreditoController@solicitudPendiente', [$fila->idCliente, $fila->id]) }}">
-                                    <img src="{{ asset('icons/alarm.svg') }}" alt="Con documentos pendientes" width="24" height="24" title="Con documentos pendientes" />
+                                    <img src="{{ asset('icons/alarm.svg') }}" alt="Marcar con documentos pendientes" width="36" height="36" title="Marcar con documentos pendientes" />
                                 </a>
                             </div>
-                            <div class="col-md-10 text-left">
+                            <div class="d-flex align-items-center col-md-10 text-left">
                                  <a href="{{ action('CreditoController@solicitudPendiente', [$fila->idCliente, $fila->id]) }}">Marcar con documentos pendientes</a>
                             </div>
                             <div class="col-md-2">
                                 <a href="{{ action('CreditoController@solicitudDesembolsada', [$fila->idCliente, $fila->id]) }}">
-                                    <img src="{{ asset('icons/check-circle.svg') }}" alt="Solicitud desembolsada" width="24" height="24" title="Solicitud desembolsada" />
+                                    <img src="{{ asset('icons/check-circle.svg') }}" alt="Marcar como solicitud desembolsada" width="36" height="36" title="Marcar como solicitud desembolsada" />
                                 </a>
                             </div>
-                            <div class="col-md-10 text-left">
+                            <div class="d-flex align-items-center col-md-10 text-left">
                                 <a href="{{ action('CreditoController@solicitudDesembolsada', [$fila->idCliente, $fila->id]) }}">Marcar como solicitud desembolsada</a>
                             </div>
                             <div class="col-md-2">
                                 <a href="{{ action('CreditoController@solicitudEnEspera', [$fila->idCliente, $fila->id]) }}">
-                                    <img src="{{ asset('icons/clock.svg') }}" alt="Solicitud en espera" width="24" height="24" title="Solicitud en espera" />
+                                    <img src="{{ asset('icons/clock.svg') }}" alt="Marcar como solicitud en espera" width="36" height="36" title="Marcar como solicitud en espera" />
                                 </a>
                             </div>
-                            <div class="col-md-10 text-left">
+                            <div class="d-flex align-items-center col-md-10 text-left">
                                 <a href="{{ action('CreditoController@solicitudEnEspera', [$fila->idCliente, $fila->id]) }}">Marcar como solicitud en espera</a>
                             </div>
                             @if($fila->idEstadoSolicitud == 1)
