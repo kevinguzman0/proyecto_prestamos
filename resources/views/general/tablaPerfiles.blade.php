@@ -52,7 +52,7 @@
 
 		<p>
 			<button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#seccionFiltros" aria-expanded="false" aria-controls="collapseExample">
-				Sección de filtros
+				Ver filtros disponibles
 			</button>
 		</p>
 
