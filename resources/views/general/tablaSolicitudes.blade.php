@@ -55,6 +55,7 @@
 					<tr>
 						<th class="header-tabla-texto">Id</th>
 						<th class="header-tabla-texto">Cliente</th>
+						<th class="header-tabla-texto">Estado</th>
 						<th class="header-tabla-texto">Monto</th>
 						<th class="header-tabla-texto">Plazo</th>
 						<th class="header-tabla-texto">Cuota mensual</th>
@@ -78,6 +79,7 @@
 
 						</td>
 
+						<td style="text-align:center;"> {{ $fila->estado->nombreEstado }} </td>
 						<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
 						<td style="text-align:center;"> {{ $fila->plazo }} </td>
 						<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
