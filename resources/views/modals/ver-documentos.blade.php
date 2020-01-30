@@ -1,5 +1,5 @@
 <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#ver-documento-{{ $fila->id }}">
-    <img src="{{ asset('icons/eye.svg') }}" alt="Ver documento" width="36" height="36" title="Ver documento" />
+    <img src="{{ asset('icons/eye.svg') }}" alt="Ver documento" width="32" height="32" title="Ver documento" />
 </a>
 
 <div class="modal fade" id="ver-documento-{{ $fila->id }}" tabindex="-1" role="dialog" aria-hidden="true">

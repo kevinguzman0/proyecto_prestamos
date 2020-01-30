@@ -7,7 +7,7 @@
     <input type="hidden" name="interes" value="{{ $fila->interes }}">
 
     <button type="submit" class="button-image">
-    	<img src="{{ asset('icons/document-spreadsheet.svg') }}" alt="Generar tabla de pagos" width="36" height="36" title="Generar tabla de pagos">
+    	<img src="{{ asset('icons/document-spreadsheet.svg') }}" alt="Generar tabla de pagos" width="32" height="32" title="Generar tabla de pagos">
     </button>
     
 </form>

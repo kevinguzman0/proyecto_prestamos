@@ -1,5 +1,5 @@
 <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#acciones-perfil-{{ $fila->id }}">
-    <img src="{{ asset('icons/tools.svg') }}" alt="Ver menú de acciones" width="36" height="36" title="Ver menú de acciones" />
+    <img src="{{ asset('icons/tools.svg') }}" alt="Ver menú de acciones" width="32" height="32" title="Ver menú de acciones" />
 </a>
 
 <div id="acciones-perfil-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">
@@ -17,7 +17,7 @@
 
                         <div class="col-md-2">
                             <a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
-                                <img src="{{ asset('icons/person-fill.svg') }}" alt="Ver perfil" width="36" height="36" title="Ver perfil" />
+                                <img src="{{ asset('icons/person-fill.svg') }}" alt="Ver perfil" width="32" height="32" title="Ver perfil" />
                             </a>
                         </div>
                         <div class="d-flex align-items-center col-md-10 text-left">
@@ -28,7 +28,7 @@
 
                             <div class="col-md-2">
                                 <a href="{{ action('CreditoController@misSolicitudes', [$fila->id]) }}">
-                                    <img src="{{ asset('icons/list-ol.svg') }}" alt="Ver solicitudes" width="36" height="36" title="Ver solicitudes" />
+                                    <img src="{{ asset('icons/list-ol.svg') }}" alt="Ver solicitudes" width="32" height="32" title="Ver solicitudes" />
                                 </a>
                             </div>
                             <div class="d-flex align-items-center col-md-10 text-left">
@@ -39,7 +39,7 @@
 
                                 <div class="col-md-2">
                                     <a href="{{ action('PerfilController@datosCorreo', [$fila->id]) }}">
-                                        <img src="{{ asset('icons/envelope.svg') }}" alt="Enviar correo" width="36" height="36" title="Enviar correo" />
+                                        <img src="{{ asset('icons/envelope.svg') }}" alt="Enviar correo" width="32" height="32" title="Enviar correo" />
                                     </a>
                                 </div>
                                 <div class="d-flex align-items-center col-md-10 text-left">

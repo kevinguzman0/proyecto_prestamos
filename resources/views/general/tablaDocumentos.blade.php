@@ -138,7 +138,7 @@
 
 						    <div class="col-md-2">
 
-						    	<label class="label-margin">Proceso Documento</label>
+						    	<label class="label-margin">Revisión</label>
 						      	<select class="form-control" id="procesoDocumento" name="procesoDocumento">
 						      	
 							      	<option value="-1">Todos</option>
@@ -155,7 +155,7 @@
 						      	<select class="form-control" id="estadoDocumento" name="estadoDocumento">
 						      	
 							      	<option value="-2">Todos</option>
-							      	<option value="-1">Sin revisado</option>
+							      	<option value="-1">Sin revisar</option>
 							      	<option value="1">Aprobado</option>
 							      	<option value="0">Rechazado</option>
 
@@ -173,8 +173,11 @@
 						      	<select class="form-control" id="cboAnalizadoPor" name="cboAnalizadoPor">
 						      	
 							      	<option value="-1">Todos</option>
-							      	@foreach ($idDocumentos as $item)
-								        <option value="{{ $item->revisor->nombres }}">{{ $item->revisor->nombres }}</option>
+							      	<option value="-2">Sin analizar</option>
+
+
+							      	@foreach ($idAnalizadoPor as $item)
+							        	<option value="{{ $item->idAnalizadoPor }}">{{ $item->revisor->nombres }}</option>
 								    @endforeach
 
 						      	</select>
@@ -239,7 +242,7 @@
 						</tr>
 
 					</thead>
-
+					
 					@foreach ($documentos as $fila)
 
 					    <tr>
@@ -249,7 +252,7 @@
 							<td style="text-align:center;"> 
 
 								<a class="btn btn-link font-weight-bold link-tabla" href="{{ action('CreditoController@misSolicitudes', [$fila->solicitud->cliente->id]) }}">
-									{{ $fila->idSolicitud }}  
+									{{ $fila->idSolicitud }}
 								</a>
 
 							</td>

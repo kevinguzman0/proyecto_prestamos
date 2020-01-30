@@ -1,5 +1,5 @@
 <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#datos-usuario-{{ $fila->id }}">
-    <img src="{{ asset('icons/three-dots.svg') }}" alt="ver información extendida del usuario" width="36" height="36" title="Ver información extendida del usuario" />
+    <img src="{{ asset('icons/three-dots.svg') }}" alt="ver información extendida del usuario" width="32" height="32" title="Ver información extendida del usuario" />
 </a>
 
 <div id="datos-usuario-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">

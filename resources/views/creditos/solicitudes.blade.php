@@ -90,19 +90,19 @@
 							<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
 							<td style="text-align:center;"> {{ $fila->interes . '%' }} </td>
 
-							<td style="text-align:center;" class="input-group">
+							<td style="text-align:left;" class="input-group">
 
 								@include('modals.datos-solicitudes')
 
 								@if($fila->idEstadoSolicitud <= 3)
-									<a href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">
-										<img src="{{ asset('icons/documents.svg') }}" alt="Documentos" width="36" height="36" title="Documentos">
+									<a class="btn btn-link link-tabla boton-acciones" href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">
+										<img src="{{ asset('icons/documents.svg') }}" alt="Documentos" width="32" height="32" title="Documentos">
 									</a>
 								@endif
 
 								@if($fila->idEstadoSolicitud <= 3)
 
-									@include('modals.eliminar-solicitudes')
+									@include('modals.eliminar-solicitudes', ['tipo' => 'acciones'])
 
 								@endif
 
