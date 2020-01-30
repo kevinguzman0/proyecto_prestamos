@@ -57,9 +57,10 @@ class GeneralController extends Controller
         $documentos = Documento::paginate(10);
         $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
         $idDocumentos = Documento::select('id')->get();
+        $idAnalizadoPor = Documento::select('idAnalizadoPor')->whereNotNull('idAnalizadoPor')->distinct()->get();
         $paginacion = 'si';
 
-        return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'));
+        return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'idAnalizadoPor', 'paginacion'));
 
     }
 
@@ -425,6 +426,7 @@ class GeneralController extends Controller
         $filtro = $request->filtro;
         $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
         $idDocumentos = Documento::select('id')->get();
+        $idAnalizadoPor = Documento::select('idAnalizadoPor')->whereNotNull('idAnalizadoPor')->distinct()->get();
         $paginacion = 'no';
 
         if (!$filtro)
@@ -433,7 +435,7 @@ class GeneralController extends Controller
 
             $documentos = Documento::paginate(10);
 
-            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'))->with('mensajeRojo', $mensaje);
+            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'idAnalizadoPor', 'paginacion'))->with('mensajeRojo', $mensaje);
         }
         else
         {
@@ -451,7 +453,7 @@ class GeneralController extends Controller
 
             $mensaje = 'La información de Documentos visualizada está filtrada por algunos campos que contienen el texto [ ' . $filtro . ' ]... ';
 
-            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'))->with('mensajeVerde', $mensaje);
+            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'idAnalizadoPor', 'paginacion'))->with('mensajeVerde', $mensaje);
 
         }
 
@@ -500,6 +502,7 @@ class GeneralController extends Controller
 
         $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
         $idDocumentos = Documento::select('id')->get();
+        $idAnalizadoPor = Documento::select('idAnalizadoPor')->whereNotNull('idAnalizadoPor')->distinct()->get();
 
         $filtros = array();
 
@@ -519,21 +522,26 @@ class GeneralController extends Controller
 
         if ($procesoDocumento != -1) 
         {
-            $filtros['procesoDocumento'] = $procesoDocumento;
+            $filtros['revisado'] = $procesoDocumento;
             $contieneFiltros = true;
         } 
 
-        if ($estadoDocumento != -1) 
+        if ($estadoDocumento != -2) 
         {
-            $filtros['estadoDocumento'] = $estadoDocumento;
+            $filtros['aprobado'] = $estadoDocumento;
             $contieneFiltros = true;
         } 
 
-        if ($analizadoPor != -1) 
+        if ($analizadoPor > 0) 
         {
-            $filtros['analizadoPor'] = $analizadoPor;
+            $filtros['idAnalizadoPor'] = $analizadoPor;
             $contieneFiltros = true;
-        } 
+        }
+        else{
+            if ($analizadoPor == -2) {
+                $contieneFiltros = true;
+            }
+        }
 
         if ($fechaInicial != null) 
         {
@@ -545,6 +553,8 @@ class GeneralController extends Controller
             $contieneFiltros = true;
         }
 
+        
+
         if ($contieneFiltros == false)
         {
 
@@ -552,7 +562,7 @@ class GeneralController extends Controller
             $documentos = Documento::paginate(10);
             $paginacion = 'si';
 
-            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'))->with('mensajeRojo', $mensaje);
+            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'idAnalizadoPor', 'paginacion'))->with('mensajeRojo', $mensaje);
 
         }
         else
@@ -560,23 +570,41 @@ class GeneralController extends Controller
 
             if (($fechaInicial == null) && ($fechaFinal == null)) 
             {
-                $documentos = Documento::where($filtros)->get();
+                if ($analizadoPor >= -1) {
+
+                    $documentos = Documento::where($filtros)->get(); 
+
+                }
+                else if ($analizadoPor == -2) {
+
+                    $documentos = Documento::where($filtros)->whereNull('idAnalizadoPor')->get();
+                }
+
+                else{
+
+                }
+
+                
             }
             else
             {
+                
+
                 if (($fechaInicial != null) && ($fechaInicial != null)) 
                 {
-                    $documentos = Perfil::where($filtros)
+                    $documentos = Documento::where($filtros)
                                 ->whereDate($fechaDe,'>=', $fechaInicial)
                                 ->whereDate($fechaDe,'<=', $fechaFinal)
                                 ->get();
+
                 }
              }
 
             $mensaje = 'Se aplicaron filtros...'; 
+
             $paginacion = 'no';
 
-            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'))->with('mensajeVerde', $mensaje);
+            return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'idAnalizadoPor', 'paginacion'))->with('mensajeVerde', $mensaje);
 
         }
 
@@ -588,9 +616,10 @@ class GeneralController extends Controller
         $documentos = Documento::paginate(10);
         $cboIdSolicitud = Documento::select('idSolicitud')->distinct()->get();
         $idDocumentos = Documento::select('id')->get();
+        $idAnalizadoPor = Documento::select('idAnalizadoPor')->whereNotNull('idAnalizadoPor')->distinct()->get();
         $paginacion = 'si';
 
-        return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'paginacion'));
+        return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'idAnalizadoPor', 'paginacion'));
 
     }
 
