@@ -1,7 +1,7 @@
 @if($tipo == 'modal')
     <div class="col-md-2">
         <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#eliminar-solicitud-{{ $fila->id }}">
-            <img src="{{ asset('icons/trash.svg') }}" alt="Eliminar solicitud" width="36" height="36" title="Eliminar solicitud" />
+            <img src="{{ asset('icons/trash.svg') }}" alt="Eliminar solicitud" width="32" height="32" title="Eliminar solicitud" />
         </a>
     </div>
 
@@ -12,7 +12,7 @@
 
 @if($tipo == 'acciones')
     <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#eliminar-solicitud-{{ $fila->id }}">
-        <img src="{{ asset('icons/trash.svg') }}" alt="Eliminar solicitud" width="36" height="36" title="Eliminar solicitud" />
+        <img src="{{ asset('icons/trash.svg') }}" alt="Eliminar solicitud" width="32" height="32" title="Eliminar solicitud" />
     </a>
 @endif
 

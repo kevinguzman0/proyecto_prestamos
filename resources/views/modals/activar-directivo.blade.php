@@ -1,6 +1,6 @@
 <div class="col-md-2">
     <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#activar-directivo-{{ $fila->id }}">
-        <img src="{{ asset('icons/bookmark.svg') }}" alt="Convertir en Directivo" width="36" height="36" title="Convertir en Directivo" />
+        <img src="{{ asset('icons/bookmark.svg') }}" alt="Convertir en Directivo" width="32" height="32" title="Convertir en Directivo" />
     </a>
 </div>
 

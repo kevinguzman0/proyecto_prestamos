@@ -1,6 +1,6 @@
 <div class="col-md-2">
     <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#desactivar-directivo-{{ $fila->id }}">
-        <img src="{{ asset('icons/person.svg') }}" alt="Retirar permiso de Directivo" width="36" height="36" title="Retirar permiso de Directivo" />
+        <img src="{{ asset('icons/person.svg') }}" alt="Retirar permiso de Directivo" width="32" height="32" title="Retirar permiso de Directivo" />
     </a>
 </div>
 

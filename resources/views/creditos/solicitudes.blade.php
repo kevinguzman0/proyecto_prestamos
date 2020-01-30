@@ -96,7 +96,7 @@
 
 								@if($fila->idEstadoSolicitud <= 3)
 									<a class="btn btn-link link-tabla boton-acciones" href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">
-										<img src="{{ asset('icons/documents.svg') }}" alt="Documentos" width="36" height="36" title="Documentos">
+										<img src="{{ asset('icons/documents.svg') }}" alt="Documentos" width="32" height="32" title="Documentos">
 									</a>
 								@endif
 

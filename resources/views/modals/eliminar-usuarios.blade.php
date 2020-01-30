@@ -1,5 +1,5 @@
 <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#eliminar-usuario-{{ $fila->id }}">
-    <img src="{{ asset('icons/trash.svg') }}" alt="Eliminar usuario" width="36" height="36" title="Eliminar usuario" />
+    <img src="{{ asset('icons/trash.svg') }}" alt="Eliminar usuario" width="32" height="32" title="Eliminar usuario" />
 </a>
 
 <div id="eliminar-usuario-{{ $fila->id }}" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true">

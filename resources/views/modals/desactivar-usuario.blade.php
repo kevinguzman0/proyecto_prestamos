@@ -1,6 +1,6 @@
 <div class="col-md-2">
     <a href="#" class="btn btn-link link-tabla boton-acciones" data-toggle="modal" data-target="#desactivar-usuario-{{ $fila->id }}">
-        <img src="{{ asset('icons/toggle-off.svg') }}" alt="Desactivar usuario" width="36" height="36" title="Desactivar usuario" />
+        <img src="{{ asset('icons/toggle-off.svg') }}" alt="Desactivar usuario" width="32" height="32" title="Desactivar usuario" />
     </a>
 </div>
 
