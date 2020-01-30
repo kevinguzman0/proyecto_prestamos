@@ -155,6 +155,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 		Route::post('perfiles/filtrado', 'GeneralController@filtrosPerfiles')->name('perfiles.filtrar');
 
+		Route::post('usuarios/busqueda', 'GeneralController@buscadorUsuarios')->name('usuarios.buscar');
+
+		Route::post('usuarios', 'GeneralController@todosUsuarios')->name('usuarios.todos');
+
+		Route::post('usuarios/filtrado', 'GeneralController@filtrosUsuarios')->name('usuarios.filtrar');
+
 		Route::middleware('role:directivo')->group(function () {
 
 			Route::get('solicitudes', 'GeneralController@tablaSolicitudes')->name('solicitudes.tabla');

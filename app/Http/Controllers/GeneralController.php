@@ -22,7 +22,7 @@ class GeneralController extends Controller
 
         $perfiles = Perfil::paginate(10);
         $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
-        $idPerfiles = Perfil::distinct()->get();
+        $idPerfiles = Perfil::select('id')->get();
         $paginacion = 'si';
 
         return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'));
@@ -33,7 +33,10 @@ class GeneralController extends Controller
     {
 
         $usuarios = User::paginate(10);
-        return view('general.tablaUsuarios', compact('usuarios'));
+        $idUsuarios = User::select('id')->get();
+        $paginacion = 'si';
+
+        return view('general.tablaUsuarios', compact('usuarios', 'idUsuarios', 'paginacion'));
 
     }
 
@@ -86,7 +89,7 @@ class GeneralController extends Controller
 
         $filtro = $request->filtro;
         $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
-        $idPerfiles = Perfil::distinct()->get();
+        $idPerfiles = Perfil::select('id')->get();
         $paginacion = 'no';
 
         if (!$filtro)
@@ -165,7 +168,7 @@ class GeneralController extends Controller
         }
 
         $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
-        $idPerfiles = Perfil::distinct()->get();
+        $idPerfiles = Perfil::select('id')->get();
 
         $filtros = array();
 
@@ -221,8 +224,8 @@ class GeneralController extends Controller
                 if (($fechaInicial != null) && ($fechaInicial != null)) 
                 {
                     $perfiles = Perfil::where($filtros)
-                                ->whereDate($fechaDe,'>=', $fechaInicial)
-                                ->whereDate($fechaDe,'<=', $fechaFinal)
+                                ->whereDate($fechaDe, '>=', $fechaInicial)
+                                ->whereDate($fechaDe, '<=', $fechaFinal)
                                 ->get();
                 }
              }
@@ -243,10 +246,174 @@ class GeneralController extends Controller
 
         $perfiles = Perfil::paginate(10);
         $cboEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
-        $idPerfiles = Perfil::distinct()->get();
+        $idPerfiles = Perfil::select('id')->get();
         $paginacion = 'si';
 
         return view('general.tablaPerfiles', compact('perfiles', 'cboEstadosPerfil', 'idPerfiles', 'paginacion'));
+    }
+
+    public function buscadorUsuarios(Request $request)
+    {
+
+        $filtro = $request->filtro;
+        $idUsuarios = User::select('id')->get();
+        $paginacion = 'no';
+
+        if (!$filtro)
+        {
+            $mensaje = 'No se han recibido criterios de búsqueda con el filtro. Pruebe con otra búsqueda...'; 
+            $usuarios = User::paginate(10);
+            return view('general.tablaUsuarios', compact('usuarios', 'idUsuarios', 'paginacion'))->with('mensajeRojo', $mensaje);
+        }
+        else
+        {
+
+            Builder::macro('whereLike', function($attributes, string $searchTerm) {
+                foreach(Arr::wrap($attributes) as $attribute) {
+                    $this->orWhere($attribute, 'LIKE', "%{$searchTerm}%");
+                }
+                return $this;
+            });
+
+            $usuarios = User::whereLike(['name', 
+                                         'email'], $filtro)
+                        ->get();
+
+            $mensaje = 'La información de Usuarios visualizada está filtrada por algunos campos que contienen el texto [ ' . $filtro . ' ]... ';
+
+            return view('general.tablaUsuarios', compact('usuarios', 'idUsuarios', 'paginacion'))->with('mensajeVerde', $mensaje);
+
+        }
+
+    }
+
+    public function filtrosUsuarios(Request $request)
+    {
+        
+        $id = $request->cboIdUsuarios;
+        $verificacionEmail = $request->verificacionEmail;
+
+        $fechaDe = $request->cboFechaDe;
+        $fInicial = $request->fechaInicial;
+        $fFinal = $request->fechaFinal;
+
+        $fechaInicial = $fInicial;
+        $fechaFinal = $fFinal;
+
+        if (($fInicial != null) && ($fFinal != null)) 
+        {
+            if ($fInicial < $fFinal)
+            {
+                $fechaInicial = $fInicial;
+                $fechaFinal = $fFinal;
+            }
+            else
+            {
+                $fechaInicial = $fFinal;
+                $fechaFinal = $fInicial;
+            }
+        }
+
+        if (($fInicial == null) && ($fFinal != null)) 
+        {
+            $fechaInicial = $fFinal;
+        }
+
+        if (($fInicial != null) && ($fFinal == null)) 
+        {
+            $fechaFinal = $fInicial;
+        }
+
+        $idUsuarios = User::select('id')->get();
+
+        $filtros = array();
+
+        $contieneFiltros = false;
+
+        if ($id != -1)
+        {
+            $filtros['id'] = $id; 
+            $contieneFiltros = true;
+        }
+
+        if ($verificacionEmail != -1) 
+        {
+            $contieneFiltros = true;
+        } 
+
+        if ($fechaInicial != null) 
+        {
+            $contieneFiltros = true;
+        } 
+
+        if ($fechaFinal != null) 
+        {
+            $contieneFiltros = true;
+        }
+
+        if ($contieneFiltros == false)
+        {
+
+            $mensaje = 'No se han aplicado filtros...'; 
+            $usuarios = User::paginate(10);
+            $paginacion = 'si';
+
+            return view('general.tablaUsuarios', compact('usuarios', 'idUsuarios', 'paginacion'))->with('mensajeRojo', $mensaje);
+
+        }
+        else
+        {
+
+            if (($fechaInicial == null) && ($fechaFinal == null)) 
+            {
+                if ($verificacionEmail == -1)
+                {
+                    $usuarios = User::where($filtros)->get();
+                }
+                else
+                {
+                    if ($verificacionEmail == 0)
+                    {
+                        $usuarios = User::where($filtros)
+                                    ->whereNull('email_verified_at')
+                                    ->get();
+                    }
+                    else
+                    {
+                        $usuarios = User::where($filtros)
+                                    ->whereNotNull('email_verified_at')
+                                    ->get();
+                    }
+                }
+            }
+            else
+            {
+                if (($fechaInicial != null) && ($fechaInicial != null)) 
+                {
+                    $usuarios = User::where($filtros)
+                                ->whereDate($fechaDe, '>=', $fechaInicial)
+                                ->whereDate($fechaDe, '<=', $fechaFinal)
+                                ->get();
+                }
+             }
+
+            $mensaje = 'Se aplicaron filtros...'; 
+            $paginacion = 'no';
+
+            return view('general.tablaUsuarios', compact('usuarios', 'idUsuarios', 'paginacion'))->with('mensajeVerde', $mensaje);
+
+        }
+
+    }
+
+    public function todosUsuarios()
+    {
+
+        $usuarios = User::paginate(10);
+        $idUsuarios = User::select('id')->get();
+        $paginacion = 'si';
+
+        return view('general.tablaUsuarios', compact('usuarios', 'idUsuarios', 'paginacion'));
     }
 
 }
