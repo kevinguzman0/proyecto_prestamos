@@ -191,6 +191,7 @@ class CreditoController extends Controller
 
                 $documento = new Documento;
                 $documento->idSolicitud = $idSolicitud;
+                $documento->idCliente = auth()->user()->id;
                 $documento->archivoOriginal = $originalFile;
                 $documento->descripcionDocumento = $request->descripcionDocumento;
                 $documento->revisado = false;

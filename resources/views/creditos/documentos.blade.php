@@ -165,7 +165,7 @@
 			            <label></label>
 			            <input type="submit" value="Grabar" name="btnGrabarUser" class="form-control btn btn-info">
 	            	</div>
-	            	
+
 	            	<div class="col-md-6">
 
 			            <label></label>

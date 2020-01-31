@@ -34,7 +34,7 @@
 
 				    <div class="col-md-2">
 
-				      	<input type="submit" value="Mostrar todos" name="btnMostrarTodos" formaction="{{ action('GeneralController@todosDocumentos') }}" class="form-control btn btn-success">
+				      	<input type="submit" value="Mostrar todos" name="btnMostrarTodos" formaction="{{ action('GeneralController@tablaDocumentos') }}" class="form-control btn btn-success">
 
 				    </div>
 
@@ -50,7 +50,7 @@
 
 			    	@isset($idDocumentos)
 
-					    <div class="col-md-2">
+					    <div class="col-md-3">
 
 					    	<label class="label-margin">Id Documento</label>
 					      	<select class="form-control" id="cboIdDocumentos" name="cboIdDocumentos">
@@ -68,7 +68,7 @@
 
 				  	@isset($cboIdSolicitud)
 
-					    <div class="col-md-2">
+					    <div class="col-md-3">
 
 					    	<label class="label-margin">Id Solicitud</label>
 					      	<select class="form-control" id="cboIdSolicitud" name="cboIdSolicitud">
@@ -84,7 +84,7 @@
 
 				    @endisset
 
-				    <div class="col-md-2">
+				    <div class="col-md-3">
 
 				    	<label class="label-margin">Revisión</label>
 				      	<select class="form-control" id="procesoDocumento" name="procesoDocumento">
@@ -97,7 +97,7 @@
 
 				    </div>
 
-				    <div class="col-md-2">
+				    <div class="col-md-3">
 
 				    	<label class="label-margin">Estado Documento</label>
 				      	<select class="form-control" id="estadoDocumento" name="estadoDocumento">
@@ -113,9 +113,9 @@
 
 				</div>
 
-			    <div class="form-row col-md-12 padding-form">
+	            <div class="form-row col-md-12 padding-form">
 
-			    	<div class="col-md-2">
+			    	<div class="col-md-6">
 
 				    	<label class="label-margin">Analizado por</label>
 				      	<select class="form-control" id="cboAnalizadoPor" name="cboAnalizadoPor">
@@ -123,16 +123,38 @@
 					      	<option value="-1">Todos</option>
 					      	<option value="-2">Sin analizar</option>
 
-
 					      	@foreach ($idAnalizadoPor as $item)
-					        	<option value="{{ $item->idAnalizadoPor }}">{{ $item->revisor->nombres }}</option>
+					        	<option value="{{ $item->idAnalizadoPor }}">
+					        		{{ $item->revisor->nombres }} {{ $item->revisor->apellidos }}
+					        	</option>
 						    @endforeach
 
 				      	</select>
 
 				    </div>
 
-				    <div class="col-md-2">
+			    	<div class="col-md-6">
+
+				    	<label class="label-margin">Cliente</label>
+				      	<select class="form-control" id="cboCliente" name="cboCliente">
+				      	
+					      	<option value="-1">Todos</option>
+
+					      	@foreach ($idClientes as $item)
+					        	<option value="{{ $item->idCliente }}">
+					        		{{ $item->cliente->nombres }} {{ $item->cliente->apellidos }}
+					        	</option>
+						    @endforeach
+
+				      	</select>
+
+				    </div>
+
+				</div>
+
+			    <div class="form-row col-md-12 padding-form">
+
+				    <div class="col-md-3">
 
 				    	<label class="label-margin">Fecha de</label>
 				      	<select class="form-control" id="cboFechaDe" name="cboFechaDe">

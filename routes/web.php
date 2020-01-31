@@ -151,25 +151,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 		Route::post('perfiles/busqueda', 'GeneralController@buscadorPerfiles')->name('perfiles.buscar');
 
-		Route::post('perfiles', 'GeneralController@todosPerfiles')->name('perfiles.todos');
+		Route::post('perfiles', 'GeneralController@tablaPerfiles')->name('perfiles.todos');
 
 		Route::post('perfiles/filtrado', 'GeneralController@filtrosPerfiles')->name('perfiles.filtrar');
 
 		Route::post('usuarios/busqueda', 'GeneralController@buscadorUsuarios')->name('usuarios.buscar');
 
-		Route::post('usuarios', 'GeneralController@todosUsuarios')->name('usuarios.todos');
+		Route::post('usuarios', 'GeneralController@tablaUsuarios')->name('usuarios.todos');
 
 		Route::post('usuarios/filtrado', 'GeneralController@filtrosUsuarios')->name('usuarios.filtrar');
 
 		Route::post('documentos/busqueda', 'GeneralController@buscadorDocumentos')->name('documentos.buscar');
 
-		Route::post('documentos', 'GeneralController@todosDocumentos')->name('documentos.todos');
+		Route::post('documentos', 'GeneralController@tablaDocumentos')->name('documentos.todos');
 
 		Route::post('documentos/filtrado', 'GeneralController@filtrosDocumentos')->name('documentos.filtrar');
 
 		Route::post('solicitudes/busqueda', 'GeneralController@buscadorSolicitudes')->name('solicitudes.buscar');
 
-		Route::post('solicitudes', 'GeneralController@todosSolicitudes')->name('solicitudes.todos');
+		Route::post('solicitudes', 'GeneralController@tablaSolicitudes')->name('solicitudes.todos');
 
 		Route::post('solicitudes/filtrado', 'GeneralController@filtrosSolicitudes')->name('solicitudes.filtrar');
 		

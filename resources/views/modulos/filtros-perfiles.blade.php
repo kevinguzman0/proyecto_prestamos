@@ -34,7 +34,7 @@
 
 				    <div class="col-md-2">
 
-				      	<input type="submit" value="Mostrar todos" name="btnMostrarTodos" formaction="{{ action('GeneralController@todosPerfiles') }}" class="form-control btn btn-success">
+				      	<input type="submit" value="Mostrar todos" name="btnMostrarTodos" formaction="{{ action('GeneralController@tablaPerfiles') }}" class="form-control btn btn-success">
 
 				        </div>
 
@@ -104,7 +104,7 @@
 
 			    <div class="form-row col-md-12 padding-form">
 
-				    <div class="col-md-2">
+				    <div class="col-md-3">
 
 				    	<label class="label-margin">Fecha de</label>
 				      	<select class="form-control" id="cboFechaDe" name="cboFechaDe">

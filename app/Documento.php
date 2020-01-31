@@ -10,6 +10,7 @@ class Documento extends Model
 
     protected $fillable = [
         'idSolicitud', 
+        'idCliente',
         'documento',
         'archivoOriginal',
         'descripcionDocumento', 
@@ -28,9 +29,12 @@ class Documento extends Model
 
     public function revisor()
     {
-    
         return $this->hasOne('App\Perfil', 'id', 'idAnalizadoPor')->withDefault(); 
-    
+    }
+
+    public function cliente()
+    {
+        return $this->hasOne('App\Perfil', 'id', 'idCliente')->withDefault(); 
     }
 
 }
