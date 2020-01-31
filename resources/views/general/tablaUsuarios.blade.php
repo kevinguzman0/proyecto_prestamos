@@ -75,12 +75,14 @@
 											@endif
 										</a>
 									@endif
-									
-									@if($fila->email_verified_at == null)
 
-										@include('modals.validar-usuarios')
-										
-									@endif
+									@hasanyrole('directivo')
+										@if($fila->email_verified_at == null)
+
+											@include('modals.validar-usuarios')
+											
+										@endif
+									@endhasanyrole
 
 								</td>						
 
