@@ -7,6 +7,9 @@ use Faker\Factory as Faker;
 use App\str_random;
 
 use App\User;
+use App\Solicitud;
+use App\Documento;
+use App\Perfil;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,8 +23,12 @@ class DatabaseSeeder extends Seeder
         $this->call(SpatieSeeder::class);
 
         $faker = Faker::create();
+
         $idCliente = random_int(\DB::table('users')->min('id'), \DB::table('users')->max('id'));
         $idEstadoSolicitud=random_int(\DB::table('estados_solicitud')->min('id'), \DB::table('estados_solicitud')->max('id'));
+
+        $idSolicitud = random_int(\DB::table('solicitudes')->min('id'), \DB::table('solicitudes')->max('id'));
+        $idSolicitudCliente = random_int(\DB::table('solicitudes')->min('idCliente'), \DB::table('solicitudes')->max('idCliente'));
 
         foreach (range(1,20) as $index) 
         {
@@ -37,8 +44,10 @@ class DatabaseSeeder extends Seeder
 
         }
 
-        foreach (range(1,50) as $solicitudes) {
-             DB::table('solicitudes')->insert([
+        foreach (range(1,50) as $index) {
+
+            $solicitud = Solicitud::create([
+
                 'idCliente' => $idCliente,
                 'idEstadoSolicitud' => $idEstadoSolicitud,
                 'monto' => $faker->numberBetween(1000, 72000000),
@@ -47,38 +56,52 @@ class DatabaseSeeder extends Seeder
                 'interes' => $faker->randomFloat(2, 1, 100),
                 'idAnalizadoPor' => $idCliente,
                 'analizadoEn' => $faker->optional()->dateTimeInInterval($startDate = '-1 years', $interval = '+ 5 days', $timezone = 'America/Bogota'),
+
             ]);
         }
 
-        /*
-        
-        $idUsers = DB::table('users')->pluck('id')->toArray();
-        $emailUsers = DB::table('users')->pluck('email')->toArray();
+        foreach (range(1,50) as $index) {
+        	
+        	$documentos = Documento::create([
 
-        foreach (range(1,10) as $index) 
+        		'idSolicitud' => $idSolicitud,
+        		'idCliente' => $idSolicitudCliente,
+        		'documento' => $faker->regexify('[A-Za-z0-9]{20}'),
+        		'archivoOriginal' => $faker->regexify('[A-Za-z0-9]{20}'),
+        		'descripcionDocumento' => $faker->regexify('[A-Za-z0-9]{100}'),
+        		'revisado' => $faker->numberBetween(0, 1),
+        		'aprobado' => $faker->numberBetween(-1, 1),
+        		'idAnalizadoPor' => $idCliente,
+        		'analizadoEn' => $faker->optional()->dateTimeInInterval($startDate = '-1 years', $interval = '+ 5 days', $timezone = 'America/Bogota'),
+
+        	]);
+
+        }        
+
+        foreach (range(1,20) as $index) 
         {
-            DB::table('perfiles')->insert([
-                'id' => $faker->randomElement($idUsers),
-                'idEstadoPerfil' => $faker->numberBetween($min = 1, $max = 5),
-                'cedula' => $faker->dni,
-                'nombres' => $faker->name,
-                'apellidos' => $faker->name,
-                'foto' => null,
-                'email' => $faker->randomElement($emailUsers),
-                'telefono1' => $faker->e164PhoneNumber,
-                'telefono2' => $faker->e164PhoneNumber, 
-                'fechaNacimiento' => $faker->optional()->dateTimeBetween($startDate = '-80 years', $endDate = '-18 years', $timezone = 'America/Bogota'),
-                'direccion' => $faker->streetAddress,
-                'barrio' => $faker->streetName,
-                'ciudad' => $faker->city,
-                'areaTrabajo' => $faker->catchPhrase,
-                'cargoTrabajo' => $faker->jobTitle,
-                'afiliadoFondo' => $faker->array_random([0, 1]),
+            $perfiles = Perfil::create([
+
+                'id' => $faker->$idCliente,
+                'idEstadoPerfil' => '$faker->numberBetween($min = 1, $max = 5)',
+                'cedula' => '$faker->numberBetween($min = 1, $max = 100000000)',	
+                'nombres' => '$faker->name',
+                'apellidos' => '$faker->lastName',
+                'foto' => '$faker->regexify("[A-Za-z0-9]{20}")',
+                'email' => '$faker->email',
+                'telefono1' => '$faker->e164PhoneNumber',
+                'telefono2' => '$faker->e164PhoneNumber', 
+                'fechaNacimiento' => $faker->dateTime($max = 'now', $timezone = null),
+                'direccion' => '$faker->streetAddress',
+                'barrio' => '$faker->streetName',
+                'ciudad' => '$faker->city',
+                'areaTrabajo' => '$faker->catchPhrase',
+                'cargoTrabajo' => '$faker->jobTitle',
+                'afiliadoFondo' => $faker->numberBetween(0, 1),
+
             ]);
         }
         
-        */
-
 	}
 
 }
