@@ -17,6 +17,7 @@ class CrearTablaDocumentos extends Migration
 
             $table->bigIncrements('id');
             $table->bigInteger('idSolicitud')->unsigned();
+            $table->bigInteger('idCliente')->unsigned();
             $table->string('documento', 100);
             $table->string('archivoOriginal');
             $table->string('descripcionDocumento');
