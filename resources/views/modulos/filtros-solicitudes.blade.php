@@ -173,12 +173,40 @@
 
 				    <div class="col-md-3">
 
+				    	<label class="label-margin">Valores de</label>
+				      	<select class="form-control" id="cboValorDe" name="cboValorDe">
+				      	
+					      	<option value="monto">Monto</option>
+					      	<option value="cuota">Cuota</option>
+					      	<option value="plazo">Plazo</option>
+
+				      	</select>
+
+				    </div>
+
+	                <div class="col-md-3">
+	                    <label class="label-margin">Valor inicial</label>
+	                    <input type="number" name="valorInicial" class="form-control">
+	                </div>
+
+	                <div class="col-md-3">
+	                    <label class="label-margin">Valor Final</label>
+	                    <input type="number" name="valorFinal" class="form-control">
+	                </div>
+
+				</div>
+
+			    <div class="form-row col-md-12 padding-form">
+
+				    <div class="col-md-3">
+
 				    	<label class="label-margin">Fecha de</label>
 				      	<select class="form-control" id="cboFechaDeSolicitud" name="cboFechaDe">
 				      	
 					      	<option value="created_at">Creación</option>
 					      	<option value="updated_at">Modificación</option>
 					      	<option value="analizadoEn">Análisis</option>
+
 				      	</select>
 
 				    </div>

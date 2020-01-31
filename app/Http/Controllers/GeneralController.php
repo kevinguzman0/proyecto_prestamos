@@ -182,6 +182,7 @@ class GeneralController extends Controller
         $filtros = array();
 
         $contieneFiltros = false;
+        $filtroConFechas = false;
 
         if ($id != -1)
         {
@@ -204,11 +205,13 @@ class GeneralController extends Controller
         if ($fechaInicial != null) 
         {
             $contieneFiltros = true;
+            $filtroConFechas = true;
         } 
 
         if ($fechaFinal != null) 
         {
             $contieneFiltros = true;
+            $filtroConFechas = true;
         }
 
         if ($contieneFiltros == false)
@@ -224,20 +227,16 @@ class GeneralController extends Controller
         else
         {
 
-            if (($fechaInicial == null) && ($fechaFinal == null)) 
-            {
-                $perfiles = Perfil::where($filtros)->get();
-            }
-            else
-            {
-                if (($fechaInicial != null) && ($fechaInicial != null)) 
-                {
-                    $perfiles = Perfil::where($filtros)
-                                ->whereDate($fechaDe, '>=', $fechaInicial)
-                                ->whereDate($fechaDe, '<=', $fechaFinal)
-                                ->get();
-                }
-             }
+            $perfiles = Perfil::where($filtros)
+                           ->where(function ($query) 
+                                 use ($fechaDe, $fechaInicial, $fechaFinal, $filtroConFechas) {   
+                                 if ($filtroConFechas)
+                                    {
+                                        $query->whereDate($fechaDe, '>=', $fechaInicial)
+                                              ->whereDate($fechaDe, '<=', $fechaFinal);
+                                    }
+                             })
+                           ->get();
 
             $mensaje = 'Se aplicaron filtros...'; 
             $paginacion = 'no';
@@ -324,6 +323,8 @@ class GeneralController extends Controller
         $filtros = array();
 
         $contieneFiltros = false;
+        $filtroConFechas = false;
+        $filtroConEmail = false;
 
         if ($id != -1)
         {
@@ -334,17 +335,22 @@ class GeneralController extends Controller
         if ($verificacionEmail != -1) 
         {
             $contieneFiltros = true;
+            $filtroConEmail = true;
         } 
 
         if ($fechaInicial != null) 
         {
             $contieneFiltros = true;
+            $filtroConFechas = true;
         } 
 
         if ($fechaFinal != null) 
         {
             $contieneFiltros = true;
+            $filtroConFechas = true;
         }
+
+        //dd($request, $filtros, $contieneFiltros);
 
         if ($contieneFiltros == false)
         {
@@ -359,38 +365,31 @@ class GeneralController extends Controller
         else
         {
 
-            if (($fechaInicial == null) && ($fechaFinal == null)) 
-            {
-                if ($verificacionEmail == -1)
-                {
-                    $usuarios = User::where($filtros)->get();
-                }
-                else
-                {
-                    if ($verificacionEmail == 0)
-                    {
-                        $usuarios = User::where($filtros)
-                                    ->whereNull('email_verified_at')
-                                    ->get();
-                    }
-                    else
-                    {
-                        $usuarios = User::where($filtros)
-                                    ->whereNotNull('email_verified_at')
-                                    ->get();
-                    }
-                }
-            }
-            else
-            {
-                if (($fechaInicial != null) && ($fechaInicial != null)) 
-                {
-                    $usuarios = User::where($filtros)
-                                ->whereDate($fechaDe, '>=', $fechaInicial)
-                                ->whereDate($fechaDe, '<=', $fechaFinal)
-                                ->get();
-                }
-             }
+            $usuarios = User::where($filtros)
+                           ->where(function ($query) 
+                                 use ($fechaDe, $fechaInicial, $fechaFinal, $filtroConFechas) {   
+                                 if ($filtroConFechas)
+                                    {
+                                        $query->whereDate($fechaDe, '>=', $fechaInicial)
+                                              ->whereDate($fechaDe, '<=', $fechaFinal);
+                                    }
+                             })
+                           ->where(function ($query) 
+                                 use ($filtroConEmail, $verificacionEmail) {
+                                 if ($filtroConEmail)
+                                    {
+                                        if ($verificacionEmail == 0)
+                                        {
+                                            $query->whereNull('email_verified_at');
+                                        }
+                                    
+                                        if ($verificacionEmail == 1)
+                                        {
+                                            $query->whereNotNull('email_verified_at');
+                                        }
+                                    }
+                             })
+                           ->get();
 
             $mensaje = 'Se aplicaron filtros...'; 
             $paginacion = 'no';
@@ -489,6 +488,8 @@ class GeneralController extends Controller
         $filtros = array();
 
         $contieneFiltros = false;
+        $filtroConFechas = false;
+        $filtroAnalizadoPor = false;
 
         if ($id != -1)
         {
@@ -522,6 +523,7 @@ class GeneralController extends Controller
         else{
             if ($analizadoPor == -2) {
                 $contieneFiltros = true;
+                $filtroAnalizadoPor = true;
             }
         }
 
@@ -534,11 +536,13 @@ class GeneralController extends Controller
         if ($fechaInicial != null) 
         {
             $contieneFiltros = true;
+            $filtroConFechas = true;
         } 
 
         if ($fechaFinal != null) 
         {
             $contieneFiltros = true;
+            $filtroConFechas = true;
         }
 
         if ($contieneFiltros == false)
@@ -554,37 +558,25 @@ class GeneralController extends Controller
         else
         {
 
-            if (($fechaInicial == null) && ($fechaFinal == null)) 
-            {
-
-                if ($analizadoPor >= -1) {
-
-                    $documentos = Documento::where($filtros)->get(); 
-
-                }
-                else if ($analizadoPor == -2) {
-
-                    $documentos = Documento::where($filtros)->whereNull('idAnalizadoPor')->get();
-
-                }
-               
-            }
-            else
-            {
-
-                if (($fechaInicial != null) && ($fechaInicial != null)) 
-                {
-                    
-                    $documentos = Documento::where($filtros)
-                                ->whereDate($fechaDe,'>=', $fechaInicial)
-                                ->whereDate($fechaDe,'<=', $fechaFinal)
-                                ->get();
-
-                }
-             }
+            $documentos = Documento::where($filtros)
+                           ->where(function ($query) 
+                                 use ($fechaDe, $fechaInicial, $fechaFinal, $filtroConFechas) {   
+                                 if ($filtroConFechas)
+                                    {
+                                        $query->whereDate($fechaDe, '>=', $fechaInicial)
+                                              ->whereDate($fechaDe, '<=', $fechaFinal);
+                                    }
+                             })
+                           ->where(function ($query) 
+                                 use ($filtroAnalizadoPor) {
+                                 if ($filtroAnalizadoPor)
+                                    {
+                                        $query->whereNull('idAnalizadoPor');
+                                    }
+                             })
+                           ->get();
 
             $mensaje = 'Se aplicaron filtros...'; 
-
             $paginacion = 'no';
 
             return view('general.tablaDocumentos', compact('documentos', 'cboIdSolicitud', 'idDocumentos', 'idAnalizadoPor', 'idClientes', 'paginacion'))->with('mensajeVerde', $mensaje);
@@ -674,6 +666,37 @@ class GeneralController extends Controller
             $fechaFinal = $fInicial;
         }        
 
+        $valorDe = $request->cboValorDe;
+        $vInicial = $request->valorInicial;
+        $vFinal = $request->valorFinal;
+
+        $valorInicial = $vInicial;
+        $valorFinal = $vFinal;
+
+        if (($vInicial != null) && ($vFinal != null)) 
+        {
+            if ($vInicial < $vFinal)
+            {
+                $valorInicial = $vInicial;
+                $valorFinal = $vFinal;
+            }
+            else
+            {
+                $valorInicial = $vFinal;
+                $valorFinal = $vInicial;
+            }
+        }
+
+        if (($vInicial == null) && ($vFinal != null)) 
+        {
+            $valorInicial = $vFinal;
+        }
+
+        if (($vInicial != null) && ($vFinal == null)) 
+        {
+            $valorFinal = $vInicial;
+        }        
+
         $cboIdClientes = Solicitud::select('idCliente')->distinct()->get();
         $idSolicitudes = Solicitud::select('id')->distinct()->get();
         $idEstadosSolicitudes = Solicitud::select('idEstadoSolicitud')->distinct()->get();
@@ -684,6 +707,8 @@ class GeneralController extends Controller
         $filtros = array();
 
         $contieneFiltros = false;
+        $filtroConFechas = false;
+        $filtroConNumeros = false;
 
         if ($id != -1)
         {
@@ -724,14 +749,26 @@ class GeneralController extends Controller
         if ($fechaInicial != null) 
         {
             $contieneFiltros = true;
+            $filtroConFechas = true;
         } 
 
         if ($fechaFinal != null) 
         {
             $contieneFiltros = true;
+            $filtroConFechas = true;
         }
 
-        //dd($filtros, $request);
+        if ($valorInicial != null) 
+        {
+            $contieneFiltros = true;
+            $filtroConNumeros = true;
+        } 
+
+        if ($valorFinal != null) 
+        {
+            $contieneFiltros = true;
+            $filtroConNumeros = true;
+        }
 
         if ($contieneFiltros == false)
         {
@@ -746,20 +783,24 @@ class GeneralController extends Controller
         else
         {
 
-            if (($fechaInicial == null) && ($fechaFinal == null)) 
-            {
-                $solicitudes = Solicitud::where($filtros)->get();
-            }
-            else
-            {
-                if (($fechaInicial != null) && ($fechaInicial != null)) 
-                {
-                    $solicitudes = Solicitud::where($filtros)
-                                ->whereDate($fechaDe,'>=', $fechaInicial)
-                                ->whereDate($fechaDe,'<=', $fechaFinal)
-                                ->get();
-                }
-             }
+            $solicitudes = Solicitud::where($filtros)
+                           ->where(function ($query) 
+                                 use ($fechaDe, $fechaInicial, $fechaFinal, $filtroConFechas) {   
+                                 if ($filtroConFechas)
+                                    {
+                                        $query->whereDate($fechaDe, '>=', $fechaInicial)
+                                              ->whereDate($fechaDe, '<=', $fechaFinal);
+                                    }
+                             })
+                           ->where(function ($query) 
+                                 use ($valorDe, $valorInicial, $valorFinal, $filtroConNumeros) {
+                                 if ($filtroConNumeros)
+                                    {
+                                        $query->where($valorDe, '>=', $valorInicial)
+                                              ->where($valorDe, '<=', $valorFinal);
+                                    }
+                             })
+                           ->get();
 
             $mensaje = 'Se aplicaron filtros...'; 
             $paginacion = 'no';
