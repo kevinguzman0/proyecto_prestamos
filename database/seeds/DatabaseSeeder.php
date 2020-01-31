@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(SpatieSeeder::class);
+        factory('App\User',20)->create();
     }
 }
