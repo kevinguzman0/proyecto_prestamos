@@ -11,18 +11,24 @@
 @section('content')
 	
 	<div class="row col-md-12">
+
         <h5>LISTADO GENERAL DE USUARIOS REGISTRADOS</h5>
+
+	    <div class="ml-auto">
+
+	 	    @if($paginacion == 'si')
+
+	    		{{ $usuarios->onEachSide(2)->links() }}
+
+			@endif
+
+		</div>
+
     </div>
 
-    <div class="row col-md-12 mb-3 mt-3">
+    <div class="row col-md-12">
 
     	@include('modulos.mensajes-tablas-generales')
-
- 	    @if($paginacion == 'si')
-
-    		{{ $usuarios->onEachSide(2)->links() }}
-
-		@endif
 
 		@include('modulos.filtros-usuarios')
 
