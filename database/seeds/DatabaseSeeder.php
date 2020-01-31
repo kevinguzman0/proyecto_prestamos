@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
     	$this->call(SpatieSeeder::class);
 
     	$faker = Faker::create('es_ES');
-        //$idCliente=DB::table('users')->pluck('id')->toArray();;
-        //$idEstadoSolicitud=DB::table('estados_solicitud')->pluck('id')->toArray();;
+        $idCliente = random_int(\DB::table('users')->min('id'), \DB::table('users')->max('id'));
+        $idEstadoSolicitud=random_int(\DB::table('estados_solicitud')->min('id'), \DB::table('estados_solicitud')->max('id'));
 
-    	foreach (range(1,10) as $index) {
+    	foreach (range(1,20) as $index) {
 	        DB::table('users')->insert([
 	            'name' => $faker->name,
 	            'email' => $faker->email,
@@ -32,15 +32,15 @@ class DatabaseSeeder extends Seeder
 	        ]);
     	}
 
-        foreach (range(1,10) as $solicitudes) {
+        foreach (range(1,50) as $solicitudes) {
              DB::table('solicitudes')->insert([
-                'idCliente' => random_int(\DB::table('users')->min('id'), \DB::table('users')->max('id')),
-                'idEstadoSolicitud' => random_int(\DB::table('estados_solicitud')->min('id'), \DB::table('estados_solicitud')->max('id')),
+                'idCliente' => $idCliente,
+                'idEstadoSolicitud' => $idEstadoSolicitud,
                 'monto' => $faker->numberBetween(1000, 72000000),
                 'plazo' => $faker->numberBetween(1, 48),
                 'cuota' => $faker->randomFloat(2, 1, 100),
                 'interes' => $faker->randomFloat(2, 1, 100),
-                'idAnalizadoPor' =>random_int(\DB::table('users')->min('id'), \DB::table('users')->max('id')),
+                'idAnalizadoPor' => $idCliente,
                 'analizadoEn' => $faker->optional()->dateTimeInInterval($startDate = '-1 years', $interval = '+ 5 days', $timezone = 'America/Bogota'),
             ]);
         }
