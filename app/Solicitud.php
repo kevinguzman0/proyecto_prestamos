@@ -24,20 +24,20 @@ class Solicitud extends Model
 
     public function estado()
     {
-       return $this->hasOne('App\EstadoSolicitud', 'id', 'idEstadoSolicitud')->withDefault();
+       return $this->hasOne('App\EstadoSolicitud', 'id', 'idEstadoSolicitud');
     }  
 
 	public function cliente()
 	{
 	
-		return $this->hasOne('App\Perfil', 'id', 'idCliente')->withDefault();
+		return $this->hasOne('App\Perfil', 'id', 'idCliente');
 	
 	}
 
     public function revisor()
     {
     
-        return $this->hasOne('App\Perfil', 'id', 'idAnalizadoPor')->withDefault();
+        return $this->hasOne('App\Perfil', 'id', 'idAnalizadoPor');
     
     }
 
