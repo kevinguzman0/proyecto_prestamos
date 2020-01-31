@@ -24,10 +24,12 @@ class DatabaseSeeder extends Seeder
 	        DB::table('users')->insert([
 	            'name' => $faker->name,
 	            'email' => $faker->email,
-	            'email_verified_at' => now(),
+	            'email_verified_at' => $faker->optional()->dateTimeInInterval($startDate = '-1 years', $interval = '+ 5 days', $timezone = 'America/Bogota'),
 	            'password' => bcrypt('secret'),
 	            'remember_token' => str_random(10),
 	        ]);
     	}
 	}
+
+    }
 }
