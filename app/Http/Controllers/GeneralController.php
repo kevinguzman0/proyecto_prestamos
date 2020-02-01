@@ -63,7 +63,7 @@ class GeneralController extends Controller
         $idSolicitudes = Documento::select('idSolicitud')->distinct()->get();
         $idDocumentos = Documento::select('id')->get();
         $idAnalizadosPor = Documento::select('idAnalizadoPor')->whereNotNull('idAnalizadoPor')->distinct()->get();
-        $idClientes = Documento::distinct('idCliente')->get();
+        $idClientes = Documento::select('idCliente')->distinct()->get();
         $paginacion = 'si';
 
         return view('general.tablaDocumentos', compact('documentos', 'idSolicitudes', 'idDocumentos', 'idAnalizadosPor', 'idClientes', 'paginacion'));
@@ -482,7 +482,7 @@ class GeneralController extends Controller
         $idSolicitudes = Documento::select('idSolicitud')->distinct()->get();
         $idDocumentos = Documento::select('id')->get();
         $idAnalizadosPor = Documento::select('idAnalizadoPor')->whereNotNull('idAnalizadoPor')->distinct()->get();
-        $idClientes = Documento::distinct('idCliente')->get();
+        $idClientes = Documento::select('idCliente')->distinct()->get();
         $paginacion = 'no';
 
         if (!$filtro)
@@ -558,7 +558,7 @@ class GeneralController extends Controller
         $idSolicitudes = Documento::select('idSolicitud')->distinct()->get();
         $idDocumentos = Documento::select('id')->get();
         $idAnalizadoPor = Documento::select('idAnalizadoPor')->whereNotNull('idAnalizadoPor')->distinct()->get();
-        $idClientes = Documento::distinct('idCliente')->get();
+        $idClientes = Documento::select('idCliente')->distinct()->get();
 
         $filtros = array();
 
