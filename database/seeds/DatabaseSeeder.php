@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $faker->userName,
                 'email' => $faker->email,
                 'email_verified_at' => $faker->optional()->dateTimeInInterval($startDate = '-1 years', $interval = '+ 5 days', $timezone = 'America/Bogota'),
-                'password' => bcrypt('secret'),
+                'password' => bcrypt('12345678'),
                 'remember_token' => null,
                 'created_at' => $faker->dateTimeInInterval($startDate = '-1 years', $interval = '+ 5 days', $timezone = 'America/Bogota'),
                 'updated_at' => $faker->dateTimeInInterval($startDate = '-1 years', $interval = '+ 5 days', $timezone = 'America/Bogota'),

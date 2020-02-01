@@ -54,6 +54,14 @@ class Handler extends ExceptionHandler
             abort(404, $mensajeError);
         }
 
+        if ($exception instanceof \ErrorException) 
+        {
+
+            $mensajeError = 'Atención, ha ocurrido un error controlado pero no clasificado con el sistema o con la Base de Datos. No podrá hacer uso de esta sección específica del sistema pero el resto estará disponible. Tome una foto de la pantalla completa y contáctese con el administrador del sistema para revisar y corregir esta anomalía del Sistema.';
+            abort(404, $mensajeError);
+
+        }
+
         return parent::render($request, $exception);
 
     }

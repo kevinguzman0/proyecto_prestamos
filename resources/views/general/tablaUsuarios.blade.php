@@ -43,6 +43,7 @@
 							<th class="header-tabla-texto">Id</th>
 							<th class="header-tabla-texto">Usuario</th>
 							<th class="header-tabla-texto">Email</th>
+							<th class="header-tabla-texto">Perfil</th>
 							<th class="header-tabla-texto">Acciones</th>
 						</tr>
 
@@ -57,6 +58,16 @@
 								<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
 								<td style="text-align:left;"> {{ $fila->name }} </td>
 								<td style="text-align:left;"> {{ $fila->email }} </td>
+
+								<td style="text-align: center;">
+
+									@if(App\User::find($fila->id)->perfil == null)
+										Sin registrar
+									@else
+										Registrado
+									@endif
+
+								</td>
 
 								<td style="text-align:left;">
 
@@ -73,21 +84,23 @@
 									@endhasanyrole
 
 									@if (!Auth::user()->hasAnyRole('administrador'))
-										<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
-											@if(App\User::find($fila->id)->perfil != null)
-												<img src="{{ asset('icons/person-fill.svg') }}" alt="Ver perfil" width="32" height="32" title="Ver perfil">
-											@else
-												<img src="{{ asset('icons/camera.svg') }}" alt="Crear perfil" width="32" height="32" title="Crear perfil">
-											@endif
-										</a>
+
+										@if(App\User::find($fila->id)->perfil != null)
+											<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
+													<img src="{{ asset('icons/person-fill.svg') }}" alt="Ver perfil" width="32" height="32" title="Ver perfil">
+											</a>
+										@endif
+
 									@endif
 
 									@hasanyrole('directivo')
+
 										@if($fila->email_verified_at == null)
 
 											@include('modals.validar-usuarios')
 											
 										@endif
+
 									@endhasanyrole
 
 								</td>						

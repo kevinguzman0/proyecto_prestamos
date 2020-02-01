@@ -4,128 +4,129 @@
 	</button>
 </p>
 
-<div class="form-row col-md-12 padding-form">		
+<div class="collapse col-md-12 mb-3" id="seccionFiltros">
 
-	<div class="collapse col-md-12 mb-3" id="seccionFiltros">
+	<div class="card card-body">
 
-		<div class="card card-body">
+		<form class="col-md-12 padding-form" method="POST">
 
-			<form class="col-md-12 padding-form" method="POST">
+            @csrf
 
-	            @csrf
+            <div class="form-row col-md-12 padding-form">
+            	
+			    <div class="input-group col-md-10">
 
-	            <div class="form-row col-md-12 padding-form">
-	            	
-				    <div class="input-group col-md-10">
+			    	<input type="text" name="filtro" class="form-control" placeholder="escriba texto a buscar...">
 
-				    	<input type="text" name="filtro" class="form-control" placeholder="escriba texto a buscar...">
+			  		<div class="input-group-append">
 
-				  		<div class="input-group-append">
+				      	<button class="btn btn-dark" type="submit" name="btnBuscar"  formaction="{{ action('GeneralController@buscadorDocumentos') }}">
 
-					      	<button class="btn btn-dark" type="submit" name="btnBuscar"  formaction="{{ action('GeneralController@buscadorDocumentos') }}">
+				        	Buscar
 
-					        	Buscar
-
-					      	</button>
-
-					    </div>
+				      	</button>
 
 				    </div>
 
-				    <div class="col-md-2">
+			    </div>
 
-				      	<input type="submit" value="Mostrar todos" name="btnMostrarTodos" formaction="{{ action('GeneralController@tablaDocumentos') }}" class="form-control btn btn-success">
+			    <div class="col-md-2">
 
-				    </div>
+			      	<input type="submit" value="Mostrar todos" name="btnMostrarTodos" formaction="{{ action('GeneralController@tablaDocumentos') }}" class="form-control btn btn-success">
 
-	            </div>
+			    </div>
 
-			</form>
+            </div>
 
-			<form class="col-md-12 padding-form" method="POST">
+		</form>
 
-	            @csrf
+		<form class="col-md-12 padding-form" method="POST">
 
-			    <div class="form-row col-md-12 padding-form">
+            @csrf
 
-			    	@isset($idDocumentos)
+		    <div class="form-row col-md-12 padding-form">
 
-					    <div class="col-md-3">
-
-					    	<label class="label-margin">Id Documento</label>
-					      	<select class="form-control" id="cboIdDocumentos" name="cboIdDocumentos">
-					      	
-						      	<option value="-1">Todos</option>
-						      	@foreach ($idDocumentos as $item)
-							        <option value="{{ $item->id }}">{{ $item->id }}</option>
-							    @endforeach
-
-					      	</select>
-
-					    </div>
-
-				    @endisset
-
-				  	@isset($cboIdSolicitud)
-
-					    <div class="col-md-3">
-
-					    	<label class="label-margin">Id Solicitud</label>
-					      	<select class="form-control" id="cboIdSolicitud" name="cboIdSolicitud">
-
-						      	<option value="-1">Todos</option>
-						      	@foreach ($cboIdSolicitud as $item)
-							        <option value="{{ $item->idSolicitud }}">{{ $item->idSolicitud }}</option>
-							    @endforeach
-
-					      	</select>
-
-					    </div>
-
-				    @endisset
+		    	@isset($idDocumentos)
 
 				    <div class="col-md-3">
 
-				    	<label class="label-margin">Revisión</label>
-				      	<select class="form-control" id="procesoDocumento" name="procesoDocumento">
+				    	<label class="label-margin">Id Documento</label>
+				      	<select class="form-control" id="idDocumento" name="idDocumento">
 				      	
 					      	<option value="-1">Todos</option>
-					      	<option value="1">Revisado</option>
-					      	<option value="0">Sin revisar</option>
+					      	@foreach ($idDocumentos as $item)
+						        <option value="{{ $item->id }}">{{ $item->id }}</option>
+						    @endforeach
 
 				      	</select>
 
 				    </div>
+
+			    @endisset
+
+			  	@isset($idSolicitudes)
 
 				    <div class="col-md-3">
 
-				    	<label class="label-margin">Estado Documento</label>
-				      	<select class="form-control" id="estadoDocumento" name="estadoDocumento">
-				      	
-					      	<option value="-2">Todos</option>
-					      	<option value="-1">Sin revisar</option>
-					      	<option value="1">Aprobado</option>
-					      	<option value="0">Rechazado</option>
+				    	<label class="label-margin">Id Solicitud</label>
+				      	<select class="form-control" id="idSolicitud" name="idSolicitud">
+
+					      	<option value="-1">Todos</option>
+					      	@foreach ($idSolicitudes as $item)
+						        <option value="{{ $item->idSolicitud }}">{{ $item->idSolicitud }}</option>
+						    @endforeach
 
 				      	</select>
 
 				    </div>
 
-				</div>
+			    @endisset
 
-	            <div class="form-row col-md-12 padding-form">
+			    <div class="col-md-3">
+
+			    	<label class="label-margin">Revisión</label>
+			      	<select class="form-control" id="procesoDocumento" name="procesoDocumento">
+			      	
+				      	<option value="-1">Todos</option>
+				      	<option value="1">Revisado</option>
+				      	<option value="0">Sin revisar</option>
+
+			      	</select>
+
+			    </div>
+
+			    <div class="col-md-3">
+
+			    	<label class="label-margin">Estado Documento</label>
+			      	<select class="form-control" id="estadoDocumento" name="estadoDocumento">
+			      	
+				      	<option value="-2">Todos</option>
+				      	<option value="-1">Sin revisar</option>
+				      	<option value="1">Aprobado</option>
+				      	<option value="0">Rechazado</option>
+
+			      	</select>
+
+			    </div>
+
+			</div>
+
+            <div class="form-row col-md-12 padding-form">
+
+			  	@isset($idAnalizadosPor)
 
 			    	<div class="col-md-6">
 
 				    	<label class="label-margin">Analizado por</label>
-				      	<select class="form-control" id="cboAnalizadoPor" name="cboAnalizadoPor">
+				      	<select class="form-control" id="idAnalizadoPor" name="idAnalizadoPor">
 				      	
 					      	<option value="-1">Todos</option>
 					      	<option value="-2">Sin analizar</option>
 
-					      	@foreach ($idAnalizadoPor as $item)
+					      	@foreach ($idAnalizadosPor as $item)
 					        	<option value="{{ $item->idAnalizadoPor }}">
-					        		{{ $item->revisor->nombres }} {{ $item->revisor->apellidos }}
+					        		{{ optional($item->revisor)->nombres }} 
+					        		{{ optional($item->revisor)->apellidos }}
 					        	</option>
 						    @endforeach
 
@@ -133,16 +134,20 @@
 
 				    </div>
 
+			    @endisset
+
+			  	@isset($idClientes)
+
 			    	<div class="col-md-6">
 
 				    	<label class="label-margin">Cliente</label>
-				      	<select class="form-control" id="cboCliente" name="cboCliente">
+				      	<select class="form-control" id="idCliente" name="idCliente">
 				      	
 					      	<option value="-1">Todos</option>
 
 					      	@foreach ($idClientes as $item)
 					        	<option value="{{ $item->idCliente }}">
-					        		{{ $item->cliente->nombres }} {{ $item->cliente->apellidos }}
+					        		{{ optional($item->cliente)->nombres }} {{ optional($item->cliente)->apellidos }}
 					        	</option>
 						    @endforeach
 
@@ -150,45 +155,45 @@
 
 				    </div>
 
-				</div>
+			    @endisset
 
-			    <div class="form-row col-md-12 padding-form">
+			</div>
 
-				    <div class="col-md-3">
+		    <div class="form-row col-md-12 padding-form">
 
-				    	<label class="label-margin">Fecha de</label>
-				      	<select class="form-control" id="cboFechaDe" name="cboFechaDe">
-				      	
-					      	<option value="created_at">Creación</option>
-					      	<option value="updated_at">Modificación</option>
-					      	<option value="analizadoEn">Analisis</option>
+			    <div class="col-md-3">
 
-				      	</select>
+			    	<label class="label-margin">Fecha de</label>
+			      	<select class="form-control" id="cboFechaDe" name="cboFechaDe">
+			      	
+				      	<option value="created_at">Creación</option>
+				      	<option value="updated_at">Modificación</option>
+				      	<option value="analizadoEn">Analisis</option>
 
-				    </div>
+			      	</select>
 
-	                <div class="col-md-3">
-	                    <label class="label-margin">Fecha inicial</label>
-	                    <input type="date" name="fechaInicial" class="form-control">
-	                </div>
+			    </div>
 
-	                <div class="col-md-3">
-	                    <label class="label-margin">Fecha Final</label>
-	                    <input type="date" name="fechaFinal" class="form-control">
-	                </div>
+                <div class="col-md-3">
+                    <label class="label-margin">Fecha inicial</label>
+                    <input type="date" name="fechaInicial" class="form-control">
+                </div>
 
-					<div class="col-md-2 ml-auto">
+                <div class="col-md-3">
+                    <label class="label-margin">Fecha Final</label>
+                    <input type="date" name="fechaFinal" class="form-control">
+                </div>
 
-			      		<label class="label-margin"></label>
-			      		<input type="submit" value="Filtrar" name="btnFiltrar" formaction="{{ action('GeneralController@filtrosDocumentos') }}" class="form-control btn btn-dark boton-filtrar">
+				<div class="col-md-2 ml-auto">
 
-			      	</div>
+		      		<label class="label-margin"></label>
+		      		<input type="submit" value="Filtrar" name="btnFiltrar" formaction="{{ action('GeneralController@filtrosDocumentos') }}" class="form-control btn btn-dark boton-filtrar">
 
-				</div>
-			
-			</form>	
+		      	</div>
 
-		</div>
+			</div>
+		
+		</form>	
 
 	</div>
 

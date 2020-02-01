@@ -11,18 +11,24 @@
 @section('content')
 	
 	<div class="row col-md-12">
+
         <h5>LISTADO GENERAL DE PERFILES</h5>
+
+	    <div class="ml-auto">
+
+	 	    @if($paginacion == 'si')
+
+	    		{{ $perfiles->onEachSide(2)->links() }}
+
+			@endif
+
+		</div>
+
     </div>
 
     <div class="row col-md-12 mt-3">
 
     	@include('modulos.mensajes-tablas-generales')
-
-	    @if($paginacion == 'si')
-
-    		{{ $perfiles->onEachSide(2)->links() }}
-
-		@endif
 
 		@include('modulos.filtros-perfiles')
 
@@ -53,7 +59,7 @@
 						    <tr>
 
 								<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-								<td style="text-align:center;"> {{ $fila->estado->nombreEstado }} </td>
+								<td style="text-align:center;"> {{ optional($fila->estado)->nombreEstado }} </td>
 								<td style="text-align:left;"> {{ $fila->nombres }} </td>
 								<td style="text-align:left;"> {{ $fila->apellidos }} </td>
 								<td style="text-align:left;"> {{ $fila->cedula }} </td>

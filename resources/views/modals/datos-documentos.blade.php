@@ -25,8 +25,8 @@
                             @if($fila->idAnalizadoPor != null)
                                 <a class="btn btn-link link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idAnalizadoPor]) }}">
                                   [ {{ $fila->idAnalizadoPor }} ] - 
-                                  {{ $fila->revisor->nombres }}
-                                  {{ $fila->revisor->apellidos }}
+                                  {{ optional($fila->revisor)->nombres }}
+                                  {{ optional($fila->revisor)->apellidos }}
                                 </a>
                             @endif
                         </div>

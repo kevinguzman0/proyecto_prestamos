@@ -32,9 +32,7 @@ class Perfil extends Model
 
 	public function user()
 	{
-	
 		return $this->hasOne('App\User', 'id', 'id');
-	
 	}
 
     public function estado()

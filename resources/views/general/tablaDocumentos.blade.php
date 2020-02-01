@@ -11,18 +11,24 @@
 @section('content')
 	
 	<div class="row col-md-12">
+
         <h5>LISTADO GENERAL DE DOCUMENTOS PRESENTADOS</h5>
+
+	    <div class="ml-auto">
+
+	 	    @if($paginacion == 'si')
+
+	    		{{ $documentos->onEachSide(2)->links() }}
+
+			@endif
+
+		</div>
+
     </div>
 
     <div class="row col-md-12 mb-3 mt-3">
 
     	@include('modulos.mensajes-tablas-generales')
-
-	    @if($paginacion == 'si')
-
-    		{{ $documentos->onEachSide(5)->links() }}
-
-		@endif
 
 		@include('modulos.filtros-documentos')
 
@@ -62,8 +68,8 @@
 							<td style="text-align:center;"> 
 
 								<a class="btn btn-link link-tabla" href="{{ action('PerfilController@miPerfil', [$fila->idCliente]) }}">
-									{{ $fila->cliente->nombres }} 
-									{{ $fila->cliente->apellidos }}
+									{{ optional($fila->cliente)->nombres }} 
+									{{ optional($fila->cliente)->apellidos }}
 								</a>
 
 							</td>

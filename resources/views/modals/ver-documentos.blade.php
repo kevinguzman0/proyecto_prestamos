@@ -47,7 +47,7 @@
 
                 @hasanyrole('directivo')
 
-                    @if(($fila->solicitud->cliente->id) != (Auth::user()->id))
+                    @if((optional($fila->solicitud->cliente)->id) != (Auth::user()->id))
 
                         @if($fila->aprobado!=1)
                             <button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href = '{{ action('CreditoController@documentoAprobado', [$fila->idSolicitud, $fila->id]) }}'">Aprobar</button>
@@ -60,7 +60,7 @@
 
                 @endhasanyrole
 
-                @if((($fila->solicitud->idEstadoSolicitud <= 3) && ($fila->aprobado != 1)) || ($fila->solicitud->cliente->id != Auth::user()->id))
+                @if(((optional($fila->solicitud)->idEstadoSolicitud <= 3) && ($fila->aprobado != 1)) || (optional($fila->solicitud->cliente)->id != Auth::user()->id))
 
                     @include('modals.eliminar-documentos')
                     

@@ -48,10 +48,10 @@
 
 			  	@isset($idUsuarios)
 
-				    <div class="col-md-2">
+				    <div class="col-md-3">
 
 				    	<label class="label-margin">Id Usuario</label>
-				      	<select class="form-control" id="cboIdUsuarios" name="cboIdUsuarios">
+				      	<select class="form-control" id="idUsuario" name="idUsuario">
 				      	
 					      	<option value="-1">Todos</option>
 					      	@foreach ($idUsuarios as $item)
@@ -65,10 +65,23 @@
 
 			    @endisset
 
-			    <div class="col-md-2">
+			    <div class="col-md-3">
 
 			    	<label class="label-margin">Email verificado</label>
 			      	<select class="form-control" id="verificacionEmail" name="verificacionEmail">
+			      	
+				      	<option value="-1">Todos</option>
+				      	<option value="1">Si</option>
+				      	<option value="0">No</option>
+
+			      	</select>
+
+			    </div>
+
+			    <div class="col-md-3">
+
+			    	<label class="label-margin">Perfil diligenciado</label>
+			      	<select class="form-control" id="conPerfil" name="conPerfil">
 			      	
 				      	<option value="-1">Todos</option>
 				      	<option value="1">Si</option>
@@ -85,7 +98,7 @@
 			    <div class="col-md-3">
 
 			    	<label class="label-margin">Fecha de</label>
-			      	<select class="form-control" id="cboFechaDe" name="cboFechaDe">
+			      	<select class="form-control" id="cboFechaDe" name="fechaDe">
 			      	
 				      	<option value="created_at">Creación</option>
 				      	<option value="updated_at">Modificación</option>

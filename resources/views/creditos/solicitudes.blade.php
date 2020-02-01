@@ -45,20 +45,8 @@
 
     <div class="row col-md-12 mb-3 mt-3">
 
-		@isset($mensajeVerde)
-			<div class="form-row col-md-12 alert alert-success estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
-	            {{ $mensajeVerde }}
-	            <button type="button" class="close" data-dismiss="alert">&times;</button>
-	        </div>
-		@endisset
-
-	    @if ($mensaje = Session::get('mensajeVerde'))
-	        <div class="form-row col-md-12 alert alert-success estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
-	            {{ $mensaje }}
-	            <button type="button" class="close" data-dismiss="alert">&times;</button>
-	        </div>
-	    @endif
-			    
+    	@include('modulos.mensajes-tablas-generales')
+		    
 		<table class="table table-striped table-bordered">
 
 			<tbody>
@@ -84,7 +72,7 @@
 					    <tr>
 
 							<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-							<td style="text-align:center;"> {{ $fila->estado->nombreEstado }} </td>
+							<td style="text-align:center;"> {{ optional($fila->estado)->nombreEstado }} </td>
 							<td style="text-align:right;"> {{ '$' . number_format($fila->monto) }} </td>
 							<td style="text-align:center;"> {{ $fila->plazo }} </td>
 							<td style="text-align:right;"> {{ '$' . number_format($fila->cuota,2) }} </td>
