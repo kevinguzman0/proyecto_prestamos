@@ -41,6 +41,22 @@ Route::get('validar-email', function () {
     return view('errors.verify');
 })->name('validar.email');
 
+Route::get('quienes-somos', function () {
+    return view('fondo.quienes-somos');
+})->name('quienes.somos');
+
+Route::get('servicios', function () {
+    return view('fondo.servicios');
+})->name('servicios');
+
+Route::get('estatutos', function () {
+    return view('fondo.estatutos');
+})->name('estatutos');
+
+Route::get('como-contactarnos', function () {
+    return view('fondo.como-contactarnos');
+})->name('como.contactarnos');
+
 // -----------------------------------------------------------------------------------------------------------
 
 Route::get('salir', 'Auth\LoginController@logout')->name('salir');

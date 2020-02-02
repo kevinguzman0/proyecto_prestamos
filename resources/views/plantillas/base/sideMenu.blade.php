@@ -20,10 +20,10 @@
 
 	                <ul class="collapse list-unstyled" id="homeSubmenu">
 
-	                    <li class="margin-submenu"><a href="#">Quiénes somos</a></li>
-	                    <li class="margin-submenu"><a href="#">Cómo contactarnos</a></li>
-	                    <li class="margin-submenu"><a href="#">Servicios</a></li>
-	                    <li class="margin-submenu"><a href="#">Estatutos</a></li>
+	                    <li class="margin-submenu"><a href="{{ route('quienes.somos') }}">Quiénes somos</a></li>
+	                    <li class="margin-submenu"><a href="{{ route('como.contactarnos') }}">Cómo contactarnos</a></li>
+	                    <li class="margin-submenu"><a href="{{ route('servicios') }}">Servicios</a></li>
+	                    <li class="margin-submenu"><a href="{{ route('estatutos') }}">Estatutos</a></li>
 
 	                </ul>
 

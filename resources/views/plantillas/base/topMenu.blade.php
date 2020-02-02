@@ -29,19 +29,19 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown3">
 
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('quienes.somos') }}">
                                     Quienes somos
                                 </a>
 
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('como.contactarnos') }}">
                                     Cómo contactarnos
                                 </a>
 
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('servicios') }}">
                                     Servicios
                                 </a>
 
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('estatutos') }}">
                                     Estatutos
                                 </a>
 
