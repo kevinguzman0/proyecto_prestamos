@@ -185,7 +185,7 @@
 								@endif
 
 								<div>
-									<img src="{{ asset('storage/docUsuarios') }}{{ '/' . $perfil->foto }}? {{ mt_rand(0, 100000) }}" width="200" class="img-fluid form-control estilo-img-previa" 
+									<img src="{{ asset('storage/fotosPerfiles') }}{{ '/' . $perfil->foto }}? {{ mt_rand(0, 100000) }}" width="200" class="img-fluid form-control estilo-img-previa" 
 									name="imageProfile" id="imageProfile">
 								</div>
 							 
@@ -225,8 +225,5 @@
 	    </div>
 
 	</div>
-
-
-
 
 @endsection

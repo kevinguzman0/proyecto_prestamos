@@ -56,7 +56,7 @@ class PerfilController extends Controller
             }
             else
             {
-                $storagePath = Storage::disk('public')->path($perfil->foto);
+                $storagePath = Storage::disk('public')->path('\\fotosPerfiles\\' . $perfil->foto);
                 return view('perfiles.actualizar', compact('perfil', 'storagePath'));
             }
 
@@ -162,13 +162,13 @@ class PerfilController extends Controller
             {
                 
                 $archivo = $perfil->foto;
-                Storage::disk('public')->delete($archivo);
+                Storage::disk('public')->delete('\\fotosPerfiles\\' . $archivo);
 
                 $file = $request->file('foto');
                 $ext = $request->file('foto')->getClientOriginalExtension();
                 $archivo = 'foto-id-' . $perfil->id . '.' . $ext;
                 $perfil->foto = strtolower($archivo);
-                Storage::disk('public')->put($archivo, File::get($file));
+                Storage::disk('public')->put('\\fotosPerfiles\\' . $archivo, File::get($file));
 
             }
 
@@ -313,7 +313,7 @@ class PerfilController extends Controller
             {
 
                 $archivo = $perfil->foto;
-                Storage::disk('public')->delete($archivo);
+                Storage::disk('public')->delete('\\fotosPerfiles\\' . $archivo);
 
                 $perfil->delete();
                 $mensaje = 'El Usuario [ ' . $idUsuario . ' ] fue eliminado con toda su información de Perfil...';

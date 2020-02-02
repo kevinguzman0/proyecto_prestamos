@@ -37,10 +37,6 @@ Route::get('simulador', function () {
     return view('simulador.liquidador');
 })->name('simulador');
 
-Route::get('test-visor', function () {
-    return view('test.visor');
-})->name('test.visor');
-
 Route::get('validar-email', function () {
     return view('errors.verify');
 })->name('validar.email');
@@ -53,9 +49,9 @@ Route::post('tabla-pagos', 'SimuladorController@vistaTablaPagos')->name('simulad
 
 Route::post('cuota-pagos', 'SimuladorController@vistaCuotaCredito')->name('simulador.cuota');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+// -----------------------------------------------------------------------------------------------------------
 
-	// -----------------------------------------------------------------------------------------------------------
+Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::get('home', 'HomeController@index')->name('home');
 
@@ -194,6 +190,28 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Borrar todas las cachés por consola
 // php artisan optimize:clear
 // php artisan clear-compiled
+
+// Validar en el archivo de entorno el contenido de las variables principales para manejo de correos.
+// Validar credenciales de MySql.
+
+// Ejecutar una vez inicialmente para que funcionen las rutas de imagenes y documentos.
 // php artisan storage:link 
+
+// Ejecutar inicialmente para crear base de datos, tablas, datos iniciales y datos de prueba.
+// php artisan migrate:refresh --seed
+
+// Ejecutar inicialmente para crear base de datos, tablas y datos iniciales.
+// Pasar a comentario el código de los Fakers y solo dejar el llamado a SpatieSeeder.
+// php artisan migrate:refresh --seed
+
+// Antes de pasar a producción el proyecto
+// Borrar o desactivar barra de depuración.
+// Pasar la variable de entorno DEBUG a false.
+// Borrar las cachés, logs, sesiones y archivos de la barra de depuración.
+
+// Usar dd( .... ) o @if( dd ( .... ) ) @endif para verificar valor de variables.
+
+// Usar consola para depuración 
+// php artisan tinker
 
 // -----------------------------------------------------------------------------------------------------------

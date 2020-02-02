@@ -25,7 +25,7 @@
 
                 @if ((strtolower(pathinfo($fila->documento, PATHINFO_EXTENSION) == 'pdf')))
 
-                    <iframe id="pdfdoc" src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" width="100%" height="500px"></iframe>
+                    <iframe id="pdfdoc" src="{{ asset('storage/archivosDocumentos') }}{{ '/' . $fila->documento }}" width="100%" height="500px"></iframe>
 
                 @else
 
@@ -35,7 +35,7 @@
 
                     @else
 
-                        <img src="{{ asset('storage/docUsuarios') }}{{ '/' . $fila->documento }}" class="img-fluid form-control estilo-img-previa" />
+                        <img src="{{ asset('storage/archivosDocumentos') }}{{ '/' . $fila->documento }}" class="img-fluid form-control estilo-img-previa" />
 
                     @endif
                     

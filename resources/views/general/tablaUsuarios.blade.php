@@ -37,6 +37,7 @@
 			<table class="table table-striped table-bordered">
 
 				<tbody>
+					
 					<thead class="header-tabla">
 
 						<tr>
@@ -65,7 +66,7 @@
 									@if($fila->email_verified_at == null)
 										Sin verificar
 									@else
-										Si
+										Verificado
 									@endif
 
 								</td>

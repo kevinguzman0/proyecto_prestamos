@@ -199,7 +199,7 @@ class CreditoController extends Controller
                 $documento->documento = strtolower($archivo);
                 $documento->save();
 
-                Storage::disk('public')->put($archivo, File::get($file));
+                Storage::disk('public')->put('\\archivosDocumentos\\' . $archivo, File::get($file));
                 
                 $mensajeVerde = 'Documento almacenado correctamente...';
 
@@ -321,7 +321,7 @@ class CreditoController extends Controller
                 $documento->delete();
 
                 $archivo = $documento->documento;
-                Storage::disk('public')->delete($archivo);
+                Storage::disk('public')->delete('archivosDocumentos\\' . $archivo);
 
                 $mensajeVerde = 'Documento eliminado...';
                 
@@ -336,7 +336,7 @@ class CreditoController extends Controller
     public function documentoDescargar($archivo)
     {
 
-        $pathtoFile = public_path().'/storage/docUsuarios/'.$archivo;
+        $pathtoFile = public_path() . '\\storage\\archivosDocumentos\\' . $archivo;
         return response()->download($pathtoFile);
 
     }

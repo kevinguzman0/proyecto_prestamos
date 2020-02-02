@@ -158,7 +158,7 @@
 							<label class="control-label label-margin">Vista previa</label>
 
 							<div>
-								<img src="{{ asset('storage/docUsuarios') }}{{ '/' . 'sinFoto.png' }}? {{ mt_rand(0, 100000) }}" width="200" class="img-fluid form-control estilo-img-previa" 
+								<img src="{{ asset('storage/fakerImages') }}{{ '/' . 'sinFoto.png' }}? {{ mt_rand(0, 100000) }}" width="200" class="img-fluid form-control estilo-img-previa" 
 								name="imageProfile" id="imageProfile">
 							</div>
 							 

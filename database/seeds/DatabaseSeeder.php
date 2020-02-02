@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
                 'cedula' => $faker->numberBetween($min = 1, $max = 100000000),    
                 'nombres' => $faker->name,
                 'apellidos' => $faker->lastName,
-                'foto' => $faker->file($sourceDir = 'public\storage\fakerImages', $targetDir = 'public\storage\docUsuarios', false),
+                'foto' => $faker->file($sourceDir = 'public\\storage\\fakerImages', $targetDir = 'public\\storage\\fotosPerfiles', false),
                 'email' => $faker->email,
                 'telefono1' => $faker->e164PhoneNumber,
                 'telefono2' => $faker->e164PhoneNumber,
@@ -91,7 +91,7 @@ class DatabaseSeeder extends Seeder
 
         		'idSolicitud' => $faker->unique()->randomElement($idSolicitudes),
         		'idCliente' => $faker->randomElement($userIds),
-        		'documento' => $faker->file($sourceDir = 'public\storage\fakerDocuments', $targetDir = 'public\storage\docUsuarios', false),
+        		'documento' => $faker->file($sourceDir = 'public\\storage\\fakerDocuments', $targetDir = 'public\\storage\\archivosDocumentos', false),
         		'archivoOriginal' => $faker->catchPhrase,
         		'descripcionDocumento' => $faker->paragraph($nbSentences = 1, $variableNbSentences = true),
         		'revisado' => $faker->numberBetween(0, 1),

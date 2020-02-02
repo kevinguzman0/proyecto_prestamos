@@ -67,11 +67,11 @@
 
 			    <div class="col-md-3">
 
-			    	<label class="label-margin">Email verificado</label>
+			    	<label class="label-margin">Estado</label>
 			      	<select class="form-control" id="verificacionEmail" name="verificacionEmail">
 			      	
 				      	<option value="-1">Todos</option>
-				      	<option value="1">Si</option>
+				      	<option value="1">Verificado</option>
 				      	<option value="0">Sin verificar</option>
 
 			      	</select>

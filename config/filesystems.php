@@ -45,12 +45,12 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app') . '\docUsuarios',
+            'root' => storage_path('app'),
         ],
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app\public') . '\docUsuarios',
+            'root' => storage_path('app\public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
