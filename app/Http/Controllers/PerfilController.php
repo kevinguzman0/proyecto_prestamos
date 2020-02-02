@@ -93,7 +93,7 @@ class PerfilController extends Controller
                     'areaTrabajo' => 'required',
                     'cargoTrabajo' => 'required',
                     'afiliadoFondo' => 'required',
-                    'foto'=> 'required|mimes:jpeg,bmp,png,gif,jfif|max:5120',
+                    'foto'=> 'mimes:jpeg,bmp,png,gif,jfif|max:5120',
                 ]);
 
             $perfil = new Perfil;

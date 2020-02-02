@@ -20,7 +20,7 @@ class CrearTablaPerfiles extends Migration
             $table->string('cedula', 15);
             $table->string('nombres', 100);
             $table->string('apellidos', 100);
-            $table->string('foto', 100);
+            $table->string('foto', 100)->nullable();
             $table->string('email', 100);
             $table->string('telefono1', 15);
             $table->string('telefono2', 15);
