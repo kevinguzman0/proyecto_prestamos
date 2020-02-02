@@ -43,6 +43,7 @@
 							<th class="header-tabla-texto">Id</th>
 							<th class="header-tabla-texto">Usuario</th>
 							<th class="header-tabla-texto">Email</th>
+							<th class="header-tabla-texto">Verificado</th>
 							<th class="header-tabla-texto">Perfil</th>
 							<th class="header-tabla-texto">Acciones</th>
 						</tr>
@@ -58,6 +59,16 @@
 								<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
 								<td style="text-align:left;"> {{ $fila->name }} </td>
 								<td style="text-align:left;"> {{ $fila->email }} </td>
+
+								<td style="text-align: center;">
+
+									@if($fila->email_verified_at == null)
+										Sin verificar
+									@else
+										Si
+									@endif
+
+								</td>
 
 								<td style="text-align: center;">
 

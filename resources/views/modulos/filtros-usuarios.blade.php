@@ -72,7 +72,7 @@
 			      	
 				      	<option value="-1">Todos</option>
 				      	<option value="1">Si</option>
-				      	<option value="0">No</option>
+				      	<option value="0">Sin verificar</option>
 
 			      	</select>
 
@@ -84,8 +84,8 @@
 			      	<select class="form-control" id="conPerfil" name="conPerfil">
 			      	
 				      	<option value="-1">Todos</option>
-				      	<option value="1">Si</option>
-				      	<option value="0">No</option>
+				      	<option value="1">Registrado</option>
+				      	<option value="0">Sin registrar</option>
 
 			      	</select>
 
