@@ -21,11 +21,11 @@
 
                         <li class="nav-link"><a href="{{ route('inicio') }}">Inicio</a></li>
 
-                        <li class="nav-link"><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
+                        <li class="nav-link separacion-item-menu-top"><a href="{{ route('simulador') }}">Simulador de creditos</a></li>
 
                         <li class="nav-item dropdown">
 
-                            <a id="navbarDropdown3" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Conócenos</a>
+                            <a id="navbarDropdown3" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu separacion-item-menu-top" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Conócenos</a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown3">
 
@@ -53,7 +53,7 @@
 
                             <li class="nav-item dropdown ajuste-item-maestro-menu-top">
 
-                                <a id="navbarDropdown2" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Maestros</a>
+                                <a id="navbarDropdown2" class="nav-link dropdown-toggle dropdown-toggle-tm user-menu separacion-item-menu-top" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Maestros</a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
 
@@ -93,7 +93,7 @@
 
                         @endif
 
-                        <li class="nav-item">
+                        <li class="nav-item separacion-item-menu-top">
                             <a class="nav-link" href="{{ route('ingresar') }}">{{ __('Login') }}</a>
                         </li>
 
