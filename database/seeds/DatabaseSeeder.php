@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
 
         foreach (range(1,75) as $index) 
         {
-            $perfiles = Perfil::create([
+            $perfil = Perfil::create([
                 'id' => $faker->unique()->randomElement($userIds),
                 'idEstadoPerfil' => $faker->numberBetween($min = 1, $max = 5),
                 'cedula' => $faker->numberBetween($min = 1, $max = 100000000),    
@@ -64,7 +64,21 @@ class DatabaseSeeder extends Seeder
                 'created_at' => $faker->optional()->dateTimeThisYear($timezone = 'America/Bogota'),
                 'updated_at' => $faker->optional()->dateTimeThisYear($timezone = 'America/Bogota'),
             ]);
+
         }
+
+        $perfiles = Perfil::All();
+        
+        foreach ($perfiles as $perfil)
+        {
+            
+            // Corregir el email asignado originalmente al azar con el real ya registrado en User.
+
+            $emailUsuario = User::find($perfil->id)->email;
+            $perfil->email = $emailUsuario;
+            $perfil->save();
+
+        } 
 
         foreach (range(1,150) as $index) 
         {
