@@ -68,6 +68,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $perfiles = Perfil::All();
+        $perfilesIds = Perfil::pluck('id');
         
         foreach ($perfiles as $perfil)
         {
@@ -84,13 +85,13 @@ class DatabaseSeeder extends Seeder
         {
             $solicitud = Solicitud::create([
 
-                'idCliente' => $faker->randomElement($userIds),
+                'idCliente' => $faker->randomElement($perfilesIds),
                 'idEstadoSolicitud' => $faker->numberBetween(1, 7),
                 'monto' => $faker->numberBetween(500000, 100000000),
                 'plazo' => $faker->numberBetween(6, 120),
                 'cuota' => $faker->numberBetween(100000, 3000000),
                 'interes' => $faker->randomFloat(2, 1, 100),
-                'idAnalizadoPor' => $faker->randomElement($userIds),
+                'idAnalizadoPor' => $faker->randomElement($perfilesIds),
                 'analizadoEn' => $faker->optional()->dateTimeThisYear($timezone = 'America/Bogota'),
                 'created_at' => $faker->optional()->dateTimeThisYear($timezone = 'America/Bogota'),
                 'updated_at' => $faker->optional()->dateTimeThisYear($timezone = 'America/Bogota'),
@@ -104,13 +105,13 @@ class DatabaseSeeder extends Seeder
         	$documentos = Documento::create([
 
         		'idSolicitud' => $faker->unique()->randomElement($idSolicitudes),
-        		'idCliente' => $faker->randomElement($userIds),
+        		'idCliente' => $faker->randomElement($perfilesIds),
         		'documento' => $faker->file($sourceDir = 'public\\storage\\fakerDocuments', $targetDir = 'public\\storage\\archivosDocumentos', false),
         		'archivoOriginal' => $faker->catchPhrase,
         		'descripcionDocumento' => $faker->paragraph($nbSentences = 1, $variableNbSentences = true),
         		'revisado' => $faker->numberBetween(0, 1),
         		'aprobado' => $faker->numberBetween(-1, 1),
-        		'idAnalizadoPor' => $faker->randomElement($userIds),
+        		'idAnalizadoPor' => $faker->randomElement($perfilesIds),
                 'analizadoEn' => $faker->optional()->dateTimeThisYear($timezone = 'America/Bogota'),
                 'created_at' => $faker->optional()->dateTimeThisYear($timezone = 'America/Bogota'),
                 'updated_at' => $faker->optional()->dateTimeThisYear($timezone = 'America/Bogota'),

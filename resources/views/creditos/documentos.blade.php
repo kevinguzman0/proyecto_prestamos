@@ -107,7 +107,7 @@
 
 	</div>
 
-	@if(Auth()->user()->id == $perfil->id)
+	@if((Auth()->user()->id == $perfil->id) && (App\Solicitud::find($idSolicitud)->idEstadoSolicitud <= 3))
 
 	    <div class="form-row col-md-12 padding-form">
 

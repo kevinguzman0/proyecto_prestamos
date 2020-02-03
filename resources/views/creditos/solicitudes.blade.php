@@ -82,11 +82,9 @@
 
 								@include('modals.datos-solicitudes')
 
-								@if($fila->idEstadoSolicitud <= 3)
-									<a class="btn btn-link link-tabla boton-acciones" href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">
-										<img src="{{ asset('icons/documents.svg') }}" alt="Documentos" width="32" height="32" title="Documentos">
-									</a>
-								@endif
+								<a class="btn btn-link link-tabla boton-acciones" href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">
+									<img src="{{ asset('icons/documents.svg') }}" alt="Documentos" width="32" height="32" title="Documentos">
+								</a>
 
 								@if($fila->idEstadoSolicitud <= 3)
 
