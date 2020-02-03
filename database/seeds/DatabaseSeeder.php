@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
                 'monto' => $faker->numberBetween(500000, 100000000),
                 'plazo' => $faker->numberBetween(6, 120),
                 'cuota' => $faker->numberBetween(100000, 3000000),
-                'interes' => $faker->randomFloat(2, 0.25, 5),
+                'interes' => $faker->randomFloat(2, 0.25, 3),
                 'idAnalizadoPor' => $faker->randomElement($perfilesIds),
                 'analizadoEn' => $faker->optional()->dateTimeThisYear($timezone = 'America/Bogota'),
                 'created_at' => $faker->optional()->dateTimeThisYear($timezone = 'America/Bogota'),
