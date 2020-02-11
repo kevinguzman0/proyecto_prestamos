@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(SpatieSeeder::class);
 
+        /*
+
         $faker = Faker::create();
 
         foreach (range(1,100) as $index) 
@@ -118,6 +120,8 @@ class DatabaseSeeder extends Seeder
         	]);
 
         }
+
+        */
 
 	}
 
