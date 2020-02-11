@@ -98,6 +98,9 @@ class PerfilController extends Controller
 
             $perfil = new Perfil;
             $perfil->idEstadoPerfil = self::REGISTRADO;
+            $usuario = User::find($idCliente);
+            $usuario->assignRole('registrado');
+
             $mensaje = 'Perfil creado correctamente...';
 
         }
