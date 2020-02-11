@@ -43,6 +43,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function perfil()
     {
        return $this->hasOne('App\Perfil', 'id', 'id'); 
-    }    
+    }   
+
+    public function contarRevisiones($idUsuario)
+    {
+        $documentos = Documento::select('idAnalizadoPor')->where('idAnalizadoPor', '=', $idUsuario)->count();
+        $solicitudes = Solicitud::select('idAnalizadoPor')->where('idAnalizadoPor', '=', $idUsuario)->count();
+
+        return ($documentos + $solicitudes);
+    } 
 
 }

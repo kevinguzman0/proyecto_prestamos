@@ -89,7 +89,25 @@
 
 										@if(Auth::user()->id != $fila->id)
 
-											@include('modals.eliminar-usuarios')
+											@if(!$fila->hasAnyRole('directivo'))
+
+												@include('modals.eliminar-usuarios')
+
+											@endif
+
+										@endif
+
+									@endhasanyrole
+
+									@hasanyrole('administrador')
+
+										@if($fila->hasAnyRole('directivo'))
+
+											@if($fila->contarRevisiones($fila->id) == 0)
+
+												@include('modals.eliminar-usuarios')
+											
+											@endif
 
 										@endif
 
