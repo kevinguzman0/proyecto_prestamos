@@ -18,41 +18,45 @@
 
         @auth
 
-	        @if(App\User::find(Auth()->user()->id)->perfil != null) 
+        	@hasanyrole('registrado|directivo')
 
-		        <div class="col-md-2 margenes-botones">
-					<a href="{{ route('simulador.pdf') }}" class="btn btn-dark mt-2 mb-2" target="_blank">
-						Generar pdf
-					</a>
-		        </div>
-
-				@if(Auth()->user()->id == $idCliente)
+		        @if(App\User::find(Auth()->user()->id)->perfil != null) 
 
 			        <div class="col-md-2 margenes-botones">
-						<form class="col-md-12 pl-0 pr-0" method="POST">
-
-							@csrf
-							
-							<input type="hidden" name="monto" value="{{ $valorPrestamo }}">
-							<input type="hidden" name="plazo" value="{{ $plazoCuotas }}">
-							<input type="hidden" name="cuota" value="{{ $valorCuota }}">
-							<input type="hidden" name="interes" value="{{ $interes }}">
-							
-							<input type="submit" formaction="{{ route('solicitud.nueva') }}" value="Solicitar crédito" name="btnSolicitarCredito" class="form-control btn btn-danger mt-2 mb-2">
-						
-						</form>
+						<a href="{{ route('simulador.pdf') }}" class="btn btn-dark mt-2 mb-2" target="_blank">
+							Generar pdf
+						</a>
 			        </div>
 
-		        @endif
+					@if(Auth()->user()->id == $idCliente)
 
-	        @else
+				        <div class="col-md-2 margenes-botones">
+							<form class="col-md-12 pl-0 pr-0" method="POST">
 
-		        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
-					Para solicitar este crédito o generarlo en archivo Pdf, primero debe llenar su información de perfil... <a href="{{ action('PerfilController@miPerfil', [Auth::user()->id]) }}" class="font-weight-bold font-italic">Haga click aquí para crear su perfil.</a>
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-		        </div>
+								@csrf
+								
+								<input type="hidden" name="monto" value="{{ $valorPrestamo }}">
+								<input type="hidden" name="plazo" value="{{ $plazoCuotas }}">
+								<input type="hidden" name="cuota" value="{{ $valorCuota }}">
+								<input type="hidden" name="interes" value="{{ $interes }}">
+								
+								<input type="submit" formaction="{{ route('solicitud.nueva') }}" value="Solicitar crédito" name="btnSolicitarCredito" class="form-control btn btn-danger mt-2 mb-2">
+							
+							</form>
+				        </div>
 
-		    @endif
+		        	@endif
+
+		        @else
+
+			        <div class="form-row col-md-12 alert alert-danger estilo-success alert-dismissible fade show estilo-mensaje-verde" role="alert">
+						Para solicitar este crédito o generarlo en archivo Pdf, primero debe llenar su información de perfil... <a href="{{ action('PerfilController@miPerfil', [Auth::user()->id]) }}" class="font-weight-bold font-italic">Haga click aquí para crear su perfil.</a>
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+			        </div>
+
+			    @endif
+
+			@endhasanyrole
 
 	    @else
 
