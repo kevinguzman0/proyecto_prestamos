@@ -45,7 +45,7 @@
 		                    	<a href="{{ route('perfiles.tabla') }}">Perfiles de usuario</a>
 		                    </li>
 
-		                    @hasanyrole ('directivo')
+		                    @role ('directivo')
 
 			                    <li class="margin-submenu">
 			                    	<a href="{{ route('solicitudes.tabla') }}">Solicitudes de crédito</a>
@@ -55,7 +55,7 @@
 			                    	<a href="{{ route('documentos.tabla') }}">Documentos presentados</a>
 			                    </li>
 
-			                @endhasanyrole
+			                @endrole
 
 		                </ul>
 

@@ -67,7 +67,7 @@
 
 			    <div class="col-md-3">
 
-			    	<label class="label-margin">Estado</label>
+			    	<label class="label-margin">Estado email</label>
 			      	<select class="form-control" id="verificacionEmail" name="verificacionEmail">
 			      	
 				      	<option value="-1">Todos</option>
@@ -80,17 +80,18 @@
 
 			    <div class="col-md-3">
 
-			    	<label class="label-margin">Perfil diligenciado</label>
-			      	<select class="form-control" id="conPerfil" name="conPerfil">
-			      	
+			    	<label class="label-margin">Estado usuario</label>
+			      	<select class="form-control" id="estadoUsuario" name="estadoUsuario">
 				      	<option value="-1">Todos</option>
-				      	<option value="1">Registrado</option>
-				      	<option value="0">Sin registrar</option>
-
+				      	<option value="inactivo">Inactivo</option>
+				      	<option value="directivo">Directivo</option>
+				      	<option value="registrado">Registrado</option>
+				      	<option value="perfilado">Perfilado</option>
+				      	<option value="interesado">Interesado</option>
+				      	<option value="cliente">Cliente</option>
 			      	</select>
 
 			    </div>
-
 			</div>
 
 		    <div class="form-row col-md-12 padding-form">

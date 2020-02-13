@@ -42,7 +42,6 @@
 
 						<tr>
 							<th class="header-tabla-texto">Id</th>
-							<th class="header-tabla-texto">Estado</th>
 							<th class="header-tabla-texto">Nombres</th>
 							<th class="header-tabla-texto">Apellidos</th>
 							<th class="header-tabla-texto">Cédula</th>
@@ -58,8 +57,8 @@
 					    
 						    <tr>
 
-								<td style="text-align:center; font-weight: bold;"> {{ $fila->id }} </td>
-								<td style="text-align:center;"> {{ optional($fila->estado)->nombreEstado }} </td>
+								<td style="text-align:center; font-weight: bold;"> {{ $fila->id }}</td>
+								
 								<td style="text-align:left;"> {{ $fila->nombres }} </td>
 								<td style="text-align:left;"> {{ $fila->apellidos }} </td>
 								<td style="text-align:left;"> {{ $fila->cedula }} </td>

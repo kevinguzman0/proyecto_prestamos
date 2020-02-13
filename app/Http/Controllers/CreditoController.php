@@ -18,12 +18,6 @@ use Illuminate\Support\Facades\File;
 class CreditoController extends Controller
 {
 
-    const REGISTRADO = 1;
-    const INTERESADO = 2;
-    const CLIENTE = 3;
-    const DIRECTIVO = 4;
-    const INACTIVO = 5;
-
     const SIN_ASIGNAR = -1;
 
     const PRESENTADA = 1;
@@ -133,8 +127,7 @@ class CreditoController extends Controller
         else
         {
 
-            $perfil->idEstadoPerfil = self::INTERESADO;
-            $perfil->save();
+            $usuario = User::find($idCliente)->assignRole('interesado');
 
             $solicitud = new Solicitud;
             $solicitud->idCliente = $idCliente;
@@ -420,8 +413,7 @@ class CreditoController extends Controller
                     $solicitud->idEstadoSolicitud = self::APROBADA;
                     $solicitud->save();
 
-                    $perfil->idEstadoPerfil = self::INTERESADO;
-                    $perfil->save();
+                    $usuario = User::find($idCliente)->assignRole('interesado');
 
                     $mensajeVerde = 'Solicitud aprobada...';
 
@@ -463,8 +455,7 @@ class CreditoController extends Controller
                 $solicitud->idEstadoSolicitud = self::RECHAZADA;
                 $solicitud->save();
 
-                $perfil->idEstadoPerfil = self::INTERESADO;
-                $perfil->save();
+                $usuario = User::find($idCliente)->assignRole('interesado');
 
                 $mensajeVerde = 'Solicitud rechazada...';
 

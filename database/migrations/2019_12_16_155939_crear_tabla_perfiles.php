@@ -16,7 +16,6 @@ class CrearTablaPerfiles extends Migration
         Schema::create('perfiles', function (Blueprint $table) {
 
             $table->bigInteger('id')->unsigned()->primary();            
-            $table->bigInteger('idEstadoPerfil')->unsigned();
             $table->string('cedula', 15);
             $table->string('nombres', 100);
             $table->string('apellidos', 100);

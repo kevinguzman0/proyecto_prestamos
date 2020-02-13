@@ -66,26 +66,6 @@
 
 			    @endisset
 
-			  	@isset($idEstadosPerfil)
-
-				    <div class="col-md-2">
-
-				    	<label class="label-margin">Estados de Perfil</label>
-				      	<select class="form-control" id="idEstadoPerfil" name="idEstadoPerfil">
-
-					      	<option value="-1">Todos</option>
-					      	@foreach ($idEstadosPerfil as $item)
-						        <option value="{{ $item->idEstadoPerfil }}">
-						        	{{ optional($item->estado)->nombreEstado }}
-						        </option>
-						    @endforeach
-
-				      	</select>
-
-				    </div>
-
-			    @endisset
-
 			    <div class="col-md-2">
 
 			    	<label class="label-margin">Afiliado al Fondo</label>

@@ -53,4 +53,24 @@ class User extends Authenticatable implements MustVerifyEmail
         return ($documentos + $solicitudes);
     } 
 
+    public function listarRoles($idUsuario)
+    {
+        $roles = User::find($idUsuario)->getRoleNames();
+        $listado = '';
+        $cantidad = count($roles);
+        $i = 1;
+
+        foreach($roles as $rol)
+        {
+            $listado = $listado . ucfirst($rol);
+            if ($i < $cantidad)
+            {
+                $listado = $listado . ', ';
+                $i = $i + 1;
+            }
+        }
+
+        return $listado;
+    }
+
 }

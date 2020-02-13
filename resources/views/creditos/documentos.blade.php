@@ -141,7 +141,7 @@
 	            <div class="form-row col-md-12 mb-5 padding-form">
 
 		            <div class="alert alert-warning col-md-12 mt-3 mb-1 pl-3 pr-3 alert-dismissible fade show">
-	                	No es posible modificar documentos presentados con anterioridad. Si requiere o le piden actualizar actualizar alguno, debe proceder primero a borrarlo y luego a subirlo de nuevo. Desde ese momento el documento quedará para revisión.
+	                	No es posible modificar documentos presentados con anterioridad. Sí requiere o le piden actualizar alguno, debe proceder primero a borrarlo y luego a subirlo de nuevo. Desde ese momento el documento quedará para revisión nuevamente.
 	                	<button type="button" class="close" data-dismiss="alert">&times;</button>
 		            </div>
 

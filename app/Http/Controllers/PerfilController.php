@@ -21,12 +21,6 @@ use Input;
 class PerfilController extends Controller
 {
     
-    const REGISTRADO = 1;
-    const INTERESADO = 2;
-    const CLIENTE = 3;
-    const DIRECTIVO = 4;
-    const INACTIVO = 5;
-
     const SIN_VALIDAR = null;
 
     /**
@@ -97,9 +91,7 @@ class PerfilController extends Controller
                 ]);
 
             $perfil = new Perfil;
-            $perfil->idEstadoPerfil = self::REGISTRADO;
-            $usuario = User::find($idCliente);
-            $usuario->assignRole('registrado');
+            $usuario = User::find($idCliente)->assignRole('perfilado');
 
             $mensaje = 'Perfil creado correctamente...';
 
@@ -245,12 +237,7 @@ class PerfilController extends Controller
         }
         else
         {
-            $perfil->idEstadoPerfil = self::DIRECTIVO;
-            $perfil->save();
-
-            $usuario = User::find($idUsuario);
-            $usuario->assignRole('directivo');
-            $usuario->removeRole('registrado');
+            $usuario = User::find($idUsuario)->removeRole('registrado')->assignRole('directivo');
 
             $mensajeVerde = 'Usuario definido como Directivo...';
 
@@ -270,12 +257,7 @@ class PerfilController extends Controller
         }
         else
         {
-            $perfil->idEstadoPerfil = self::REGISTRADO;
-            $perfil->save();
-
-            $usuario = User::find($idUsuario);
-            $usuario->assignRole('registrado');
-            $usuario->removeRole('directivo');
+            $usuario = User::find($idUsuario)->removeRole('directivo')->assignRole('registrado');
 
             $mensajeVerde = 'Usuario registrado...';
 
@@ -340,15 +322,7 @@ class PerfilController extends Controller
         }
         else
         {
-            $perfil->idEstadoPerfil = self::INACTIVO;
-            $perfil->save();
-
-            $usuario = User::find($idUsuario);
-            $usuario->assignRole('inactivo');
-            //$usuario->syncRoles(['directivo', 'registrado', 'administrador']);
-            $usuario->removeRole('directivo');
-            $usuario->removeRole('registrado');
-            $usuario->removeRole('administrador');
+            $usuario = User::find($idUsuario)->syncRoles('inactivo');
 
             $mensajeVerde = 'Usuario inactivado...';
 
@@ -368,13 +342,7 @@ class PerfilController extends Controller
         }
         else
         {
-            $perfil->idEstadoPerfil = self::REGISTRADO;
-            $perfil->save();
-
-            $usuario = User::find($idUsuario);
-            $usuario->removeRole('inactivo');
-            $usuario->assignRole('registrado');
-            
+            $usuario = User::find($idUsuario)->removeRole('inactivo')->assignRole('registrado');
 
             $mensajeVerde = 'Usuario activado...';
 

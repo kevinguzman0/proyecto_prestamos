@@ -65,7 +65,7 @@
                                         Perfiles de usuario
                                     </a>
 
-                                    @hasanyrole ('directivo')
+                                    @role ('directivo')
 
                                         <a class="dropdown-item" href="{{ route('solicitudes.tabla') }}">
                                             Solicitudes de crédito
@@ -75,7 +75,7 @@
                                             Documentos presentados
                                         </a>
 
-                                    @endhasanyrole
+                                    @endrole
 
                                </div>
 

@@ -21,11 +21,10 @@ class GeneralController extends Controller
     {
 
         $perfiles = Perfil::paginate(10);
-        $idEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
         $idPerfiles = Perfil::select('id')->get();
         $paginacion = 'si';
 
-        return view('general.tablaPerfiles', compact('perfiles', 'idEstadosPerfil', 'idPerfiles', 'paginacion'));
+        return view('general.tablaPerfiles', compact('perfiles', 'idPerfiles', 'paginacion'));
 
     }
 
@@ -98,7 +97,6 @@ class GeneralController extends Controller
     {
 
         $filtro = $request->filtro;
-        $idEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
         $idPerfiles = Perfil::select('id')->get();
         $paginacion = 'no';
 
@@ -106,7 +104,7 @@ class GeneralController extends Controller
         {
             $mensaje = 'No se han recibido criterios de búsqueda con el filtro. Pruebe con otra búsqueda...'; 
             $perfiles = Perfil::paginate(10);
-            return view('general.tablaPerfiles', compact('perfiles', 'idEstadosPerfil', 'idPerfiles', 'paginacion'))->with('mensajeRojo', $mensaje);
+            return view('general.tablaPerfiles', compact('perfiles', 'idPerfiles', 'paginacion'))->with('mensajeRojo', $mensaje);
         }
         else
         {
@@ -133,7 +131,7 @@ class GeneralController extends Controller
 
             $mensaje = 'La información de Perfiles visualizada está filtrada por algunos campos que contienen el texto [ ' . $filtro . ' ]... ';
 
-            return view('general.tablaPerfiles', compact('perfiles', 'idEstadosPerfil', 'idPerfiles', 'paginacion'))->with('mensajeVerde', $mensaje);
+            return view('general.tablaPerfiles', compact('perfiles', 'idPerfiles', 'paginacion'))->with('mensajeVerde', $mensaje);
 
         }
 
@@ -143,7 +141,6 @@ class GeneralController extends Controller
     {
         
         $idPerfil = $request->idPerfil;
-        $idEstadoPerfil = $request->idEstadoPerfil;
         $afiliadoFondo = $request->afiliadoFondo;
         $conSolicitudes = $request->conSolicitudes;
         $conDocumentos = $request->conDocumentos;
@@ -178,7 +175,6 @@ class GeneralController extends Controller
             $fechaFinal = $fInicial;
         }
 
-        $idEstadosPerfil = Perfil::select('idEstadoPerfil')->distinct()->get();
         $idPerfiles = Perfil::select('id')->get();
 
         $filtros = array();
@@ -193,12 +189,6 @@ class GeneralController extends Controller
             $filtros['id'] = $idPerfil; 
             $contieneFiltros = true;
         }
-
-        if ($idEstadoPerfil != -1) 
-        {
-            $filtros['idEstadoPerfil'] = $idEstadoPerfil;
-            $contieneFiltros = true;
-        } 
 
         if ($afiliadoFondo != -1) 
         {
@@ -237,7 +227,7 @@ class GeneralController extends Controller
             $perfiles = Perfil::paginate(10);
             $paginacion = 'si';
 
-            return view('general.tablaPerfiles', compact('perfiles', 'idEstadosPerfil', 'idPerfiles', 'paginacion'))->with('mensajeRojo', $mensaje);
+            return view('general.tablaPerfiles', compact('perfiles', 'idPerfiles', 'paginacion'))->with('mensajeRojo', $mensaje);
 
         }
         else
@@ -291,7 +281,7 @@ class GeneralController extends Controller
             $mensaje = 'Se aplicaron filtros...'; 
             $paginacion = 'no';
 
-            return view('general.tablaPerfiles', compact('perfiles', 'idEstadosPerfil', 'idPerfiles', 'paginacion'))->with('mensajeVerde', $mensaje);
+            return view('general.tablaPerfiles', compact('perfiles', 'idPerfiles', 'paginacion'))->with('mensajeVerde', $mensaje);
 
         }
 
@@ -337,7 +327,7 @@ class GeneralController extends Controller
         
         $idUsuario = $request->idUsuario;
         $verificacionEmail = $request->verificacionEmail;
-        $conPerfil = $request->conPerfil;
+        $estadoUsuario = $request->estadoUsuario;
         $fechaDe = $request->fechaDe;
         $fInicial = $request->fechaInicial;
         $fFinal = $request->fechaFinal;
@@ -376,7 +366,7 @@ class GeneralController extends Controller
         $contieneFiltros = false;
         $filtroConFechas = false;
         $filtroConEmail = false;
-        $filtroConPerfil = false;
+        $filtroConEstado = false;
 
         if ($idUsuario != -1)
         {
@@ -390,10 +380,10 @@ class GeneralController extends Controller
             $filtroConEmail = true;
         } 
 
-        if ($conPerfil != -1) 
+        if ($estadoUsuario != -1) 
         {
             $contieneFiltros = true;
-            $filtroConPerfil = true;
+            $filtroConEstado = true;
         } 
 
         if ($fechaInicial != null) 
@@ -448,20 +438,10 @@ class GeneralController extends Controller
                                     }
                              })
                            ->where(function ($query) 
-                                 use ($filtroConPerfil, $conPerfil) {   
-                                 if ($filtroConPerfil)
+                                 use ($filtroConEstado, $estadoUsuario) {   
+                                 if ($filtroConEstado)
                                     {
-                                        $idPerfiles = Perfil::pluck('id')->all();
-
-                                        if ($conPerfil == 0)
-                                        {
-                                            $query->whereNotIn('id', $idPerfiles)->select('id')->get();
-                                        }
-                                    
-                                        if ($conPerfil == 1)
-                                        {
-                                            $query->whereIn('id', $idPerfiles)->select('id')->get();
-                                        }
+                                        $query->role($estadoUsuario);
                                     }
                              })
                            ->get();

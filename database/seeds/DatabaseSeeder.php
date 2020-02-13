@@ -48,7 +48,6 @@ class DatabaseSeeder extends Seeder
         {
             $perfil = Perfil::create([
                 'id' => $faker->unique()->randomElement($userIds),
-                'idEstadoPerfil' => $faker->numberBetween($min = 1, $max = 5),
                 'cedula' => $faker->numberBetween($min = 1, $max = 100000000),    
                 'nombres' => $faker->name,
                 'apellidos' => $faker->lastName,

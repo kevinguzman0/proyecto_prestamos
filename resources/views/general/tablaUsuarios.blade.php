@@ -45,7 +45,7 @@
 							<th class="header-tabla-texto">Usuario</th>
 							<th class="header-tabla-texto">Email</th>
 							<th class="header-tabla-texto">Verificado</th>
-							<th class="header-tabla-texto">Perfil</th>
+							<th class="header-tabla-texto">Estados</th>
 							<th class="header-tabla-texto">Acciones</th>
 						</tr>
 
@@ -53,7 +53,7 @@
 
 					@foreach ($usuarios as $fila)
 
-						@if(!$fila->hasAnyRole('administrador'))
+						@if(!$fila->hasRole('administrador'))
 
 						    <tr>
 
@@ -73,11 +73,7 @@
 
 								<td style="text-align: center;">
 
-									@if(App\User::find($fila->id)->perfil == null)
-										Sin registrar
-									@else
-										Registrado
-									@endif
+									{{ $fila->listarRoles($fila->id) }}
 
 								</td>
 
@@ -85,11 +81,11 @@
 
 									@include('modals.datos-usuarios')
 									
-									@hasanyrole('directivo')
+									@role('directivo')
 
 										@if(Auth::user()->id != $fila->id)
 
-											@if(!$fila->hasAnyRole('directivo'))
+											@if(!$fila->hasRole('directivo'))
 
 												@include('modals.eliminar-usuarios')
 
@@ -97,11 +93,11 @@
 
 										@endif
 
-									@endhasanyrole
+									@endrole
 
-									@hasanyrole('administrador')
+									@role('administrador')
 
-										@if($fila->hasAnyRole('directivo'))
+										@if($fila->hasRole('directivo'))
 
 											@if($fila->contarRevisiones($fila->id) == 0)
 
@@ -111,9 +107,9 @@
 
 										@endif
 
-									@endhasanyrole
+									@endrole
 
-									@if (!Auth::user()->hasAnyRole('administrador'))
+									@if (!Auth::user()->hasRole('administrador'))
 
 										@if(App\User::find($fila->id)->perfil != null)
 											<a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">
@@ -123,7 +119,7 @@
 
 									@endif
 
-									@hasanyrole('directivo')
+									@role('directivo')
 
 										@if($fila->email_verified_at == null)
 
@@ -131,7 +127,7 @@
 											
 										@endif
 
-									@endhasanyrole
+									@endrole
 
 								</td>						
 

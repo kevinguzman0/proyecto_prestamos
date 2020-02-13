@@ -45,7 +45,7 @@
 
             <div class="modal-footer">
 
-                @hasanyrole('directivo')
+                @role('directivo')
 
                     @if((optional($fila->solicitud->cliente)->id) != (Auth::user()->id))
 
@@ -58,7 +58,7 @@
 
                     @endif
 
-                @endhasanyrole
+                @endrole
 
                 @if(((optional($fila->solicitud)->idEstadoSolicitud <= 3) && ($fila->aprobado != 1)) || (optional($fila->solicitud->cliente)->id != Auth::user()->id))
 

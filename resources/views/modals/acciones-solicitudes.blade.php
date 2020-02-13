@@ -16,7 +16,9 @@
                 <div class="col-md-12">
                     <div class="row col-md-12">
  
-                        @if($fila->idEstadoSolicitud <= 3)
+                        {{-- @if($fila->idEstadoSolicitud <= 3) --}}
+                        
+                        @if(App\Solicitud::find($fila->id)->documentos->count() > 0)
                             <div class="col-md-2">
                                 <a href="{{ route('mis.documentos', [$fila->idCliente, $fila->id]) }}">
                                     <img src="{{ asset('icons/documents.svg') }}" alt="Ver documentos entregados" width="32" height="32" title="Ver documentos entregados" />

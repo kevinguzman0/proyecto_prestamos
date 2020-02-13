@@ -26,14 +26,18 @@
 
                         @hasanyrole('directivo')
 
-                            <div class="col-md-2">
-                                <a href="{{ action('CreditoController@misSolicitudes', [$fila->id]) }}">
-                                    <img src="{{ asset('icons/list-ol.svg') }}" alt="Ver solicitudes" width="32" height="32" title="Ver solicitudes" />
-                                </a>
-                            </div>
-                            <div class="d-flex align-items-center col-md-10 text-left">
-                                <a href="{{ action('CreditoController@misSolicitudes', [$fila->id]) }}">Ver solicitudes</a>
-                            </div>
+                            @if(App\Perfil::find($fila->id)->solicitudes->count() > 0)
+
+                                <div class="col-md-2">
+                                    <a href="{{ action('CreditoController@misSolicitudes', [$fila->id]) }}">
+                                        <img src="{{ asset('icons/list-ol.svg') }}" alt="Ver solicitudes" width="32" height="32" title="Ver solicitudes" />
+                                    </a>
+                                </div>
+                                <div class="d-flex align-items-center col-md-10 text-left">
+                                    <a href="{{ action('CreditoController@misSolicitudes', [$fila->id]) }}">Ver solicitudes</a>
+                                </div>
+
+                            @endif
 
                             @if(($fila->id) != (Auth::user()->id))
 
@@ -47,11 +51,11 @@
                                 </div>
                             @endif
 
-                            @if($fila->user->hasAnyRole('registrado'))
+                            @if($fila->user->hasRole('registrado'))
                                 @include('modals.desactivar-usuario')
                             @endif
 
-                            @if($fila->user->hasAnyRole('inactivo'))
+                            @if($fila->user->hasRole('inactivo'))
 
                                 @include('modals.activar-usuario')
 
@@ -61,22 +65,20 @@
 
                         @hasanyrole('administrador')
 
-                            @if($fila->user->hasAnyRole('directivo'))
+                            @if($fila->user->hasRole('directivo'))
                                 @include('modals.desactivar-usuario')
                             @endif
 
-                            @if($fila->idEstadoPerfil == 5)
+                            @if($fila->user->hasRole('inactivo'))
                                 @include('modals.activar-usuario')
                             @endif
 
-                            @if ($fila->idEstadoPerfil < 4)
+                            @if($fila->user->hasRole('registrado'))
                                  @include('modals.activar-directivo')
                             @endif
 
-                            @if ($fila->idEstadoPerfil == 4)
-
+                            @if($fila->user->hasRole('directivo'))
                                 @include('modals.desactivar-directivo')
-
                             @endif
 
                         @endhasanyrole
