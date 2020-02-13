@@ -24,7 +24,7 @@
                             <a href="{{ action('PerfilController@miPerfil', [$fila->id]) }}">Ver perfil</a>       
                         </div>
 
-                        @hasanyrole('directivo')
+                        @role('directivo')
 
                             @if(App\Perfil::find($fila->id)->solicitudes->count() > 0)
 
@@ -61,9 +61,9 @@
 
                             @endif
 
-                        @endhasanyrole
+                        @endrole
 
-                        @hasanyrole('administrador')
+                        @role('administrador')
 
                             @if($fila->user->hasRole('directivo'))
                                 @include('modals.desactivar-usuario')
@@ -81,7 +81,7 @@
                                 @include('modals.desactivar-directivo')
                             @endif
 
-                        @endhasanyrole
+                        @endrole
 
                     </div>
                 </div>

@@ -53,7 +53,7 @@
 
 					@foreach ($perfiles as $fila)
 
-						@if(!$fila->user->hasAnyRole('administrador'))
+						@if(!$fila->user->hasRole('administrador'))
 					    
 						    <tr>
 
