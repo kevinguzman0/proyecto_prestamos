@@ -57,6 +57,19 @@ Route::get('como-contactarnos', function () {
     return view('fondo.como-contactarnos');
 })->name('como.contactarnos');
 
+Route::get('/borrar-cache', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('clear-compiled');
+    Artisan::call('config:cache');
+    Artisan::call('config:clear');
+
+    $mensajeVerde = 'Todos los cachés del sistema han sido eliminados...';
+    // return redirect('')->back()->with('mensajeVerde', $mensajeVerde);
+    
+    return $mensajeVerde;
+})->name('borrar.cache');
+
 // -----------------------------------------------------------------------------------------------------------
 
 Route::get('salir', 'Auth\LoginController@logout')->name('salir');

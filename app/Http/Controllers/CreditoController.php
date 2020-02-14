@@ -192,7 +192,7 @@ class CreditoController extends Controller
                 $documento->documento = strtolower($archivo);
                 $documento->save();
 
-                Storage::disk('public')->put('\\archivosDocumentos\\' . $archivo, File::get($file));
+                Storage::disk('public')->put('\\archivosDocumentos\\' . strtolower($archivo), File::get($file));
                 
                 $mensajeVerde = 'Documento almacenado correctamente...';
 
