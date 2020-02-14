@@ -58,6 +58,7 @@ Route::get('como-contactarnos', function () {
 })->name('como.contactarnos');
 
 Route::get('/borrar-cache', function() {
+
     Artisan::call('cache:clear');
     Artisan::call('optimize:clear');
     Artisan::call('clear-compiled');
@@ -65,9 +66,9 @@ Route::get('/borrar-cache', function() {
     Artisan::call('config:clear');
 
     $mensajeVerde = 'Todos los cachés del sistema han sido eliminados...';
-    // return redirect('')->back()->with('mensajeVerde', $mensajeVerde);
+
+    return view('errors.mantenimiento', compact('mensajeVerde'));
     
-    return $mensajeVerde;
 })->name('borrar.cache');
 
 // -----------------------------------------------------------------------------------------------------------
